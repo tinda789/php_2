@@ -1,3 +1,4 @@
+<?php echo '<link rel="stylesheet" href="view/layout/manage_user.css">'; ?>
 <div class="user-manage-container">
     <div class="user-manage-title">Quản lý người dùng</div>
     <a href="index.php?controller=admin&action=add_user_admin" class="add-user-btn">+ Thêm người dùng</a>

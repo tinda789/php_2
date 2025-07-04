@@ -151,7 +151,7 @@ if ($action === 'category_index') {
 
 if ($action === 'category_create') {
     $parentCategories = Category::getParents($conn);
-    $view_file = 'view/admin/category_create.php';
+    $view_file = 'view/admin/create_category.php';
     include 'view/layout/admin_layout.php';
     exit;
 }
@@ -193,7 +193,7 @@ if ($action === 'category_edit') {
     }
 
     $parentCategories = Category::getParents($conn);
-    $view_file = 'view/admin/category_edit.php';
+    $view_file = 'view/admin/edit_category.php';
     include 'view/layout/admin_layout.php';
     exit;
 }

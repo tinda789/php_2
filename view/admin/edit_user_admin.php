@@ -1,3 +1,5 @@
+<?php echo '<link rel="stylesheet" href="view/layout/edit_user_admin.css">'; ?>
+
 <style>
 .edit-user-container {
     max-width: 500px;

@@ -1,3 +1,4 @@
+<?php echo '<link rel="stylesheet" href="view/layout/categories_admin.css">'; ?>
 <div class="category-manage-container">
     <div class="category-manage-title">Quản lý danh mục</div>
     <form method="get" style="margin-bottom:18px;display:flex;gap:12px;align-items:center;">

@@ -1,3 +1,4 @@
+<?php echo '<link rel="stylesheet" href="view/layout/create_category.css">'; ?>
 <div class="create-category-container">
     <div class="create-category-title">Thêm danh mục mới</div>
     <?php if (!empty($error)): ?>
@@ -16,7 +17,7 @@
             <label for="parent_id" class="form-label">Danh mục cha</label>
             <select class="form-select" id="parent_id" name="parent_id">
                 <option value="">(Không chọn)</option>
-                <?php foreach ($parents as $p): ?>
+                <?php foreach ($parentCategories as $p): ?>
                     <option value="<?php echo $p['id']; ?>" <?php if (!empty($_POST['parent_id']) && $_POST['parent_id'] == $p['id']) echo 'selected'; ?>><?php echo htmlspecialchars($p['name']); ?></option>
                 <?php endforeach; ?>
             </select>

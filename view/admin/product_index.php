@@ -1,4 +1,5 @@
-<div class="main-content" style="margin-left:10%; padding:40px 0 32px 0; min-height:100vh;">
+<?php echo '<link rel="stylesheet" href="view/layout/product_index.css">'; ?>
+<div class="main-content" style="margin-left:5%; padding:40px 0 32px 0; min-height:100vh;">
     <div class="dashboard-title" style="margin-bottom:32px;">Quản lý sản phẩm</div>
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
         <a href="index.php?controller=admin&action=product_create" class="add-category-btn" style="margin-bottom:0;">

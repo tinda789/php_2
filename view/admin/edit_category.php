@@ -1,3 +1,4 @@
+<?php echo '<link rel="stylesheet" href="view/layout/edit_category.css">'; ?>
 <div class="edit-category-container">
     <div class="edit-category-title">Sửa danh mục</div>
     <?php if (!empty($error)): ?>

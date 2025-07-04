@@ -1,0 +1,72 @@
+.add-user-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #23272f;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+    padding: 36px 32px 32px 32px;
+    color: #f1f1f1;
+}
+.add-user-title {
+    font-size: 1.5rem;
+    color: #4fc3f7;
+    font-weight: 600;
+    margin-bottom: 28px;
+    text-align: center;
+}
+.add-user-form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #b0bec5;
+}
+.add-user-form input, .add-user-form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: none;
+    background: #353b48;
+    color: #f1f1f1;
+    font-size: 1rem;
+}
+.add-user-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+.add-user-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+.add-user-form button {
+    background: #00e676;
+    color: #23272f;
+    border: none;
+    border-radius: 18px;
+    padding: 8px 22px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+}
+.add-user-form button:hover {
+    background: #00b248;
+    color: #fff;
+}
+.add-user-success {
+    background: #353b48;
+    border-radius: 10px;
+    padding: 18px 18px 10px 18px;
+    margin-bottom: 18px;
+    color: #00e676;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.add-user-error {
+    background: #ff5252;
+    color: #fff;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 18px;
+    text-align: center;
+} 
