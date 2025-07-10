@@ -1,6 +1,7 @@
 .container-fluid {
     width: 100%;
     padding: 0 24px;
+    margin-top: 70px;
 }
 .card {
     background: #23272f;
@@ -141,4 +142,67 @@
 @media (max-width: 700px) {
     .card-body { padding: 10px 2vw; }
     .btn, .btn-sm { padding: 8px 12px; font-size: 1rem; }
-} 
+}
+
+/* Search bar layout cải tiến */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar .form-control {
+    height: 40px;
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 16px;
+    border: 1.5px solid #4fc3f7;
+    background: #23272f;
+    color: #fff;
+    min-width: 240px;
+    margin-bottom: 0;
+}
+
+.search-bar .form-control::placeholder {
+    color: #b0bec5;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.search-bar .btn-primary, .search-bar .btn-secondary {
+    height: 40px;
+    border-radius: 18px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.18s, color 0.18s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar .btn-primary:hover {
+    background: #0288d1;
+    color: #fff;
+}
+
+.search-bar .btn-secondary {
+    background: transparent;
+    color: #4fc3f7;
+    border: 1.5px solid #4fc3f7;
+}
+.search-bar .btn-secondary:hover {
+    background: #4fc3f7;
+    color: #23272f;
+}
+
+/* Đảm bảo nội dung các cột chính màu trắng nổi bật */
+
+/* Giữ nguyên màu cho badge trạng thái và nút thao tác */
+/* Đảm bảo mọi chữ trong bảng (trừ badge và nút) đều trắng nổi bật */
+.table td, .table td *:not(.badge):not(a):not(i) {
+    color: #fff !important;
+}
+.table td .text-muted {
+    color: #fff !important;
+}

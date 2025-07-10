@@ -131,6 +131,11 @@
                                 <option value="1">Nổi bật</option>
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="product_images">Ảnh sản phẩm (có thể chọn nhiều)</label>
+                            <input type="file" class="form-control" id="product_images" name="product_images[]" multiple accept="image/*">
+                        </div>
                     </div>
                 </div>
 

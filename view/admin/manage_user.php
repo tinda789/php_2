@@ -23,7 +23,7 @@
                     <td><?php echo htmlspecialchars($user['username']); ?></td>
                     <td><?php echo htmlspecialchars($user['email']); ?></td>
                     <td><?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name']); ?></td>
-                    <td><?php echo htmlspecialchars($user['phone']); ?></td>
+                    <td><?php echo htmlspecialchars($user['phone'] ?? ''); ?></td>
                     <td><?php echo htmlspecialchars($user['role_name']); ?></td>
                     <td><?php echo $user['is_active'] ? 'Hoạt động' : 'Khóa'; ?></td>
                     <td class="actions">

@@ -1,16 +1,16 @@
 <?php echo '<link rel="stylesheet" href="view/layout/product_index.css">'; ?>
-<div class="main-content" style="margin-left:5%; padding:40px 0 32px 0; min-height:100vh;">
-    <div class="dashboard-title" style="margin-bottom:32px;">Quản lý sản phẩm</div>
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <a href="index.php?controller=admin&action=product_create" class="add-category-btn" style="margin-bottom:0;">
+<div class="main-content" style="margin-left:0; padding:40px 0 32px 0; min-height:100vh; width:100vw; box-sizing:border-box; display:flex; flex-direction:column; align-items:center;">
+    <div class="dashboard-title" style="margin-bottom:32px; text-align:center; width:100%;">Quản lý sản phẩm</div>
+    <div class="search-product-bar" style="display: flex; align-items: center; gap: 24px; margin-bottom: 18px;">
+        <a href="index.php?controller=admin&action=product_create" class="add-category-btn">
             <i class="fas fa-plus"></i> Thêm sản phẩm mới
         </a>
-        <form method="GET" class="form-inline" style="display:flex; gap:10px;">
+        <form method="GET" class="search-bar">
             <input type="hidden" name="controller" value="admin">
             <input type="hidden" name="action" value="product_index">
-            <input type="text" class="form-control" name="search" placeholder="Tìm kiếm sản phẩm..." value="<?php echo htmlspecialchars($search ?? ''); ?>" style="min-width:220px;">
-            <button type="submit" class="btn-save" style="padding:8px 18px;">Tìm kiếm</button>
-            <a href="index.php?controller=admin&action=product_index" class="btn-cancel" style="padding:8px 18px;">Xóa bộ lọc</a>
+            <input type="text" class="form-control" name="search" placeholder="Tìm kiếm sản phẩm..." value="<?php echo htmlspecialchars($search ?? ''); ?>">
+            <button type="submit" class="btn-save">Tìm kiếm</button>
+            <a href="index.php?controller=admin&action=product_index" class="btn-cancel clear-filter-btn"><span class="filter-x-icon">&#128465;</span> Xóa bộ lọc</a>
         </form>
     </div>
 

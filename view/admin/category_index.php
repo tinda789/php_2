@@ -37,14 +37,11 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <form method="GET" class="form-inline">
+            <form method="GET" class="search-bar">
                 <input type="hidden" name="controller" value="admin">
                 <input type="hidden" name="action" value="category_index">
-                <div class="form-group mr-2">
-                    <input type="text" class="form-control" name="search" placeholder="Tìm kiếm danh mục..." 
-                           value="<?php echo htmlspecialchars($search ?? ''); ?>">
-                </div>
-                <button type="submit" class="btn btn-primary mr-2">Tìm kiếm</button>
+                <input type="text" class="form-control" name="search" placeholder="Tìm kiếm danh mục..." value="<?php echo htmlspecialchars($search ?? ''); ?>">
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                 <a href="index.php?controller=admin&action=category_index" class="btn btn-secondary">Xóa bộ lọc</a>
             </form>
         </div>
