@@ -95,16 +95,9 @@
                                             <?php echo $category['is_active'] ? 'Hoạt động' : 'Ẩn'; ?>
                                         </span>
                                     </td>
-                                    <td>
-                                        <a href="index.php?controller=admin&action=category_edit&id=<?php echo $category['id']; ?>" 
-                                           class="btn btn-sm btn-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="index.php?controller=admin&action=category_delete&id=<?php echo $category['id']; ?>" 
-                                           class="btn btn-sm btn-danger"
-                                           onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?')">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
+                                    <td class="actions">
+                                        <a href="index.php?controller=admin&action=category_edit&id=<?php echo $category['id']; ?>" class="btn-edit">Sửa</a>
+                                        <a href="#" class="btn-delete" data-id="<?php echo $category['id']; ?>" onclick="return false;">Xóa</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -145,3 +138,60 @@
         </div>
     </div>
 </div> 
+<script>
+document.querySelectorAll('.btn-delete').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (!confirm('Bạn có chắc muốn xóa?')) return;
+        var id = this.getAttribute('data-id');
+        fetch('api/category.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'action=delete&id=' + encodeURIComponent(id)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Xóa thành công!');
+                this.closest('tr').remove();
+            } else {
+                alert('Xóa thất bại!');
+            }
+        })
+        .catch(() => alert('Có lỗi khi kết nối API!'));
+    });
+});
+</script> 
+<style>
+.btn-edit, .btn-delete {
+    display: inline-block;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 22px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 2px 0;
+    transition: background 0.18s, color 0.18s;
+}
+.btn-edit {
+    background: #4fc3f7;
+    color: #23272f;
+}
+.btn-edit:hover {
+    background: #0288d1;
+    color: #fff;
+}
+.btn-delete {
+    background: #ff5252;
+    color: #fff;
+}
+.btn-delete:hover {
+    background: #c62828;
+    color: #fff;
+}
+</style> 

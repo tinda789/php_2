@@ -1,4 +1,28 @@
 <?php echo '<link rel="stylesheet" href="view/layout/product_index.css">'; ?>
+<style> /* thinh */
+.badge-active {
+    background: #00e676;
+    color: #23272f;
+    border-radius: 10px;
+    padding: 4px 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-block;
+    min-width: 36px;
+    text-align: center;
+}
+.badge-inactive {
+    background: #b0bec5;
+    color: #23272f;
+    border-radius: 10px;
+    padding: 4px 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-block;
+    min-width: 36px;
+    text-align: center;
+}
+</style> /* thinh */
 <div class="main-content" style="margin-left:5%; padding:40px 0 32px 0; min-height:100vh;">
     <div class="dashboard-title" style="margin-bottom:32px;">Quản lý sản phẩm</div>
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
@@ -13,6 +37,7 @@
             <a href="index.php?controller=admin&action=product_index" class="btn-cancel" style="padding:8px 18px;">Xóa bộ lọc</a>
         </form>
     </div>
+  
 
     <?php if (isset($_GET['success'])): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom:18px;">
@@ -84,14 +109,14 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <span class="badge badge-<?php echo $product['stock_quantity'] > 0 ? 'success' : 'danger'; ?>">
-                                        <?php echo $product['stock_quantity']; ?>
-                                    </span>
+                                    <span class="badge-active"><?php echo $product['stock_quantity']; ?></span>
                                 </td>
                                 <td>
-                                    <span class="badge badge-<?php echo $product['status'] ? 'success' : 'secondary'; ?>">
-                                        <?php echo $product['status'] ? 'Hoạt động' : 'Ẩn'; ?>
-                                    </span>
+                                    <?php if ($product['status']): ?>
+                                        <span class="badge-active">Hoạt động</span>
+                                    <?php else: ?>
+                                        <span class="badge-inactive">Ẩn</span>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
                                     <span class="badge badge-<?php echo $product['featured'] ? 'warning' : 'secondary'; ?>">
@@ -99,8 +124,8 @@
                                     </span>
                                 </td>
                                 <td class="actions">
-                                    <a href="index.php?controller=admin&action=product_edit&id=<?php echo $product['id']; ?>" class="btn-edit" title="Sửa"><i class="fas fa-edit"></i></a>
-                                    <a href="index.php?controller=admin&action=product_delete&id=<?php echo $product['id']; ?>" class="btn-delete" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')"><i class="fas fa-trash"></i></a>
+                                    <button class="btn-edit" title="Sửa" onclick="window.location.href='index.php?controller=admin&action=product_edit&id=<?php echo $product['id']; ?>'">✏️</button>
+                                    <button class="btn-delete" title="Xóa" data-id="<?php echo $product['id']; ?>">🗑️</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

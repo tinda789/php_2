@@ -143,6 +143,7 @@ if ($action === 'category_index') {
     $categories = Category::getAll($conn, $limit, $offset, $search);
     $total = Category::countAll($conn, $search);
     $totalPages = ceil($total / $limit);
+    $current_page = $page;
 
     $view_file = 'view/admin/category_index.php';
     include 'view/layout/admin_layout.php';
@@ -160,15 +161,13 @@ if ($action === 'category_store') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = [
             'name' => $_POST['name'] ?? '',
-            'slug' => createSlug($_POST['name']),
+            'slug' => $_POST['slug'] ?? '',
             'description' => $_POST['description'] ?? '',
             'parent_id' => (int)($_POST['parent_id'] ?? 0),
-            'status' => (int)($_POST['status'] ?? 1),
-            'sort_order' => (int)($_POST['sort_order'] ?? 0),
-            'meta_title' => $_POST['meta_title'] ?? '',
-            'meta_description' => $_POST['meta_description'] ?? ''
+            'image' => $_POST['image'] ?? '',
+            'is_active' => isset($_POST['is_active']) ? 1 : 0,
+            'sort_order' => 0
         ];
-
         if (Category::create($conn, $data)) {
             header('Location: index.php?controller=admin&action=category_index&success=1');
             exit;
@@ -185,14 +184,12 @@ if ($action === 'category_edit') {
         header('Location: index.php?controller=admin&action=category_index');
         exit;
     }
-
     $category = Category::getById($conn, $id);
     if (!$category) {
         header('Location: index.php?controller=admin&action=category_index&error=not_found');
         exit;
     }
-
-    $parentCategories = Category::getParents($conn);
+    $parents = Category::getParents($conn);
     $view_file = 'view/admin/edit_category.php';
     include 'view/layout/admin_layout.php';
     exit;
@@ -205,18 +202,15 @@ if ($action === 'category_update') {
             header('Location: index.php?controller=admin&action=category_index');
             exit;
         }
-
         $data = [
             'name' => $_POST['name'] ?? '',
-            'slug' => createSlug($_POST['name']),
+            'slug' => $_POST['slug'] ?? '',
             'description' => $_POST['description'] ?? '',
             'parent_id' => (int)($_POST['parent_id'] ?? 0),
-            'status' => (int)($_POST['status'] ?? 1),
-            'sort_order' => (int)($_POST['sort_order'] ?? 0),
-            'meta_title' => $_POST['meta_title'] ?? '',
-            'meta_description' => $_POST['meta_description'] ?? ''
+            'image' => $_POST['image'] ?? '',
+            'is_active' => isset($_POST['is_active']) ? 1 : 0,
+            'sort_order' => 0
         ];
-
         if (Category::update($conn, $id, $data)) {
             header('Location: index.php?controller=admin&action=category_index&success=2');
             exit;
@@ -233,7 +227,6 @@ if ($action === 'category_delete') {
         header('Location: index.php?controller=admin&action=category_index');
         exit;
     }
-
     if (Category::delete($conn, $id)) {
         header('Location: index.php?controller=admin&action=category_index&success=3');
         exit;
@@ -376,6 +369,95 @@ if ($action === 'product_delete') {
         exit;
     } else {
         header('Location: index.php?controller=admin&action=product_index&error=delete_failed');
+        exit;
+    }
+}
+
+if ($action === 'order_manage') { // thinh
+    require_once 'model/Order.php'; // thinh
+    $orders = Order::getAll($conn); // thinh
+    $view_file = 'view/admin/order_manage.php'; // thinh
+    include 'view/layout/admin_layout.php'; // thinh
+    exit; // thinh
+}
+
+if ($action === 'order_update_status') { // thinh
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = (int)($_POST['id'] ?? 0);
+        $status = $_POST['status'] ?? '';
+        require_once 'model/Order.php';
+        Order::updateStatus($conn, $id, $status);
+        $_SESSION['order_message'] = 'Cập nhật trạng thái thành công!';
+        header('Location: index.php?controller=admin&action=order_manage');
+        exit;
+    }
+}
+
+if ($action === 'order_confirm') { // thinh
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = (int)($_POST['id'] ?? 0);
+        require_once 'model/Order.php';
+        // Kiểm tra trạng thái hiện tại
+        $stmt = $conn->prepare('SELECT status FROM orders WHERE id=?');
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $order = $result->fetch_assoc();
+        if ($order && in_array($order['status'], ['pending', 'confirmed', 'processing', 'shipped'])) { // chỉ cho xác nhận nếu chưa giao/hủy/hoàn tiền
+            Order::confirm($conn, $id);
+            echo '
+            <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+                <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+                    Đã xác nhận đơn hàng thành công!<br>Đang chuyển về trang quản lý đơn hàng...
+                </div>
+            </div>
+            <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=order_manage">'; // thinh
+        } else {
+            echo '<div style="text-align:center;margin-top:60px;font-size:1.3rem;color:red;">Không thể xác nhận đơn hàng này!</div>';
+        }
+        exit;
+    }
+}
+
+if ($action === 'coupon_manage') { // thinh
+    require_once 'model/Coupon.php';
+    $coupons = Coupon::getAll($conn);
+    $view_file = 'view/admin/coupon_manage.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'coupon_create') { // thinh
+    $view_file = 'view/admin/coupon_create.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'coupon_store') { // thinh
+    require_once 'model/Coupon.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data = [
+            'code' => $_POST['code'],
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'type' => $_POST['type'],
+            'value' => (float)$_POST['value'],
+            'minimum_amount' => (float)$_POST['minimum_amount'],
+            'maximum_discount' => (float)$_POST['maximum_discount'],
+            'usage_limit' => (int)$_POST['usage_limit'],
+            'start_date' => $_POST['start_date'],
+            'end_date' => $_POST['end_date'],
+            'is_active' => isset($_POST['is_active']) ? 1 : 0,
+            'payment_method' => $_POST['payment_method'] ?? 'all'
+        ];
+        Coupon::create($conn, $data);
+        echo '
+        <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+            <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+                Đã tạo mã giảm giá thành công!<br>Đang chuyển về trang quản lý mã giảm giá...
+            </div>
+        </div>
+        <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
         exit;
     }
 }
