@@ -1,3 +1,9 @@
+<!-- Thanhdat -->
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<!-- Custom CSS -->
 <link rel="stylesheet" href="view/layout/admin.css?v=1">
 <header class="admin-header" style="background:#1a1d23; padding:18px 40px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #23272f; position:fixed; top:0; left:0; width:100%; z-index:1000;">
     <div class="admin-logo" style="font-size:1.5rem; color:#4fc3f7; font-weight:bold; letter-spacing:2px;">QUẢN TRỊ</div>

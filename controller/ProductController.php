@@ -59,6 +59,22 @@ class ProductController {
             ];
 
             if (Product::create($this->conn, $data)) {
+                $product_id = $this->conn->insert_id;
+                // thanhdat: upload nhiều ảnh sản phẩm
+                if (!empty($_FILES['product_images']['name'][0])) {
+                    $target_dir = 'uploads/products/';
+                    foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
+                        $file_name = basename($_FILES['product_images']['name'][$key]);
+                        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                        $new_name = 'product_' . time() . '_' . rand(1000,9999) . '.' . $file_ext;
+                        $target_file = $target_dir . $new_name;
+                        if (move_uploaded_file($tmp_name, $target_file)) {
+                            $stmt = $this->conn->prepare("INSERT INTO product_images (product_id, image) VALUES (?, ?)");
+                            $stmt->bind_param("is", $product_id, $new_name);
+                            $stmt->execute();
+                        }
+                    }
+                }
                 header('Location: index.php?controller=product&action=index&success=1');
                 exit;
             } else {

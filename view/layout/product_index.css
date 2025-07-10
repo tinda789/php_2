@@ -16,6 +16,7 @@
     text-align: left;
     letter-spacing: 1px;
     width: 100%;
+    margin: 0 auto;
 }
 .user-manage-container {
     width: 100%;
@@ -72,6 +73,7 @@
     transition: background 0.18s, color 0.18s;
     display: inline-block;
     text-decoration: none;
+    margin-right: 24px;
 }
 .add-category-btn:hover { background: #00b248; color: #fff; }
 .btn-save {
@@ -86,6 +88,8 @@
     margin-right: 12px;
     transition: background 0.18s, color 0.18s;
     font-family: inherit;
+    margin-right: 0;
+    height: 40px;
 }
 .btn-save:hover { background: #00b248; color: #fff; }
 .btn-cancel {
@@ -163,10 +167,11 @@
     border: 1.5px solid #4fc3f7;
     border-radius: 10px;
     padding: 10px 14px;
-    margin-bottom: 12px;
+    margin-bottom: 0;
     font-size: 1rem;
     font-family: inherit;
     min-width: 220px;
+    height: 40px;
 }
 .form-control:focus {
     outline: none;
@@ -185,6 +190,43 @@
 .fade { opacity: 0.7; transition: opacity 0.15s linear; }
 .show { opacity: 1; }
 .close { background: none; border: none; font-size: 1.2em; color: #fff; cursor: pointer; }
+.clear-filter-btn {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 8px 22px;
+    font-size: 16px;
+    border-radius: 18px;
+    border: 1.5px solid #4fc3f7;
+    background: #353b48;
+    color: #4fc3f7;
+    transition: background 0.18s, color 0.18s;
+    margin-left: 0;
+    margin-right: 0;
+    height: 40px;
+}
+.clear-filter-btn .filter-x-icon {
+    font-size: 18px;
+    margin-right: 8px;
+    display: inline-block;
+}
+.clear-filter-btn:hover {
+    background: #4fc3f7;
+    color: #23272f;
+}
+.form-control::placeholder {
+    color: #e0e0e0;
+    font-weight: 500;
+    opacity: 1;
+}
+.add-category-btn, .btn-save {
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.add-category-btn:hover, .btn-save:hover {
+    background: #43e97b;
+    color: #23272f;
+    box-shadow: 0 2px 8px rgba(79,195,247,0.15);
+}
 @media (max-width: 1100px) {
     .user-table { min-width: 700px; }
     .main-content { width: 100vw; margin-left: 0; }
@@ -198,4 +240,94 @@
     .btn-save, .btn-cancel, .add-category-btn { padding: 8px 12px; font-size: 1rem; }
     .user-table { min-width: 350px; }
     .user-table td, .user-table th { max-width: 100px; font-size: 13px; }
+}
+
+/* Search bar layout cải tiến cho sản phẩm */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar .form-control {
+    height: 40px;
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 16px;
+    border: 1.5px solid #4fc3f7;
+    background: #2c313a;
+    color: #fff;
+    min-width: 240px;
+    margin-bottom: 0;
+}
+
+.search-bar .form-control::placeholder {
+    color: #b0bec5;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.search-bar .btn-save, .search-bar .btn-cancel {
+    height: 40px;
+    border-radius: 18px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.18s, color 0.18s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar .btn-save {
+    background: #00e676;
+    color: #23272f;
+    border: none;
+}
+.search-bar .btn-save:hover {
+    background: #43e97b;
+    color: #23272f;
+}
+
+.search-bar .btn-cancel {
+    background: transparent;
+    color: #4fc3f7;
+    border: 1.5px solid #4fc3f7;
+}
+.search-bar .btn-cancel:hover {
+    background: #4fc3f7;
+    color: #23272f;
+}
+
+.search-bar .filter-x-icon {
+    font-size: 18px;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+.add-category-btn {
+    margin-right: 0;
+}
+
+/* Đảm bảo màu chữ input là trắng khi nhập và khi bôi đen */
+.search-bar .form-control {
+    color: #fff;
+    background: #23272f;
+}
+
+.search-bar .form-control::selection {
+    background: #4fc3f7;
+    color: #23272f;
+}
+
+.search-bar .form-control::-moz-selection {
+    background: #4fc3f7;
+    color: #23272f;
+}
+
+/* Làm ô nhập liệu sáng hơn khi nhập */
+.search-bar .form-control:focus {
+    background: #374151;
+    border-color: #00e676;
+    color: #fff;
 } 

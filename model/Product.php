@@ -144,5 +144,18 @@ class Product {
         }
         return $brands;
     }
+
+    // thanhdat: Lấy danh sách ảnh cho sản phẩm
+    public static function getImages($conn, $product_id) {
+        $stmt = $conn->prepare("SELECT image_url FROM product_images WHERE product_id = ? ORDER BY sort_order ASC, id ASC");
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $images = [];
+        while ($row = $result->fetch_assoc()) {
+            $images[] = $row['image_url'];
+        }
+        return $images;
+    }
 }
 ?> 

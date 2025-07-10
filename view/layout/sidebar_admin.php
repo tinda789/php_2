@@ -5,9 +5,12 @@
         <li><a href="index.php?controller=admin&action=category_index" class="sidebar-link<?php if(isset($_GET['action']) && strpos($_GET['action'],'category')===0) echo ' active'; ?>" style="display:flex; align-items:center; color:#f1f1f1; text-decoration:none; padding:12px 24px;"><span style="margin-right:12px;">🗂️</span>Quản lý danh mục</a></li>
         <li><a href="index.php?controller=admin&action=product_index" class="sidebar-link<?php if(isset($_GET['action']) && strpos($_GET['action'],'product')===0) echo ' active'; ?>" style="display:flex; align-items:center; color:#f1f1f1; text-decoration:none; padding:12px 24px;"><span style="margin-right:12px;">📦</span>Quản lý sản phẩm</a></li>
         <li><a href="index.php?controller=user&action=manage" class="sidebar-link<?php if(isset($_GET['controller']) && $_GET['controller']==='user') echo ' active'; ?>" style="display:flex; align-items:center; color:#f1f1f1; text-decoration:none; padding:12px 24px;"><span style="margin-right:12px;">👥</span>Quản lý người dùng</a></li>
+        <li><a href="index.php?controller=review&action=index" class="sidebar-link<?php if(isset($_GET['controller']) && $_GET['controller']==='review') echo ' active'; ?>" style="display:flex; align-items:center; color:#f1f1f1; text-decoration:none; padding:12px 24px;"><span style="margin-right:12px;">⭐</span>Quản lý đánh giá</a></li>
+        <li><a href="index.php?controller=banner&action=index" class="sidebar-link<?php if(isset($_GET['controller']) && $_GET['controller']==='banner') echo ' active'; ?>" style="display:flex; align-items:center; color:#f1f1f1; text-decoration:none; padding:12px 24px;"><span style="margin-right:12px;">🖼️</span>Quản lý banner</a></li>
+        <li><a href="index.php?controller=news&action=index" class="sidebar-link<?php if(isset($_GET['controller']) && $_GET['controller']==='news') echo ' active'; ?>" style="display:flex; align-items:center; color:#f1f1f1; text-decoration:none; padding:12px 24px;"><span style="margin-right:12px;">📰</span>Quản lý tin tức</a></li>
         <li><a href="#" class="sidebar-link"><span style="margin-right:12px;">🧾</span>Quản lý đơn hàng</a></li>
         <li><a href="#" class="sidebar-link"><span style="margin-right:12px;">🛡️</span>Phân quyền & Admin</a></li>
-        <li><a href="#" class="sidebar-link"><span style="margin-right:12px;">🏠</span>Về trang chủ</a></li>
+        <li><a href="index.php" class="sidebar-link"><span style="margin-right:12px;">🏠</span>Về trang chủ</a></li>
     </ul>
 </aside>
 <style>
