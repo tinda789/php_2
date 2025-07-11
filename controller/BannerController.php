@@ -17,8 +17,8 @@ class BannerController {
         
         $banners = $this->bannerModel->getAllBanners($position, $status);
         $stats = $this->bannerModel->getBannerStats();
-        
-        include 'view/admin/banner_index.php';
+        $view_file = 'view/admin/banner_index.php';
+        include 'view/layout/admin_layout.php';
     }
     
     // Hiển thị form thêm banner
@@ -26,7 +26,8 @@ class BannerController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->store();
         } else {
-            include 'view/admin/banner_form.php';
+            $view_file = 'view/admin/banner_form.php';
+            include 'view/layout/admin_layout.php';
         }
     }
     

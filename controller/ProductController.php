@@ -1,5 +1,5 @@
 <?php
-require_once 'model/Product.php';
+// Model sẽ được require từ index.php
 
 class ProductController {
     private $conn;
@@ -161,6 +161,56 @@ class ProductController {
             header('Location: index.php?controller=product&action=index&error=delete_failed');
             exit;
         }
+    }
+
+    // Hiển thị chi tiết sản phẩm cho người dùng
+    public function detail() {
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        if ($id <= 0) {
+            header('Location: index.php');
+            exit;
+        }
+        $product = Product::getById($this->conn, $id);
+        if (!$product) {
+            header('Location: index.php?msg=Không tìm thấy sản phẩm');
+            exit;
+        }
+        // Lấy ảnh sản phẩm
+        $product['images'] = Product::getImages($this->conn, $id);
+        // Lấy thông số kỹ thuật
+        $product['specs'] = Product::getSpecifications($this->conn, $id);
+        // Lấy đánh giá sản phẩm (chỉ lấy 5 đánh giá mới nhất, đã duyệt)
+        $reviews = Review::getByProduct($this->conn, $id, 5);
+        $view_file = 'view/user/product_detail.php';
+        include 'view/layout/header.php';
+        include $view_file;
+        include 'view/layout/footer.php';
+    }
+
+    // Hiển thị danh sách sản phẩm cho người dùng
+    public function list() {
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+        $category_id = isset($_GET['category_id']) ? (int)$_GET['category_id'] : 0;
+        $limit = 12;
+        $offset = ($page - 1) * $limit;
+
+        $products = Product::getAllForUser($this->conn, $limit, $offset, $search, $category_id);
+        $total = Product::countAllForUser($this->conn, $search, $category_id);
+        $totalPages = ceil($total / $limit);
+        
+        $categories = Product::getCategories($this->conn);
+        
+        // Lấy ảnh cho từng sản phẩm
+        foreach ($products as &$p) {
+            $p['images'] = Product::getImages($this->conn, $p['id']);
+        }
+        unset($p);
+        
+        $view_file = 'view/user/product_list.php';
+        include 'view/layout/header.php';
+        include $view_file;
+        include 'view/layout/footer.php';
     }
 
     // Tạo slug từ tên sản phẩm

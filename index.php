@@ -52,6 +52,20 @@ if ($controller === 'banner') {
     require 'controller/CategoryController.php';
 } elseif ($controller === 'product') {
     require 'controller/ProductController.php';
+    require 'config/config.php';
+    require 'model/Product.php';
+    require 'model/Review.php';
+    $productController = new ProductController($conn);
+    
+    if (method_exists($productController, $action)) {
+        if (isset($_GET['id'])) {
+            $productController->$action($_GET['id']);
+        } else {
+            $productController->$action();
+        }
+    } else {
+        $productController->index();
+    }
 } else {
     include 'view/home.php';
 }

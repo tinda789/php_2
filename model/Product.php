@@ -83,7 +83,11 @@ class Product {
             $data['meta_description'],
             $data['created_by']
         );
-        return $stmt->execute();
+        
+        if ($stmt->execute()) {
+            return $conn->insert_id; // Trả về ID của sản phẩm vừa tạo
+        }
+        return false;
     }
 
     // Cập nhật sản phẩm
@@ -156,6 +160,84 @@ class Product {
             $images[] = $row['image_url'];
         }
         return $images;
+    }
+
+    // Lấy thông số kỹ thuật sản phẩm
+    public static function getSpecifications($conn, $product_id) {
+        $stmt = $conn->prepare("SELECT spec_name, spec_value, spec_group FROM product_specifications WHERE product_id = ? ORDER BY sort_order ASC, id ASC");
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $specs = [];
+        while ($row = $result->fetch_assoc()) {
+            $specs[] = $row;
+        }
+        return $specs;
+    }
+
+    // Lấy tất cả sản phẩm cho người dùng (chỉ sản phẩm active)
+    public static function getAllForUser($conn, $limit = 12, $offset = 0, $search = '', $category_id = 0) {
+        $sql = "SELECT p.*, c.name as category_name, b.name as brand_name FROM products p
+                LEFT JOIN categories c ON p.category_id = c.id
+                LEFT JOIN brands b ON p.brand_id = b.id
+                WHERE p.status = 1";
+        $params = [];
+        $types = '';
+        
+        if ($search !== '') {
+            $sql .= " AND p.name LIKE ?";
+            $params[] = "%$search%";
+            $types .= 's';
+        }
+        
+        if ($category_id > 0) {
+            $sql .= " AND p.category_id = ?";
+            $params[] = $category_id;
+            $types .= 'i';
+        }
+        
+        $sql .= " ORDER BY p.featured DESC, p.created_at DESC LIMIT ? OFFSET ?";
+        $params[] = $limit;
+        $params[] = $offset;
+        $types .= 'ii';
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param($types, ...$params);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+        return $products;
+    }
+
+    // Đếm tổng số sản phẩm cho người dùng (chỉ sản phẩm active)
+    public static function countAllForUser($conn, $search = '', $category_id = 0) {
+        $sql = "SELECT COUNT(*) as total FROM products WHERE status = 1";
+        $params = [];
+        $types = '';
+        
+        if ($search !== '') {
+            $sql .= " AND name LIKE ?";
+            $params[] = "%$search%";
+            $types .= 's';
+        }
+        
+        if ($category_id > 0) {
+            $sql .= " AND category_id = ?";
+            $params[] = $category_id;
+            $types .= 'i';
+        }
+        
+        $stmt = $conn->prepare($sql);
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return (int)$row['total'];
     }
 }
 ?> 

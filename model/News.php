@@ -196,16 +196,46 @@ class News {
         return $slug;
     }
     
-    // Kiểm tra slug đã tồn tại
-    private function slugExists($slug) {
+    // Bật/tắt trạng thái tin tức
+    public function toggleStatus($id) {
+        $news = $this->getNewsById($id);
+        if (!$news) return false;
+        $new_status = ($news['status'] == 1) ? 0 : 1;
+        $sql = "UPDATE news SET status = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii", $new_status, $id);
+        return $stmt->execute();
+    }
+
+    // Kiểm tra slug đã tồn tại chưa
+    public function slugExists($slug) {
         $sql = "SELECT COUNT(*) as count FROM news WHERE slug = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $slug);
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
-        
         return $row['count'] > 0;
+    }
+
+    // Lấy tin tức theo danh mục
+    public function getNewsByCategory($category, $limit = 10) {
+        $sql = "SELECT * FROM news WHERE category = ? ORDER BY created_at DESC LIMIT ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("si", $category, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Lấy tin tức mới nhất
+    public function getLatestNews($limit = 5) {
+        $sql = "SELECT * FROM news ORDER BY created_at DESC LIMIT ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
     
     // Lấy thống kê tin tức

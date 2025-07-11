@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = ""; // hoặc "" nếu không có mật khẩu
+$password = "root"; // hoặc "" nếu không có mật khẩu
 $dbname = "shopelectrics";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

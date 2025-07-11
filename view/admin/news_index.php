@@ -3,6 +3,45 @@ $page_title = "Quản lý Tin tức";
 include 'view/layout/admin_layout.php';
 ?>
 
+<style>
+@media (max-width: 900px) {
+  .container-fluid, .main-content {
+    padding: 10px !important;
+  }
+  .card, .table {
+    font-size: 15px;
+  }
+  .table-responsive {
+    overflow-x: auto;
+  }
+  .admin-sidebar {
+    min-width: 64px !important;
+  }
+}
+@media (max-width: 600px) {
+  .container-fluid, .main-content {
+    padding: 2px !important;
+  }
+  .d-sm-flex, .row, .card-header, .card-body {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .card, .table {
+    font-size: 13px;
+  }
+  .table th, .table td {
+    padding: 4px 6px !important;
+  }
+  .btn, .btn-sm {
+    font-size: 13px !important;
+    padding: 4px 10px !important;
+  }
+  .table-responsive {
+    overflow-x: auto;
+  }
+}
+</style>
+
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">

@@ -133,6 +133,15 @@ if ($action === 'add_user_admin') {
     exit;
 }
 
+if (
+    $action === 'manage_user'
+) {
+    $users = User::getAll($conn);
+    $view_file = 'view/admin/manage_user.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
 // Category Management
 if ($action === 'category_index') {
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -160,15 +169,13 @@ if ($action === 'category_store') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = [
             'name' => $_POST['name'] ?? '',
-            'slug' => createSlug($_POST['name']),
             'description' => $_POST['description'] ?? '',
-            'parent_id' => (int)($_POST['parent_id'] ?? 0),
-            'status' => (int)($_POST['status'] ?? 1),
-            'sort_order' => (int)($_POST['sort_order'] ?? 0),
-            'meta_title' => $_POST['meta_title'] ?? '',
-            'meta_description' => $_POST['meta_description'] ?? ''
+            'parent_id' => ($_POST['parent_id'] !== '' ? (int)$_POST['parent_id'] : null),
+            'slug' => $_POST['slug'] ?? '',
+            'image' => $_POST['image'] ?? '', // hoặc xử lý upload file nếu có
+            'is_active' => isset($_POST['is_active']) ? 1 : 0,
+            'sort_order' => 0
         ];
-
         if (Category::create($conn, $data)) {
             header('Location: index.php?controller=admin&action=category_index&success=1');
             exit;
@@ -205,18 +212,15 @@ if ($action === 'category_update') {
             header('Location: index.php?controller=admin&action=category_index');
             exit;
         }
-
         $data = [
             'name' => $_POST['name'] ?? '',
-            'slug' => createSlug($_POST['name']),
             'description' => $_POST['description'] ?? '',
-            'parent_id' => (int)($_POST['parent_id'] ?? 0),
-            'status' => (int)($_POST['status'] ?? 1),
-            'sort_order' => (int)($_POST['sort_order'] ?? 0),
-            'meta_title' => $_POST['meta_title'] ?? '',
-            'meta_description' => $_POST['meta_description'] ?? ''
+            'parent_id' => ($_POST['parent_id'] !== '' ? (int)$_POST['parent_id'] : null),
+            'slug' => $_POST['slug'] ?? '',
+            'image' => $_POST['image'] ?? '',
+            'is_active' => isset($_POST['is_active']) ? 1 : 0,
+            'sort_order' => 0
         ];
-
         if (Category::update($conn, $id, $data)) {
             header('Location: index.php?controller=admin&action=category_index&success=2');
             exit;
@@ -233,12 +237,17 @@ if ($action === 'category_delete') {
         header('Location: index.php?controller=admin&action=category_index');
         exit;
     }
-
-    if (Category::delete($conn, $id)) {
-        header('Location: index.php?controller=admin&action=category_index&success=3');
-        exit;
-    } else {
-        header('Location: index.php?controller=admin&action=category_index&error=delete_failed');
+    try {
+        if (Category::delete($conn, $id)) {
+            header('Location: index.php?controller=admin&action=category_index&success=3');
+            exit;
+        } else {
+            header('Location: index.php?controller=admin&action=category_index&error=delete_failed');
+            exit;
+        }
+    } catch (Exception $e) {
+        $msg = urlencode($e->getMessage());
+        header('Location: index.php?controller=admin&action=category_index&error_msg=' . $msg);
         exit;
     }
 }
@@ -278,8 +287,8 @@ if ($action === 'product_store') {
             'sale_price' => (float)($_POST['sale_price'] ?? 0),
             'stock_quantity' => (int)($_POST['stock_quantity'] ?? 0),
             'min_stock_level' => (int)($_POST['min_stock_level'] ?? 0),
-            'category_id' => (int)($_POST['category_id'] ?? 0),
-            'brand_id' => (int)($_POST['brand_id'] ?? 0),
+            'category_id' => ($_POST['category_id'] !== '' ? (int)$_POST['category_id'] : null),
+            'brand_id' => ($_POST['brand_id'] !== '' ? (int)$_POST['brand_id'] : null),
             'model' => $_POST['model'] ?? '',
             'sku' => $_POST['sku'] ?? '',
             'barcode' => $_POST['barcode'] ?? '',
@@ -293,7 +302,66 @@ if ($action === 'product_store') {
             'created_by' => $_SESSION['user_id'] ?? 1
         ];
 
-        if (Product::create($conn, $data)) {
+        // Tạo sản phẩm
+        $product_id = Product::create($conn, $data);
+        
+        if ($product_id) {
+            // Xử lý upload ảnh
+            if (isset($_FILES['product_images']) && !empty($_FILES['product_images']['name'][0])) {
+                $upload_dir = 'uploads/products/';
+                
+                // Tạo thư mục nếu chưa tồn tại
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+                
+                $uploaded_images = [];
+                
+                foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
+                    if ($_FILES['product_images']['error'][$key] === UPLOAD_ERR_OK) {
+                        $file_name = $_FILES['product_images']['name'][$key];
+                        $file_size = $_FILES['product_images']['size'][$key];
+                        $file_type = $_FILES['product_images']['type'][$key];
+                        
+                        // Kiểm tra loại file
+                        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+                        if (!in_array($file_type, $allowed_types)) {
+                            continue; // Bỏ qua file không hợp lệ
+                        }
+                        
+                        // Kiểm tra kích thước file (tối đa 5MB)
+                        if ($file_size > 5 * 1024 * 1024) {
+                            continue; // Bỏ qua file quá lớn
+                        }
+                        
+                        // Tạo tên file mới để tránh trùng lặp
+                        $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                        $new_file_name = uniqid() . '_' . time() . '.' . $file_extension;
+                        $file_path = $upload_dir . $new_file_name;
+                        
+                        // Upload file
+                        if (move_uploaded_file($tmp_name, $file_path)) {
+                            $uploaded_images[] = [
+                                'product_id' => $product_id,
+                                'image_url' => '/' . $file_path,
+                                'alt_text' => pathinfo($file_name, PATHINFO_FILENAME),
+                                'is_primary' => (count($uploaded_images) === 0) ? 1 : 0, // Ảnh đầu tiên là ảnh chính
+                                'sort_order' => count($uploaded_images) + 1
+                            ];
+                        }
+                    }
+                }
+                
+                // Lưu thông tin ảnh vào database
+                if (!empty($uploaded_images)) {
+                    $stmt = $conn->prepare("INSERT INTO product_images (product_id, image_url, alt_text, is_primary, sort_order) VALUES (?, ?, ?, ?, ?)");
+                    foreach ($uploaded_images as $image) {
+                        $stmt->bind_param("issii", $image['product_id'], $image['image_url'], $image['alt_text'], $image['is_primary'], $image['sort_order']);
+                        $stmt->execute();
+                    }
+                }
+            }
+            
             header('Location: index.php?controller=admin&action=product_index&success=1');
             exit;
         } else {
@@ -340,8 +408,8 @@ if ($action === 'product_update') {
             'sale_price' => (float)($_POST['sale_price'] ?? 0),
             'stock_quantity' => (int)($_POST['stock_quantity'] ?? 0),
             'min_stock_level' => (int)($_POST['min_stock_level'] ?? 0),
-            'category_id' => (int)($_POST['category_id'] ?? 0),
-            'brand_id' => (int)($_POST['brand_id'] ?? 0),
+            'category_id' => ($_POST['category_id'] !== '' ? (int)$_POST['category_id'] : null),
+            'brand_id' => ($_POST['brand_id'] !== '' ? (int)$_POST['brand_id'] : null),
             'model' => $_POST['model'] ?? '',
             'sku' => $_POST['sku'] ?? '',
             'barcode' => $_POST['barcode'] ?? '',
@@ -355,6 +423,62 @@ if ($action === 'product_update') {
         ];
 
         if (Product::update($conn, $id, $data)) {
+            // Xử lý upload ảnh mới
+            if (isset($_FILES['product_images']) && !empty($_FILES['product_images']['name'][0])) {
+                $upload_dir = 'uploads/products/';
+                
+                // Tạo thư mục nếu chưa tồn tại
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+                
+                $uploaded_images = [];
+                
+                foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
+                    if ($_FILES['product_images']['error'][$key] === UPLOAD_ERR_OK) {
+                        $file_name = $_FILES['product_images']['name'][$key];
+                        $file_size = $_FILES['product_images']['size'][$key];
+                        $file_type = $_FILES['product_images']['type'][$key];
+                        
+                        // Kiểm tra loại file
+                        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+                        if (!in_array($file_type, $allowed_types)) {
+                            continue; // Bỏ qua file không hợp lệ
+                        }
+                        
+                        // Kiểm tra kích thước file (tối đa 5MB)
+                        if ($file_size > 5 * 1024 * 1024) {
+                            continue; // Bỏ qua file quá lớn
+                        }
+                        
+                        // Tạo tên file mới để tránh trùng lặp
+                        $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                        $new_file_name = uniqid() . '_' . time() . '.' . $file_extension;
+                        $file_path = $upload_dir . $new_file_name;
+                        
+                        // Upload file
+                        if (move_uploaded_file($tmp_name, $file_path)) {
+                            $uploaded_images[] = [
+                                'product_id' => $id,
+                                'image_url' => '/' . $file_path,
+                                'alt_text' => pathinfo($file_name, PATHINFO_FILENAME),
+                                'is_primary' => 0, // Ảnh thêm mới không phải ảnh chính
+                                'sort_order' => 999 // Đặt cuối danh sách
+                            ];
+                        }
+                    }
+                }
+                
+                // Lưu thông tin ảnh vào database
+                if (!empty($uploaded_images)) {
+                    $stmt = $conn->prepare("INSERT INTO product_images (product_id, image_url, alt_text, is_primary, sort_order) VALUES (?, ?, ?, ?, ?)");
+                    foreach ($uploaded_images as $image) {
+                        $stmt->bind_param("issii", $image['product_id'], $image['image_url'], $image['alt_text'], $image['is_primary'], $image['sort_order']);
+                        $stmt->execute();
+                    }
+                }
+            }
+            
             header('Location: index.php?controller=admin&action=product_index&success=2');
             exit;
         } else {

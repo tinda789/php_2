@@ -1,6 +1,7 @@
 <?php // thanhdat: Controller quản lý tin tức OOP
 require_once 'config/config.php';
 require_once 'model/News.php';
+require_once 'model/Category.php';
 
 class NewsController {
     private $newsModel;
@@ -30,7 +31,8 @@ class NewsController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->store();
         } else {
-            $categories = $this->newsModel->getAllCategories();
+            global $conn;
+            $categories = Category::getAll($conn, 100, 0);
             include 'view/admin/news_form.php';
         }
     }
@@ -82,7 +84,8 @@ class NewsController {
                 header('Location: index.php?controller=news&action=index');
                 exit;
             }
-            $categories = $this->newsModel->getAllCategories();
+            global $conn;
+            $categories = Category::getAll($conn, 100, 0);
             include 'view/admin/news_form.php';
         }
     }
