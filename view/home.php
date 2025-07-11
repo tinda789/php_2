@@ -1,7 +1,7 @@
 <?php
 require_once 'config/config.php';
-require_once 'model/Product.php';
 require_once 'model/Banner.php';
+require_once __DIR__ . '/../model/Product.php';
 $products = Product::getAll($conn, 6);
 foreach ($products as &$p) {
     $p['images'] = Product::getImages($conn, $p['id']);

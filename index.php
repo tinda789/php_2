@@ -53,7 +53,6 @@ if ($controller === 'banner') {
 } elseif ($controller === 'product') {
     require 'controller/ProductController.php';
     require 'config/config.php';
-    require 'model/Product.php';
     require 'model/Review.php';
     $productController = new ProductController($conn);
     
@@ -65,6 +64,14 @@ if ($controller === 'banner') {
         }
     } else {
         $productController->index();
+    }
+} elseif ($controller === 'cart') {
+    require 'controller/CartController.php';
+    $cartController = new CartController();
+    if (method_exists($cartController, $action)) {
+        $cartController->$action();
+    } else {
+        $cartController->view();
     }
 } else {
     include 'view/home.php';

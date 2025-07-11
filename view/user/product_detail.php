@@ -91,7 +91,11 @@
             <div class="col-6"><strong>Trọng lượng:</strong> <?php echo htmlspecialchars($product['weight'] ?? ''); ?> kg</div>
             <div class="col-12"><strong>Kích thước:</strong> <?php echo htmlspecialchars($product['dimensions'] ?? ''); ?></div>
           </div>
-          <a href="#" class="btn btn-primary btn-lg w-100 mt-2"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+          <form method="POST" action="index.php?controller=cart&action=add" class="add-to-cart-form">
+            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="btn btn-primary btn-lg w-100 mt-2"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+          </form>
         </div>
       </div>
     </div>
@@ -151,3 +155,41 @@
 .product-image-zoom {border-radius: 1rem; background: #f8f9fa;}
 .card {border-radius: 1rem;}
 </style> 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.querySelector('.add-to-cart-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('index.php?controller=cart&action=add', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.ok ? res.text() : Promise.reject(res))
+      .then(() => {
+        showCartToast('Đã thêm vào giỏ hàng!');
+        fetch('index.php?controller=cart&action=count')
+          .then(r => r.json())
+          .then(data => {
+            const badge = document.querySelector('.btn-cart-badge');
+            if (badge) badge.textContent = data.count > 0 ? data.count : '';
+          });
+      });
+    });
+  }
+});
+function showCartToast(msg) {
+  let toast = document.getElementById('cart-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'cart-toast';
+    toast.className = 'toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-4 show';
+    toast.style.zIndex = 9999;
+    toast.innerHTML = '<div class="d-flex"><div class="toast-body">' + msg + '</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>';
+    document.body.appendChild(toast);
+    toast.querySelector('.btn-close').onclick = () => toast.remove();
+    setTimeout(() => { if (toast) toast.remove(); }, 2000);
+  }
+}
+</script> 

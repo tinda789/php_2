@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../model/Product.php';
 // Model sẽ được require từ index.php
 
 class ProductController {

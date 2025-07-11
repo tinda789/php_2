@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once 'config/config.php';
-require_once 'model/Product.php';
 
 echo "<h1>Debug Product Pages</h1>";
 

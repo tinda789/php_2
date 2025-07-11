@@ -90,7 +90,11 @@
                   <div class="mt-auto d-flex gap-2">
                     <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="btn btn-primary btn-sm flex-fill"><i class="fas fa-eye"></i> Xem chi tiết</a>
                     <?php if ($product['stock_quantity'] > 0): ?>
-                      <button class="btn btn-outline-success btn-sm" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button>
+                      <form method="POST" action="index.php?controller=cart&action=add" class="add-to-cart-form" style="display:inline;">
+                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn btn-outline-success btn-sm" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button>
+                      </form>
                     <?php endif; ?>
                   </div>
                 </div>
@@ -153,4 +157,42 @@
   margin-left: 0 !important;
 }
 aside.col-lg-3, aside.col-md-4, aside {background: none !important; border: none !important;}
-</style> 
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.add-to-cart-form').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('index.php?controller=cart&action=add', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.ok ? res.text() : Promise.reject(res))
+      .then(() => {
+        showCartToast('Đã thêm vào giỏ hàng!');
+        // Cập nhật badge giỏ hàng
+        fetch('index.php?controller=cart&action=count')
+          .then(r => r.json())
+          .then(data => {
+            const badge = document.querySelector('.btn-cart-badge');
+            if (badge) badge.textContent = data.count > 0 ? data.count : '';
+          });
+      });
+    });
+  });
+});
+function showCartToast(msg) {
+  let toast = document.getElementById('cart-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'cart-toast';
+    toast.className = 'toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-4 show';
+    toast.style.zIndex = 9999;
+    toast.innerHTML = '<div class="d-flex"><div class="toast-body">' + msg + '</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>';
+    document.body.appendChild(toast);
+    toast.querySelector('.btn-close').onclick = () => toast.remove();
+    setTimeout(() => { if (toast) toast.remove(); }, 2000);
+  }
+}
+</script> 

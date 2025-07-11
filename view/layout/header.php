@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Điện Tử</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; margin: 0; padding: 0; }
         .navbar-brand {
@@ -96,6 +96,17 @@
         <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">
+        <a href="index.php?controller=cart&action=view" class="btn btn-outline-light position-relative me-2" title="Giỏ hàng">
+          <i class="fa-solid fa-cart-shopping fa-lg"></i>
+          <?php 
+          $cartCount = 0;
+          if (!empty($_SESSION['cart_items'])) {
+            foreach ($_SESSION['cart_items'] as $qty) $cartCount += $qty;
+          }
+          if ($cartCount > 0): ?>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger btn-cart-badge" style="font-size:0.85rem;"> <?php echo $cartCount; ?> </span>
+          <?php endif; ?>
+        </a>
         <?php if (!empty($_SESSION['user'])): ?>
           <?php if (in_array($_SESSION['user']['role_name'] ?? '', ['admin', 'super_admin'])): ?>
             <a href="?controller=admin" class="btn btn-warning btn-sm me-2"><i class="fa-solid fa-gauge"></i> Dashboard</a>

@@ -239,5 +239,22 @@ class Product {
         $row = $result->fetch_assoc();
         return (int)$row['total'];
     }
+
+    // Lấy sản phẩm theo id (dùng cho Cart)
+    public static function findById($product_id) {
+        $conn = $GLOBALS['conn'];
+        $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
+        if ($product) {
+            // Lấy thêm ảnh
+            $product['images'] = self::getImages($conn, $product_id);
+            // Lấy thêm thông số kỹ thuật
+            $product['specs'] = self::getSpecifications($conn, $product_id);
+        }
+        return $product;
+    }
 }
 ?> 
