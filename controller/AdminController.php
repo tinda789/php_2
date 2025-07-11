@@ -386,10 +386,21 @@ if ($action === 'order_update_status') { // thinh
         $id = (int)($_POST['id'] ?? 0);
         $status = $_POST['status'] ?? '';
         require_once 'model/Order.php';
-        Order::updateStatus($conn, $id, $status);
-        $_SESSION['order_message'] = 'Cập nhật trạng thái thành công!';
-        header('Location: index.php?controller=admin&action=order_manage');
-        exit;
+        $result = Order::updateStatus($conn, $id, $status);
+        if ($result) {
+            $_SESSION['order_message'] = 'Cập nhật trạng thái thành công!';
+            header('Location: index.php?controller=admin&action=order_manage');
+            exit;
+        } else {
+            echo '
+            <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+                <div style="background: #2d333b; color: #ff5252; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+                    Cập nhật trạng thái KHÔNG thành công!<br>Đang chuyển về trang quản lý đơn hàng...
+                </div>
+            </div>
+            <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=order_manage">';
+            exit;
+        }
     }
 }
 
@@ -413,9 +424,33 @@ if ($action === 'order_confirm') { // thinh
             </div>
             <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=order_manage">'; // thinh
         } else {
-            echo '<div style="text-align:center;margin-top:60px;font-size:1.3rem;color:red;">Không thể xác nhận đơn hàng này!</div>';
+            echo '
+            <div style="width: 100vw; height: 100vh; background: repeating-linear-gradient(135deg, #ffeb3b, #ffeb3b 20px, #23272f 20px, #23272f 40px); display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;">
+                <div style="
+                    background: #fff;
+                    border: 6px solid #ffeb3b;
+                    border-radius: 16px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+                    padding: 48px 0 36px 0;
+                    font-size: 2.1rem;
+                    font-weight: 700;
+                    text-align: center;
+                    width: 100vw;
+                    max-width: 600px;
+                    letter-spacing: 0.5px;
+                    color: #ff5252;
+                    position: relative;
+                ">
+                    <div style="font-size: 3.5rem; margin-bottom: 18px;">
+                        &#9888;
+                    </div>
+                    Không thể xác nhận đơn hàng này!<br>
+                    Đang chuyển về trang quản lý đơn hàng...
+                </div>
+            </div>
+            <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=order_manage">';
+            exit;
         }
-        exit;
     }
 }
 
@@ -460,6 +495,62 @@ if ($action === 'coupon_store') { // thinh
         <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
         exit;
     }
+}
+
+if ($action === 'coupon_edit' && isset($_GET['id'])) { // thinh
+    require_once 'model/Coupon.php';
+    $id = (int)$_GET['id'];
+    $coupon = Coupon::getById($conn, $id);
+    if (!$coupon) {
+        header('Location: index.php?controller=admin&action=coupon_manage&error=not_found');
+        exit;
+    }
+    $is_edit = true;
+    $view_file = 'view/admin/coupon_create.php'; // Dùng lại form tạo
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'coupon_update' && isset($_POST['id'])) { // thinh
+    require_once 'model/Coupon.php';
+    $id = (int)$_POST['id'];
+    $data = [
+        'code' => $_POST['code'],
+        'name' => $_POST['name'],
+        'description' => $_POST['description'],
+        'type' => $_POST['type'],
+        'value' => (float)$_POST['value'],
+        'minimum_amount' => (float)$_POST['minimum_amount'],
+        'maximum_discount' => (float)$_POST['maximum_discount'],
+        'usage_limit' => (int)$_POST['usage_limit'],
+        'start_date' => $_POST['start_date'],
+        'end_date' => $_POST['end_date'],
+        'is_active' => isset($_POST['is_active']) ? 1 : 0,
+        'payment_method' => $_POST['payment_method'] ?? 'all'
+    ];
+    Coupon::update($conn, $id, $data);
+    echo '
+    <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+        <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+            Đã cập nhật mã giảm giá thành công!<br>Đang chuyển về trang quản lý mã giảm giá...
+        </div>
+    </div>
+    <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
+    exit;
+}
+
+if ($action === 'coupon_delete' && isset($_GET['id'])) { // thinh
+    require_once 'model/Coupon.php';
+    $id = (int)$_GET['id'];
+    Coupon::delete($conn, $id);
+    echo '
+    <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+        <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+            Đã xóa mã giảm giá thành công!<br>Đang chuyển về trang quản lý mã giảm giá...
+        </div>
+    </div>
+    <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
+    exit;
 }
 
 // Helper function to create slug
