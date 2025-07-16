@@ -9,7 +9,6 @@ $total_users = $conn->query("SELECT COUNT(*) FROM users")->fetch_row()[0];
 $total_products = $conn->query("SELECT COUNT(*) FROM products")->fetch_row()[0];
 $total_orders = $conn->query("SHOW TABLES LIKE 'orders'")->num_rows ? $conn->query("SELECT COUNT(*) FROM orders")->fetch_row()[0] : 0;
 ?>
-<?php echo '<link rel="stylesheet" href="view/layout/dashboard.css">'; ?>
 <style>
 body {
     background: #2c313a;

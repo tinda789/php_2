@@ -12,7 +12,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
         </div>
         <div class="card-body">
-            <form method="POST" action="index.php?controller=admin&action=product_store">
+            <form method="POST" action="index.php?controller=admin&action=product_store" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
@@ -131,6 +131,52 @@
                                 <option value="1">Nổi bật</option>
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="product_images">Ảnh sản phẩm (có thể chọn nhiều)</label>
+                            <input type="file" class="form-control" id="product_images" name="product_images[]" multiple accept="image/*" onchange="previewImages(this)">
+                            <small class="form-text text-muted">Chọn ảnh (JPG, PNG, GIF, WebP) - Tối đa 5MB mỗi ảnh</small>
+                            <div id="image-preview" class="mt-2"></div>
+                        </div>
+
+                        <script>
+                        function previewImages(input) {
+                            const preview = document.getElementById('image-preview');
+                            preview.innerHTML = '';
+                            
+                            if (input.files && input.files.length > 0) {
+                                for (let i = 0; i < input.files.length; i++) {
+                                    const file = input.files[i];
+                                    
+                                    // Kiểm tra kích thước file
+                                    if (file.size > 5 * 1024 * 1024) {
+                                        alert('File ' + file.name + ' quá lớn (tối đa 5MB)');
+                                        continue;
+                                    }
+                                    
+                                    // Kiểm tra loại file
+                                    if (!file.type.match('image.*')) {
+                                        alert('File ' + file.name + ' không phải là ảnh');
+                                        continue;
+                                    }
+                                    
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const div = document.createElement('div');
+                                        div.className = 'd-inline-block mr-2 mb-2';
+                                        div.innerHTML = `
+                                            <img src="${e.target.result}" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd; border-radius: 4px;" alt="Preview">
+                                            <div class="text-center mt-1">
+                                                <small class="text-muted">${file.name}</small>
+                                            </div>
+                                        `;
+                                        preview.appendChild(div);
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            }
+                        }
+                        </script>
                     </div>
                 </div>
 

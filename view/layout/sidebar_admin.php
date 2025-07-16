@@ -7,8 +7,10 @@
         <li><a href="index.php?controller=user&action=manage" class="sidebar-link<?php if(isset($_GET['controller']) && $_GET['controller']==='user') echo ' active'; ?>">👥 Quản lý người dùng</a></li>
         <li><a href="index.php?controller=admin&action=order_manage" class="sidebar-link<?php if(isset($_GET['action']) && $_GET['action']==='order_manage') echo ' active'; ?>">📋 Quản lý đơn hàng</a></li>
         <li><a href="index.php?controller=admin&action=coupon_manage" class="sidebar-link<?php if(isset($_GET['action']) && $_GET['action']==='coupon_manage') echo ' active'; ?>">🏷️ Quản lý mã giảm giá</a></li>
-        <li><a href="#" class="sidebar-link">🛡️ Phân quyền & Admin</a></li>
-        <li><a href="#" class="sidebar-link">🏠 Về trang chủ</a></li>
+        <li><a href="index.php?controller=admin&action=banner_index" class="sidebar-link<?php if(isset($_GET['action']) && strpos($_GET['action'],'banner')===0) echo ' active'; ?>">🖼️ Quản lý Banner</a></li>
+        <li><a href="index.php?controller=admin&action=news_index" class="sidebar-link<?php if(isset($_GET['action']) && strpos($_GET['action'],'news')===0) echo ' active'; ?>">📰 Quản lý Tin tức</a></li>
+        <li><a href="index.php?controller=review&action=index" class="sidebar-link<?php if(isset($_GET['controller']) && $_GET['controller']==='review') echo ' active'; ?>">⭐ Quản lý đánh giá</a></li>
+        <li><a href="index.php" class="sidebar-link">🏠 Về trang chủ</a></li>
     </ul>
 </aside>
 <style>

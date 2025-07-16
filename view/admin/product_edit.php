@@ -12,7 +12,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
         </div>
         <div class="card-body">
-            <form method="POST" action="index.php?controller=admin&action=product_update">
+            <form method="POST" action="index.php?controller=admin&action=product_update" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                 
                 <div class="row">
@@ -20,17 +20,17 @@
                         <div class="form-group">
                             <label for="name">Tên sản phẩm <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="name" name="name" 
-                                   value="<?php echo htmlspecialchars($product['name']); ?>" required>
+                                   value="<?php echo htmlspecialchars($product['name'] ?? ''); ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="short_description">Mô tả ngắn</label>
-                            <textarea class="form-control" id="short_description" name="short_description" rows="3"><?php echo htmlspecialchars($product['short_description']); ?></textarea>
+                            <textarea class="form-control" id="short_description" name="short_description" rows="3"><?php echo htmlspecialchars($product['short_description'] ?? ''); ?></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="description">Mô tả chi tiết</label>
-                            <textarea class="form-control" id="description" name="description" rows="6"><?php echo htmlspecialchars($product['description']); ?></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="6"><?php echo htmlspecialchars($product['description'] ?? ''); ?></textarea>
                         </div>
 
                         <div class="row">
@@ -98,19 +98,19 @@
                         <div class="form-group">
                             <label for="model">Model</label>
                             <input type="text" class="form-control" id="model" name="model" 
-                                   value="<?php echo htmlspecialchars($product['model']); ?>">
+                                   value="<?php echo htmlspecialchars($product['model'] ?? ''); ?>">
                         </div>
 
                         <div class="form-group">
                             <label for="sku">SKU</label>
                             <input type="text" class="form-control" id="sku" name="sku" 
-                                   value="<?php echo htmlspecialchars($product['sku']); ?>">
+                                   value="<?php echo htmlspecialchars($product['sku'] ?? ''); ?>">
                         </div>
 
                         <div class="form-group">
                             <label for="barcode">Mã vạch</label>
                             <input type="text" class="form-control" id="barcode" name="barcode" 
-                                   value="<?php echo htmlspecialchars($product['barcode']); ?>">
+                                   value="<?php echo htmlspecialchars($product['barcode'] ?? ''); ?>">
                         </div>
 
                         <div class="form-group">
@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <label for="dimensions">Kích thước</label>
                             <input type="text" class="form-control" id="dimensions" name="dimensions" 
-                                   value="<?php echo htmlspecialchars($product['dimensions']); ?>" placeholder="D x R x C (cm)">
+                                   value="<?php echo htmlspecialchars($product['dimensions'] ?? ''); ?>" placeholder="D x R x C (cm)">
                         </div>
 
                         <div class="form-group">
@@ -146,20 +146,90 @@
                                 <option value="1" <?php echo $product['featured'] ? 'selected' : ''; ?>>Nổi bật</option>
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="product_images">Thêm ảnh sản phẩm (có thể chọn nhiều)</label>
+                            <input type="file" class="form-control" id="product_images" name="product_images[]" multiple accept="image/*" onchange="previewImages(this)">
+                            <small class="form-text text-muted">Chọn ảnh mới để thêm vào sản phẩm (JPG, PNG, GIF, WebP) - Tối đa 5MB mỗi ảnh</small>
+                            <div id="image-preview" class="mt-2"></div>
+                        </div>
+
+                        <script>
+                        function previewImages(input) {
+                            const preview = document.getElementById('image-preview');
+                            preview.innerHTML = '';
+                            
+                            if (input.files && input.files.length > 0) {
+                                for (let i = 0; i < input.files.length; i++) {
+                                    const file = input.files[i];
+                                    
+                                    // Kiểm tra kích thước file
+                                    if (file.size > 5 * 1024 * 1024) {
+                                        alert('File ' + file.name + ' quá lớn (tối đa 5MB)');
+                                        continue;
+                                    }
+                                    
+                                    // Kiểm tra loại file
+                                    if (!file.type.match('image.*')) {
+                                        alert('File ' + file.name + ' không phải là ảnh');
+                                        continue;
+                                    }
+                                    
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const div = document.createElement('div');
+                                        div.className = 'd-inline-block mr-2 mb-2';
+                                        div.innerHTML = `
+                                            <img src="${e.target.result}" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd; border-radius: 4px;" alt="Preview">
+                                            <div class="text-center mt-1">
+                                                <small class="text-muted">${file.name}</small>
+                                            </div>
+                                        `;
+                                        preview.appendChild(div);
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            }
+                        }
+                        </script>
                     </div>
                 </div>
+
+                <!-- Hiển thị ảnh hiện tại -->
+                <?php 
+                $product_images = Product::getImages($conn, $product['id']);
+                if (!empty($product_images)): 
+                ?>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h6>Ảnh hiện tại:</h6>
+                        <div class="row">
+                            <?php foreach ($product_images as $index => $image_url): ?>
+                            <div class="col-md-2 mb-2">
+                                <div class="card">
+                                    <img src="<?php echo htmlspecialchars($image_url); ?>" class="card-img-top" alt="Product Image" style="height: 100px; object-fit: cover;">
+                                    <div class="card-body p-2">
+                                        <small class="text-muted">Ảnh <?php echo $index + 1; ?></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="meta_title">Meta Title</label>
                             <input type="text" class="form-control" id="meta_title" name="meta_title" 
-                                   value="<?php echo htmlspecialchars($product['meta_title']); ?>">
+                                   value="<?php echo htmlspecialchars($product['meta_title'] ?? ''); ?>">
                         </div>
 
                         <div class="form-group">
                             <label for="meta_description">Meta Description</label>
-                            <textarea class="form-control" id="meta_description" name="meta_description" rows="3"><?php echo htmlspecialchars($product['meta_description']); ?></textarea>
+                            <textarea class="form-control" id="meta_description" name="meta_description" rows="3"><?php echo htmlspecialchars($product['meta_description'] ?? ''); ?></textarea>
                         </div>
                     </div>
                 </div>

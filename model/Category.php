@@ -72,26 +72,49 @@ class Category {
 
     // Cập nhật danh mục
     public static function update($conn, $id, $data) {
-        $stmt = $conn->prepare("UPDATE categories SET name=?, description=?, parent_id=?, slug=?, image=?, is_active=?, sort_order=?, updated_at=NOW() WHERE id=?");
-        $stmt->bind_param(
-            "ssissiii",
-            $data['name'],
-            $data['description'],
-            $data['parent_id'],
-            $data['slug'],
-            $data['image'],
-            $data['is_active'],
-            $data['sort_order'],
-            $id
-        );
+        // Nếu parent_id là null, cần bind đúng kiểu
+        if ($data['parent_id'] === null) {
+            $stmt = $conn->prepare("UPDATE categories SET name=?, description=?, parent_id=NULL, slug=?, image=?, is_active=?, sort_order=?, updated_at=NOW() WHERE id=?");
+            $stmt->bind_param(
+                "sssiiii", // image là string (s)
+                $data['name'],
+                $data['description'],
+                $data['slug'],
+                $data['image'],
+                $data['is_active'],
+                $data['sort_order'],
+                $id
+            );
+        } else {
+            $stmt = $conn->prepare("UPDATE categories SET name=?, description=?, parent_id=?, slug=?, image=?, is_active=?, sort_order=?, updated_at=NOW() WHERE id=?");
+            $stmt->bind_param(
+                "ssissiii", // image là string (s)
+                $data['name'],
+                $data['description'],
+                $data['parent_id'],
+                $data['slug'],
+                $data['image'],
+                $data['is_active'],
+                $data['sort_order'],
+                $id
+            );
+        }
         return $stmt->execute();
     }
 
     // Xóa danh mục
     public static function delete($conn, $id) {
-        $stmt = $conn->prepare("DELETE FROM categories WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        return $stmt->execute();
+        try {
+            $stmt = $conn->prepare("DELETE FROM categories WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            return $stmt->execute();
+        } catch (mysqli_sql_exception $e) {
+            // Nếu là lỗi ràng buộc khóa ngoại
+            if (strpos($e->getMessage(), 'a foreign key constraint fails') !== false) {
+                throw new Exception('Không thể xóa danh mục vì còn danh mục con hoặc sản phẩm liên quan.');
+            }
+            throw $e;
+        }
     }
 
     // Lấy danh mục cha (parent_id IS NULL)

@@ -6,7 +6,7 @@ if (empty($_SESSION['user']) || !in_array($_SESSION['user']['role_name'], ['admi
 }
 require_once 'config/config.php';
 require_once 'model/User.php';
-require_once 'model/Product.php';
+require_once __DIR__ . '/../model/Product.php';
 require_once 'model/Category.php';
 
 $action = $_GET['action'] ?? '';
@@ -133,6 +133,15 @@ if ($action === 'add_user_admin') {
     exit;
 }
 
+if (
+    $action === 'manage_user'
+) {
+    $users = User::getAll($conn);
+    $view_file = 'view/admin/manage_user.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
 // Category Management
 if ($action === 'category_index') {
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -161,10 +170,10 @@ if ($action === 'category_store') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = [
             'name' => $_POST['name'] ?? '',
-            'slug' => $_POST['slug'] ?? '',
             'description' => $_POST['description'] ?? '',
-            'parent_id' => (int)($_POST['parent_id'] ?? 0),
-            'image' => $_POST['image'] ?? '',
+            'parent_id' => ($_POST['parent_id'] !== '' ? (int)$_POST['parent_id'] : null),
+            'slug' => $_POST['slug'] ?? '',
+            'image' => $_POST['image'] ?? '', // hoặc xử lý upload file nếu có
             'is_active' => isset($_POST['is_active']) ? 1 : 0,
             'sort_order' => 0
         ];
@@ -204,9 +213,9 @@ if ($action === 'category_update') {
         }
         $data = [
             'name' => $_POST['name'] ?? '',
-            'slug' => $_POST['slug'] ?? '',
             'description' => $_POST['description'] ?? '',
-            'parent_id' => (int)($_POST['parent_id'] ?? 0),
+            'parent_id' => ($_POST['parent_id'] !== '' ? (int)$_POST['parent_id'] : null),
+            'slug' => $_POST['slug'] ?? '',
             'image' => $_POST['image'] ?? '',
             'is_active' => isset($_POST['is_active']) ? 1 : 0,
             'sort_order' => 0
@@ -227,11 +236,17 @@ if ($action === 'category_delete') {
         header('Location: index.php?controller=admin&action=category_index');
         exit;
     }
-    if (Category::delete($conn, $id)) {
-        header('Location: index.php?controller=admin&action=category_index&success=3');
-        exit;
-    } else {
-        header('Location: index.php?controller=admin&action=category_index&error=delete_failed');
+    try {
+        if (Category::delete($conn, $id)) {
+            header('Location: index.php?controller=admin&action=category_index&success=3');
+            exit;
+        } else {
+            header('Location: index.php?controller=admin&action=category_index&error=delete_failed');
+            exit;
+        }
+    } catch (Exception $e) {
+        $msg = urlencode($e->getMessage());
+        header('Location: index.php?controller=admin&action=category_index&error_msg=' . $msg);
         exit;
     }
 }
@@ -271,8 +286,8 @@ if ($action === 'product_store') {
             'sale_price' => (float)($_POST['sale_price'] ?? 0),
             'stock_quantity' => (int)($_POST['stock_quantity'] ?? 0),
             'min_stock_level' => (int)($_POST['min_stock_level'] ?? 0),
-            'category_id' => (int)($_POST['category_id'] ?? 0),
-            'brand_id' => (int)($_POST['brand_id'] ?? 0),
+            'category_id' => ($_POST['category_id'] !== '' ? (int)$_POST['category_id'] : null),
+            'brand_id' => ($_POST['brand_id'] !== '' ? (int)$_POST['brand_id'] : null),
             'model' => $_POST['model'] ?? '',
             'sku' => $_POST['sku'] ?? '',
             'barcode' => $_POST['barcode'] ?? '',
@@ -286,7 +301,66 @@ if ($action === 'product_store') {
             'created_by' => $_SESSION['user_id'] ?? 1
         ];
 
-        if (Product::create($conn, $data)) {
+        // Tạo sản phẩm
+        $product_id = Product::create($conn, $data);
+        
+        if ($product_id) {
+            // Xử lý upload ảnh
+            if (isset($_FILES['product_images']) && !empty($_FILES['product_images']['name'][0])) {
+                $upload_dir = 'uploads/products/';
+                
+                // Tạo thư mục nếu chưa tồn tại
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+                
+                $uploaded_images = [];
+                
+                foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
+                    if ($_FILES['product_images']['error'][$key] === UPLOAD_ERR_OK) {
+                        $file_name = $_FILES['product_images']['name'][$key];
+                        $file_size = $_FILES['product_images']['size'][$key];
+                        $file_type = $_FILES['product_images']['type'][$key];
+                        
+                        // Kiểm tra loại file
+                        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+                        if (!in_array($file_type, $allowed_types)) {
+                            continue; // Bỏ qua file không hợp lệ
+                        }
+                        
+                        // Kiểm tra kích thước file (tối đa 5MB)
+                        if ($file_size > 5 * 1024 * 1024) {
+                            continue; // Bỏ qua file quá lớn
+                        }
+                        
+                        // Tạo tên file mới để tránh trùng lặp
+                        $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                        $new_file_name = uniqid() . '_' . time() . '.' . $file_extension;
+                        $file_path = $upload_dir . $new_file_name;
+                        
+                        // Upload file
+                        if (move_uploaded_file($tmp_name, $file_path)) {
+                            $uploaded_images[] = [
+                                'product_id' => $product_id,
+                                'image_url' => '/' . $file_path,
+                                'alt_text' => pathinfo($file_name, PATHINFO_FILENAME),
+                                'is_primary' => (count($uploaded_images) === 0) ? 1 : 0, // Ảnh đầu tiên là ảnh chính
+                                'sort_order' => count($uploaded_images) + 1
+                            ];
+                        }
+                    }
+                }
+                
+                // Lưu thông tin ảnh vào database
+                if (!empty($uploaded_images)) {
+                    $stmt = $conn->prepare("INSERT INTO product_images (product_id, image_url, alt_text, is_primary, sort_order) VALUES (?, ?, ?, ?, ?)");
+                    foreach ($uploaded_images as $image) {
+                        $stmt->bind_param("issii", $image['product_id'], $image['image_url'], $image['alt_text'], $image['is_primary'], $image['sort_order']);
+                        $stmt->execute();
+                    }
+                }
+            }
+            
             header('Location: index.php?controller=admin&action=product_index&success=1');
             exit;
         } else {
@@ -333,8 +407,8 @@ if ($action === 'product_update') {
             'sale_price' => (float)($_POST['sale_price'] ?? 0),
             'stock_quantity' => (int)($_POST['stock_quantity'] ?? 0),
             'min_stock_level' => (int)($_POST['min_stock_level'] ?? 0),
-            'category_id' => (int)($_POST['category_id'] ?? 0),
-            'brand_id' => (int)($_POST['brand_id'] ?? 0),
+            'category_id' => ($_POST['category_id'] !== '' ? (int)$_POST['category_id'] : null),
+            'brand_id' => ($_POST['brand_id'] !== '' ? (int)$_POST['brand_id'] : null),
             'model' => $_POST['model'] ?? '',
             'sku' => $_POST['sku'] ?? '',
             'barcode' => $_POST['barcode'] ?? '',
@@ -348,6 +422,62 @@ if ($action === 'product_update') {
         ];
 
         if (Product::update($conn, $id, $data)) {
+            // Xử lý upload ảnh mới
+            if (isset($_FILES['product_images']) && !empty($_FILES['product_images']['name'][0])) {
+                $upload_dir = 'uploads/products/';
+                
+                // Tạo thư mục nếu chưa tồn tại
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+                
+                $uploaded_images = [];
+                
+                foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
+                    if ($_FILES['product_images']['error'][$key] === UPLOAD_ERR_OK) {
+                        $file_name = $_FILES['product_images']['name'][$key];
+                        $file_size = $_FILES['product_images']['size'][$key];
+                        $file_type = $_FILES['product_images']['type'][$key];
+                        
+                        // Kiểm tra loại file
+                        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+                        if (!in_array($file_type, $allowed_types)) {
+                            continue; // Bỏ qua file không hợp lệ
+                        }
+                        
+                        // Kiểm tra kích thước file (tối đa 5MB)
+                        if ($file_size > 5 * 1024 * 1024) {
+                            continue; // Bỏ qua file quá lớn
+                        }
+                        
+                        // Tạo tên file mới để tránh trùng lặp
+                        $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                        $new_file_name = uniqid() . '_' . time() . '.' . $file_extension;
+                        $file_path = $upload_dir . $new_file_name;
+                        
+                        // Upload file
+                        if (move_uploaded_file($tmp_name, $file_path)) {
+                            $uploaded_images[] = [
+                                'product_id' => $id,
+                                'image_url' => '/' . $file_path,
+                                'alt_text' => pathinfo($file_name, PATHINFO_FILENAME),
+                                'is_primary' => 0, // Ảnh thêm mới không phải ảnh chính
+                                'sort_order' => 999 // Đặt cuối danh sách
+                            ];
+                        }
+                    }
+                }
+                
+                // Lưu thông tin ảnh vào database
+                if (!empty($uploaded_images)) {
+                    $stmt = $conn->prepare("INSERT INTO product_images (product_id, image_url, alt_text, is_primary, sort_order) VALUES (?, ?, ?, ?, ?)");
+                    foreach ($uploaded_images as $image) {
+                        $stmt->bind_param("issii", $image['product_id'], $image['image_url'], $image['alt_text'], $image['is_primary'], $image['sort_order']);
+                        $stmt->execute();
+                    }
+                }
+            }
+            
             header('Location: index.php?controller=admin&action=product_index&success=2');
             exit;
         } else {
@@ -373,12 +503,12 @@ if ($action === 'product_delete') {
     }
 }
 
-if ($action === 'order_manage') { // thinh
-    require_once 'model/Order.php'; // thinh
-    $orders = Order::getAll($conn); // thinh
-    $view_file = 'view/admin/order_manage.php'; // thinh
-    include 'view/layout/admin_layout.php'; // thinh
-    exit; // thinh
+if ($action === 'order_manage') {
+    require_once 'model/Order.php';
+    $orders = Order::getAll($conn);
+    $view_file = 'view/admin/order_manage.php';
+    include 'view/layout/admin_layout.php';
+    exit;
 }
 
 if ($action === 'order_update_status') { // thinh
@@ -486,12 +616,22 @@ if ($action === 'coupon_store') { // thinh
             'payment_method' => $_POST['payment_method'] ?? 'all'
         ];
         Coupon::create($conn, $data);
+        // ĐÃ ĐÁNH DẤU THEO YÊU CẦU - HIỆU ỨNG ĐẸP, CHỮ XANH NỀN TRẮNG
         echo '
-        <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
-            <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
-                Đã tạo mã giảm giá thành công!<br>Đang chuyển về trang quản lý mã giảm giá...
+        <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;z-index:9999;background:rgba(0,0,0,0.1);">
+          <div class="alert text-center shadow animate__animated animate__bounceIn" style="background:#fff;color:#1976d2;border:1.5px solid #1976d2;font-size:1.5rem;max-width:420px;">
+            <div style="font-size:3rem;line-height:1;">
+              <i class=\"fa fa-check-circle\" style=\"color:#1976d2;\"></i>
             </div>
+            <div class="mt-2 mb-2 fw-bold" style="font-size:1.2em;">
+              Đã tạo mã giảm giá thành công!
+            </div>
+            <div>
+              <small>Đang chuyển về trang quản lý mã giảm giá...</small>
+            </div>
+          </div>
         </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
         exit;
     }
@@ -529,12 +669,22 @@ if ($action === 'coupon_update' && isset($_POST['id'])) { // thinh
         'payment_method' => $_POST['payment_method'] ?? 'all'
     ];
     Coupon::update($conn, $id, $data);
+    // ĐÃ ĐÁNH DẤU THEO YÊU CẦU - HIỆU ỨNG ĐẸP, CHỮ XANH NỀN TRẮNG
     echo '
-    <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
-        <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
-            Đã cập nhật mã giảm giá thành công!<br>Đang chuyển về trang quản lý mã giảm giá...
+    <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;z-index:9999;background:rgba(0,0,0,0.1);">
+      <div class="alert text-center shadow animate__animated animate__bounceIn" style="background:#fff;color:#1976d2;border:1.5px solid #1976d2;font-size:1.5rem;max-width:420px;">
+        <div style="font-size:3rem;line-height:1;">
+          <i class=\"fa fa-check-circle\" style=\"color:#1976d2;\"></i>
         </div>
+        <div class="mt-2 mb-2 fw-bold" style="font-size:1.2em;">
+          Đã cập nhật mã giảm giá thành công!
+        </div>
+        <div>
+          <small>Đang chuyển về trang quản lý mã giảm giá...</small>
+        </div>
+      </div>
     </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
     exit;
 }
@@ -550,6 +700,30 @@ if ($action === 'coupon_delete' && isset($_GET['id'])) { // thinh
         </div>
     </div>
     <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
+    exit;
+}
+
+if ($action === 'export_orders_excel') {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once 'model/Order.php';
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->fromArray(['Mã đơn', 'Ngày đặt', 'User ID', 'Tổng tiền', 'Trạng thái'], NULL, 'A1');
+    $orders = Order::getAll($conn);
+    $row = 2;
+    foreach ($orders as $order) {
+        $sheet->setCellValue('A'.$row, $order['order_number']);
+        $sheet->setCellValue('B'.$row, $order['order_date']);
+        $sheet->setCellValue('C'.$row, $order['user_id']);
+        $sheet->setCellValue('D'.$row, $order['total_amount']);
+        $sheet->setCellValue('E'.$row, $order['status']);
+        $row++;
+    }
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="orders.xlsx"');
+    header('Cache-Control: max-age=0');
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('php://output');
     exit;
 }
 
