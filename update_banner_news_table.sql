@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `banners` (
     `link` VARCHAR(500),
     `description` TEXT,
     `position` ENUM('homepage_top','homepage_middle','homepage_bottom','sidebar','popup') DEFAULT 'homepage_top',
+    `status` TINYINT(1) DEFAULT 1,
     `is_active` TINYINT(1) DEFAULT 1,
     `sort_order` INT DEFAULT 0,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

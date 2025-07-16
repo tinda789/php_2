@@ -14,16 +14,18 @@ class NewsController {
     // Hiển thị danh sách tin tức
     public function index() {
         $category = isset($_GET['category']) ? $_GET['category'] : null;
-        $status = isset($_GET['status']) ? $_GET['status'] : null;
+        $is_active = isset($_GET['status']) ? $_GET['status'] : null;
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $per_page = 10;
+        $offset = ($page - 1) * $per_page;
         
-        $news_list = $this->newsModel->getAllNews($category, $status, $page, $per_page);
-        $total_news = $this->newsModel->getTotalNews($category, $status);
+        $news_list = $this->newsModel->getAllNews($category, $is_active, $per_page, $offset);
+        $total_news = count($news_list); // Hoặc dùng hàm countNews nếu có
         $total_pages = ceil($total_news / $per_page);
         $stats = $this->newsModel->getNewsStats();
         
-        include 'view/admin/news_index.php';
+        $view_file = 'view/admin/news_index.php';
+        include 'view/layout/admin_layout.php';
     }
     
     // Hiển thị form thêm tin tức
@@ -44,8 +46,8 @@ class NewsController {
             'content' => $_POST['content'],
             'summary' => $_POST['summary'],
             'category' => $_POST['category'],
-            'status' => $_POST['status'],
-            'image' => ''
+            'is_active' => $_POST['status'],
+            'image_url' => ''
         ];
         
         // Tạo slug từ title
@@ -55,7 +57,7 @@ class NewsController {
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $uploaded_image = $this->newsModel->uploadImage($_FILES['image']);
             if ($uploaded_image) {
-                $data['image'] = $uploaded_image;
+                $data['image_url'] = $uploaded_image;
             } else {
                 $_SESSION['error'] = "Lỗi upload ảnh. Vui lòng thử lại.";
                 header('Location: index.php?controller=news&action=create');
@@ -104,8 +106,8 @@ class NewsController {
             'content' => $_POST['content'],
             'summary' => $_POST['summary'],
             'category' => $_POST['category'],
-            'status' => $_POST['status'],
-            'image' => $news['image'] // Giữ ảnh cũ
+            'is_active' => $_POST['status'],
+            'image_url' => $news['image_url'] // Giữ ảnh cũ
         ];
         
         // Tạo slug từ title
@@ -116,13 +118,13 @@ class NewsController {
             $uploaded_image = $this->newsModel->uploadImage($_FILES['image']);
             if ($uploaded_image) {
                 // Xóa ảnh cũ
-                if ($news['image']) {
-                    $old_image_path = "uploads/news/" . $news['image'];
+                if ($news['image_url']) {
+                    $old_image_path = "uploads/news/" . $news['image_url'];
                     if (file_exists($old_image_path)) {
                         unlink($old_image_path);
                     }
                 }
-                $data['image'] = $uploaded_image;
+                $data['image_url'] = $uploaded_image;
             } else {
                 $_SESSION['error'] = "Lỗi upload ảnh. Vui lòng thử lại.";
                 header('Location: index.php?controller=news&action=edit&id=' . $id);
@@ -220,6 +222,33 @@ class NewsController {
         $news = $this->newsModel->getLatestNews($limit);
         header('Content-Type: application/json');
         echo json_encode($news);
+    }
+    
+    // Hiển thị danh sách tin tức cho người dùng (public)
+    public function list() {
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $per_page = 8;
+        $offset = ($page - 1) * $per_page;
+        $news_list = $this->newsModel->getAllNews(null, 1, $per_page, $offset);
+        $total_news = count($news_list); // Có thể dùng hàm countNews nếu muốn phân trang chuẩn
+        $total_pages = ceil($total_news / $per_page);
+        include 'view/user/news_list.php';
+    }
+    
+    // Trang chi tiết tin tức public
+    public function view($id) {
+        $news = $this->newsModel->getNewsById($id);
+        if (!$news || !$news['is_active']) {
+            include 'view/user/news_not_found.php';
+            return;
+        }
+        // Tăng lượt xem
+        $this->newsModel->incrementViews($id);
+        // Lấy danh mục, tags, tin nổi bật để truyền cho sidebar
+        $categories = $this->newsModel->getCategories();
+        $tags = $this->newsModel->getTags();
+        $featuredNews = $this->newsModel->getFeaturedNews(5);
+        include 'view/user/news_detail.php';
     }
 }
 ?> 

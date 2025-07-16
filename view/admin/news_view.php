@@ -1,5 +1,4 @@
 <?php
-require_once 'view/layout/admin_layout.php';
 ?>
 
 <div class="container-fluid">

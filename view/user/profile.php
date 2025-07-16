@@ -14,7 +14,7 @@
                 <tr><td>Họ tên:</td><td><?php echo htmlspecialchars($_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name']); ?></td></tr>
                 <tr><td>Tên đăng nhập:</td><td><?php echo htmlspecialchars($_SESSION['user']['username']); ?></td></tr>
                 <tr><td>Email:</td><td><?php echo htmlspecialchars($_SESSION['user']['email']); ?></td></tr>
-                <tr><td>Số điện thoại:</td><td><?php echo htmlspecialchars($_SESSION['user']['phone']); ?></td></tr>
+                <tr><td>Số điện thoại:</td><td><?php echo htmlspecialchars($_SESSION['user']['phone'] ?? ''); ?></td></tr>
                 <tr><td>Vai trò:</td><td><?php echo htmlspecialchars($_SESSION['user']['role_name'] ?? 'customer'); ?></td></tr>
             </table>
             <a href="?controller=user&action=edit" class="profile-edit-btn">Sửa thông tin</a>

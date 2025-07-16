@@ -9,24 +9,24 @@ class News {
     }
     
     // Lấy tất cả tin tức
-    public function getAllNews($category = null, $status = null, $limit = null, $offset = 0) {
-        $sql = "SELECT * FROM news WHERE 1=1";
+    public function getAllNews($category = null, $is_active = null, $limit = null, $offset = 0) {
+        $sql = "SELECT n.*, c.name as category_name FROM news n LEFT JOIN categories c ON n.category = c.id WHERE 1=1";
         $params = [];
         $types = "";
         
         if ($category) {
-            $sql .= " AND category = ?";
+            $sql .= " AND n.category = ?";
             $params[] = $category;
             $types .= "s";
         }
         
-        if ($status) {
-            $sql .= " AND status = ?";
-            $params[] = $status;
-            $types .= "s";
+        if ($is_active !== null && $is_active !== '') {
+            $sql .= " AND n.is_active = ?";
+            $params[] = $is_active;
+            $types .= "i";
         }
         
-        $sql .= " ORDER BY created_at DESC";
+        $sql .= " ORDER BY n.created_at DESC";
         
         if ($limit) {
             $sql .= " LIMIT ? OFFSET ?";
@@ -47,7 +47,7 @@ class News {
     
     // Lấy tin tức theo ID
     public function getNewsById($id) {
-        $sql = "SELECT * FROM news WHERE id = ?";
+        $sql = "SELECT n.*, c.name as category_name FROM news n LEFT JOIN categories c ON n.category = c.id WHERE n.id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -69,17 +69,17 @@ class News {
     
     // Tạo tin tức mới
     public function createNews($data) {
-        $sql = "INSERT INTO news (title, slug, summary, content, image, category, status) 
+        $sql = "INSERT INTO news (title, slug, summary, content, image_url, category, is_active) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssssss", 
+        $stmt->bind_param("ssssssi", 
             $data['title'],
             $data['slug'],
             $data['summary'],
             $data['content'],
-            $data['image'],
+            $data['image_url'],
             $data['category'],
-            $data['status']
+            $data['is_active']
         );
         
         return $stmt->execute();
@@ -89,17 +89,17 @@ class News {
     public function updateNews($id, $data) {
         $sql = "UPDATE news SET 
                 title = ?, slug = ?, summary = ?, content = ?, 
-                image = ?, category = ?, status = ?, updated_at = CURRENT_TIMESTAMP 
+                image_url = ?, category = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP 
                 WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssssssi", 
+        $stmt->bind_param("ssssssii", 
             $data['title'],
             $data['slug'],
             $data['summary'],
             $data['content'],
-            $data['image'],
+            $data['image_url'],
             $data['category'],
-            $data['status'],
+            $data['is_active'],
             $id
         );
         
@@ -110,8 +110,8 @@ class News {
     public function deleteNews($id) {
         // Lấy thông tin ảnh để xóa file
         $news = $this->getNewsById($id);
-        if ($news && $news['image']) {
-            $image_path = "uploads/news/" . $news['image'];
+        if ($news && $news['image_url']) {
+            $image_path = "uploads/news/" . $news['image_url'];
             if (file_exists($image_path)) {
                 unlink($image_path);
             }
@@ -218,16 +218,6 @@ class News {
         return $row['count'] > 0;
     }
 
-    // Lấy tin tức theo danh mục
-    public function getNewsByCategory($category, $limit = 10) {
-        $sql = "SELECT * FROM news WHERE category = ? ORDER BY created_at DESC LIMIT ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("si", $category, $limit);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
     // Lấy tin tức mới nhất
     public function getLatestNews($limit = 5) {
         $sql = "SELECT * FROM news ORDER BY created_at DESC LIMIT ?";
@@ -245,11 +235,12 @@ class News {
                 SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) as published,
                 SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END) as draft,
                 SUM(CASE WHEN status = 'archived' THEN 1 ELSE 0 END) as archived,
+                SUM(CASE WHEN is_active = 1 THEN 1 ELSE 0 END) as active,
+                SUM(CASE WHEN is_active = 0 THEN 1 ELSE 0 END) as inactive,
                 SUM(views) as total_views,
                 COUNT(DISTINCT category) as categories
                 FROM news";
         $result = $this->conn->query($sql);
-        
         return $result->fetch_assoc();
     }
     
@@ -311,6 +302,53 @@ class News {
     // thanhdat: Thêm hàm getTotalNews để tương thích controller
     public function getTotalNews($category = null, $status = null) {
         return $this->countNews($category, $status);
+    }
+
+    // Lấy tin nổi bật (featured hoặc views cao)
+    public function getFeaturedNews($limit = 5) {
+        $sql = "SELECT * FROM news WHERE is_active = 1 AND (featured = 1 OR views >= 0) ORDER BY featured DESC, views DESC, created_at DESC LIMIT ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Lấy danh mục
+    public function getCategories() {
+        $sql = "SELECT * FROM categories WHERE is_active = 1 ORDER BY sort_order, name";
+        $result = $this->conn->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Lấy tag (nếu có bảng tags)
+    public function getTags() {
+        if ($this->conn->query("SHOW TABLES LIKE 'tags'")->num_rows) {
+            $sql = "SELECT * FROM tags ORDER BY name";
+            $result = $this->conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return [];
+    }
+
+    // Lấy tin theo category (public)
+    public function getNewsByCategory($category_id, $limit = 10) {
+        $sql = "SELECT * FROM news WHERE is_active = 1 AND category = ? ORDER BY created_at DESC LIMIT ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii", $category_id, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Lấy tin theo tag (nếu có)
+    public function getNewsByTag($tag, $limit = 10) {
+        $sql = "SELECT * FROM news WHERE is_active = 1 AND FIND_IN_SET(?, tags) ORDER BY created_at DESC LIMIT ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("si", $tag, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 ?> 

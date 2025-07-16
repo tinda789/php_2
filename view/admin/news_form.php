@@ -1,5 +1,4 @@
 <?php // thanhdat: Form thêm/sửa tin tức
-require_once 'view/layout/admin_layout.php';
 
 $is_edit = isset($news);
 $title = $is_edit ? 'Sửa Tin tức' : 'Thêm Tin tức Mới';
