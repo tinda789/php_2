@@ -1,3 +1,8 @@
+<form action="import_products.php" method="post" enctype="multipart/form-data" style="margin-bottom: 20px;">
+    <input type="file" name="excel_file" accept=".xlsx,.xls" required>
+    <button type="submit">Nhập sản phẩm từ Excel</button>
+</form>
+
 <div class="container-fluid py-3">
   <div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
     <h1 class="h4 text-primary m-0">Quản lý sản phẩm</h1>

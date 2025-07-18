@@ -1,5 +1,5 @@
     </div>
-    <footer class="bg-dark text-light py-4 mt-5" style="background: linear-gradient(90deg, #232526 60%, #414345 100%); border-top: 3px solid #007bff;">
+    <footer class="site-footer bg-dark text-light py-4 mt-5" style="background: linear-gradient(90deg, #232526 60%, #414345 100%); border-top: 3px solid #007bff;">
       <div class="container-fluid px-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
         <div class="d-flex align-items-center gap-2 mb-2 mb-md-0" style="font-size:1.08rem;">
           <i class="fa-solid fa-bolt text-info"></i>
@@ -15,5 +15,12 @@
     </footer>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Sticky footer CSS -->
+    <style>
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+    .site-footer { flex-shrink: 0; }
+    .main-content { flex: 1 0 auto; }
+    </style>
     </body>
     </html> 

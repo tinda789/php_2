@@ -12,8 +12,13 @@
     <div class="collapse navbar-collapse" id="adminNavbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
+          <a class="nav-link" href="index.php">
+            <i class="fa-solid fa-house me-1"></i> Trang chủ
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link<?php if (($action ?? '') === 'dashboard') echo ' active'; ?>" href="index.php?controller=admin&action=dashboard">
-            <i class="fa-solid fa-house me-1"></i> Dashboard
+            <i class="fa-solid fa-gauge-high me-1"></i> Dashboard
           </a>
         </li>
         <li class="nav-item">
@@ -48,7 +53,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link<?php if (($controller ?? '') === 'news') echo ' active'; ?>" href="index.php?controller=news&action=index">
-            <i class="fa-solid fa-newspaper me-1"></i> Tin tức
+            <i class="fa-solid fa-newspaper me-1"></i> Quản lý tin tức
           </a>
         </li>
       </ul>

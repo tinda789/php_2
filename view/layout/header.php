@@ -89,9 +89,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="index.php">Trang chủ</a></li>
-        <li class="nav-item"><a class="nav-link" href="?controller=product&action=list">Sản phẩm</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?controller=product&action=index">Sản phẩm</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=list">Tin tức</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
       </ul>
