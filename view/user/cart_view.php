@@ -7,10 +7,12 @@
       <a href="index.php?controller=product&action=list" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
     </div>
   <?php else: ?>
+    <form method="post" action="index.php?controller=checkout&action=checkout">
     <div class="table-responsive">
       <table class="table table-hover align-middle shadow-sm rounded-4 overflow-hidden">
         <thead class="table-primary">
           <tr class="align-middle text-center">
+            <th style="width:40px;"><input type="checkbox" id="checkAll" onclick="toggleAllCartCheckboxes(this)"></th>
             <th style="width:110px;">Ảnh</th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
@@ -24,6 +26,7 @@
           <?php foreach ($cart as $item): ?>
             <?php $subtotal = $item['price'] * $item['quantity']; $total += $subtotal; ?>
             <tr class="align-middle text-center">
+              <td><input type="checkbox" name="selected_products[]" value="<?php echo $item['id']; ?>" class="cart-checkbox"></td>
               <td>
                 <div class="ratio ratio-4x3 bg-light rounded-3 overflow-hidden mx-auto" style="width:90px;">
                   <?php 
@@ -57,7 +60,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <th colspan="4" class="text-end fs-5">Tổng cộng:</th>
+            <th colspan="5" class="text-end fs-5">Tổng cộng:</th>
             <th class="text-danger fs-4 text-center"><?php echo number_format($total, 0, ',', '.'); ?> đ</th>
             <th></th>
           </tr>
@@ -66,10 +69,19 @@
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mt-4">
       <a href="index.php?controller=product&action=list" class="btn btn-outline-primary btn-lg"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
-      <a href="#" class="btn btn-success btn-lg px-5"><i class="fas fa-credit-card"></i> Thanh toán</a>
+      <button type="submit" class="btn btn-success btn-lg px-5"><i class="fas fa-credit-card"></i> Thanh toán</button>
     </div>
+    </form>
   <?php endif; ?>
 </div>
+<script>
+function toggleAllCartCheckboxes(source) {
+  var checkboxes = document.querySelectorAll('.cart-checkbox');
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+</script>
 <style>
 .table thead th { vertical-align: middle; }
 .object-fit-cover { object-fit: cover; }

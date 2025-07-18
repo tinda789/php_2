@@ -73,6 +73,14 @@ if ($controller === 'banner') {
     } else {
         $cartController->view();
     }
+} elseif ($controller === 'checkout') {
+    require 'controller/CheckoutController.php';
+    $checkoutController = new CheckoutController();
+    if (method_exists($checkoutController, $action)) {
+        $checkoutController->$action();
+    } else {
+        $checkoutController->checkout();
+    }
 } else {
     include 'view/home.php';
 }
