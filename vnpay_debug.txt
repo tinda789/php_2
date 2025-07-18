@@ -1,0 +1,17 @@
+Array
+(
+    [vnp_Amount] => 3199000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250718094457
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250718094457882
+    [vnp_OrderType] => other
+    [vnp_Returnurl] => http://localhost:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TxnRef] => OD20250718094457882
+    [vnp_Version] => 2.1.0
+)
+
+URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=3199000000&vnp_Command=pay&vnp_CreateDate=20250718094457&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250718094457882&vnp_OrderType=other&vnp_Returnurl=http%3A%2F%2Flocalhost%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250718094457882&vnp_Version=2.1.0&vnp_SecureHash=38763cba5cecc9583dcab10646ba3b6eb935833d0e90d438b60da457bfde9936d6eae424e640cdc45d8222331bcbcefa9153f0afd35c57e62e1144284996229c

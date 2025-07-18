@@ -6,7 +6,7 @@ if (empty($_SESSION['user']) || !in_array($_SESSION['user']['role_name'], ['admi
 }
 require_once 'config/config.php';
 require_once 'model/User.php';
-require_once 'model/Product.php';
+require_once __DIR__ . '/../model/Product.php';
 require_once 'model/Category.php';
 
 $action = $_GET['action'] ?? '';
