@@ -1,6 +1,13 @@
+<!-- thanhdat: Nút tải file Excel mẫu nhập sản phẩm -->
+<div style="margin-bottom: 16px;">
+  <a href="create_excel_template.php" class="btn btn-success">
+    <i class="fa fa-file-excel"></i> Tải file Excel mẫu nhập sản phẩm
+  </a>
+</div>
+
 <form action="import_products.php" method="post" enctype="multipart/form-data" style="margin-bottom: 20px;">
-    <input type="file" name="excel_file" accept=".xlsx,.xls" required>
-    <button type="submit">Nhập sản phẩm từ Excel</button>
+    <input type="file" name="excel_file" accept=".xlsx,.xls,.csv" required>
+    <button type="submit">Nhập sản phẩm từ Excel/CSV</button>
 </form>
 
 <div class="container-fluid py-3">

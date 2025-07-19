@@ -70,7 +70,7 @@ class ProductController {
                         $new_name = 'product_' . time() . '_' . rand(1000,9999) . '.' . $file_ext;
                         $target_file = $target_dir . $new_name;
                         if (move_uploaded_file($tmp_name, $target_file)) {
-                            $stmt = $this->conn->prepare("INSERT INTO product_images (product_id, image) VALUES (?, ?)");
+                            $stmt = $this->conn->prepare("INSERT INTO product_images (product_id, image_url) VALUES (?, ?)");
                             $stmt->bind_param("is", $product_id, $new_name);
                             $stmt->execute();
                         }
@@ -138,6 +138,21 @@ class ProductController {
             ];
 
             if (Product::update($this->conn, $id, $data)) {
+                // thanhdat: upload nhiều ảnh sản phẩm khi cập nhật
+                if (!empty($_FILES['product_images']['name'][0])) {
+                    $target_dir = 'uploads/products/';
+                    foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
+                        $file_name = basename($_FILES['product_images']['name'][$key]);
+                        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                        $new_name = 'product_' . time() . '_' . rand(1000,9999) . '.' . $file_ext;
+                        $target_file = $target_dir . $new_name;
+                        if (move_uploaded_file($tmp_name, $target_file)) {
+                            $stmt = $this->conn->prepare("INSERT INTO product_images (product_id, image_url) VALUES (?, ?)");
+                            $stmt->bind_param("is", $id, $new_name);
+                            $stmt->execute();
+                        }
+                    }
+                }
                 header('Location: index.php?controller=product&action=index&success=2');
                 exit;
             } else {
@@ -196,18 +211,26 @@ class ProductController {
         $limit = 12;
         $offset = ($page - 1) * $limit;
 
-        $products = Product::getAllForUser($this->conn, $limit, $offset, $search, $category_id);
-        $total = Product::countAllForUser($this->conn, $search, $category_id);
-        $totalPages = ceil($total / $limit);
-        
+        require_once __DIR__ . '/../config/config.php';
         $categories = Product::getCategories($this->conn);
         
-        // Lấy ảnh cho từng sản phẩm
-        foreach ($products as &$p) {
-            $p['images'] = Product::getImages($this->conn, $p['id']);
+            // thanhdat: tìm kiếm thông minh - không chuyển đổi từ khóa, chỉ tìm kiếm trực tiếp
+        if ($search !== '') {
+            // Giữ nguyên từ khóa người dùng nhập, không chuyển đổi
+            $search = trim($search);
         }
-        unset($p);
         
+        $products = Product::getAll($this->conn, $limit, $offset, $search, $category_id);
+        
+        // thanhdat: lấy ảnh cho từng sản phẩm
+        foreach ($products as &$product) {
+            $product['images'] = Product::getImages($this->conn, $product['id']);
+        }
+        unset($product);
+        
+        $total = Product::countAll($this->conn, $search, $category_id);
+        $totalPages = ceil($total / $limit);
+
         $view_file = 'view/user/product_list.php';
         include 'view/layout/header.php';
         include $view_file;
