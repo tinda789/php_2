@@ -91,7 +91,11 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="index.php">Trang chủ</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.php?controller=product&action=index">Sản phẩm</a></li>
+        <li class="nav-item">
+          <a class="nav-link<?php if(isset($_GET['controller']) && $_GET['controller']==='product' && (empty($_GET['action']) || $_GET['action']==='list')) echo ' active'; ?>" href="index.php?controller=product&action=list">
+            <i class="fa fa-box"></i> Sản phẩm
+          </a>
+        </li>
         <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=list">Tin tức</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>

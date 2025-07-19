@@ -1,7 +1,6 @@
 <?php
-// thanhdat: Import sản phẩm từ Excel, tự động thêm danh mục/thương hiệu nếu chưa có, cộng tồn kho nếu SKU đã tồn tại
+// thanhdat: Import sản phẩm từ CSV, tự động thêm danh mục/thương hiệu nếu chưa có, cộng tồn kho nếu SKU đã tồn tại
 require_once __DIR__ . '/config/config.php'; // Kết nối DB
-require_once __DIR__ . '/libs/PHPExcel-1.8/Classes/PHPExcel.php'; // Thư viện PHPExcel
 require_once __DIR__ . '/model/Product.php';
 require_once __DIR__ . '/model/Category.php';
 
@@ -50,16 +49,31 @@ function getProductBySKU($conn, $sku) {
 
 if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
     $inputFileName = $_FILES['excel_file']['tmp_name'];
-    $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
-    $sheet = $objPHPExcel->getActiveSheet();
-    $rows = $sheet->toArray();
+    
+    // Đọc file CSV
+    $rows = [];
+    if (($handle = fopen($inputFileName, "r")) !== FALSE) {
+        // Bỏ qua BOM nếu có
+        $bom = fread($handle, 3);
+        if ($bom !== "\xEF\xBB\xBF") {
+            rewind($handle);
+        }
+        
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            $rows[] = $data;
+        }
+        fclose($handle);
+    }
 
     $success = 0;
     $update = 0;
     $fail = 0;
     $failRows = [];
+    
     for ($i = 1; $i < count($rows); $i++) { // Bỏ qua dòng tiêu đề
         $row = $rows[$i];
+        if (count($row) < 10) continue; // Bỏ qua dòng không đủ cột
+        
         $name = trim($row[0]);
         $sku = trim($row[1]);
         $categoryName = trim($row[2]);
@@ -69,6 +83,7 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
         $stock_quantity = intval($row[6]);
         $status = trim($row[7]) === 'hoạt động' ? 1 : 0;
         $featured = trim($row[8]) === 'có' ? 1 : 0;
+        $image_name = trim($row[9] ?? ''); // thanhdat: lấy tên ảnh từ cột thứ 10
 
         // Lấy hoặc tạo id danh mục/thương hiệu
         $category_id = getOrCreateCategory($conn, $categoryName); // thanhdat
@@ -117,6 +132,12 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
         ];
         $result = Product::create($conn, $data); // thanhdat
         if ($result) {
+            // thanhdat: thêm ảnh sản phẩm nếu có
+            if (!empty($image_name)) {
+                $stmt = $conn->prepare("INSERT INTO product_images (product_id, image_url) VALUES (?, ?)");
+                $stmt->bind_param("is", $result, $image_name);
+                $stmt->execute();
+            }
             $success++;
         } else {
             $fail++;
@@ -127,7 +148,7 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
     if ($fail > 0) {
         echo "<br>Thất bại $fail dòng (dòng: " . implode(', ', $failRows) . ")";
     }
-    echo "<br><a href='view/admin/product_index.php'>Quay lại quản lý sản phẩm</a></h3>";
+    echo "<br><a href='index.php?controller=admin&action=product_index'>Quay lại quản lý sản phẩm</a></h3>";
 } else {
     echo "Lỗi upload file!";
 }

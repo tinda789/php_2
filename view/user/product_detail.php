@@ -1,4 +1,13 @@
-<?php /* @var $product */ ?>
+<?php /* @var $product, $reviews */ ?>
+<?php if (!$product): ?>
+  <div class="container py-4">
+    <div class="alert alert-danger">
+      <h4>Không tìm thấy sản phẩm</h4>
+      <p>Sản phẩm bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+      <a href="index.php" class="btn btn-primary">Về trang chủ</a>
+    </div>
+  </div>
+<?php else: ?>
 <div class="container py-4">
   <div class="row g-4">
     <div class="col-lg-6 col-md-6 col-12">
@@ -9,7 +18,7 @@
               <?php if (!empty($product['images'])): ?>
                 <?php foreach ($product['images'] as $idx => $img): ?>
                   <div class="carousel-item <?php echo $idx === 0 ? 'active' : ''; ?>">
-                    <img src="<?php echo htmlspecialchars($img); ?>" class="d-block w-100 product-image-zoom" alt="Ảnh sản phẩm" style="max-height:420px;object-fit:contain;cursor:zoom-in;">
+                    <img src="uploads/products/<?php echo htmlspecialchars($img['image_url']); ?>" class="d-block w-100 product-image-zoom" alt="Ảnh sản phẩm" style="max-height:420px;object-fit:contain;cursor:zoom-in;">
                   </div>
                 <?php endforeach; ?>
               <?php else: ?>
@@ -192,4 +201,5 @@ function showCartToast(msg) {
     setTimeout(() => { if (toast) toast.remove(); }, 2000);
   }
 }
-</script> 
+</script>
+<?php endif; ?> 
