@@ -1,7 +1,7 @@
 <?php
-<<<<<<< HEAD
-// model/Order.php // thinh
+// model/Order.php
 class Order {
+    // Lấy tất cả đơn hàng
     public static function getAll($conn) {
         $result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
         $orders = [];
@@ -10,24 +10,11 @@ class Order {
         }
         return $orders;
     }
-    public static function updateStatus($conn, $id, $status) {
-        $stmt = $conn->prepare("UPDATE orders SET status=? WHERE id=?");
-        $stmt->bind_param("si", $status, $id);
-        $stmt->execute();
-    }
-    public static function confirm($conn, $id) {
-        self::updateStatus($conn, $id, 'confirmed');
-    }
-    public static function cancel($conn, $id) {
-        self::updateStatus($conn, $id, 'cancelled');
-=======
-// model/Order.php
-class Order {
+
     // Tạo đơn hàng mới
     public static function create($conn, $data, $items, $coupons = []) {
         $conn->begin_transaction();
         try {
-            // Tạo order
             $stmt = $conn->prepare("INSERT INTO orders (user_id, order_number, status, payment_status, payment_method, subtotal, tax_amount, shipping_fee, discount_amount, total_amount, shipping_address, billing_address, notes, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
             $stmt->bind_param(
                 "isssssddddsss",
@@ -125,7 +112,16 @@ class Order {
         $stmt = $conn->prepare("UPDATE orders SET status = ?, updated_at = NOW() WHERE id = ?");
         $stmt->bind_param("si", $status, $order_id);
         return $stmt->execute();
->>>>>>> thanhdat
+    }
+
+    // Xác nhận đơn hàng (ví dụ)
+    public static function confirm($conn, $id) {
+        self::updateStatus($conn, $id, 'confirmed');
+    }
+
+    // Hủy đơn hàng (ví dụ)
+    public static function cancel($conn, $id) {
+        self::updateStatus($conn, $id, 'cancelled');
     }
 }
 ?> 

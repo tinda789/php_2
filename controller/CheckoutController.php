@@ -33,8 +33,8 @@ class CheckoutController {
             if (empty($selected)) {
                 $_SESSION['error'] = 'Vui lòng chọn ít nhất một sản phẩm để thanh toán!';
                 header('Location: index.php?controller=cart&action=view');
-                exit;
-            }
+            exit;
+        }
         } else {
             // Nếu vào trực tiếp không qua POST, mặc định chọn tất cả
             foreach ($cart as $item) $selected[] = $item['id'];
@@ -114,10 +114,10 @@ class CheckoutController {
                 // Chuyển hướng sang trang thanh toán VNPay
                 if ($payment_method === 'vnpay') {
                     header('Location: index.php?controller=checkout&action=pay_vnpay&order_id=' . $order_id);
-                    exit;
-                } else {
+            exit;
+        } else {
                     header('Location: index.php?controller=checkout&action=success&order_id=' . $order_id);
-                    exit;
+            exit;
                 }
             } else {
                 $error = 'Có lỗi khi tạo đơn hàng!';
