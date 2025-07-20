@@ -51,6 +51,24 @@ class CheckoutController {
             exit;
         }
         
+        // Kiểm tra tồn kho trước khi tạo đơn hàng
+        foreach ($cart_selected as $item) {
+            $stmt = $GLOBALS['conn']->prepare("SELECT stock FROM products WHERE id = ?");
+            $stmt->bind_param("i", $item['id']);
+            $stmt->execute();
+            $stmt->bind_result($stock);
+            $stmt->fetch();
+            $stmt->close();
+            if ($stock < $item['quantity']) {
+                $error = "Sản phẩm '{$item['name']}' không đủ hàng trong kho (còn $stock cái)!";
+                // Ghi log cho admin
+                $user_id = $_SESSION['user']['id'] ?? 0;
+                file_put_contents('out_of_stock.log', date('Y-m-d H:i:s') . " - UserID: {$user_id} - Sản phẩm: {$item['name']} - Đặt: {$item['quantity']} - Còn: $stock\n", FILE_APPEND);
+                require __DIR__ . '/../view/user/checkout.php';
+                return;
+            }
+        }
+        
         // Nếu submit form đặt hàng
         if (isset($_POST['name'], $_POST['phone'], $_POST['address'], $_POST['city'], $_POST['district'], $_POST['ward'])) {
             $user_id = $_SESSION['user']['id'] ?? null;

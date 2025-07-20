@@ -49,6 +49,10 @@ class Order {
                     $item['total_price']
                 );
                 if (!$stmt_item->execute()) throw new Exception('Thêm sản phẩm vào đơn hàng thất bại');
+                // Trừ số lượng hàng trong kho
+                $stmt_update_stock = $conn->prepare("UPDATE products SET stock = stock - ? WHERE id = ?");
+                $stmt_update_stock->bind_param("ii", $item['quantity'], $item['product_id']);
+                if (!$stmt_update_stock->execute()) throw new Exception('Trừ kho thất bại');
             }
 
             // Thêm coupon nếu có
