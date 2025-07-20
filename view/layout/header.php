@@ -38,15 +38,45 @@
             font-size: 1.5rem;
         }
         .navbar .dropdown-menu {
-            min-width: 180px;
+            min-width: 200px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 8px;
         }
-        .user-info {
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+        .user-dropdown-toggle {
+            background: none;
+            border: none;
             color: #fff;
-            font-weight: 500;
-            margin-right: 8px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+        .user-dropdown-toggle:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .user-dropdown-toggle:focus {
+            box-shadow: none;
+        }
+        .dropdown-item {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        .dropdown-item:hover {
+            background: #f8f9fa;
+        }
+        .dropdown-divider {
+            margin: 4px 0;
         }
         .btn-auth {
             border-radius: 22px;
@@ -116,11 +146,32 @@
           <?php if (in_array($_SESSION['user']['role_name'] ?? '', ['admin', 'super_admin'])): ?>
             <a href="?controller=admin" class="btn btn-warning btn-sm me-2"><i class="fa-solid fa-gauge"></i> Dashboard</a>
           <?php endif; ?>
-          <a href="?controller=user" class="btn btn-outline-light btn-sm me-2"><i class="fa-solid fa-user"></i> Thông tin cá nhân</a>
-          <span class="user-info"><i class="fa-solid fa-user-circle"></i> <?php echo htmlspecialchars($_SESSION['user']['username']); ?></span>
+          
+          <!-- User Dropdown Menu -->
+          <div class="dropdown">
+            <button class="user-dropdown-toggle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <?php if (!empty($_SESSION['user']['avatar'])): ?>
+                <img src="<?php echo htmlspecialchars($_SESSION['user']['avatar']); ?>" alt="Avatar" class="user-avatar">
+              <?php else: ?>
+                <i class="fa-solid fa-user-circle fa-lg"></i>
+              <?php endif; ?>
+              <span><?php echo htmlspecialchars($_SESSION['user']['username']); ?></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Tài khoản</h6></li>
+              <li><a class="dropdown-item" href="?controller=user"><i class="fa-solid fa-user me-2"></i>Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" href="?controller=user&action=edit"><i class="fa-solid fa-edit me-2"></i>Sửa thông tin</a></li>
+              <li><a class="dropdown-item" href="?controller=user&action=change_password"><i class="fa-solid fa-key me-2"></i>Đổi mật khẩu</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="?controller=checkout&action=orderHistory"><i class="fa-solid fa-history me-2"></i>Lịch sử đơn hàng</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
           <form method="post" action="?controller=auth&action=logout" style="display:inline;">
-            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</button>
+                  <button type="submit" class="dropdown-item text-danger"><i class="fa-solid fa-sign-out-alt me-2"></i>Đăng xuất</button>
           </form>
+              </li>
+            </ul>
+          </div>
         <?php else: ?>
           <a href="?controller=auth&action=login" class="btn btn-login btn-auth">Đăng nhập</a>
           <a href="?controller=auth&action=register" class="btn btn-register btn-auth">Đăng ký</a>
@@ -129,4 +180,4 @@
     </div>
   </div>
 </nav>
-<!-- <div class="container mt-4"> --> 
+<div class="container mt-4 main-content"> 
