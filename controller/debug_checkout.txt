@@ -1,19 +1,6 @@
 POST:
 Array
 (
-    [selected_products] => Array
-        (
-            [0] => 3
-        )
-
-    [name] => Nguyễn Tín
-    [phone] => 0794258356
-    [address] => cần thơ
-    [city] => Cần thơ
-    [district] => Ninh kiều
-    [ward] => Hưng lợi 
-    [notes] => 
-    [payment_method] => vnpay
 )
 
 SESSION user:
