@@ -3,17 +3,16 @@ Array
 (
     [selected_products] => Array
         (
-            [0] => 1
+            [0] => 34
         )
 
-    [name] => Nguyễn Tín
-    [phone] => 0794258356
-    [address] => cần thơ
-    [city] => Cần thơ
-    [district] => Ninh kiều
-    [ward] => Hưng lợi 
+    [name] => Đoàn Thịnh
+    [phone] => 0834670200
+    [address] => KTX A
+    [city] => CT
+    [district] => CT
+    [ward] => CT
     [notes] => 
-    [payment_method] => vnpay
 )
 
 SESSION user:
@@ -22,7 +21,7 @@ Array
     [id] => 1
     [email] => admin@shopelectrics.com
     [username] => admin
-    [password_hash] => $2y$10$/eCWe..lz3fHgR9gkIfC8uh6v/aOVrt2Lg6guUv4kwKDzAgZesKc2
+    [password_hash] => $2y$10$2jlEoxVPyiluGcb4xu1H3ucDL38qHvI2pAeendAO5/FR8GrOfIjYu
     [first_name] => Admin
     [last_name] => System
     [phone] => 
@@ -32,6 +31,6 @@ Array
     [email_verified] => 1
     [last_login] => 
     [created_at] => 2025-06-12 23:33:25
-    [updated_at] => 2025-07-03 22:24:32
+    [updated_at] => 2025-07-16 15:31:57
     [role_name] => super_admin
 )

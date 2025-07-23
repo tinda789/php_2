@@ -51,7 +51,7 @@ if (!empty($_SESSION['error'])) {
         </div>
         <h4>Phương thức thanh toán</h4>
         <div class="form-group">
-            <label><input type="radio" name="payment_method" value="vnpay" checked> Thanh toán qua VNPay</label>
+            <label><input type="radio" name="payment_method" value="vnpay"> Thanh toán qua VNPay</label>
         </div>
         <h4>Thông tin đơn hàng</h4>
         <table class="table table-bordered">
@@ -87,4 +87,27 @@ if (!empty($_SESSION['error'])) {
         <button type="submit" class="btn btn-primary">Đặt hàng & Thanh toán</button>
     </form>
 </div>
+<script>
+// thanhdat: validate form checkout
+const checkoutForm = document.querySelector('form');
+checkoutForm.addEventListener('submit', function(e) {
+    // Validate phương thức thanh toán
+    const paymentChecked = checkoutForm.querySelector('input[name="payment_method"]:checked');
+    if (!paymentChecked) {
+        alert('Vui lòng chọn phương thức thanh toán!');
+        e.preventDefault();
+        return false;
+    }
+    // Validate các trường required (HTML5 đã có, nhưng thêm JS cho chắc)
+    const requiredFields = checkoutForm.querySelectorAll('[required]');
+    for (let field of requiredFields) {
+        if (!field.value.trim()) {
+            alert('Vui lòng nhập đầy đủ thông tin giao hàng!');
+            field.focus();
+            e.preventDefault();
+            return false;
+        }
+    }
+});
+</script>
 <?php require_once __DIR__ . '/../layout/footer.php'; ?> 

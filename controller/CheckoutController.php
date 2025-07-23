@@ -11,7 +11,7 @@ class CheckoutController {
     const VNPAY_TMN_CODE ='4L6Y0LF7';
     const VNPAY_HASH_SECRET ='1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6';
     const VNPAY_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
-    const VNPAY_RETURN_URL = 'http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return';
+    const VNPAY_RETURN_URL = 'http://localhost:8080';
     public function checkout() {
         // Debug: ghi log dữ liệu POST và SESSION user
         file_put_contents('debug_checkout.txt', "POST:\n".print_r($_POST, true)."\nSESSION user:\n".print_r($_SESSION['user'] ?? null, true));
@@ -122,6 +122,9 @@ class CheckoutController {
             ];
             
             $order_id = Order::create($GLOBALS['conn'], $order_data, $items);
+            if (!$order_id) {
+                file_put_contents('debug_checkout_error.txt', print_r($order_data, true) . print_r($items, true)); // thanhdat debug
+            }
             
             if ($order_id) {
                 // Xóa các sản phẩm đã chọn khỏi giỏ hàng session
@@ -175,6 +178,7 @@ class CheckoutController {
         $vnp_BankCode = '';
         $vnp_IpAddr = $this->getClientIp();
         
+        // KHÔNG truyền vnp_BankCode để hiện giao diện chọn ngân hàng/trực tiếp của VNPay (thanhdat)
         $inputData = array(
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,

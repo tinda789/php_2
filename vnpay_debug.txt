@@ -199,3 +199,108 @@ HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
 SECURE HASH: 2ea103ac0821a70b7d14265fa29ab09950783afc0402591175c65e886ced3c891222d72db7b964530c746c2855bd23020cffd977eba5435af5cb18e4242505f7
 FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250723170411&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723170411802&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TxnRef=OD20250723170411802&vnp_SecureHash=2ea103ac0821a70b7d14265fa29ab09950783afc0402591175c65e886ced3c891222d72db7b964530c746c2855bd23020cffd977eba5435af5cb18e4242505f7
 
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 1300000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723175426
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723175426306
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TxnRef] => OD20250723175426306
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: cf20f34f2bd4cdab3cdcc88de9f36071f1d2783981608a0a8b60c55c45aca25aa91080086c1ee150d7287264073426ea9c119a6c62e99cbcd99d253c477e3cbe
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=1300000000&vnp_Command=pay&vnp_CreateDate=20250723175426&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723175426306&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TxnRef=OD20250723175426306&vnp_SecureHash=cf20f34f2bd4cdab3cdcc88de9f36071f1d2783981608a0a8b60c55c45aca25aa91080086c1ee150d7287264073426ea9c119a6c62e99cbcd99d253c477e3cbe
+
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 190000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723175728
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723175728854
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TxnRef] => OD20250723175728854
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: 3041a88aca254a8bd8d7e1489d9b9bd38f18b8e5cf176efd59e3f0f11ea89b5bcf70eff905b69a2c233bcb87469a285b6d8f1de6bf1472b5f503355f279be8b3
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=190000000&vnp_Command=pay&vnp_CreateDate=20250723175728&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723175728854&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TxnRef=OD20250723175728854&vnp_SecureHash=3041a88aca254a8bd8d7e1489d9b9bd38f18b8e5cf176efd59e3f0f11ea89b5bcf70eff905b69a2c233bcb87469a285b6d8f1de6bf1472b5f503355f279be8b3
+
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 250000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723180000
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723180000540
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://localhost:8080
+    [vnp_TxnRef] => OD20250723180000540
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: 0935665dcb6628ce7bca2c038011c72db6ef71d2d5dc882f0c719d5e56fa424a7c409a73c6dbc513cfc6f0f4dc8b3bc833600e6511f1234c789283c93d7a583c
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=250000000&vnp_Command=pay&vnp_CreateDate=20250723180000&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723180000540&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Flocalhost%3A8080&vnp_TxnRef=OD20250723180000540&vnp_SecureHash=0935665dcb6628ce7bca2c038011c72db6ef71d2d5dc882f0c719d5e56fa424a7c409a73c6dbc513cfc6f0f4dc8b3bc833600e6511f1234c789283c93d7a583c
+
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 190000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723180333
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723180333220
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://localhost:8080
+    [vnp_TxnRef] => OD20250723180333220
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: bc044b2757a86dd5d43471a09a6367199ac5b0d29ed9f5fa635febd325e7970e8d928762c3c48144e9b5aade18f586e0608633ae0b764994f17af1451138c7ee
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=190000000&vnp_Command=pay&vnp_CreateDate=20250723180333&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723180333220&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Flocalhost%3A8080&vnp_TxnRef=OD20250723180333220&vnp_SecureHash=bc044b2757a86dd5d43471a09a6367199ac5b0d29ed9f5fa635febd325e7970e8d928762c3c48144e9b5aade18f586e0608633ae0b764994f17af1451138c7ee
+
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 250000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723181014
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723181014382
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://localhost:8080
+    [vnp_TxnRef] => OD20250723181014382
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: 792a37206a3baa2de4b9592fe9410998f516e092c5d63b324f0391c9d0aa1a0961ec7ecd4ce6771ffe40ccdbbaaaf2df2ef3e169b2f32eb74979ec3fc5518b43
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=250000000&vnp_Command=pay&vnp_CreateDate=20250723181014&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723181014382&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Flocalhost%3A8080&vnp_TxnRef=OD20250723181014382&vnp_SecureHash=792a37206a3baa2de4b9592fe9410998f516e092c5d63b324f0391c9d0aa1a0961ec7ecd4ce6771ffe40ccdbbaaaf2df2ef3e169b2f32eb74979ec3fc5518b43
+

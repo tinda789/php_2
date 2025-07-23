@@ -67,7 +67,7 @@ class Order {
             $conn->commit();
             return $order_id;
         } catch (Exception $e) {
-            file_put_contents('order_error.txt', $e->getMessage());
+            file_put_contents('order_error.txt', $e->getMessage() . PHP_EOL . $e->getTraceAsString()); // thanhdat debug
             $conn->rollback();
             return false;
         }

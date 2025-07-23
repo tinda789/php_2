@@ -48,8 +48,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="stock_quantity">Số lượng tồn kho</label>
-                                    <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" min="0" value="0">
+                                    <label for="stock">Số lượng tồn kho</label>
+                                    <input type="number" class="form-control" id="stock" name="stock" min="0" value="0">
                                 </div>
                             </div>
                             <div class="col-md-6">

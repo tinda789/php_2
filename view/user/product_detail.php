@@ -85,8 +85,8 @@
             <?php endif; ?>
           </div>
           <div class="mb-3">
-            <span class="badge bg-<?php echo $product['stock_quantity'] > 0 ? 'success' : 'danger'; ?>">
-              <?php echo $product['stock_quantity'] > 0 ? 'Còn hàng' : 'Hết hàng'; ?>
+            <span class="badge bg-<?php echo $product['stock'] > 0 ? 'success' : 'danger'; ?>">
+              <?php echo $product['stock'] > 0 ? 'Còn hàng' : 'Hết hàng'; ?>
             </span>
           </div>
           <div class="mb-3">

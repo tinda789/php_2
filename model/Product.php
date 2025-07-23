@@ -200,7 +200,7 @@ class Product {
 
     // Thêm mới sản phẩm
     public static function create($conn, $data) {
-        $stmt = $conn->prepare("INSERT INTO products (name, slug, description, short_description, price, sale_price, stock_quantity, min_stock_level, category_id, brand_id, model, sku, barcode, weight, dimensions, warranty_period, status, featured, image_link, meta_title, meta_description, created_by, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+        $stmt = $conn->prepare("INSERT INTO products (name, slug, description, short_description, price, sale_price, stock, min_stock_level, category_id, brand_id, model, sku, barcode, weight, dimensions, warranty_period, status, featured, image_link, meta_title, meta_description, created_by, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
         $stmt->bind_param(
             "ssssddiiisssddsisisssi",
             $data['name'],
@@ -209,7 +209,7 @@ class Product {
             $data['short_description'],
             $data['price'],
             $data['sale_price'],
-            $data['stock_quantity'],
+            $data['stock'],
             $data['min_stock_level'],
             $data['category_id'],
             $data['brand_id'],
@@ -235,7 +235,7 @@ class Product {
 
     // Cập nhật sản phẩm
     public static function update($conn, $id, $data) {
-        $stmt = $conn->prepare("UPDATE products SET name=?, slug=?, description=?, short_description=?, price=?, sale_price=?, stock_quantity=?, min_stock_level=?, category_id=?, brand_id=?, model=?, sku=?, barcode=?, weight=?, dimensions=?, warranty_period=?, status=?, featured=?, image_link=?, meta_title=?, meta_description=?, updated_at=NOW() WHERE id=?");
+        $stmt = $conn->prepare("UPDATE products SET name=?, slug=?, description=?, short_description=?, price=?, sale_price=?, stock=?, min_stock_level=?, category_id=?, brand_id=?, model=?, sku=?, barcode=?, weight=?, dimensions=?, warranty_period=?, status=?, featured=?, image_link=?, meta_title=?, meta_description=?, updated_at=NOW() WHERE id=?");
         $stmt->bind_param(
             "ssssddiiisssddsisisssi",
             $data['name'],
@@ -244,7 +244,7 @@ class Product {
             $data['short_description'],
             $data['price'],
             $data['sale_price'],
-            $data['stock_quantity'],
+            $data['stock'],
             $data['min_stock_level'],
             $data['category_id'],
             $data['brand_id'],

@@ -315,19 +315,25 @@
                   <?php if ($product['featured']): ?>
                     <span class="badge bg-warning position-absolute top-0 start-0 m-2"><i class="fas fa-star"></i> Nổi bật</span>
                   <?php endif; ?>
-                  <?php if ($product['stock'] <= 0): ?>
+                  <?php if (isset($product['stock']) && $product['stock'] <= 0): ?>
                     <span class="badge bg-danger position-absolute top-0 end-0 m-2"><i class="fas fa-times"></i> Hết hàng</span>
                   <?php endif; ?>
                   <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="d-block">
-                    <?php if (!empty($product['images'])): ?>
-                      <?php require_once 'helpers/image_helper.php'; ?>
-                      <img src="<?php echo htmlspecialchars(getImageUrl($product['images'][0]['image_url'])); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=No+Image';">
-                    <?php elseif (!empty($product['image_link'])): ?>
-                      <?php require_once 'helpers/image_helper.php'; ?>
-                      <img src="<?php echo htmlspecialchars(getImageUrl($product['image_link'])); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=No+Image';">
-                    <?php else: ?>
-                      <img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top product-image" alt="No image">
-                    <?php endif; ?>
+                    <?php
+                    // thanhdat: chuẩn hóa đường dẫn ảnh sản phẩm
+                    require_once 'helpers/image_helper.php';
+                    $img = '';
+                    if (!empty($product['images'][0]['image_url'])) {
+                        $img = $product['images'][0]['image_url'];
+                    } elseif (!empty($product['image_link'])) {
+                        $img = $product['image_link'];
+                    }
+                    $img_url = getImageUrl($img); // thanhdat
+                    if (!$img_url || $img_url === 'uploads/products/') {
+                        $img_url = 'https://via.placeholder.com/300x200?text=No+Image'; // thanhdat
+                    }
+                    ?>
+                    <img src="<?php echo htmlspecialchars($img_url); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=No+Image';">
                   </a>
                 </div>
                 <div class="card-body d-flex flex-column">
@@ -343,7 +349,7 @@
                   </div>
                   <div class="mt-auto d-flex gap-2">
                     <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="btn btn-primary btn-sm flex-fill"><i class="fas fa-eye"></i> Xem chi tiết</a>
-                    <?php if ($product['stock'] > 0): ?>
+                    <?php if (isset($product['stock']) && $product['stock'] > 0): ?>
                       <form method="POST" action="index.php?controller=cart&action=add" class="add-to-cart-form" style="display:inline;">
                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="quantity" value="1">

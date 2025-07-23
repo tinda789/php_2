@@ -81,7 +81,7 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
         $brandName = trim($row[3]);
         $price = floatval($row[4]);
         $sale_price = floatval($row[5]);
-        $stock_quantity = intval($row[6]);
+        $stock = intval($row[6]);
         $status_raw = trim($row[7]);
         $status = 'active'; // mặc định
         if ($status_raw === 'hoạt động' || $status_raw === 'active' || $status_raw === '1') {
@@ -105,14 +105,14 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
         $product = getProductBySKU($conn, $sku); // thanhdat
         if ($product) {
             // Cộng thêm số lượng vào tồn kho
-            $new_stock = $product['stock_quantity'] + $stock_quantity;
+            $new_stock = $product['stock'] + $stock;
             // Nếu có image_link mới, cập nhật luôn
             if (!empty($image_link)) {
-                $sql = "UPDATE products SET stock_quantity = ?, image_link = ? WHERE id = ?";
+                $sql = "UPDATE products SET stock = ?, image_link = ? WHERE id = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('isi', $new_stock, $image_link, $product['id']);
             } else {
-                $sql = "UPDATE products SET stock_quantity = ? WHERE id = ?";
+                $sql = "UPDATE products SET stock = ? WHERE id = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('ii', $new_stock, $product['id']);
             }
@@ -141,7 +141,7 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
             'short_description' => $short_description,
             'price' => $price,
             'sale_price' => $sale_price,
-            'stock_quantity' => $stock_quantity,
+            'stock' => $stock,
             'min_stock_level' => 0,
             'category_id' => $category_id,
             'brand_id' => $brand_id,
