@@ -1,4 +1,3 @@
-<!-- Thanhdat -->
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
 if (empty($_SESSION['user']) || !in_array($_SESSION['user']['role_name'], ['admin', 'super_admin'])) {
@@ -6,7 +5,6 @@ if (empty($_SESSION['user']) || !in_array($_SESSION['user']['role_name'], ['admi
     exit;
 }
 require_once 'config/config.php';
-require_once 'model/Review.php';
 
 $action = $_GET['action'] ?? 'index';
 

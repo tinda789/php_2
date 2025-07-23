@@ -1,11 +1,20 @@
 <?php
 // model/Order.php
 class Order {
+    // Lấy tất cả đơn hàng
+    public static function getAll($conn) {
+        $result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $orders[] = $row;
+        }
+        return $orders;
+    }
+
     // Tạo đơn hàng mới
     public static function create($conn, $data, $items, $coupons = []) {
         $conn->begin_transaction();
         try {
-            // Tạo order
             $stmt = $conn->prepare("INSERT INTO orders (user_id, order_number, status, payment_status, payment_method, subtotal, tax_amount, shipping_fee, discount_amount, total_amount, shipping_address, billing_address, notes, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
             $stmt->bind_param(
                 "isssssddddsss",
@@ -40,6 +49,10 @@ class Order {
                     $item['total_price']
                 );
                 if (!$stmt_item->execute()) throw new Exception('Thêm sản phẩm vào đơn hàng thất bại');
+                // Trừ số lượng hàng trong kho
+                $stmt_update_stock = $conn->prepare("UPDATE products SET stock = stock - ? WHERE id = ?");
+                $stmt_update_stock->bind_param("ii", $item['quantity'], $item['product_id']);
+                if (!$stmt_update_stock->execute()) throw new Exception('Trừ kho thất bại');
             }
 
             // Thêm coupon nếu có
@@ -103,6 +116,16 @@ class Order {
         $stmt = $conn->prepare("UPDATE orders SET status = ?, updated_at = NOW() WHERE id = ?");
         $stmt->bind_param("si", $status, $order_id);
         return $stmt->execute();
+    }
+
+    // Xác nhận đơn hàng (ví dụ)
+    public static function confirm($conn, $id) {
+        self::updateStatus($conn, $id, 'confirmed');
+    }
+
+    // Hủy đơn hàng (ví dụ)
+    public static function cancel($conn, $id) {
+        self::updateStatus($conn, $id, 'cancelled');
     }
 }
 ?> 

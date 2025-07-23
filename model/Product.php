@@ -1,21 +1,83 @@
 <?php
+require_once __DIR__ . '/../config/config.php';
+
 class Product {
     // Lấy tất cả sản phẩm (có phân trang, lọc theo tên)
-    public static function getAll($conn, $limit = 10, $offset = 0, $search = '') {
+    public static function getAll($conn, $limit = 10, $offset = 0, $search = '', $category_id = 0) {
         $sql = "SELECT p.*, c.name as category_name, b.name as brand_name FROM products p
                 LEFT JOIN categories c ON p.category_id = c.id
                 LEFT JOIN brands b ON p.brand_id = b.id";
         $params = [];
         $types = '';
+        $where_conditions = [];
+        
+        // Chỉ lấy sản phẩm active
+        $where_conditions[] = "p.status = 'active'";
+        
+        // thanhdat: tìm kiếm thông minh - tìm theo từ khóa gốc và danh mục
         if ($search !== '') {
-            $sql .= " WHERE p.name LIKE ?";
-            $params[] = "%$search%";
-            $types .= 's';
+            $search_terms = explode(' ', trim($search));
+            $search_conditions = [];
+            
+            // Tìm kiếm thông minh theo cụm từ gốc trước
+            $smart_search_global = [];
+            if (strpos($search, 'điện thoại') !== false || strpos($search, 'dien thoai') !== false || strpos($search, 'smartphone') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục điện thoại và danh mục con
+                $smart_search_global[] = "(c.id = 1 OR c.parent_id = 1)";
+            } elseif (strpos($search, 'laptop') !== false || strpos($search, 'máy tính') !== false || strpos($search, 'may tinh') !== false || strpos($search, 'pc') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục máy tính và danh mục con
+                $smart_search_global[] = "(c.id = 2 OR c.parent_id = 2)";
+            } elseif (strpos($search, 'máy ảnh') !== false || strpos($search, 'may anh') !== false || strpos($search, 'camera') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục máy ảnh và danh mục con
+                $smart_search_global[] = "(c.id = 3 OR c.parent_id = 3)";
+            } elseif (strpos($search, 'linh kiện') !== false || strpos($search, 'linh kien') !== false || strpos($search, 'ram') !== false || strpos($search, 'cpu') !== false || strpos($search, 'vga') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục linh kiện PC và danh mục con
+                $smart_search_global[] = "(c.id = 4 OR c.parent_id = 4)";
+            }
+            
+            foreach ($search_terms as $original_term) {
+                if (strlen($original_term) > 1) { // Chỉ tìm từ có ít nhất 2 ký tự
+                    $term = '%' . $original_term . '%';
+                    
+                    // Tìm kiếm thông minh theo từ khóa
+                    $smart_search = [];
+                    
+                    // Tìm trong tên sản phẩm, SKU, model, tên danh mục, tên thương hiệu
+                    $smart_search[] = "(p.name LIKE ? OR p.sku LIKE ? OR p.model LIKE ? OR c.name LIKE ? OR b.name LIKE ?)";
+                    $params[] = $term;
+                    $params[] = $term;
+                    $params[] = $term;
+                    $params[] = $term;
+                    $params[] = $term;
+                    $types .= 'sssss';
+                    
+                    $search_conditions[] = '(' . implode(' OR ', $smart_search) . ')';
+                }
+            }
+            
+            // Kết hợp tìm kiếm từng từ và tìm kiếm thông minh
+            if (!empty($search_conditions) || !empty($smart_search_global)) {
+                $all_conditions = array_merge($search_conditions, $smart_search_global);
+                $where_conditions[] = '(' . implode(' OR ', $all_conditions) . ')';
+            }
         }
+        
+        // Lọc theo danh mục
+        if ($category_id > 0) {
+            $where_conditions[] = "p.category_id = ?";
+            $params[] = $category_id;
+            $types .= 'i';
+        }
+        
+        if (!empty($where_conditions)) {
+            $sql .= " WHERE " . implode(' AND ', $where_conditions);
+        }
+        
         $sql .= " ORDER BY p.created_at DESC LIMIT ? OFFSET ?";
         $params[] = $limit;
         $params[] = $offset;
         $types .= 'ii';
+        
         $stmt = $conn->prepare($sql);
         $stmt->bind_param($types, ...$params);
         $stmt->execute();
@@ -28,17 +90,78 @@ class Product {
     }
 
     // Đếm tổng số sản phẩm (lọc)
-    public static function countAll($conn, $search = '') {
-        $sql = "SELECT COUNT(*) as total FROM products";
+    public static function countAll($conn, $search = '', $category_id = 0) {
+        $sql = "SELECT COUNT(*) as total FROM products p
+                LEFT JOIN categories c ON p.category_id = c.id
+                LEFT JOIN brands b ON p.brand_id = b.id";
         $params = [];
         $types = '';
+        $where_conditions = [];
+        
+        // Chỉ lấy sản phẩm active
+        $where_conditions[] = "p.status = 'active'";
+        
+        // thanhdat: tìm kiếm thông minh - tìm theo từ khóa gốc và danh mục
         if ($search !== '') {
-            $sql .= " WHERE name LIKE ?";
-            $params[] = "%$search%";
-            $types .= 's';
+            $search_terms = explode(' ', trim($search));
+            $search_conditions = [];
+            
+            // Tìm kiếm thông minh theo cụm từ gốc trước
+            $smart_search_global = [];
+            if (strpos($search, 'điện thoại') !== false || strpos($search, 'dien thoai') !== false || strpos($search, 'smartphone') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục điện thoại và danh mục con
+                $smart_search_global[] = "(c.id = 1 OR c.parent_id = 1)";
+            } elseif (strpos($search, 'laptop') !== false || strpos($search, 'máy tính') !== false || strpos($search, 'may tinh') !== false || strpos($search, 'pc') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục máy tính và danh mục con
+                $smart_search_global[] = "(c.id = 2 OR c.parent_id = 2)";
+            } elseif (strpos($search, 'máy ảnh') !== false || strpos($search, 'may anh') !== false || strpos($search, 'camera') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục máy ảnh và danh mục con
+                $smart_search_global[] = "(c.id = 3 OR c.parent_id = 3)";
+            } elseif (strpos($search, 'linh kiện') !== false || strpos($search, 'linh kien') !== false || strpos($search, 'ram') !== false || strpos($search, 'cpu') !== false || strpos($search, 'vga') !== false) {
+                // Tìm tất cả sản phẩm trong danh mục linh kiện PC và danh mục con
+                $smart_search_global[] = "(c.id = 4 OR c.parent_id = 4)";
+            }
+            
+            foreach ($search_terms as $original_term) {
+                if (strlen($original_term) > 1) { // Chỉ tìm từ có ít nhất 2 ký tự
+                    $term = '%' . $original_term . '%';
+                    
+                    // Tìm kiếm thông minh theo từ khóa
+                    $smart_search = [];
+                    
+                    // Tìm trong tên sản phẩm, SKU, model, tên danh mục, tên thương hiệu
+                    $smart_search[] = "(p.name LIKE ? OR p.sku LIKE ? OR p.model LIKE ? OR c.name LIKE ? OR b.name LIKE ?)";
+                    $params[] = $term;
+                    $params[] = $term;
+                    $params[] = $term;
+                    $params[] = $term;
+                    $params[] = $term;
+                    $types .= 'sssss';
+                    
+                    $search_conditions[] = '(' . implode(' OR ', $smart_search) . ')';
+                }
+            }
+            
+            // Kết hợp tìm kiếm từng từ và tìm kiếm thông minh
+            if (!empty($search_conditions) || !empty($smart_search_global)) {
+                $all_conditions = array_merge($search_conditions, $smart_search_global);
+                $where_conditions[] = '(' . implode(' OR ', $all_conditions) . ')';
+            }
         }
+        
+        // Lọc theo danh mục
+        if ($category_id > 0) {
+            $where_conditions[] = "p.category_id = ?";
+            $params[] = $category_id;
+            $types .= 'i';
+        }
+        
+        if (!empty($where_conditions)) {
+            $sql .= " WHERE " . implode(' AND ', $where_conditions);
+        }
+        
         $stmt = $conn->prepare($sql);
-        if ($search !== '') {
+        if (!empty($params)) {
             $stmt->bind_param($types, ...$params);
         }
         $stmt->execute();
@@ -49,7 +172,10 @@ class Product {
 
     // Lấy sản phẩm theo id
     public static function getById($conn, $id) {
-        $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt = $conn->prepare("SELECT p.*, c.name as category_name, b.name as brand_name FROM products p
+                LEFT JOIN categories c ON p.category_id = c.id
+                LEFT JOIN brands b ON p.brand_id = b.id
+                WHERE p.id = ? AND p.status = 'active'");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -149,15 +275,15 @@ class Product {
         return $brands;
     }
 
-    // thanhdat: Lấy danh sách ảnh cho sản phẩm
+    // thanhdat: Lấy ảnh sản phẩm
     public static function getImages($conn, $product_id) {
-        $stmt = $conn->prepare("SELECT image_url FROM product_images WHERE product_id = ? ORDER BY sort_order ASC, id ASC");
+        $stmt = $conn->prepare("SELECT * FROM product_images WHERE product_id = ? ORDER BY is_primary DESC, sort_order ASC");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $images = [];
         while ($row = $result->fetch_assoc()) {
-            $images[] = $row['image_url'];
+            $images[] = $row;
         }
         return $images;
     }
@@ -242,7 +368,13 @@ class Product {
 
     // Lấy sản phẩm theo id (dùng cho Cart)
     public static function findById($product_id) {
+        if (!isset($GLOBALS['conn'])) {
+            require_once __DIR__ . '/../config/config.php';
+        }
         $conn = $GLOBALS['conn'];
+        if (!$conn) {
+            throw new Exception('Database connection not found!');
+        }
         $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();

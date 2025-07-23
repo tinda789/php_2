@@ -30,7 +30,14 @@
               <td>
                 <div class="ratio ratio-4x3 bg-light rounded-3 overflow-hidden mx-auto" style="width:90px;">
                   <?php 
-                  $img = !empty($item['images'][0]) ? $item['images'][0] : '';
+                  $img = '';
+                  if (!empty($item['images'][0])) {
+                      if (is_array($item['images'][0])) {
+                          $img = isset($item['images'][0]['url']) ? $item['images'][0]['url'] : (isset($item['images'][0]['image']) ? $item['images'][0]['image'] : '');
+                      } else {
+                          $img = $item['images'][0];
+                      }
+                  }
                   if ($img && strpos($img, 'uploads/') === false && strpos($img, 'http') !== 0) {
                       $img = 'uploads/products/' . $img;
                   }
@@ -69,7 +76,7 @@
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mt-4">
       <a href="index.php?controller=product&action=list" class="btn btn-outline-primary btn-lg"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
-      <button type="submit" class="btn btn-success btn-lg px-5"><i class="fas fa-credit-card"></i> Thanh toán</button>
+      <button type="submit" class="btn btn-success btn-lg px-5"><i class="fas fa-credit-card"></i> Thanh toán VNPAY</button>
     </div>
     </form>
   <?php endif; ?>

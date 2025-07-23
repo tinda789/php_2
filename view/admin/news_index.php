@@ -1,6 +1,5 @@
 <?php // thanhdat: Giao diện quản lý tin tức
 $page_title = "Quản lý Tin tức";
-include 'view/layout/admin_layout.php';
 ?>
 
 <style>
@@ -197,8 +196,8 @@ include 'view/layout/admin_layout.php';
                                             <input type="checkbox" name="selected_news[]" value="<?= $news['id'] ?>" class="news-checkbox">
                                         </td>
                                         <td>
-                                            <?php if ($news['image']): ?>
-                                                <img src="uploads/news/<?= $news['image'] ?>" 
+                                            <?php if ($news['image_url']): ?>
+                                                <img src="uploads/news/<?= $news['image_url'] ?>" 
                                                      alt="<?= htmlspecialchars($news['title']) ?>" 
                                                      class="img-thumbnail" style="width: 60px; height: 40px; object-fit: cover;">
                                             <?php else: ?>
@@ -220,10 +219,9 @@ include 'view/layout/admin_layout.php';
                                         <td><?= date('d/m/Y', strtotime($news['created_at'])) ?></td>
                                         <td class="text-center">
                                             <a href="index.php?controller=news&action=toggle&id=<?= $news['id'] ?>" 
-                                               class="btn btn-sm <?= $news['status'] ? 'btn-success' : 'btn-secondary' ?>"
+                                               class="btn btn-sm <?= $news['is_active'] ? 'btn-success' : 'btn-secondary' ?>"
                                                onclick="return confirm('Bạn có chắc muốn thay đổi trạng thái?')">
-                                                <i class="fas <?= $news['status'] ? 'fa-eye' : 'fa-eye-slash' ?>"></i>
-                                                <?= $news['status'] ? 'Hiện' : 'Ẩn' ?>
+                                                <i class="fas <?= $news['is_active'] ? 'fa-eye' : 'fa-eye-slash' ?>"></i>
                                             </a>
                                         </td>
                                         <td>
@@ -280,11 +278,12 @@ function deleteSelected() {
     }
 }
 </script>
-<?php include 'view/layout/footer.php'; ?>
 <?php
 // Hàm build_query giữ lại các tham số lọc khi phân trang
-function build_query($params) {
-    $query = array_merge($_GET, $params);
-    return 'index.php?' . http_build_query($query);
+if (!function_exists('build_query')) {
+    function build_query($params) {
+        $query = array_merge($_GET, $params);
+        return 'index.php?' . http_build_query($query);
+    }
 }
 ?> 

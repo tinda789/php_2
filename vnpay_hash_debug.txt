@@ -1,0 +1,118 @@
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNBANK
+    [vnp_Bill_Address] => cần thơ
+    [vnp_Bill_City] => Cần thơ
+    [vnp_Bill_Email] => admin@shopelectrics.com
+    [vnp_Bill_FirstName] => Nguyễn Tín
+    [vnp_Bill_Phone] => 0794258356
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723170040
+    [vnp_CurrCode] => VND
+    [vnp_Inv_Type] => web
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723170040580
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TxnRef] => OD20250723170040580
+    [vnp_Version] => 2.1.0
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNBANK&vnp_Bill_Address=c%E1%BA%A7n+th%C6%A1&vnp_Bill_City=C%E1%BA%A7n+th%C6%A1&vnp_Bill_Email=admin%40shopelectrics.com&vnp_Bill_FirstName=Nguy%E1%BB%85n+T%C3%ADn&vnp_Bill_Phone=0794258356&vnp_Command=pay&vnp_CreateDate=20250723170040&vnp_CurrCode=VND&vnp_Inv_Type=web&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723170040580&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250723170040580&vnp_Version=2.1.0
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: 3d93f95e403dc4a46e6cc18504f89dbdc08f9196e4f1080713daf975cb144748a4a525fca662199f782b87cff49b9f128b03d34dbde9cbc7ddd07ee6e0410222
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 2499000000
+    [vnp_BankCode] => VNBANK
+    [vnp_Bill_Address] => cần thơ
+    [vnp_Bill_City] => Cần thơ
+    [vnp_Bill_Email] => admin@shopelectrics.com
+    [vnp_Bill_FirstName] => Nguyễn Tín
+    [vnp_Bill_Phone] => 0794258356
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723170249
+    [vnp_CurrCode] => VND
+    [vnp_Inv_Type] => web
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723170249320
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TxnRef] => OD20250723170249320
+    [vnp_Version] => 2.1.0
+)
+
+HASH DATA: vnp_Amount=2499000000&vnp_BankCode=VNBANK&vnp_Bill_Address=c%E1%BA%A7n+th%C6%A1&vnp_Bill_City=C%E1%BA%A7n+th%C6%A1&vnp_Bill_Email=admin%40shopelectrics.com&vnp_Bill_FirstName=Nguy%E1%BB%85n+T%C3%ADn&vnp_Bill_Phone=0794258356&vnp_Command=pay&vnp_CreateDate=20250723170249&vnp_CurrCode=VND&vnp_Inv_Type=web&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723170249320&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250723170249320&vnp_Version=2.1.0
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: B0CD7321613366123AEC2442302506C1A3540D547C02849233120C86B5EB2B8E788C18D54CCCF6BD8869E5D65216A97A84C373526DF65B91D6542DB1F64F83AD
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250723170411
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723170411802
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TxnRef] => OD20250723170411802
+    [vnp_Version] => 2.1.0
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250723170411&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723170411802&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250723170411802&vnp_Version=2.1.0
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: 2ea103ac0821a70b7d14265fa29ab09950783afc0402591175c65e886ced3c891222d72db7b964530c746c2855bd23020cffd977eba5435af5cb18e4242505f7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723170411802
+    [vnp_PayDate] => 20250723170417
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250723170411802
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723170411802&vnp_PayDate=20250723170417&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250723170411802
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: de48029744e0513f4ef97c21a34830261a790dcfdd4e5e0e06f2313ef21ad59218a235a38b90a33720d7aa38b4e8a748f881911cb9d87049b38e4846969dfd85
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250723170411802
+    [vnp_PayDate] => 20250723170417
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250723170411802
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723170411802&vnp_PayDate=20250723170417&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250723170411802
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: de48029744e0513f4ef97c21a34830261a790dcfdd4e5e0e06f2313ef21ad59218a235a38b90a33720d7aa38b4e8a748f881911cb9d87049b38e4846969dfd85
+

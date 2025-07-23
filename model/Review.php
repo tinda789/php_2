@@ -1,4 +1,3 @@
-<!-- Thanhdat -->
 <?php
 class Review {
     // Lấy tất cả đánh giá (có phân trang, lọc theo trạng thái)
