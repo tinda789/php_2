@@ -4,10 +4,6 @@ if (!in_array($_SESSION['user']['role_name'] ?? '', ['admin', 'super_admin'])) {
     include 'view/layout/footer.php';
     exit;
 }
-require_once 'config/config.php';
-$total_users = $conn->query("SELECT COUNT(*) FROM users")->fetch_row()[0];
-$total_products = $conn->query("SELECT COUNT(*) FROM products")->fetch_row()[0];
-$total_orders = $conn->query("SHOW TABLES LIKE 'orders'")->num_rows ? $conn->query("SELECT COUNT(*) FROM orders")->fetch_row()[0] : 0;
 ?>
 <style>
 body {
@@ -153,6 +149,75 @@ body {
     .cards-row { flex-direction: column; gap: 18px; }
 }
 </style>
-<?php include 'view/layout/admin_layout.php'; ?> 
+<?php include 'view/layout/admin_layout.php'; ?>
+<div class="container-fluid">
+    <h2 class="mb-4 mt-2" style="color:#1976d2;font-weight:700;">Dashboard</h2>
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card users">
+                <div class="icon"><i class="fa fa-users"></i></div>
+                <div class="label">Tổng số người dùng</div>
+                <div class="value"><?= $total_users ?></div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card products">
+                <div class="icon"><i class="fa fa-box"></i></div>
+                <div class="label">Tổng số sản phẩm</div>
+                <div class="value"><?= $total_products ?></div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card orders">
+                <div class="icon"><i class="fa fa-file-invoice"></i></div>
+                <div class="label">Tổng số đơn hàng</div>
+                <div class="value"><?= $total_orders ?></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-12 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white fw-bold">
+                    Yêu cầu liên hệ mới nhất
+                    <a href="index.php?controller=admin&action=contact_requests" class="btn btn-sm btn-light float-end">Xem tất cả</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Họ tên</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Nội dung</th>
+                                    <th>Thời gian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($latest_contacts)): ?>
+                                    <?php foreach ($latest_contacts as $i => $r): ?>
+                                        <tr>
+                                            <td><?= $i+1 ?></td>
+                                            <td><?= htmlspecialchars($r['name']) ?></td>
+                                            <td><a href="mailto:<?= htmlspecialchars($r['email']) ?>"><?= htmlspecialchars($r['email']) ?></a></td>
+                                            <td><?= htmlspecialchars($r['phone']) ?></td>
+                                            <td><?= nl2br(htmlspecialchars($r['message'])) ?></td>
+                                            <td><?= date('d/m/Y H:i', strtotime($r['created_at'])) ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr><td colspan="6" class="text-center text-muted">Chưa có yêu cầu liên hệ nào.</td></tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Có thể thêm các widget khác ở đây -->
+    </div>
+</div> 
 
 

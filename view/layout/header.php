@@ -128,7 +128,7 @@
         </li>
         <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=list">Tin tức</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
-        <li class="nav-item"><a class="nav-link" href="view/contact.php">Liên hệ</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?controller=contact">Liên hệ</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">
         <a href="index.php?controller=cart&action=view" class="btn btn-outline-light position-relative me-2" title="Giỏ hàng">

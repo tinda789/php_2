@@ -69,6 +69,12 @@ $controllers = [
         'class' => 'CheckoutController',
         'params' => [],
         'default_action' => 'checkout'
+    ],
+    'contact' => [
+        'file' => 'controller/ContactController.php',
+        'class' => 'ContactController',
+        'params' => [],
+        'default_action' => 'index'
     ]
 ];
 

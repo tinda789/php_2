@@ -727,6 +727,28 @@ if ($action === 'export_orders_excel') {
     exit;
 }
 
+if ($action === 'contact_requests') {
+    require_once 'model/ContactRequest.php';
+    $contactModel = new ContactRequest($conn);
+    $requests = $contactModel->getAll();
+    $view_file = 'view/admin/contact_requests.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'dashboard') {
+    $total_users = $conn->query("SELECT COUNT(*) FROM users")->fetch_row()[0];
+    $total_products = $conn->query("SELECT COUNT(*) FROM products")->fetch_row()[0];
+    $total_orders = $conn->query("SHOW TABLES LIKE 'orders'")->num_rows ? $conn->query("SELECT COUNT(*) FROM orders")->fetch_row()[0] : 0;
+    require_once 'model/ContactRequest.php';
+    $contactModel = new ContactRequest($conn);
+    $latest_contacts = $contactModel->getAll();
+    $latest_contacts = array_slice($latest_contacts, 0, 5);
+    $view_file = 'view/admin/dashboard.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
 // Helper function to create slug
 function createSlug($name) {
     $slug = strtolower(trim($name));
