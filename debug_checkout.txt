@@ -1,19 +1,6 @@
 POST:
 Array
 (
-    [selected_products] => Array
-        (
-            [0] => 1
-        )
-
-    [name] => Đoàn Thịnh
-    [phone] => 0834670200
-    [address] => KTX A
-    [city] => CT
-    [district] => CT
-    [ward] => CT
-    [notes] => 
-    [payment_method] => vnpay
 )
 
 SESSION user:
@@ -22,16 +9,17 @@ Array
     [id] => 1
     [email] => admin@shopelectrics.com
     [username] => admin
-    [password_hash] => $2y$10$2jlEoxVPyiluGcb4xu1H3ucDL38qHvI2pAeendAO5/FR8GrOfIjYu
+    [full_name] => Admin System
+    [password_hash] => $2y$10$qRCFbIciGLOJv/sipLYDIeigOJTewouRXNBjWBfCcAiWpJuFBaLN2
     [first_name] => Admin
     [last_name] => System
-    [phone] => 
-    [avatar] => 
+    [phone] => 0123456789
+    [avatar] => uploads/avatars/avatar_687e28402a5a3.jpg
     [date_of_birth] => 
     [is_active] => 1
     [email_verified] => 1
     [last_login] => 
     [created_at] => 2025-06-12 23:33:25
-    [updated_at] => 2025-07-16 15:31:57
+    [updated_at] => 2025-07-21 14:01:38
     [role_name] => super_admin
 )

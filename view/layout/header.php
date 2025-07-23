@@ -113,7 +113,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
   <div class="container-fluid px-3">
     <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
-      <i class="fa-solid fa-bolt"></i> Shop Điện Tử
+      Shop Điện Tử
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -123,12 +123,12 @@
         <li class="nav-item"><a class="nav-link" href="index.php">Trang chủ</a></li>
         <li class="nav-item">
           <a class="nav-link<?php if(isset($_GET['controller']) && $_GET['controller']==='product' && (empty($_GET['action']) || $_GET['action']==='list')) echo ' active'; ?>" href="index.php?controller=product&action=list">
-            <i class="fa fa-box"></i> Sản phẩm
+            Sản phẩm
           </a>
         </li>
         <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=list">Tin tức</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+        <li class="nav-item"><a class="nav-link" href="view/contact.php">Liên hệ</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">
         <a href="index.php?controller=cart&action=view" class="btn btn-outline-light position-relative me-2" title="Giỏ hàng">
@@ -180,4 +180,4 @@
     </div>
   </div>
 </nav>
-<div class="container mt-4 main-content"> 
+<div class="main-content"> 

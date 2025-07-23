@@ -17,7 +17,8 @@ $controllers = [
     'news' => [
         'file' => 'controller/NewsController.php',
         'class' => 'NewsController',
-        'params' => ['id', 'status', 'category']
+        'params' => ['id', 'status', 'category'],
+        'constructor_params' => ['$conn']
     ],
     'review' => [
         'file' => 'controller/ReviewController.php',
@@ -93,8 +94,8 @@ function handleController($controllerName, $action, $controllerConfig) {
         // Tạo instance controller
         $className = $controllerConfig['class'];
         if (isset($controllerConfig['constructor_params'])) {
-            // Xử lý trường hợp đặc biệt cho ProductController
-            if ($className === 'ProductController') {
+            // Truyền $conn cho các controller cần
+            if ($className === 'ProductController' || $className === 'CartController' || $className === 'CheckoutController' || $className === 'NewsController') {
                 $controllerInstance = new $className($conn);
             } else {
                 $controllerInstance = new $className();

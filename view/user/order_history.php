@@ -14,70 +14,42 @@
             </a>
         </div>
     <?php else: ?>
-        <div class="row">
-            <?php foreach ($orders as $order): ?>
-                <div class="col-12 mb-4">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-0 fw-bold">
-                                    <i class="fas fa-receipt"></i> Đơn hàng #<?php echo $order['id']; ?>
-                                </h6>
-                                <small class="text-muted">
-                                    <i class="fas fa-calendar"></i> 
-                                    <?php echo date('d/m/Y H:i', strtotime($order['created_at'])); ?>
-                                </small>
-                            </div>
-                            <div class="text-end">
-                                <div class="fw-bold text-danger fs-5">
-                                    <?php echo number_format($order['total_amount'], 0, ',', '.'); ?> đ
-                                </div>
-                                <span class="badge bg-<?php echo getStatusColor($order['status']); ?>">
-                                    <?php echo getStatusText($order['status']); ?>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-2">
-                                        <strong><i class="fas fa-map-marker-alt"></i> Địa chỉ:</strong>
-                                        <div class="text-muted"><?php echo htmlspecialchars($order['shipping_address']); ?></div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <strong><i class="fas fa-phone"></i> Số điện thoại:</strong>
-                                        <div class="text-muted"><?php echo htmlspecialchars($order['phone']); ?></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-2">
-                                        <strong><i class="fas fa-credit-card"></i> Thanh toán:</strong>
-                                        <div class="text-muted"><?php echo getPaymentMethodText($order['payment_method']); ?></div>
-                                    </div>
-                                    <?php if (!empty($order['note'])): ?>
-                                        <div class="mb-2">
-                                            <strong><i class="fas fa-sticky-note"></i> Ghi chú:</strong>
-                                            <div class="text-muted"><?php echo htmlspecialchars($order['note']); ?></div>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <a href="index.php?controller=checkout&action=orderDetail&id=<?php echo $order['id']; ?>" 
-                                   class="btn btn-outline-primary btn-sm">
-                                    <i class="fas fa-eye"></i> Xem chi tiết
-                                </a>
-                                <?php if ($order['status'] === 'pending'): ?>
-                                    <button class="btn btn-outline-danger btn-sm" 
-                                            onclick="cancelOrder(<?php echo $order['id']; ?>)">
-                                        <i class="fas fa-times"></i> Hủy đơn hàng
-                                    </button>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Chi tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($orders as $order): ?>
+                    <tr>
+                        <td>#<?php echo $order['id']; ?></td>
+                        <td><?php echo date('d/m/Y H:i', strtotime($order['created_at'])); ?></td>
+                        <td><?php echo number_format($order['total_amount'], 0, ',', '.'); ?> đ</td>
+                        <td>
+                            <span class="badge bg-<?php echo getStatusColor($order['status']); ?>">
+                                <?php echo getStatusText($order['status']); ?>
+                            </span>
+                        </td>
+                        <td>
+                            <a href="index.php?controller=checkout&action=orderDetail&id=<?php echo $order['id']; ?>" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-eye"></i> Xem
+                            </a>
+                            <?php if ($order['status'] === 'pending'): ?>
+                                <button class="btn btn-outline-danger btn-sm" onclick="cancelOrder(<?php echo $order['id']; ?>)">
+                                    <i class="fas fa-times"></i> Hủy
+                                </button>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     <?php endif; ?>
 </div>
@@ -111,22 +83,12 @@ function cancelOrder(orderId) {
 </script>
 
 <style>
-.card {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
-}
-.card-header {
-    border-bottom: none;
-    padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
 }
 .badge {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     padding: 0.5rem 0.75rem;
 }
 .btn {

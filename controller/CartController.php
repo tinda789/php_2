@@ -6,6 +6,7 @@ require_once __DIR__ . '/../model/Cart.php';
 
 class CartController {
     public function add() {
+        global $conn;
         if (session_status() === PHP_SESSION_NONE) session_start();
         $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
         $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
@@ -13,35 +14,38 @@ class CartController {
             header('Location: index.php?controller=product&action=list&error=invalid_product');
             exit;
         }
-        $cartModel = new Cart();
+        $cartModel = new Cart($conn);
         $cartModel->addToCart($product_id, $quantity);
         header('Location: index.php?controller=cart&action=view');
         exit;
     }
     public function view() {
+        global $conn;
         if (session_status() === PHP_SESSION_NONE) session_start();
-        $cartModel = new Cart();
+        $cartModel = new Cart($conn);
         $cart = $cartModel->getCart();
         require __DIR__ . '/../view/layout/header.php';
         require __DIR__ . '/../view/user/cart_view.php';
         require __DIR__ . '/../view/layout/footer.php';
     }
     public function remove() {
+        global $conn;
         if (session_status() === PHP_SESSION_NONE) session_start();
         $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
         if ($product_id > 0) {
-            $cartModel = new Cart();
+            $cartModel = new Cart($conn);
             $cartModel->removeFromCart($product_id);
         }
         header('Location: index.php?controller=cart&action=view');
         exit;
     }
     public function update() {
+        global $conn;
         if (session_status() === PHP_SESSION_NONE) session_start();
         $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
         $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
         if ($product_id > 0 && $quantity > 0) {
-            $cartModel = new Cart();
+            $cartModel = new Cart($conn);
             $cartModel->updateQuantity($product_id, $quantity);
         }
         header('Location: index.php?controller=cart&action=view');

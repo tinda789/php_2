@@ -23,7 +23,8 @@ class CheckoutController {
         }
         
         // Lấy giỏ hàng từ session
-        $cartModel = new Cart();
+        global $conn;
+        $cartModel = new Cart($conn);
         $cart = $cartModel->getCart();
         
         // Lấy danh sách sản phẩm đã chọn

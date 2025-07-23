@@ -736,7 +736,7 @@
                     imageSmoothingEnabled: true,
                     imageSmoothingQuality: 'high'
                 });
-
+                
                 // Tạo canvas tròn nền trong suốt
                 const circleCanvas = document.createElement('canvas');
                 circleCanvas.width = size;
@@ -763,10 +763,10 @@
                         img.src = e.target.result;
                         img.className = 'current-avatar';
                         img.alt = 'Avatar preview';
-
+                        
                         avatarPreview.innerHTML = '';
                         avatarPreview.appendChild(img);
-
+                        
                         removeAvatarBtn.style.display = 'flex';
                         croppedAvatarInput.value = e.target.result; // base64 PNG hình tròn
                     };

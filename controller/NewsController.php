@@ -5,9 +5,10 @@ require_once 'model/Category.php';
 
 class NewsController {
     private $newsModel;
+    private $conn;
     
-    public function __construct() {
-        global $conn;
+    public function __construct($conn) {
+        $this->conn = $conn;
         $this->newsModel = new News($conn);
     }
     

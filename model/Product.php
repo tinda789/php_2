@@ -365,8 +365,7 @@ class Product {
     }
 
     // Lấy sản phẩm theo id (dùng cho Cart)
-    public static function findById($product_id) {
-        $conn = $GLOBALS['conn'];
+    public static function findById($conn, $product_id) {
         $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();

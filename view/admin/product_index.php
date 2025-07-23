@@ -13,9 +13,11 @@
 <div class="container-fluid py-3">
   <div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
     <h1 class="h4 text-primary m-0">Quản lý sản phẩm</h1>
-    <a href="index.php?controller=admin&action=product_create" class="btn btn-primary">
-      <i class="fa fa-plus me-1"></i> Thêm sản phẩm mới
-    </a>
+    <div class="d-flex gap-2">
+      <a href="index.php?controller=admin&action=product_create" class="btn btn-primary">
+        <i class="fa fa-plus me-1"></i> Thêm sản phẩm mới
+      </a>
+    </div>
   </div>
 
   <?php if (isset($_GET['success'])): ?>

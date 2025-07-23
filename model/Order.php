@@ -127,5 +127,16 @@ class Order {
     public static function cancel($conn, $id) {
         self::updateStatus($conn, $id, 'cancelled');
     }
+
+    // Đếm số lượng đơn hàng đã bán trong tháng
+    public static function countOrdersInMonth($conn, $month = null, $year = null) {
+        if (!$month) $month = date('m');
+        if (!$year) $year = date('Y');
+        $stmt = $conn->prepare("SELECT COUNT(*) as total FROM orders WHERE MONTH(created_at) = ? AND YEAR(created_at) = ?");
+        $stmt->bind_param("ii", $month, $year);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result['total'];
+    }
 }
 ?> 

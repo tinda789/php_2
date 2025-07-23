@@ -1,9 +1,15 @@
 <?php
 // model/Cart.php
+require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/Product.php';
 
 class Cart {
     private $sessionKey = 'cart_items';
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
 
     public function addToCart($product_id, $quantity = 1) {
         if (!isset($_SESSION[$this->sessionKey])) {
@@ -22,7 +28,7 @@ class Cart {
         }
         $cart = [];
         foreach ($_SESSION[$this->sessionKey] as $product_id => $quantity) {
-            $product = Product::findById($product_id);
+            $product = Product::findById($this->conn, $product_id);
             if ($product) {
                 $product['quantity'] = $quantity;
                 $cart[] = $product;

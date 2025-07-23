@@ -58,4 +58,22 @@ class OrderItem {
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
+    
+    // Thống kê số lượng bán của từng sản phẩm trong tháng
+    public function getProductSalesStatsInMonth($month = null, $year = null) {
+        if (!$month) $month = date('m');
+        if (!$year) $year = date('Y');
+        $sql = "SELECT oi.product_id, p.name, SUM(oi.quantity) as total_sold
+                FROM order_items oi
+                JOIN orders o ON oi.order_id = o.id
+                JOIN products p ON oi.product_id = p.id
+                WHERE MONTH(o.created_at) = ? AND YEAR(o.created_at) = ?
+                GROUP BY oi.product_id
+                ORDER BY total_sold DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ii", $month, $year);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $result;
+    }
 } 
