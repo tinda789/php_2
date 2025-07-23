@@ -7,7 +7,7 @@ if (empty($_SESSION['user']) || !in_array($_SESSION['user']['role_name'] ?? '', 
 }
 include 'view/layout/header_admin.php'; 
 ?>
-<main class="bg-light" style="min-height:100vh; padding-top:56px;">
+<main class="bg-light" style="min-height:0; padding-top:100px;">
   <div class="container-fluid pt-3">
     <?php if (isset($_SESSION['success'])): ?>
       <div class="alert alert-success alert-dismissible fade show" role="alert">

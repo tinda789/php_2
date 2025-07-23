@@ -12,6 +12,42 @@
             <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
         </div>
         <div class="card-body">
+            <?php if (isset($_GET['success'])): ?>
+                <?php if ($_GET['success'] === 'image_deleted'): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle"></i> Đã xóa ảnh thành công!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            
+            <?php if (isset($_GET['error'])): ?>
+                <?php if ($_GET['error'] === 'image_not_found'): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle"></i> Không tìm thấy ảnh để xóa!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php elseif ($_GET['error'] === 'invalid_image'): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle"></i> Thông tin ảnh không hợp lệ!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if (!empty($upload_error)): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle"></i> <?php echo htmlspecialchars($upload_error); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
             <form method="POST" action="index.php?controller=admin&action=product_update" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                 
@@ -148,16 +184,52 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="product_images">Thêm ảnh sản phẩm (có thể chọn nhiều)</label>
-                            <input type="file" class="form-control" id="product_images" name="product_images[]" multiple accept="image/*" onchange="previewImages(this)">
-                            <small class="form-text text-muted">Chọn ảnh mới để thêm vào sản phẩm (JPG, PNG, GIF, WebP) - Tối đa 5MB mỗi ảnh</small>
+                            <label for="product_images">
+                                <i class="fas fa-images"></i> Thêm ảnh sản phẩm (có thể chọn nhiều)
+                            </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="product_images" name="product_images[]" multiple accept="image/*" onchange="previewImages(this)">
+                                    <label class="custom-file-label" for="product_images">Chọn ảnh...</label>
+                                </div>
+                            </div>
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle"></i> 
+                                Hỗ trợ: JPG, PNG, GIF, WebP - Tối đa 5MB mỗi ảnh. 
+                                Có thể chọn nhiều ảnh cùng lúc.
+                            </small>
                             <div id="image-preview" class="mt-2"></div>
+                        </div>
+
+                        <!-- Thêm trường nhập đường link ảnh sản phẩm -->
+                        <div class="form-group">
+                            <label for="image_link">
+                                <i class="fas fa-link"></i> Đường link ảnh sản phẩm (tùy chọn)
+                            </label>
+                            <input type="text" class="form-control" id="image_link" name="image_link"
+                                   value="<?php echo htmlspecialchars($product['image_link'] ?? ''); ?>"
+                                   placeholder="Nhập URL ảnh sản phẩm (nếu có)">
+                            <small class="form-text text-muted">
+                                Nếu nhập link, ảnh này sẽ được ưu tiên hiển thị.
+                            </small>
                         </div>
 
                         <script>
                         function previewImages(input) {
                             const preview = document.getElementById('image-preview');
+                            const fileLabel = document.querySelector('.custom-file-label');
                             preview.innerHTML = '';
+                            
+                            // Cập nhật label hiển thị tên file
+                            if (input.files && input.files.length > 0) {
+                                if (input.files.length === 1) {
+                                    fileLabel.textContent = input.files[0].name;
+                                } else {
+                                    fileLabel.textContent = `${input.files.length} ảnh đã chọn`;
+                                }
+                            } else {
+                                fileLabel.textContent = 'Chọn ảnh...';
+                            }
                             
                             if (input.files && input.files.length > 0) {
                                 for (let i = 0; i < input.files.length; i++) {
@@ -180,9 +252,12 @@
                                         const div = document.createElement('div');
                                         div.className = 'd-inline-block mr-2 mb-2';
                                         div.innerHTML = `
-                                            <img src="${e.target.result}" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd; border-radius: 4px;" alt="Preview">
-                                            <div class="text-center mt-1">
-                                                <small class="text-muted">${file.name}</small>
+                                            <div class="card" style="width: 120px;">
+                                                <img src="${e.target.result}" class="card-img-top" style="height: 100px; object-fit: cover;" alt="Preview">
+                                                <div class="card-body p-2">
+                                                    <small class="text-muted d-block text-truncate" title="${file.name}">${file.name}</small>
+                                                    <small class="text-info">${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+                                                </div>
                                             </div>
                                         `;
                                         preview.appendChild(div);
@@ -204,12 +279,25 @@
                     <div class="col-md-12">
                         <h6>Ảnh hiện tại:</h6>
                         <div class="row">
-                            <?php foreach ($product_images as $index => $image_url): ?>
+                            <?php foreach ($product_images as $index => $image): ?>
                             <div class="col-md-2 mb-2">
                                 <div class="card">
-                                    <img src="<?php echo htmlspecialchars($image_url); ?>" class="card-img-top" alt="Product Image" style="height: 100px; object-fit: cover;">
+                                    <?php require_once 'helpers/image_helper.php'; ?>
+                                    <img src="<?php echo htmlspecialchars(getImageUrl($image['image_url'])); ?>" class="card-img-top" alt="Product Image" style="height: 100px; object-fit: cover;">
                                     <div class="card-body p-2">
-                                        <small class="text-muted">Ảnh <?php echo $index + 1; ?></small>
+                                        <small class="text-muted">
+                                            Ảnh <?php echo $index + 1; ?>
+                                            <?php if ($image['is_primary']): ?>
+                                                <span class="badge badge-primary">Chính</span>
+                                            <?php endif; ?>
+                                        </small>
+                                        <div class="mt-1">
+                                            <a href="index.php?controller=admin&action=delete_product_image&id=<?php echo $image['id']; ?>&product_id=<?php echo $product['id']; ?>" 
+                                               class="btn btn-danger btn-sm" 
+                                               onclick="return confirm('Bạn có chắc muốn xóa ảnh này?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -235,12 +323,24 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Cập nhật sản phẩm
-                    </button>
-                    <a href="index.php?controller=admin&action=product_index" class="btn btn-secondary">
-                        <i class="fas fa-times"></i> Hủy
-                    </a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-save"></i> Cập nhật sản phẩm
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="index.php?controller=admin&action=product_index" class="btn btn-secondary btn-lg w-100">
+                                <i class="fas fa-times"></i> Hủy
+                            </a>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <small class="text-muted">
+                            <i class="fas fa-info-circle"></i> 
+                            Sau khi cập nhật, bạn có thể thêm ảnh mới hoặc xóa ảnh cũ bằng cách sử dụng các chức năng bên dưới.
+                        </small>
+                    </div>
                 </div>
             </form>
         </div>

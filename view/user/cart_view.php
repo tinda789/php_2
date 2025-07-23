@@ -30,13 +30,11 @@
               <td>
                 <div class="ratio ratio-4x3 bg-light rounded-3 overflow-hidden mx-auto" style="width:90px;">
                   <?php 
-                  $img = !empty($item['images'][0]) ? $item['images'][0] : '';
-                  if ($img && strpos($img, 'uploads/') === false && strpos($img, 'http') !== 0) {
-                      $img = 'uploads/products/' . $img;
-                  }
-                  if (!$img) $img = 'https://via.placeholder.com/90x68?text=No+Image';
+                  require_once 'helpers/image_helper.php';
+                  $img = !empty($item['images'][0]['image_url']) ? $item['images'][0]['image_url'] : '';
+                  $img_url = getImageUrl($img);
                   ?>
-                  <img src="<?php echo htmlspecialchars($img); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" class="img-fluid h-100 w-100 object-fit-cover rounded-3">
+                  <img src="<?php echo htmlspecialchars($img_url); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" class="img-fluid h-100 w-100 object-fit-cover rounded-3">
                 </div>
               </td>
               <td class="text-start">

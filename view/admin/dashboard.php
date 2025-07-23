@@ -5,9 +5,17 @@ if (!in_array($_SESSION['user']['role_name'] ?? '', ['admin', 'super_admin'])) {
     exit;
 }
 require_once 'config/config.php';
+require_once 'model/Order.php';
 $total_users = $conn->query("SELECT COUNT(*) FROM users")->fetch_row()[0];
 $total_products = $conn->query("SELECT COUNT(*) FROM products")->fetch_row()[0];
 $total_orders = $conn->query("SHOW TABLES LIKE 'orders'")->num_rows ? $conn->query("SELECT COUNT(*) FROM orders")->fetch_row()[0] : 0;
+// Thống kê kinh doanh
+$total_revenue = Order::getTotalRevenue($conn);
+$total_completed = Order::getTotalCompletedOrders($conn);
+$total_pending = Order::getTotalPendingOrders($conn);
+$total_cancelled = Order::getTotalCancelledOrders($conn);
+$monthly_revenue = Order::getMonthlyRevenue($conn);
+$order_status_stats = Order::getOrderStatusStats($conn);
 ?>
 <style>
 body {
@@ -153,6 +161,137 @@ body {
     .cards-row { flex-direction: column; gap: 18px; }
 }
 </style>
-<?php include 'view/layout/admin_layout.php'; ?> 
+<?php include 'view/layout/admin_layout.php'; ?>
+<div class="cards-row">
+    <div class="card users">
+        <div class="icon"><i class="fa-solid fa-users"></i></div>
+        <div class="label">Tổng người dùng</div>
+        <div class="value"><?php echo $total_users; ?></div>
+    </div>
+    <div class="card products">
+        <div class="icon"><i class="fa-solid fa-box"></i></div>
+        <div class="label">Tổng sản phẩm</div>
+        <div class="value"><?php echo $total_products; ?></div>
+    </div>
+    <div class="card orders">
+        <div class="icon"><i class="fa-solid fa-file-invoice"></i></div>
+        <div class="label">Tổng đơn hàng</div>
+        <div class="value"><?php echo $total_orders; ?></div>
+    </div>
+    <div class="card" style="border-bottom-color:#00e676;">
+        <div class="icon"><i class="fa-solid fa-sack-dollar text-success"></i></div>
+        <div class="label">Tổng doanh thu</div>
+        <div class="value text-success"><?php echo number_format($total_revenue,0,',','.'); ?> đ</div>
+    </div>
+    <div class="card" style="border-bottom-color:#2196f3;">
+        <div class="icon"><i class="fa-solid fa-check-circle text-info"></i></div>
+        <div class="label">Đơn hoàn thành</div>
+        <div class="value"><?php echo $total_completed; ?></div>
+    </div>
+    <div class="card" style="border-bottom-color:#ffd600;">
+        <div class="icon"><i class="fa-solid fa-hourglass-half text-warning"></i></div>
+        <div class="label">Đơn chờ xử lý</div>
+        <div class="value"><?php echo $total_pending; ?></div>
+    </div>
+    <div class="card" style="border-bottom-color:#ff5252;">
+        <div class="icon"><i class="fa-solid fa-times-circle text-danger"></i></div>
+        <div class="label">Đơn bị hủy</div>
+        <div class="value"><?php echo $total_cancelled; ?></div>
+    </div>
+</div>
+<div class="row" style="margin-top:40px;">
+  <div class="col-md-7 mb-4">
+    <div class="card" style="min-height:380px;">
+      <h5 class="mb-3 text-primary"><i class="fa-solid fa-chart-column"></i> Doanh thu theo tháng (<?php echo date('Y'); ?>)</h5>
+      <canvas id="revenueChart" height="120"></canvas>
+    </div>
+  </div>
+  <div class="col-md-5 mb-4">
+    <div class="card" style="min-height:380px;">
+      <h5 class="mb-3 text-primary"><i class="fa-solid fa-chart-bar"></i> Đơn hàng theo trạng thái</h5>
+      <canvas id="orderStatusChart" height="120"></canvas>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Biểu đồ doanh thu theo tháng
+const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+const revenueChart = new Chart(revenueCtx, {
+    type: 'bar',
+    data: {
+        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        datasets: [{
+            label: 'Doanh thu (VNĐ)',
+            data: <?php echo json_encode(array_values($monthly_revenue)); ?>,
+            backgroundColor: 'rgba(0, 198, 255, 0.7)',
+            borderColor: '#007bff',
+            borderWidth: 2,
+            borderRadius: 8,
+            maxBarThickness: 38
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: false }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { callback: function(value) { return value.toLocaleString() + ' đ'; } }
+            }
+        }
+    }
+});
+// Biểu đồ số đơn hàng theo trạng thái
+const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+const orderStatusData = <?php echo json_encode($order_status_stats); ?>;
+const statusLabels = Object.keys(orderStatusData).map(function(s) {
+    switch(s) {
+        case 'completed': return 'Hoàn thành';
+        case 'delivered': return 'Đã giao';
+        case 'pending': return 'Chờ xử lý';
+        case 'processing': return 'Đang xử lý';
+        case 'cancelled': return 'Đã hủy';
+        default: return s;
+    }
+});
+const statusColors = statusLabels.map(function(label) {
+    if (label === 'Hoàn thành' || label === 'Đã giao') return '#00e676';
+    if (label === 'Chờ xử lý' || label === 'Đang xử lý') return '#ffd600';
+    if (label === 'Đã hủy') return '#ff5252';
+    return '#4fc3f7';
+});
+const orderStatusChart = new Chart(orderStatusCtx, {
+    type: 'bar',
+    data: {
+        labels: statusLabels,
+        datasets: [{
+            label: 'Số đơn hàng',
+            data: Object.values(orderStatusData),
+            backgroundColor: statusColors,
+            borderColor: '#007bff',
+            borderWidth: 2,
+            borderRadius: 8,
+            maxBarThickness: 38
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: false }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                precision: 0
+            }
+        }
+    }
+});
+</script> 
 
 

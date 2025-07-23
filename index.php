@@ -81,6 +81,9 @@ if ($controller === 'banner') {
     } else {
         $checkoutController->checkout();
     }
+} elseif ($controller === 'page' && $action === 'gioi_thieu') {
+    include 'view/gioi_thieu.php';
+    exit;
 } else {
     include 'view/home.php';
 }

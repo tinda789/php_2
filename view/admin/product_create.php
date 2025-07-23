@@ -139,6 +139,18 @@
                             <div id="image-preview" class="mt-2"></div>
                         </div>
 
+                        <!-- Thêm trường nhập đường link ảnh sản phẩm -->
+                        <div class="form-group">
+                            <label for="image_link">
+                                <i class="fas fa-link"></i> Đường link ảnh sản phẩm (tùy chọn)
+                            </label>
+                            <input type="text" class="form-control" id="image_link" name="image_link"
+                                   placeholder="Nhập URL ảnh sản phẩm (nếu có)">
+                            <small class="form-text text-muted">
+                                Nếu nhập link, ảnh này sẽ được ưu tiên hiển thị.
+                            </small>
+                        </div>
+
                         <script>
                         function previewImages(input) {
                             const preview = document.getElementById('image-preview');

@@ -12,6 +12,22 @@ class Product {
         // Chỉ lấy sản phẩm active
         $where_conditions[] = "p.status = 'active'";
         
+        // Ưu tiên tìm kiếm sản phẩm có tên chứa nguyên cụm từ khóa (không tách từ)
+        if ($search !== '') {
+            $like_param = '%' . strtolower(trim($search)) . '%';
+            $stmt = $conn->prepare($sql . " WHERE p.status = 'active' AND LOWER(p.name) LIKE ? ORDER BY p.created_at DESC LIMIT ? OFFSET ?");
+            $stmt->bind_param('sii', $like_param, $limit, $offset);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $exact_products = [];
+            while ($row = $result->fetch_assoc()) {
+                $exact_products[] = $row;
+            }
+            if (!empty($exact_products)) {
+                return $exact_products;
+            }
+        }
+        
         // thanhdat: tìm kiếm thông minh - tìm theo từ khóa gốc và danh mục
         if ($search !== '') {
             $search_terms = explode(' ', trim($search));
@@ -173,7 +189,7 @@ class Product {
         $stmt = $conn->prepare("SELECT p.*, c.name as category_name, b.name as brand_name FROM products p
                 LEFT JOIN categories c ON p.category_id = c.id
                 LEFT JOIN brands b ON p.brand_id = b.id
-                WHERE p.id = ? AND p.status = 'active'");
+                WHERE p.id = ?"); // Bỏ kiểm tra status
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -182,9 +198,9 @@ class Product {
 
     // Thêm mới sản phẩm
     public static function create($conn, $data) {
-        $stmt = $conn->prepare("INSERT INTO products (name, slug, description, short_description, price, sale_price, stock_quantity, min_stock_level, category_id, brand_id, model, sku, barcode, weight, dimensions, warranty_period, status, featured, meta_title, meta_description, created_by, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+        $stmt = $conn->prepare("INSERT INTO products (name, slug, description, short_description, price, sale_price, stock_quantity, min_stock_level, category_id, brand_id, model, sku, barcode, weight, dimensions, warranty_period, status, featured, image_link, meta_title, meta_description, created_by, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
         $stmt->bind_param(
-            "ssssddiiisssddsisissi",
+            "ssssddiiisssddsisisssi",
             $data['name'],
             $data['slug'],
             $data['description'],
@@ -203,6 +219,7 @@ class Product {
             $data['warranty_period'],
             $data['status'],
             $data['featured'],
+            $data['image_link'],
             $data['meta_title'],
             $data['meta_description'],
             $data['created_by']
@@ -216,9 +233,9 @@ class Product {
 
     // Cập nhật sản phẩm
     public static function update($conn, $id, $data) {
-        $stmt = $conn->prepare("UPDATE products SET name=?, slug=?, description=?, short_description=?, price=?, sale_price=?, stock_quantity=?, min_stock_level=?, category_id=?, brand_id=?, model=?, sku=?, barcode=?, weight=?, dimensions=?, warranty_period=?, status=?, featured=?, meta_title=?, meta_description=?, updated_at=NOW() WHERE id=?");
+        $stmt = $conn->prepare("UPDATE products SET name=?, slug=?, description=?, short_description=?, price=?, sale_price=?, stock_quantity=?, min_stock_level=?, category_id=?, brand_id=?, model=?, sku=?, barcode=?, weight=?, dimensions=?, warranty_period=?, status=?, featured=?, image_link=?, meta_title=?, meta_description=?, updated_at=NOW() WHERE id=?");
         $stmt->bind_param(
-            "ssssddiiisssddsisissi",
+            "ssssddiiisssddsisisssi",
             $data['name'],
             $data['slug'],
             $data['description'],
@@ -237,6 +254,7 @@ class Product {
             $data['warranty_period'],
             $data['status'],
             $data['featured'],
+            $data['image_link'],
             $data['meta_title'],
             $data['meta_description'],
             $id
@@ -379,6 +397,42 @@ class Product {
             $product['specs'] = self::getSpecifications($conn, $product_id);
         }
         return $product;
+    }
+
+    // Kiểm tra user đã mua sản phẩm chưa
+    public static function hasUserPurchased($conn, $user_id, $product_id) {
+        $sql = "SELECT COUNT(*) as total FROM order_items oi
+                JOIN orders o ON oi.order_id = o.id
+                WHERE o.user_id = ? AND oi.product_id = ? AND o.status IN ('completed', 'delivered')";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ii', $user_id, $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result['total'] > 0;
+    }
+
+    // Thêm đánh giá sản phẩm
+    public static function addReview($conn, $user_id, $product_id, $rating, $comment) {
+        $stmt = $conn->prepare("INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at, status) VALUES (?, ?, ?, ?, NOW(), 'pending')");
+        $stmt->bind_param('iiis', $product_id, $user_id, $rating, $comment);
+        return $stmt->execute();
+    }
+
+    // Lấy danh sách đánh giá đã duyệt cho sản phẩm
+    public static function getReviews($conn, $product_id) {
+        $sql = "SELECT r.*, u.first_name, u.last_name FROM product_reviews r
+                JOIN users u ON r.user_id = u.id
+                WHERE r.product_id = ? AND r.status = 'approved'
+                ORDER BY r.created_at DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $reviews = [];
+        while ($row = $result->fetch_assoc()) {
+            $reviews[] = $row;
+        }
+        return $reviews;
     }
 }
 ?> 

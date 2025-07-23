@@ -97,7 +97,9 @@
           </a>
         </li>
         <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=list">Tin tức</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?controller=page&action=gioi_thieu">Giới thiệu</a>
+        </li>
         <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">

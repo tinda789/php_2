@@ -72,7 +72,8 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
     
     for ($i = 1; $i < count($rows); $i++) { // Bỏ qua dòng tiêu đề
         $row = $rows[$i];
-        if (count($row) < 10) continue; // Bỏ qua dòng không đủ cột
+        // Bỏ qua dòng không đủ cột hoặc toàn bộ trường đều rỗng
+        if (count($row) < 11 || implode('', $row) === '') continue;
         
         $name = trim($row[0]);
         $sku = trim($row[1]);
@@ -81,9 +82,20 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
         $price = floatval($row[4]);
         $sale_price = floatval($row[5]);
         $stock_quantity = intval($row[6]);
-        $status = trim($row[7]) === 'hoạt động' ? 1 : 0;
+        $status_raw = trim($row[7]);
+        $status = 'active'; // mặc định
+        if ($status_raw === 'hoạt động' || $status_raw === 'active' || $status_raw === '1') {
+            $status = 'active';
+        } elseif ($status_raw === 'ngưng bán' || $status_raw === 'inactive' || $status_raw === '0') {
+            $status = 'inactive';
+        } elseif ($status_raw === 'out of stock') {
+            $status = 'out of stock';
+        } elseif ($status_raw === 'discontinued') {
+            $status = 'discontinued';
+        }
         $featured = trim($row[8]) === 'có' ? 1 : 0;
         $image_name = trim($row[9] ?? ''); // thanhdat: lấy tên ảnh từ cột thứ 10
+        $image_link = trim($row[10] ?? ''); // lấy link ảnh từ cột thứ 11
 
         // Lấy hoặc tạo id danh mục/thương hiệu
         $category_id = getOrCreateCategory($conn, $categoryName); // thanhdat
@@ -94,9 +106,16 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
         if ($product) {
             // Cộng thêm số lượng vào tồn kho
             $new_stock = $product['stock_quantity'] + $stock_quantity;
-            $sql = "UPDATE products SET stock_quantity = ? WHERE id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ii', $new_stock, $product['id']);
+            // Nếu có image_link mới, cập nhật luôn
+            if (!empty($image_link)) {
+                $sql = "UPDATE products SET stock_quantity = ?, image_link = ? WHERE id = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('isi', $new_stock, $image_link, $product['id']);
+            } else {
+                $sql = "UPDATE products SET stock_quantity = ? WHERE id = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ii', $new_stock, $product['id']);
+            }
             if ($stmt->execute()) {
                 $update++;
             } else {
@@ -107,18 +126,26 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
         }
         // Tạo slug đơn giản từ tên sản phẩm
         $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
+        // Gán giá trị mặc định nếu trường bị rỗng
+        $description = !empty($description) ? $description : 'Chưa có mô tả chi tiết.';
+        $short_description = !empty($short_description) ? $short_description : 'Chưa có mô tả ngắn.';
+        $model = !empty($model) ? $model : '';
+        $meta_title = !empty($meta_title) ? $meta_title : $name;
+        $meta_description = !empty($meta_description) ? $meta_description : $short_description;
+        // Nếu không tìm thấy category_id hoặc brand_id thì bỏ qua dòng này
+        if (!$category_id || !$brand_id) continue;
         $data = [
             'name' => $name,
             'slug' => $slug,
-            'description' => '',
-            'short_description' => '',
+            'description' => $description,
+            'short_description' => $short_description,
             'price' => $price,
             'sale_price' => $sale_price,
             'stock_quantity' => $stock_quantity,
             'min_stock_level' => 0,
             'category_id' => $category_id,
             'brand_id' => $brand_id,
-            'model' => '',
+            'model' => $model,
             'sku' => $sku,
             'barcode' => '',
             'weight' => 0,
@@ -126,9 +153,10 @@ if (isset($_FILES['excel_file']) && $_FILES['excel_file']['error'] == 0) {
             'warranty_period' => '',
             'status' => $status,
             'featured' => $featured,
-            'meta_title' => '',
-            'meta_description' => '',
-            'created_by' => 1 // hoặc id admin hiện tại
+            'image_link' => $image_link,
+            'meta_title' => $meta_title,
+            'meta_description' => $meta_description,
+            'created_by' => 1
         ];
         $result = Product::create($conn, $data); // thanhdat
         if ($result) {

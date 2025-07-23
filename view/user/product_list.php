@@ -320,7 +320,11 @@
                   <?php endif; ?>
                   <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="d-block">
                     <?php if (!empty($product['images'])): ?>
-                      <img src="uploads/products/<?php echo htmlspecialchars($product['images'][0]['image_url']); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                      <?php require_once 'helpers/image_helper.php'; ?>
+                      <img src="<?php echo htmlspecialchars(getImageUrl($product['images'][0]['image_url'])); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=No+Image';">
+                    <?php elseif (!empty($product['image_link'])): ?>
+                      <?php require_once 'helpers/image_helper.php'; ?>
+                      <img src="<?php echo htmlspecialchars(getImageUrl($product['image_link'])); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=No+Image';">
                     <?php else: ?>
                       <img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top product-image" alt="No image">
                     <?php endif; ?>

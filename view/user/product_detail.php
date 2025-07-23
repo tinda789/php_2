@@ -1,3 +1,4 @@
+<?php global $conn; ?>
 <?php /* @var $product, $reviews */ ?>
 <?php if (!$product): ?>
   <div class="container py-4">
@@ -18,9 +19,14 @@
               <?php if (!empty($product['images'])): ?>
                 <?php foreach ($product['images'] as $idx => $img): ?>
                   <div class="carousel-item <?php echo $idx === 0 ? 'active' : ''; ?>">
-                    <img src="uploads/products/<?php echo htmlspecialchars($img['image_url']); ?>" class="d-block w-100 product-image-zoom" alt="Ảnh sản phẩm" style="max-height:420px;object-fit:contain;cursor:zoom-in;">
+                    <?php require_once 'helpers/image_helper.php'; ?>
+                    <img src="<?php echo htmlspecialchars(getImageUrl($img['image_url'])); ?>" class="d-block w-100 product-image-zoom" alt="Ảnh sản phẩm" style="max-height:420px;object-fit:contain;cursor:zoom-in;" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400?text=No+Image';">
                   </div>
                 <?php endforeach; ?>
+              <?php elseif (!empty($product['image_link'])): ?>
+                <div class="carousel-item active">
+                  <img src="<?php echo htmlspecialchars(getImageUrl($product['image_link'])); ?>" class="d-block w-100 product-image-zoom" alt="Ảnh sản phẩm" style="max-height:420px;object-fit:contain;cursor:zoom-in;" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400?text=No+Image';">
+                </div>
               <?php else: ?>
                 <div class="carousel-item active">
                   <img src="https://via.placeholder.com/400x400?text=No+Image" class="d-block w-100" alt="No image">
@@ -135,21 +141,21 @@
       <div class="card border-0 shadow-sm">
         <div class="card-body">
           <h4 class="fw-bold mb-3">Đánh giá sản phẩm</h4>
+          <?php
+          // Hiển thị đánh giá sản phẩm
+          $reviews = Product::getReviews($conn, $product['id']);
+          ?>
           <?php if (!empty($reviews)): ?>
             <?php foreach ($reviews as $review): ?>
-              <div class="border rounded p-2 mb-2">
-                <div class="fw-bold mb-1"><?php echo htmlspecialchars(($review['first_name'] ?? '') . ' ' . ($review['last_name'] ?? '')); ?>
-                  <span class="text-warning ms-2">
+              <div class="review border rounded p-2 mb-2">
+                <strong><?php echo htmlspecialchars($review['first_name'] . ' ' . $review['last_name']); ?></strong>
+                <span class="text-warning">
                     <?php for ($i = 1; $i <= 5; $i++): ?>
-                      <?php if ($i <= $review['rating']): ?>★<?php else: ?>☆<?php endif; ?>
+                        <i class="fa fa-star<?php echo $i <= $review['rating'] ? '' : '-o'; ?>"></i>
                     <?php endfor; ?>
                   </span>
-                </div>
-                <div class="mb-1"><strong><?php echo htmlspecialchars($review['title'] ?? ''); ?></strong></div>
-                <div><?php echo nl2br(htmlspecialchars($review['comment'] ?? '')); ?></div>
-                <?php if (!empty($review['pros'])): ?><div class="text-success small mt-1">+ <?php echo htmlspecialchars($review['pros']); ?></div><?php endif; ?>
-                <?php if (!empty($review['cons'])): ?><div class="text-danger small">- <?php echo htmlspecialchars($review['cons']); ?></div><?php endif; ?>
-                <div class="text-muted small mt-1">Ngày: <?php echo date('d/m/Y', strtotime($review['created_at'])); ?></div>
+                <span class="text-muted small ml-2"><?php echo date('d/m/Y H:i', strtotime($review['created_at'])); ?></span>
+                <div><?php echo nl2br(htmlspecialchars($review['comment'])); ?></div>
               </div>
             <?php endforeach; ?>
           <?php else: ?>
@@ -159,6 +165,30 @@
       </div>
     </div>
   </div>
+  <?php
+  // Hiển thị form gửi đánh giá nếu user đã mua sản phẩm
+  if (isset($_SESSION['user']['id']) && Product::hasUserPurchased($conn, $_SESSION['user']['id'], $product['id'])):
+  ?>
+  <div class="review-form mt-4">
+      <h5>Gửi đánh giá của bạn</h5>
+      <form method="POST" action="index.php?controller=product&action=review&id=<?php echo $product['id']; ?>">
+          <div class="form-group">
+              <label for="rating">Đánh giá:</label>
+              <select name="rating" id="rating" class="form-control" required>
+                  <option value="">Chọn số sao</option>
+                  <?php for ($i = 5; $i >= 1; $i--): ?>
+                      <option value="<?php echo $i; ?>"><?php echo $i; ?> sao</option>
+                  <?php endfor; ?>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="comment">Bình luận:</label>
+              <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+      </form>
+  </div>
+  <?php endif; ?>
 </div>
 <style>
 .product-image-zoom {border-radius: 1rem; background: #f8f9fa;}
@@ -202,4 +232,16 @@ function showCartToast(msg) {
   }
 }
 </script>
+<?php if (isset($_GET['msg']) && $_GET['msg'] === 'review_sent'): ?>
+    <div class="alert alert-success">Đánh giá của bạn đã được gửi và chờ duyệt!</div>
+<?php endif; ?>
+<?php if (isset($_GET['error'])): ?>
+    <?php if ($_GET['error'] === 'review_failed'): ?>
+        <div class="alert alert-danger">Có lỗi khi gửi đánh giá, vui lòng thử lại.</div>
+    <?php elseif ($_GET['error'] === 'not_purchased'): ?>
+        <div class="alert alert-danger">Bạn chỉ có thể đánh giá sản phẩm đã mua.</div>
+    <?php elseif ($_GET['error'] === 'invalid_review'): ?>
+        <div class="alert alert-danger">Vui lòng nhập đầy đủ thông tin đánh giá.</div>
+    <?php endif; ?>
+<?php endif; ?>
 <?php endif; ?> 
