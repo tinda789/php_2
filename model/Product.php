@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../config/config.php';
+
 class Product {
     // Lấy tất cả sản phẩm (có phân trang, lọc theo tên)
     public static function getAll($conn, $limit = 10, $offset = 0, $search = '', $category_id = 0) {
@@ -384,7 +386,13 @@ class Product {
 
     // Lấy sản phẩm theo id (dùng cho Cart)
     public static function findById($product_id) {
+        if (!isset($GLOBALS['conn'])) {
+            require_once __DIR__ . '/../config/config.php';
+        }
         $conn = $GLOBALS['conn'];
+        if (!$conn) {
+            throw new Exception('Database connection not found!');
+        }
         $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();

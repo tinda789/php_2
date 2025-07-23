@@ -33,6 +33,7 @@ if ($action === 'edit' && $user) {
         $last_name = trim($_POST['last_name']);
         $phone = trim($_POST['phone']);
         $email = trim($_POST['email']);
+        $avatar_path = $user['avatar']; // Giữ avatar cũ nếu không upload mới
 
         // Kiểm tra hợp lệ
         if (empty($first_name) || empty($last_name)) {
@@ -42,30 +43,124 @@ if ($action === 'edit' && $user) {
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "Email không hợp lệ!";
         } else {
-            // Kiểm tra trùng email với user khác
-            $stmt = $conn->prepare("SELECT id FROM users WHERE email = ? AND id != ?");
-            $stmt->bind_param("si", $email, $user['id']);
-            $stmt->execute();
-            if ($stmt->get_result()->num_rows > 0) {
-                $error = "Email đã được sử dụng!";
-            } else {
-                // Cập nhật
-                $stmt = $conn->prepare("UPDATE users SET first_name=?, last_name=?, phone=?, email=? WHERE id=?");
-                $stmt->bind_param("ssssi", $first_name, $last_name, $phone, $email, $user['id']);
-                if ($stmt->execute()) {
-                    $success = "Cập nhật thông tin thành công!";
-                    // Cập nhật lại session
-                    $_SESSION['user']['first_name'] = $first_name;
-                    $_SESSION['user']['last_name'] = $last_name;
-                    $_SESSION['user']['phone'] = $phone;
-                    $_SESSION['user']['email'] = $email;
-                    // Lấy lại thông tin mới nhất
-                    $user['first_name'] = $first_name;
-                    $user['last_name'] = $last_name;
-                    $user['phone'] = $phone;
-                    $user['email'] = $email;
+            // Xử lý xóa avatar
+            if (isset($_POST['remove_avatar']) && $_POST['remove_avatar'] == '1') {
+                // Xóa file avatar cũ nếu có
+                if (!empty($user['avatar']) && file_exists($user['avatar'])) {
+                    unlink($user['avatar']);
+                }
+                $avatar_path = null; // Xóa avatar
+            }
+            // Xử lý upload avatar mới hoặc ảnh đã crop
+            elseif (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+                $file = $_FILES['avatar'];
+                $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+                $max_size = 2 * 1024 * 1024; // 2MB
+
+                // Kiểm tra loại file
+                if (!in_array($file['type'], $allowed_types)) {
+                    $error = "Chỉ chấp nhận file JPG, PNG, GIF!";
+                } elseif ($file['size'] > $max_size) {
+                    $error = "File quá lớn! Tối đa 2MB.";
                 } else {
-                    $error = "Có lỗi khi cập nhật!";
+                    // Tạo thư mục uploads/avatars nếu chưa có
+                    $upload_dir = 'uploads/avatars/';
+                    if (!is_dir($upload_dir)) {
+                        mkdir($upload_dir, 0755, true);
+                    }
+
+                    // Tạo tên file unique
+                    $file_extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+                    $new_filename = 'avatar_' . uniqid() . '.' . $file_extension;
+                    $upload_path = $upload_dir . $new_filename;
+
+                    // Upload file
+                    if (move_uploaded_file($file['tmp_name'], $upload_path)) {
+                        // Xóa avatar cũ nếu có
+                        if (!empty($user['avatar']) && file_exists($user['avatar'])) {
+                            unlink($user['avatar']);
+                        }
+                        $avatar_path = $upload_path;
+                    } else {
+                        $error = "Có lỗi khi upload file!";
+                    }
+                }
+            }
+            // Xử lý ảnh đã được crop (base64)
+            elseif (isset($_POST['cropped_avatar']) && !empty($_POST['cropped_avatar'])) {
+                $cropped_data = $_POST['cropped_avatar'];
+                
+                // Kiểm tra xem có phải base64 image không
+                if (preg_match('/^data:image\/(jpeg|jpg|png|gif);base64,/', $cropped_data)) {
+                    // Tạo thư mục uploads/avatars nếu chưa có
+                    $upload_dir = 'uploads/avatars/';
+                    if (!is_dir($upload_dir)) {
+                        mkdir($upload_dir, 0755, true);
+                    }
+
+                    // Tạo tên file unique
+                    $new_filename = 'avatar_' . uniqid() . '.jpg';
+                    $upload_path = $upload_dir . $new_filename;
+
+                    // Lấy base64 data
+                    $base64_data = substr($cropped_data, strpos($cropped_data, ',') + 1);
+                    $image_data = base64_decode($base64_data);
+
+                    // Lưu file
+                    if (file_put_contents($upload_path, $image_data)) {
+                        // Xóa avatar cũ nếu có
+                        if (!empty($user['avatar']) && file_exists($user['avatar'])) {
+                            unlink($user['avatar']);
+                        }
+                        $avatar_path = $upload_path;
+                    } else {
+                        $error = "Có lỗi khi lưu ảnh đã crop!";
+                    }
+                } else {
+                    $error = "Dữ liệu ảnh không hợp lệ!";
+                }
+            }
+
+            if (empty($error)) {
+                // Kiểm tra trùng email với user khác
+                $stmt = $conn->prepare("SELECT id FROM users WHERE email = ? AND id != ?");
+                $stmt->bind_param("si", $email, $user['id']);
+                $stmt->execute();
+                if ($stmt->get_result()->num_rows > 0) {
+                    $error = "Email đã được sử dụng!";
+                } else {
+                    // Cập nhật
+                    if ($avatar_path === null) {
+                        $stmt = $conn->prepare("UPDATE users SET first_name=?, last_name=?, phone=?, email=?, avatar=NULL WHERE id=?");
+                        $stmt->bind_param("ssssi", $first_name, $last_name, $phone, $email, $user['id']);
+                    } else {
+                        $stmt = $conn->prepare("UPDATE users SET first_name=?, last_name=?, phone=?, email=?, avatar=? WHERE id=?");
+                        $stmt->bind_param("sssssi", $first_name, $last_name, $phone, $email, $avatar_path, $user['id']);
+                    }
+                    if ($stmt->execute()) {
+                        $success = "Cập nhật thông tin thành công!";
+                        // Cập nhật lại session
+                        $_SESSION['user']['first_name'] = $first_name;
+                        $_SESSION['user']['last_name'] = $last_name;
+                        $_SESSION['user']['phone'] = $phone;
+                        $_SESSION['user']['email'] = $email;
+                        $_SESSION['user']['avatar'] = $avatar_path;
+                        // Lấy lại thông tin mới nhất
+                        $user['first_name'] = $first_name;
+                        $user['last_name'] = $last_name;
+                        $user['phone'] = $phone;
+                        $user['email'] = $email;
+                        $user['avatar'] = $avatar_path;
+                        
+                        // Thông báo thành công
+                        if ($avatar_path === null) {
+                            $success = "Cập nhật thông tin thành công! Ảnh đại diện đã được xóa.";
+                        } else {
+                            $success = "Cập nhật thông tin thành công!";
+                        }
+                    } else {
+                        $error = "Có lỗi khi cập nhật!";
+                    }
                 }
             }
         }

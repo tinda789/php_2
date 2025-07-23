@@ -152,6 +152,7 @@ if ($action === 'category_index') {
     $categories = Category::getAll($conn, $limit, $offset, $search);
     $total = Category::countAll($conn, $search);
     $totalPages = ceil($total / $limit);
+    $current_page = $page;
 
     $view_file = 'view/admin/category_index.php';
     include 'view/layout/admin_layout.php';
@@ -192,14 +193,12 @@ if ($action === 'category_edit') {
         header('Location: index.php?controller=admin&action=category_index');
         exit;
     }
-
     $category = Category::getById($conn, $id);
     if (!$category) {
         header('Location: index.php?controller=admin&action=category_index&error=not_found');
         exit;
     }
-
-    $parentCategories = Category::getParents($conn);
+    $parents = Category::getParents($conn);
     $view_file = 'view/admin/edit_category.php';
     include 'view/layout/admin_layout.php';
     exit;
@@ -552,6 +551,230 @@ if ($action === 'product_delete') {
         header('Location: index.php?controller=admin&action=product_index&error=delete_failed');
         exit;
     }
+}
+
+if ($action === 'order_manage') {
+    require_once 'model/Order.php';
+    $orders = Order::getAll($conn);
+    $view_file = 'view/admin/order_manage.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'order_update_status') { // thinh
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = (int)($_POST['id'] ?? 0);
+        $status = $_POST['status'] ?? '';
+        require_once 'model/Order.php';
+        $result = Order::updateStatus($conn, $id, $status);
+        if ($result) {
+            $_SESSION['order_message'] = 'Cập nhật trạng thái thành công!';
+            header('Location: index.php?controller=admin&action=order_manage');
+            exit;
+        } else {
+            echo '
+            <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+                <div style="background: #2d333b; color: #ff5252; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+                    Cập nhật trạng thái KHÔNG thành công!<br>Đang chuyển về trang quản lý đơn hàng...
+                </div>
+            </div>
+            <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=order_manage">';
+            exit;
+        }
+    }
+}
+
+if ($action === 'order_confirm') { // thinh
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = (int)($_POST['id'] ?? 0);
+        require_once 'model/Order.php';
+        // Kiểm tra trạng thái hiện tại
+        $stmt = $conn->prepare('SELECT status FROM orders WHERE id=?');
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $order = $result->fetch_assoc();
+        if ($order && in_array($order['status'], ['pending', 'confirmed', 'processing', 'shipped'])) { // chỉ cho xác nhận nếu chưa giao/hủy/hoàn tiền
+            Order::confirm($conn, $id);
+            echo '
+            <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+                <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+                    Đã xác nhận đơn hàng thành công!<br>Đang chuyển về trang quản lý đơn hàng...
+                </div>
+            </div>
+            <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=order_manage">'; // thinh
+        } else {
+            echo '
+            <div style="width: 100vw; height: 100vh; background: repeating-linear-gradient(135deg, #ffeb3b, #ffeb3b 20px, #23272f 20px, #23272f 40px); display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;">
+                <div style="
+                    background: #fff;
+                    border: 6px solid #ffeb3b;
+                    border-radius: 16px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+                    padding: 48px 0 36px 0;
+                    font-size: 2.1rem;
+                    font-weight: 700;
+                    text-align: center;
+                    width: 100vw;
+                    max-width: 600px;
+                    letter-spacing: 0.5px;
+                    color: #ff5252;
+                    position: relative;
+                ">
+                    <div style="font-size: 3.5rem; margin-bottom: 18px;">
+                        &#9888;
+                    </div>
+                    Không thể xác nhận đơn hàng này!<br>
+                    Đang chuyển về trang quản lý đơn hàng...
+                </div>
+            </div>
+            <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=order_manage">';
+            exit;
+        }
+    }
+}
+
+if ($action === 'coupon_manage') { // thinh
+    require_once 'model/Coupon.php';
+    $coupons = Coupon::getAll($conn);
+    $view_file = 'view/admin/coupon_manage.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'coupon_create') { // thinh
+    $view_file = 'view/admin/coupon_create.php';
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'coupon_store') { // thinh
+    require_once 'model/Coupon.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data = [
+            'code' => $_POST['code'],
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'type' => $_POST['type'],
+            'value' => (float)$_POST['value'],
+            'minimum_amount' => (float)$_POST['minimum_amount'],
+            'maximum_discount' => (float)$_POST['maximum_discount'],
+            'usage_limit' => (int)$_POST['usage_limit'],
+            'start_date' => $_POST['start_date'],
+            'end_date' => $_POST['end_date'],
+            'is_active' => isset($_POST['is_active']) ? 1 : 0,
+            'payment_method' => $_POST['payment_method'] ?? 'all'
+        ];
+        Coupon::create($conn, $data);
+        // ĐÃ ĐÁNH DẤU THEO YÊU CẦU - HIỆU ỨNG ĐẸP, CHỮ XANH NỀN TRẮNG
+        echo '
+        <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;z-index:9999;background:rgba(0,0,0,0.1);">
+          <div class="alert text-center shadow animate__animated animate__bounceIn" style="background:#fff;color:#1976d2;border:1.5px solid #1976d2;font-size:1.5rem;max-width:420px;">
+            <div style="font-size:3rem;line-height:1;">
+              <i class=\"fa fa-check-circle\" style=\"color:#1976d2;\"></i>
+            </div>
+            <div class="mt-2 mb-2 fw-bold" style="font-size:1.2em;">
+              Đã tạo mã giảm giá thành công!
+            </div>
+            <div>
+              <small>Đang chuyển về trang quản lý mã giảm giá...</small>
+            </div>
+          </div>
+        </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
+        exit;
+    }
+}
+
+if ($action === 'coupon_edit' && isset($_GET['id'])) { // thinh
+    require_once 'model/Coupon.php';
+    $id = (int)$_GET['id'];
+    $coupon = Coupon::getById($conn, $id);
+    if (!$coupon) {
+        header('Location: index.php?controller=admin&action=coupon_manage&error=not_found');
+        exit;
+    }
+    $is_edit = true;
+    $view_file = 'view/admin/coupon_create.php'; // Dùng lại form tạo
+    include 'view/layout/admin_layout.php';
+    exit;
+}
+
+if ($action === 'coupon_update' && isset($_POST['id'])) { // thinh
+    require_once 'model/Coupon.php';
+    $id = (int)$_POST['id'];
+    $data = [
+        'code' => $_POST['code'],
+        'name' => $_POST['name'],
+        'description' => $_POST['description'],
+        'type' => $_POST['type'],
+        'value' => (float)$_POST['value'],
+        'minimum_amount' => (float)$_POST['minimum_amount'],
+        'maximum_discount' => (float)$_POST['maximum_discount'],
+        'usage_limit' => (int)$_POST['usage_limit'],
+        'start_date' => $_POST['start_date'],
+        'end_date' => $_POST['end_date'],
+        'is_active' => isset($_POST['is_active']) ? 1 : 0,
+        'payment_method' => $_POST['payment_method'] ?? 'all'
+    ];
+    Coupon::update($conn, $id, $data);
+    // ĐÃ ĐÁNH DẤU THEO YÊU CẦU - HIỆU ỨNG ĐẸP, CHỮ XANH NỀN TRẮNG
+    echo '
+    <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;z-index:9999;background:rgba(0,0,0,0.1);">
+      <div class="alert text-center shadow animate__animated animate__bounceIn" style="background:#fff;color:#1976d2;border:1.5px solid #1976d2;font-size:1.5rem;max-width:420px;">
+        <div style="font-size:3rem;line-height:1;">
+          <i class=\"fa fa-check-circle\" style=\"color:#1976d2;\"></i>
+        </div>
+        <div class="mt-2 mb-2 fw-bold" style="font-size:1.2em;">
+          Đã cập nhật mã giảm giá thành công!
+        </div>
+        <div>
+          <small>Đang chuyển về trang quản lý mã giảm giá...</small>
+        </div>
+      </div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
+    exit;
+}
+
+if ($action === 'coupon_delete' && isset($_GET['id'])) { // thinh
+    require_once 'model/Coupon.php';
+    $id = (int)$_GET['id'];
+    Coupon::delete($conn, $id);
+    echo '
+    <div style="width: 100vw; height: 100vh; background: #23272f; display: flex; justify-content: center; align-items: center; margin: 0; position: fixed; top: 0; left: 0; z-index: 9999;"> <!-- thinh -->
+        <div style="background: #2d333b; color: #4fc3f7; padding: 48px 0; border-radius: 16px; font-size: 2.1rem; font-weight: 700; box-shadow: 0 2px 16px rgba(0,0,0,0.13); text-align: center; width: 100vw; max-width: 100vw; letter-spacing: 0.5px;"> <!-- thinh -->
+            Đã xóa mã giảm giá thành công!<br>Đang chuyển về trang quản lý mã giảm giá...
+        </div>
+    </div>
+    <meta http-equiv="refresh" content="1.5;url=index.php?controller=admin&action=coupon_manage">';
+    exit;
+}
+
+if ($action === 'export_orders_excel') {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once 'model/Order.php';
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->fromArray(['Mã đơn', 'Ngày đặt', 'User ID', 'Tổng tiền', 'Trạng thái'], NULL, 'A1');
+    $orders = Order::getAll($conn);
+    $row = 2;
+    foreach ($orders as $order) {
+        $sheet->setCellValue('A'.$row, $order['order_number']);
+        $sheet->setCellValue('B'.$row, $order['order_date']);
+        $sheet->setCellValue('C'.$row, $order['user_id']);
+        $sheet->setCellValue('D'.$row, $order['total_amount']);
+        $sheet->setCellValue('E'.$row, $order['status']);
+        $row++;
+    }
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="orders.xlsx"');
+    header('Cache-Control: max-age=0');
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('php://output');
+    exit;
 }
 
 // Helper function to create slug

@@ -229,7 +229,10 @@ class NewsController {
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $per_page = 8;
         $offset = ($page - 1) * $per_page;
-        $news_list = $this->newsModel->getAllNews(null, 1, $per_page, $offset);
+        // Lấy danh mục nếu có
+        $category = isset($_GET['category']) ? $_GET['category'] : null;
+        $is_active = 1;
+        $news_list = $this->newsModel->getAllNews($category, $is_active, $per_page, $offset);
         $total_news = count($news_list); // Có thể dùng hàm countNews nếu muốn phân trang chuẩn
         $total_pages = ceil($total_news / $per_page);
         include 'view/user/news_list.php';

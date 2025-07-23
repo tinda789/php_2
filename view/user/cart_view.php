@@ -30,9 +30,16 @@
               <td>
                 <div class="ratio ratio-4x3 bg-light rounded-3 overflow-hidden mx-auto" style="width:90px;">
                   <?php 
-                  require_once 'helpers/image_helper.php';
-                  $img = !empty($item['images'][0]['image_url']) ? $item['images'][0]['image_url'] : '';
-                  $img_url = getImageUrl($img);
+                  // thanhdat: xử lý lấy ảnh sản phẩm tối ưu
+                  require_once 'helpers/image_helper.php'; // thanhdat
+                  $img = '';
+                  if (!empty($item['images'][0]) && is_array($item['images'][0])) { // thanhdat
+                      $img = $item['images'][0]['image_url'] ?? $item['images'][0]['url'] ?? $item['images'][0]['image'] ?? '';
+                  } elseif (!empty($item['images'][0])) { // thanhdat
+                      $img = $item['images'][0]; // thanhdat
+                  }
+                  $img_url = getImageUrl($img); // thanhdat
+                  if (!$img_url) $img_url = 'https://via.placeholder.com/90x68?text=No+Image'; // thanhdat
                   ?>
                   <img src="<?php echo htmlspecialchars($img_url); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" class="img-fluid h-100 w-100 object-fit-cover rounded-3">
                 </div>
@@ -67,7 +74,7 @@
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mt-4">
       <a href="index.php?controller=product&action=list" class="btn btn-outline-primary btn-lg"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
-      <button type="submit" class="btn btn-success btn-lg px-5"><i class="fas fa-credit-card"></i> Thanh toán</button>
+      <button type="submit" class="btn btn-success btn-lg px-5"><i class="fas fa-credit-card"></i> Thanh toán VNPAY</button>
     </div>
     </form>
   <?php endif; ?>

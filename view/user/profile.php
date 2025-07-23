@@ -8,7 +8,13 @@
 <?php else: ?>
     <div class="profile-section">
         <div class="profile-card">
-            <div class="profile-avatar">👤</div>
+            <div class="profile-avatar">
+                <?php if (!empty($_SESSION['user']['avatar'])): ?>
+                    <img src="<?php echo htmlspecialchars($_SESSION['user']['avatar']); ?>" alt="Avatar" class="avatar-img">
+                <?php else: ?>
+                    👤
+                <?php endif; ?>
+            </div>
             <h2 class="profile-title">Thông tin cá nhân</h2>
             <table class="profile-table">
                 <tr><td>Họ tên:</td><td><?php echo htmlspecialchars($_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name']); ?></td></tr>
@@ -25,6 +31,7 @@
     .profile-section { display: flex; justify-content: center; align-items: flex-start; min-height: 60vh; background: #f4f6fb; }
     .profile-card { background: #fff; border-radius: 14px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 38px 36px 32px 36px; max-width: 420px; width: 100%; margin: 48px 0; text-align: center; }
     .profile-avatar { font-size: 3.2rem; margin-bottom: 12px; }
+    .avatar-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; }
     .profile-title { color: #007bff; margin-bottom: 24px; font-size: 1.5rem; }
     .profile-table { width: 100%; margin-bottom: 18px; font-size: 1.08rem; }
     .profile-table td { padding: 8px 0; text-align: left; }

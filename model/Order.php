@@ -1,11 +1,20 @@
 <?php
 // model/Order.php
 class Order {
+    // Lấy tất cả đơn hàng
+    public static function getAll($conn) {
+        $result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $orders[] = $row;
+        }
+        return $orders;
+    }
+
     // Tạo đơn hàng mới
     public static function create($conn, $data, $items, $coupons = []) {
         $conn->begin_transaction();
         try {
-            // Tạo order
             $stmt = $conn->prepare("INSERT INTO orders (user_id, order_number, status, payment_status, payment_method, subtotal, tax_amount, shipping_fee, discount_amount, total_amount, shipping_address, billing_address, notes, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
             $stmt->bind_param(
                 "isssssddddsss",
@@ -40,6 +49,10 @@ class Order {
                     $item['total_price']
                 );
                 if (!$stmt_item->execute()) throw new Exception('Thêm sản phẩm vào đơn hàng thất bại');
+                // Trừ số lượng hàng trong kho
+                $stmt_update_stock = $conn->prepare("UPDATE products SET stock = stock - ? WHERE id = ?");
+                $stmt_update_stock->bind_param("ii", $item['quantity'], $item['product_id']);
+                if (!$stmt_update_stock->execute()) throw new Exception('Trừ kho thất bại');
             }
 
             // Thêm coupon nếu có
@@ -105,28 +118,28 @@ class Order {
         return $stmt->execute();
     }
 
-    // Thống kê tổng doanh thu
+    // thanhdat: Thống kê tổng doanh thu
     public static function getTotalRevenue($conn) {
         $sql = "SELECT SUM(total_amount) as total FROM orders WHERE status IN ('completed', 'delivered')";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         return $row['total'] ?? 0;
     }
-    // Thống kê tổng số đơn hoàn thành
+    // thanhdat: Thống kê tổng số đơn hoàn thành
     public static function getTotalCompletedOrders($conn) {
         $sql = "SELECT COUNT(*) as total FROM orders WHERE status IN ('completed', 'delivered')";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         return $row['total'] ?? 0;
     }
-    // Thống kê tổng số đơn chờ xử lý
+    // thanhdat: Thống kê tổng số đơn chờ xử lý
     public static function getTotalPendingOrders($conn) {
         $sql = "SELECT COUNT(*) as total FROM orders WHERE status IN ('pending', 'processing')";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         return $row['total'] ?? 0;
     }
-    // Thống kê tổng số đơn bị hủy
+    // thanhdat: Thống kê tổng số đơn bị hủy
     public static function getTotalCancelledOrders($conn) {
         $sql = "SELECT COUNT(*) as total FROM orders WHERE status = 'cancelled'";
         $result = $conn->query($sql);
@@ -134,7 +147,7 @@ class Order {
         return $row['total'] ?? 0;
     }
 
-    // Lấy doanh thu từng tháng trong năm hiện tại
+    // thanhdat: Lấy doanh thu từng tháng trong năm hiện tại
     public static function getMonthlyRevenue($conn) {
         $sql = "SELECT MONTH(created_at) as month, SUM(total_amount) as revenue FROM orders WHERE status IN ('completed', 'delivered') AND YEAR(created_at) = YEAR(CURDATE()) GROUP BY MONTH(created_at) ORDER BY month";
         $result = $conn->query($sql);
@@ -144,7 +157,7 @@ class Order {
         }
         return $data;
     }
-    // Lấy số đơn hàng theo trạng thái
+    // thanhdat: Lấy số đơn hàng theo trạng thái
     public static function getOrderStatusStats($conn) {
         $sql = "SELECT status, COUNT(*) as total FROM orders GROUP BY status";
         $result = $conn->query($sql);
@@ -153,6 +166,16 @@ class Order {
             $data[$row['status']] = (int)$row['total'];
         }
         return $data;
+    }
+
+    // thanhdat: Xác nhận đơn hàng (ví dụ)
+    public static function confirm($conn, $id) {
+        self::updateStatus($conn, $id, 'confirmed');
+    }
+
+    // thanhdat: Hủy đơn hàng (ví dụ)
+    public static function cancel($conn, $id) {
+        self::updateStatus($conn, $id, 'cancelled');
     }
 }
 ?> 

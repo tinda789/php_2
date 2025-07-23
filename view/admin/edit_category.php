@@ -1,3 +1,5 @@
+<?php // thanhdat: merge giao diện Bootstrap + upload file + preview ảnh
+?>
 <div class="container py-4">
   <div class="row justify-content-center">
     <div class="col-lg-7 col-md-10">
@@ -9,7 +11,7 @@
           <?php if (!empty($error)): ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
           <?php endif; ?>
-          <form method="post" action="index.php?controller=admin&action=category_update&id=<?php echo $category['id']; ?>">
+          <form method="post" action="index.php?controller=admin&action=category_update&id=<?php echo $category['id']; ?>" enctype="multipart/form-data"> <!-- thanhdat: thêm enctype để upload file -->
             <input type="hidden" name="id" value="<?php echo $category['id']; ?>">
             <div class="mb-3">
               <label for="name" class="form-label">Tên danh mục *</label>
@@ -35,8 +37,14 @@
               <input type="text" class="form-control" id="slug" name="slug" required value="<?php echo htmlspecialchars($_POST['slug'] ?? $category['slug'] ?? ''); ?>">
             </div>
             <div class="mb-3">
-              <label for="image" class="form-label">Ảnh (URL)</label>
-              <input type="text" class="form-control" id="image" name="image" value="<?php echo htmlspecialchars($_POST['image'] ?? $category['image'] ?? ''); ?>">
+              <label for="image" class="form-label">Ảnh (upload hoặc URL)</label> <!-- thanhdat: cho phép upload file hoặc nhập URL -->
+              <?php if (!empty($category['image'])): ?>
+                <div class="mb-2">
+                  <img src="<?php echo htmlspecialchars($category['image']); ?>" alt="Ảnh danh mục" style="max-width:120px;max-height:80px;border-radius:8px;box-shadow:0 2px 8px #0002;">
+                </div>
+              <?php endif; ?>
+              <input type="file" class="form-control mb-2" id="image_file" name="image_file"> <!-- thanhdat: upload file -->
+              <input type="text" class="form-control" id="image" name="image" placeholder="Hoặc nhập URL ảnh" value="<?php echo htmlspecialchars($_POST['image'] ?? $category['image'] ?? ''); ?>"> <!-- thanhdat: nhập URL ảnh -->
             </div>
             <div class="form-check mb-3">
               <input type="checkbox" class="form-check-input" id="is_active" name="is_active" <?php if ((isset($_POST['is_active']) && $_POST['is_active']) || (!isset($_POST['is_active']) && $category['is_active'])) echo 'checked'; ?> >
@@ -51,4 +59,4 @@
       </div>
     </div>
   </div>
-</div> 
+</div>

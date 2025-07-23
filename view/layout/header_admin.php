@@ -37,8 +37,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link<?php if (strpos($action ?? '', 'order') !== false) echo ' active'; ?>" href="index.php?controller=admin&action=order_index">
+          <a class="nav-link<?php if (strpos($action ?? '', 'order') !== false) echo ' active'; ?>" href="index.php?controller=admin&action=order_manage">
             <i class="fa-solid fa-file-invoice-dollar me-1"></i> Đơn hàng
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link<?php if (strpos($action ?? '', 'coupon') !== false) echo ' active'; ?>" href="index.php?controller=admin&action=coupon_manage">
+            <i class="fa-solid fa-ticket me-1"></i> Mã giảm giá
           </a>
         </li>
         <li class="nav-item">

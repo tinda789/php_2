@@ -4,14 +4,14 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../model/Cart.php';
 require_once __DIR__ . '/../model/Order.php';
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 class CheckoutController {
     // Cấu hình VNPay - đưa ra thành constant để đảm bảo nhất quán
-    const VNPAY_TMN_CODE ='IZUX3WYL';
-    const VNPAY_HASH_SECRET ='ZKDYIL6HKT28NPKKKH5E37BP5LQ4I3Z2';
+    const VNPAY_TMN_CODE ='4L6Y0LF7';
+    const VNPAY_HASH_SECRET ='1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6';
     const VNPAY_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
-    const VNPAY_RETURN_URL = 'http://localhost:8080/index.php?controller=checkout&action=vnpay_return';
-
+    const VNPAY_RETURN_URL = 'http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return';
     public function checkout() {
         // Debug: ghi log dữ liệu POST và SESSION user
         file_put_contents('debug_checkout.txt', "POST:\n".print_r($_POST, true)."\nSESSION user:\n".print_r($_SESSION['user'] ?? null, true));
@@ -33,8 +33,8 @@ class CheckoutController {
             if (empty($selected)) {
                 $_SESSION['error'] = 'Vui lòng chọn ít nhất một sản phẩm để thanh toán!';
                 header('Location: index.php?controller=cart&action=view');
-                exit;
-            }
+            exit;
+        }
         } else {
             // Nếu vào trực tiếp không qua POST, mặc định chọn tất cả
             foreach ($cart as $item) $selected[] = $item['id'];
@@ -51,6 +51,24 @@ class CheckoutController {
             exit;
         }
         
+        // Kiểm tra tồn kho trước khi tạo đơn hàng
+        foreach ($cart_selected as $item) {
+            $stmt = $GLOBALS['conn']->prepare("SELECT stock FROM products WHERE id = ?");
+            $stmt->bind_param("i", $item['id']);
+            $stmt->execute();
+            $stmt->bind_result($stock);
+            $stmt->fetch();
+            $stmt->close();
+            if ($stock < $item['quantity']) {
+                $error = "Sản phẩm '{$item['name']}' không đủ hàng trong kho (còn $stock cái)!";
+                // Ghi log cho admin
+                $user_id = $_SESSION['user']['id'] ?? 0;
+                file_put_contents('out_of_stock.log', date('Y-m-d H:i:s') . " - UserID: {$user_id} - Sản phẩm: {$item['name']} - Đặt: {$item['quantity']} - Còn: $stock\n", FILE_APPEND);
+                require __DIR__ . '/../view/user/checkout.php';
+                return;
+            }
+        }
+        
         // Nếu submit form đặt hàng
         if (isset($_POST['name'], $_POST['phone'], $_POST['address'], $_POST['city'], $_POST['district'], $_POST['ward'])) {
             $user_id = $_SESSION['user']['id'] ?? null;
@@ -64,7 +82,7 @@ class CheckoutController {
             ], JSON_UNESCAPED_UNICODE);
             $billing_address = $shipping_address;
             $notes = $_POST['notes'] ?? '';
-            $payment_method = $_POST['payment_method'] ?? 'vnpay';
+            $payment_method = 'vnpay'; // Chỉ cho phép VNPay
             
             $subtotal = 0;
             $items = [];
@@ -114,10 +132,10 @@ class CheckoutController {
                 // Chuyển hướng sang trang thanh toán VNPay
                 if ($payment_method === 'vnpay') {
                     header('Location: index.php?controller=checkout&action=pay_vnpay&order_id=' . $order_id);
-                    exit;
-                } else {
+            exit;
+        } else {
                     header('Location: index.php?controller=checkout&action=success&order_id=' . $order_id);
-                    exit;
+            exit;
                 }
             } else {
                 $error = 'Có lỗi khi tạo đơn hàng!';
@@ -144,8 +162,6 @@ class CheckoutController {
             echo 'Không tìm thấy đơn hàng!';
             exit;
         }
-        
-        // Sử dụng constant để đảm bảo nhất quán
         $vnp_TmnCode = self::VNPAY_TMN_CODE;
         $vnp_HashSecret = self::VNPAY_HASH_SECRET;
         $vnp_Url = self::VNPAY_URL;
@@ -180,18 +196,23 @@ class CheckoutController {
         // Tạo URL thanh toán
         $query = [];
         foreach ($inputData as $key => $value) {
+            // Mã hóa giá trị, đặc biệt chú ý đến ký tự đặc biệt
             $query[] = urlencode($key) . "=" . urlencode($value);
         }
+        
+        // Thêm chữ ký vào URL
         $vnp_Url .= "?" . implode('&', $query) . "&vnp_SecureHash=" . $vnp_SecureHash;
         
         // Debug log
-        file_put_contents('vnpay_debug.txt', 
-            "INPUT DATA:\n" . print_r($inputData, true) . 
-            "\nHASH SECRET: " . $vnp_HashSecret . 
-            "\nSECURE HASH: " . $vnp_SecureHash . 
-            "\nURL: " . $vnp_Url
-        );
+        $debugInfo = "INPUT DATA:\n" . print_r($inputData, true) . 
+                   "\nHASH SECRET: " . $vnp_HashSecret . 
+                   "\nSECURE HASH: " . $vnp_SecureHash . 
+                   "\nFINAL URL: " . $vnp_Url . "\n\n";
         
+        // Ghi log đầy đủ
+        file_put_contents('vnpay_debug.txt', $debugInfo, FILE_APPEND);
+        
+        // Chuyển hướng đến VNPay
         header('Location: ' . $vnp_Url);
         exit;
     }
@@ -233,13 +254,18 @@ class CheckoutController {
         );
         
         if ($secureHash === $vnp_SecureHash && $order) {
-            if ($_GET['vnp_ResponseCode'] == '00') {
+            $responseCode = $_GET['vnp_ResponseCode'] ?? '';
+            if ($responseCode === '00') {
                 Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'paid');
                 Order::updateStatus($GLOBALS['conn'], $order['id'], 'confirmed');
                 $message = "Thanh toán thành công! Đơn hàng của bạn đã được xác nhận.";
-            } else {
+            } else if (!empty($responseCode)) {
+                // Có mã lỗi từ VNPay
                 Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'failed');
-                $message = "Thanh toán thất bại hoặc bị hủy.";
+                $message = "Thanh toán thất bại. Mã lỗi: " . $responseCode;
+            } else {
+                // Không có mã phản hồi từ VNPay
+                $message = "Không nhận được phản hồi từ cổng thanh toán. Vui lòng kiểm tra lại trạng thái đơn hàng.";
             }
         } else {
             $message = "Xác thực giao dịch không hợp lệ!";
@@ -307,22 +333,40 @@ class CheckoutController {
      * Tạo chữ ký VNPay theo đúng chuẩn
      */
     private function createVnpayHash($data, $hashSecret) {
-        // Sắp xếp theo key
+        // Sắp xếp các trường theo thứ tự alphabet
         ksort($data);
         
-        // Tạo hash string
+        // Tạo chuỗi dữ liệu cần mã hóa
         $hashData = '';
+        $i = 0;
+        $dataCount = count($data);
+        
         foreach ($data as $key => $value) {
-            if ($key != "vnp_SecureHash" && $key != "vnp_SecureHashType") {
-                $hashData .= $key . "=" . $value . "&";
+            // Bỏ qua các trường không cần thiết
+            if ($key === 'vnp_SecureHash' || $key === 'vnp_SecureHashType') {
+                continue;
+            }
+            
+            // Chỉ thêm vào nếu giá trị không rỗng
+            if (strlen($value) > 0) {
+                $i++;
+                // Không thêm dấu & sau tham số cuối cùng
+                $hashData .= ($i === 1 ? '' : '&') . urlencode($key) . '=' . urlencode($value);
             }
         }
         
-        // Loại bỏ dấu & cuối cùng
-        $hashData = rtrim($hashData, "&");
+        // Mã hóa bằng HMAC-SHA256
+        $signature = hash_hmac('sha512', $hashData, $hashSecret);
         
-        // Tạo hash
-        return hash_hmac('sha512', $hashData, $hashSecret);
+        // Ghi log để debug
+        $debugInfo = "==============================\n";
+        $debugInfo .= "RAW DATA:\n" . print_r($data, true) . "\n";
+        $debugInfo .= "HASH DATA: " . $hashData . "\n";
+        $debugInfo .= "HASH SECRET: " . $hashSecret . "\n";
+        $debugInfo .= "GENERATED SIGNATURE: " . $signature . "\n\n";
+        file_put_contents('vnpay_hash_debug.txt', $debugInfo, FILE_APPEND);
+        
+        return $signature;
     }
 
     /**
@@ -344,6 +388,7 @@ class CheckoutController {
         return '127.0.0.1';
     }
 }
+
 
 // Router đơn giản cho controller này
 $action = $_GET['action'] ?? 'checkout';
