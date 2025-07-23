@@ -1,16 +1,23 @@
 <?php
 class Brand {
-    public static function getAll($conn) {
-        $sql = 'SELECT * FROM brands';
-        $stmt = $conn->prepare($sql);
+    public static function getAll($conn, $search = '') {
+        if ($search !== '') {
+            $sql = 'SELECT * FROM brands WHERE name LIKE ?';
+            $stmt = $conn->prepare($sql);
+            $like = '%' . $search . '%';
+            $stmt->bind_param('s', $like);
+        } else {
+            $sql = 'SELECT * FROM brands';
+            $stmt = $conn->prepare($sql);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
         $brands = [];
         while ($row = $result->fetch_assoc()) {
             $brands[] = $row;
         }
-    return $brands;
-}
+        return $brands;
+    }
 
     public static function getById($conn, $id) {
         $sql = 'SELECT * FROM brands WHERE id = ?';

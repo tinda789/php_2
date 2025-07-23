@@ -14,7 +14,8 @@ $action = $_GET['action'] ?? 'index';
 // HIỂN THỊ DANH SÁCH THƯƠNG HIỆU
 // ------------------------
 if ($action === 'index') {
-    $brands = Brand::getAll($conn);
+    $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+    $brands = Brand::getAll($conn, $search);
     $view_file = 'view/admin/brand_index.php';  
     include 'view/layout/admin_layout.php';
     exit;
@@ -56,7 +57,7 @@ if ($action === 'create') {
             ];
 
             if (Brand::create($conn, $data)) {
-                header('Location: index.php?controller=admin&action=brand_index&success=1');
+                header('Location: index.php?controller=brand&action=index&success=1');
                 exit;
             } else {
                 $error = 'Có lỗi khi thêm thương hiệu!';
@@ -107,7 +108,7 @@ if ($action === 'edit' && isset($_GET['id'])) {
             $error = 'Tên thương hiệu không được để trống!';
         } else {
             if (Brand::update($conn, $id, $data)) {
-                header('Location: index.php?controller=admin&action=brand_index&success=2');
+                header('Location: index.php?controller=brand&action=index&success=2');
                 exit;
             } else {
                 $error = 'Có lỗi khi cập nhật thương hiệu!';
@@ -126,10 +127,10 @@ if ($action === 'edit' && isset($_GET['id'])) {
 if ($action === 'delete' && isset($_GET['id'])) {
     $id = (int)$_GET['id'];
     if (Brand::delete($conn, $id)) {
-        header('Location: index.php?controller=admin&action=brand_index&success=3');
+        header('Location: index.php?controller=brand&action=index&success=3');
         exit;
     } else {
-        header('Location: index.php?controller=admin&action=brand_index&error=delete_failed');
+        header('Location: index.php?controller=brand&action=index&error=delete_failed');
         exit;
     }
 }

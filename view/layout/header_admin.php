@@ -42,6 +42,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link<?php if (($controller ?? '') === 'brand') echo ' active'; ?>" href="index.php?controller=brand&action=index">
+            <i class="fa-solid fa-image me-1"></i> Thương hiệu
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link<?php if (($controller ?? '') === 'news') echo ' active'; ?>" href="index.php?controller=news&action=index">
             <i class="fa-solid fa-newspaper me-1"></i> Tin tức
           </a>

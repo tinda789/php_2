@@ -65,6 +65,18 @@ if ($controller === 'banner') {
     } else {
         $productController->index();
     }
+} elseif ($controller === 'brand') {
+    require 'controller/BrandController.php';
+    $brandController = new BrandController();
+    if (method_exists($brandController, $action)) {
+        if (isset($_GET['id'])) {
+            $brandController->$action($_GET['id']);
+        } else {
+            $brandController->$action();
+        }
+    } else {
+        $brandController->index();
+    }
 } elseif ($controller === 'cart') {
     require 'controller/CartController.php';
     $cartController = new CartController();
