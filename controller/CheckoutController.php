@@ -131,30 +131,23 @@ class CheckoutController {
         $vnp_TmnCode = '4L6Y0LF7';
         $vnp_HashSecret = '1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6';
         $vnp_Url = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
-        $vnp_Returnurl = 'http://localhost:8000/index.php?controller=checkout&action=vnpay_return';
-        
-        $vnp_TxnRef = $order['order_number'];
-        $vnp_OrderInfo = 'Thanh toan don hang #' . $order['order_number'];
-        $vnp_OrderType = 'other';
-        $vnp_Amount = (int)round($order['total_amount'] * 100); // Đảm bảo là số nguyên
-        $vnp_Locale = 'vn';
-        $vnp_BankCode = '';
-        $vnp_IpAddr = ($_SERVER['REMOTE_ADDR'] === '::1' || $_SERVER['REMOTE_ADDR'] === 'localhost') ? '127.0.0.1' : $_SERVER['REMOTE_ADDR'];
-        
-        $inputData = array(
-            "vnp_Version" => "2.1.0",
-            "vnp_TmnCode" => $vnp_TmnCode,
-            "vnp_Amount" => $vnp_Amount,
-            "vnp_Command" => "pay",
+        $inputData = [
+            "vnp_Version"    => "2.1.0",
+            "vnp_TmnCode"    => $vnp_TmnCode,
+            "vnp_Amount"     => (int)round($order['total_amount'] * 100), // ĐÚNG CHUẨN VNPAY: số tiền x 100
+            "vnp_Command"    => "pay",
             "vnp_CreateDate" => date('YmdHis'),
-            "vnp_CurrCode" => "VND",
-            "vnp_IpAddr" => $vnp_IpAddr,
-            "vnp_Locale" => $vnp_Locale,
-            "vnp_OrderInfo" => $vnp_OrderInfo,
-            "vnp_OrderType" => $vnp_OrderType,
-            "vnp_Returnurl" => $vnp_Returnurl,
-            "vnp_TxnRef" => $vnp_TxnRef
-        );
+            "vnp_CurrCode"   => "VND",
+            "vnp_IpAddr"     => ($_SERVER['REMOTE_ADDR'] === '::1' || $_SERVER['REMOTE_ADDR'] === 'localhost') ? '127.0.0.1' : $_SERVER['REMOTE_ADDR'],
+            "vnp_Locale"     => "vn",
+            "vnp_OrderInfo"  => 'Thanh toan don hang ' . $order['order_number'],
+            "vnp_OrderType"  => "other",
+            "vnp_Returnurl"  => 'http://localhost:8000/index.php?controller=checkout&action=vnpay_return',
+            "vnp_TxnRef"     => $order['order_number']
+        ];
+        $vnp_HashSecret = '1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6';
+        $vnp_Url = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
+
         // Sắp xếp key theo alphabet
         ksort($inputData);
         $query = [];
@@ -163,10 +156,17 @@ class CheckoutController {
             $query[] = urlencode($key) . "=" . urlencode($value);
             $hashdata[] = $key . "=" . $value;
         }
-        $vnp_Url .= "?" . implode('&', $query);
-        $vnp_SecureHash = hash_hmac('sha512', implode('&', $hashdata), $vnp_HashSecret);
-        $vnp_Url .= '&vnp_SecureHash=' . $vnp_SecureHash;
-        file_put_contents('vnpay_debug.txt', print_r($inputData, true) . "\nURL: " . $vnp_Url);
+        $hashdataString = implode('&', $hashdata);
+        $vnp_SecureHash = hash_hmac('sha512', $hashdataString, $vnp_HashSecret);
+        $vnp_Url .= "?" . implode('&', $query) . '&vnp_SecureHash=' . $vnp_SecureHash;
+
+        // Ghi log chi tiết để debug lỗi 99
+        $log = "INPUT DATA:\n" . print_r($inputData, true)
+            . "\nHASHDATA STRING:\n" . $hashdataString
+            . "\nSECURE HASH:\n" . $vnp_SecureHash
+            . "\nURL:\n" . $vnp_Url;
+        file_put_contents('vnpay_debug.txt', $log);
+
         header('Location: ' . $vnp_Url);
         exit;
     }
