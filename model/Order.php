@@ -67,7 +67,7 @@ class Order {
             $conn->commit();
             return $order_id;
         } catch (Exception $e) {
-            file_put_contents('order_error.txt', $e->getMessage());
+            file_put_contents('order_error.txt', $e->getMessage() . PHP_EOL . $e->getTraceAsString()); // thanhdat debug
             $conn->rollback();
             return false;
         }
@@ -118,12 +118,62 @@ class Order {
         return $stmt->execute();
     }
 
-    // Xác nhận đơn hàng (ví dụ)
+    // thanhdat: Thống kê tổng doanh thu
+    public static function getTotalRevenue($conn) {
+        $sql = "SELECT SUM(total_amount) as total FROM orders WHERE status IN ('completed', 'delivered')";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['total'] ?? 0;
+    }
+    // thanhdat: Thống kê tổng số đơn hoàn thành
+    public static function getTotalCompletedOrders($conn) {
+        $sql = "SELECT COUNT(*) as total FROM orders WHERE status IN ('completed', 'delivered')";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['total'] ?? 0;
+    }
+    // thanhdat: Thống kê tổng số đơn chờ xử lý
+    public static function getTotalPendingOrders($conn) {
+        $sql = "SELECT COUNT(*) as total FROM orders WHERE status IN ('pending', 'processing')";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['total'] ?? 0;
+    }
+    // thanhdat: Thống kê tổng số đơn bị hủy
+    public static function getTotalCancelledOrders($conn) {
+        $sql = "SELECT COUNT(*) as total FROM orders WHERE status = 'cancelled'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['total'] ?? 0;
+    }
+
+    // thanhdat: Lấy doanh thu từng tháng trong năm hiện tại
+    public static function getMonthlyRevenue($conn) {
+        $sql = "SELECT MONTH(created_at) as month, SUM(total_amount) as revenue FROM orders WHERE status IN ('completed', 'delivered') AND YEAR(created_at) = YEAR(CURDATE()) GROUP BY MONTH(created_at) ORDER BY month";
+        $result = $conn->query($sql);
+        $data = array_fill(1, 12, 0);
+        while ($row = $result->fetch_assoc()) {
+            $data[(int)$row['month']] = (float)$row['revenue'];
+        }
+        return $data;
+    }
+    // thanhdat: Lấy số đơn hàng theo trạng thái
+    public static function getOrderStatusStats($conn) {
+        $sql = "SELECT status, COUNT(*) as total FROM orders GROUP BY status";
+        $result = $conn->query($sql);
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[$row['status']] = (int)$row['total'];
+        }
+        return $data;
+    }
+
+    // thanhdat: Xác nhận đơn hàng (ví dụ)
     public static function confirm($conn, $id) {
         self::updateStatus($conn, $id, 'confirmed');
     }
 
-    // Hủy đơn hàng (ví dụ)
+    // thanhdat: Hủy đơn hàng (ví dụ)
     public static function cancel($conn, $id) {
         self::updateStatus($conn, $id, 'cancelled');
     }

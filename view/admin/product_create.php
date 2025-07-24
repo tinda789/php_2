@@ -48,8 +48,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="stock_quantity">Số lượng tồn kho</label>
-                                    <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" min="0" value="0">
+                                    <label for="stock">Số lượng tồn kho</label>
+                                    <input type="number" class="form-control" id="stock" name="stock" min="0" value="0">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -137,6 +137,18 @@
                             <input type="file" class="form-control" id="product_images" name="product_images[]" multiple accept="image/*" onchange="previewImages(this)">
                             <small class="form-text text-muted">Chọn ảnh (JPG, PNG, GIF, WebP) - Tối đa 5MB mỗi ảnh</small>
                             <div id="image-preview" class="mt-2"></div>
+                        </div>
+
+                        <!-- Thêm trường nhập đường link ảnh sản phẩm -->
+                        <div class="form-group">
+                            <label for="image_link">
+                                <i class="fas fa-link"></i> Đường link ảnh sản phẩm (tùy chọn)
+                            </label>
+                            <input type="text" class="form-control" id="image_link" name="image_link"
+                                   placeholder="Nhập URL ảnh sản phẩm (nếu có)">
+                            <small class="form-text text-muted">
+                                Nếu nhập link, ảnh này sẽ được ưu tiên hiển thị.
+                            </small>
                         </div>
 
                         <script>

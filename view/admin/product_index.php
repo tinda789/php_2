@@ -102,8 +102,8 @@
                     <?php endif; ?>
                   </td>
                   <td>
-                    <span class="badge rounded-pill bg-<?php echo $product['stock_quantity'] > 0 ? 'success' : 'danger'; ?>">
-                      <?php echo $product['stock_quantity']; ?> 
+                    <span class="badge rounded-pill bg-<?php echo $product['stock'] > 0 ? 'success' : 'danger'; ?>">
+                      <?php echo $product['stock']; ?> 
                     </span>
                   </td>
                   <td>

@@ -15,7 +15,7 @@ class BannerController {
         $position = isset($_GET['position']) ? $_GET['position'] : null;
         $status = isset($_GET['status']) ? $_GET['status'] : null;
         
-        $banners = $this->bannerModel->getAllBanners($position, $status);
+        $banners = $this->bannerModel->getAllBanners($position, $status); // thanhdat
         $stats = $this->bannerModel->getBannerStats();
         $view_file = 'view/admin/banner_index.php';
         include 'view/layout/admin_layout.php';

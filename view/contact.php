@@ -186,13 +186,18 @@
         </div>
         <div class="contact-row">
             <div class="contact-info-modern" style="margin-top:0;">
-                <h2>🏢 Thông tin liên hệ</h2>
-                <div class="info-item"><i class="fa-solid fa-building"></i> <span class="fw-bold">Công ty TNHH Điện Tử 24h</span></div>
-                <div class="info-item"><i class="fa-solid fa-location-dot"></i> Số 123, Đường Công Nghệ, Quận 1, TP. Hồ Chí Minh</div>
-                <div class="info-item"><i class="fa-solid fa-phone"></i> <a href="tel:1900123456" class="contact-link">1900 123 456</a> <span class="text-muted" style="font-size:0.98em;">(8:00 – 20:00, tất cả các ngày)</span></div>
-                <div class="info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:support@dientu24h.vn" class="contact-link">support@dientu24h.vn</a></div>
-                <div class="info-item"><i class="fa-solid fa-globe"></i> <a href="https://www.dientu24h.vn" target="_blank" class="contact-link">www.dientu24h.vn</a></div>
-                <div class="info-item"><span class="fw-semibold" style="color:#1976d2;">Facebook:</span> <a href="https://fb.com/dientu24h" target="_blank" class="contact-link"><i class="fab fa-facebook"></i> fb.com/dientu24h</a></div>
+                <h2 class="mb-3" style="color:#1976d2;font-size:1.25rem;font-weight:700;"><i class="fa-solid fa-info-circle me-2"></i> Thông tin liên hệ</h2>
+                <div class="row g-2">
+                    <div class="col-md-4 info-item"><i class="fa-solid fa-building"></i> <span class="fw-bold" style="font-size:1.08rem;">Công ty TNHH Điện Tử 24h</span></div>
+                    <div class="col-md-4 info-item"><i class="fa-solid fa-location-dot"></i> <span style="font-size:1.08rem;">Số 123, Đường Công Nghệ, Quận 1, TP. Hồ Chí Minh</span></div>
+                    <div class="col-md-4 info-item" style="flex-direction:column;align-items:flex-start;gap:2px;">
+                        <div><i class="fa-solid fa-phone"></i> <a href="tel:1900123456" class="contact-link" style="font-size:1.08rem;">1900 123 456</a></div>
+                        <div class="text-muted" style="font-size:0.98em; margin-left:28px;">(8:00 – 20:00, tất cả các ngày)</div>
+                    </div>
+                    <div class="col-md-4 info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:support@dientu24h.vn" class="contact-link" style="font-size:1.08rem;">support@dientu24h.vn</a></div>
+                    <div class="col-md-4 info-item"><i class="fa-solid fa-globe"></i> <a href="https://www.dientu24h.vn" target="_blank" class="contact-link" style="font-size:1.08rem;">www.dientu24h.vn</a></div>
+                    <div class="col-md-4 info-item"><span class="fw-semibold" style="color:#1976d2;font-size:1.08rem;"></span> <a href="https://fb.com/dientu24h" target="_blank" class="contact-link" style="font-size:1.08rem;"><i class="fab fa-facebook"></i> dientu24h</a></div>
+                </div>
                 <div class="info-row d-flex flex-wrap align-items-stretch gap-3 mt-3">
                     <div class="business-contact flex-fill" style="min-width:220px;">
                         <b>🤝 Hợp tác kinh doanh</b><br>

@@ -42,7 +42,8 @@ $banner = !empty($banners) ? $banners[0] : null;
                     <div class="product-img slideshow-container" id="slideshow-<?php echo $p['id']; ?>">
                         <?php if (!empty($p['images'])): ?>
                             <?php foreach ($p['images'] as $idx => $img): ?>
-                                <img src="uploads/products/<?php echo htmlspecialchars($img['image_url']); ?>" class="slide-img" style="display:<?php echo $idx === 0 ? 'block' : 'none'; ?>;">
+                                <?php require_once 'helpers/image_helper.php'; ?>
+                            <img src="<?php echo htmlspecialchars(getImageUrl($img['image_url'])); ?>" class="slide-img" style="display:<?php echo $idx === 0 ? 'block' : 'none'; ?>;">
                             <?php endforeach; ?>
                             <?php if (count($p['images']) > 1): ?>
                                 <button class="prev" onclick="plusSlides(-1, <?php echo $p['id']; ?>)">&#10094;</button>

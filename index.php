@@ -140,14 +140,17 @@ function handleController($controllerName, $action, $controllerConfig) {
         // Log lỗi
         error_log("Controller Error: " . $e->getMessage());
         
-        // Hiển thị trang lỗi hoặc redirect
-        http_response_code(500);
-        echo "Có lỗi xảy ra. Vui lòng thử lại sau.";
+        // Hiển thị lỗi chi tiết để debug
+        echo "<pre>Lỗi: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "</pre>";
         exit;
     }
 }
 
-// Xử lý routing
+// thanhdat: xử lý routing động + điều kiện đặc biệt cho trang giới thiệu
+if ($controller === 'page' && $action === 'gioi_thieu') { // thanhdat
+    include 'view/gioi_thieu.php';
+    exit;
+}
 if (!empty($controller) && isset($controllers[$controller])) {
     handleController($controller, $action, $controllers[$controller]);
 } else {

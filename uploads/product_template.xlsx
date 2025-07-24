@@ -1,12 +1,16 @@
 Tên sản phẩm	Mô tả ngắn	Mô tả chi tiết	Giá	Giá khuyến mãi	Số lượng tồn kho	Danh mục	Thương hiệu	Model	SKU	Mã vạch	Trọng lượng	Kích thước	Thời gian bảo hành	Trạng thái	Nổi bật	Meta title	Meta description
-Điện thoại mẫu	Mô tả ngắn mẫu	Mô tả chi tiết mẫu	10000000	9000000	50	Điện thoại	Apple	iPhone 15	IP15PM256GB	1234567890	0.5	15x7x0.8	12	1	1	iPhone 15 Pro Max	Điện thoại cao cấp nhất của Apple
-VGA ASUS ROG Strix RTX 4090	VGA4090ASUS	VGA	ASUS	60000000	58000000	10	hoạt động	có
-VGA MSI GeForce RTX 4070 Ti	VGA4070TIMSI	VGA	MSI	25000000	24000000	15	hoạt động	
-VGA GIGABYTE RTX 4060	VGA4060GIGA	VGA	GIGABYTE	12000000	11500000	20	hoạt động	
-Mainboard ASUS ROG Z790 Hero	MBZ790ASUS	Mainboard	ASUS	15000000	14500000	8	hoạt động	có
-Mainboard MSI B660M Mortar	MBB660MMSI	Mainboard	MSI	4000000	3800000	25	hoạt động	
-Mainboard GIGABYTE B550 AORUS	MBB550GIGA	Mainboard	GIGABYTE	3500000	3300000	18	hoạt động	
-Máy ảnh Canon EOS R6 Mark II	CAMR6CANON	Máy ảnh	Canon	52000000	50000000	5	hoạt động	có
-Máy ảnh Sony Alpha A7 IV	CAMA7IVSONY	Máy ảnh	Sony	48000000	47000000	7	hoạt động	
-Máy ảnh Nikon Z6 II	CAMZ6IINIKON	Máy ảnh	Nikon	42000000	41000000	6	hoạt động	
-VGA Zotac RTX 3060 Twin Edge	VGA3060ZOTAC	VGA	Zotac	9000000	8500000	12	hoạt động	
+Apple iPhone 15 Pro Max	Flagship Apple 2023	iPhone 15 Pro Max với chip A17 Pro, camera 48MP, màn hình 6.7 inch.	34990000	32990000	30	Điện thoại	Apple	iPhone 15 Pro Max	IP15PM256GB	123456789001	0.5	15x7x0.8	12	1	1	Apple iPhone 15 Pro Max	Flagship Apple mạnh mẽ nhất
+Samsung Galaxy S24 Ultra	Flagship Samsung 2024	Galaxy S24 Ultra với Snapdragon 8 Gen 3, camera 200MP, màn hình 6.8 inch.	32990000	30990000	25	Điện thoại	Samsung	Galaxy S24 Ultra	SGS24U256GB	123456789002	0.52	16x7.8x0.9	12	1	1	Samsung Galaxy S24 Ultra	Siêu phẩm camera zoom 100x
+Xiaomi 14 Ultra	Flagship Xiaomi 2024	Xiaomi 14 Ultra với Snapdragon 8 Gen 3, camera Leica, màn hình AMOLED 6.73 inch.	24990000	23990000	20	Điện thoại	Xiaomi	14 Ultra	XM14U256GB	123456789003	0.48	16x7.5x0.9	12	1	1	Xiaomi 14 Ultra	Camera Leica, pin trâu
+Oppo Find X7 Pro	Flagship Oppo 2024	Oppo Find X7 Pro với chip Dimensity 9300, camera 50MP, màn hình 6.82 inch.	21990000	20990000	18	Điện thoại	Oppo	Find X7 Pro	OPFX7P256GB	123456789004	0.47	16x7.6x0.9	12	1	1	Oppo Find X7 Pro	Thiết kế sang trọng, sạc siêu nhanh
+Vivo X100 Pro	Flagship Vivo 2024	Vivo X100 Pro với chip Dimensity 9300, camera Zeiss, màn hình 6.78 inch.	20990000	19990000	15	Điện thoại	Vivo	X100 Pro	VVX100P256GB	123456789005	0.46	16x7.5x0.9	12	1	1	Vivo X100 Pro	Camera Zeiss, pin lớn
+Realme GT 5 Pro	Flagship Realme 2024	Realme GT 5 Pro với Snapdragon 8 Gen 3, camera 50MP, màn hình 6.78 inch.	17990000	16990000	12	Điện thoại	Realme	GT 5 Pro	RMG5P256GB	123456789006	0.45	16x7.4x0.9	12	1	1	Realme GT 5 Pro	Hiệu năng mạnh, giá tốt
+Nokia X30 5G	Điện thoại 5G tầm trung	Nokia X30 5G với Snapdragon 695, camera 50MP, màn hình AMOLED 6.43 inch.	8990000	8490000	20	Điện thoại	Nokia	X30 5G	NKX305G128GB	123456789007	0.42	15x7.3x0.8	12	1	0	Nokia X30 5G	Bền bỉ, pin lâu
+Sony Xperia 1 V	Flagship Sony 2024	Sony Xperia 1 V với Snapdragon 8 Gen 2, camera 48MP, màn hình 4K OLED 6.5 inch.	29990000	28990000	10	Điện thoại	Sony	Xperia 1 V	SNYX1V256GB	123456789008	0.44	16x7.2x0.8	12	1	1	Sony Xperia 1 V	Màn hình 4K, âm thanh đỉnh
+Asus ROG Phone 8 Pro	Gaming phone 2024	ROG Phone 8 Pro với Snapdragon 8 Gen 3, màn hình 165Hz, pin 6000mAh.	25990000	24990000	8	Điện thoại	Asus	ROG Phone 8 Pro	ASROG8P512GB	123456789009	0.53	17x7.8x1.0	12	1	1	Asus ROG Phone 8 Pro	Gaming phone mạnh nhất
+Google Pixel 8 Pro	Flagship Google 2024	Pixel 8 Pro với Google Tensor G3, camera 50MP, màn hình 6.7 inch.	21990000	20990000	10	Điện thoại	Google	Pixel 8 Pro	GGPX8P128GB	123456789010	0.43	15x7.2x0.8	12	1	1	Google Pixel 8 Pro	Android gốc, camera AI
+OnePlus 12	Flagship OnePlus 2024	OnePlus 12 với Snapdragon 8 Gen 3, camera Hasselblad, màn hình 6.82 inch.	18990000	17990000	12	Điện thoại	OnePlus	12	OP12_256GB	123456789011	0.46	16x7.5x0.9	12	1	1	OnePlus 12	Sạc siêu nhanh, màn hình đẹp
+Motorola Edge 40 Pro	Flagship Motorola 2024	Edge 40 Pro với Snapdragon 8 Gen 2, camera 50MP, màn hình 6.67 inch.	15990000	14990000	10	Điện thoại	Motorola	Edge 40 Pro	MOTED40P256GB	123456789012	0.44	15x7.3x0.8	12	1	0	Motorola Edge 40 Pro	Thiết kế mỏng nhẹ
+Huawei P60 Pro	Flagship Huawei 2024	Huawei P60 Pro với Snapdragon 8+ Gen 1, camera 48MP, màn hình 6.67 inch.	20990000	19990000	8	Điện thoại	Huawei	P60 Pro	HWP60P256GB	123456789013	0.45	15x7.2x0.8	12	1	0	Huawei P60 Pro	Camera zoom quang học
+Tecno Phantom X2 Pro	Flagship Tecno 2024	Phantom X2 Pro với Dimensity 9000, camera 50MP, màn hình 6.8 inch.	13990000	12990000	10	Điện thoại	Tecno	Phantom X2 Pro	TECPX2P256GB	123456789014	0.43	16x7.6x0.9	12	1	0	Tecno Phantom X2 Pro	Camera pop-up độc đáo
+Infinix Zero 30 5G	Điện thoại 5G giá tốt	Zero 30 5G với Dimensity 8020, camera 108MP, màn hình 6.78 inch.	8990000	8490000	15	Điện thoại	Infinix	Zero 30 5G	INFXZ305G128GB	123456789015	0.42	15x7.3x0.8	12	1	0	Infinix Zero 30 5G	Camera selfie 50MP, giá tốt

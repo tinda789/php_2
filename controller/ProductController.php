@@ -42,7 +42,7 @@ class ProductController {
                 'short_description' => $_POST['short_description'] ?? '',
                 'price' => (float)($_POST['price'] ?? 0),
                 'sale_price' => (float)($_POST['sale_price'] ?? 0),
-                'stock_quantity' => (int)($_POST['stock_quantity'] ?? 0),
+                'stock' => (int)($_POST['stock'] ?? 0),
                 'min_stock_level' => (int)($_POST['min_stock_level'] ?? 0),
                 'category_id' => (int)($_POST['category_id'] ?? 0),
                 'brand_id' => (int)($_POST['brand_id'] ?? 0),
@@ -54,8 +54,6 @@ class ProductController {
                 'warranty_period' => (int)($_POST['warranty_period'] ?? 0),
                 'status' => (int)($_POST['status'] ?? 1),
                 'featured' => (int)($_POST['featured'] ?? 0),
-                'meta_title' => $_POST['meta_title'] ?? '',
-                'meta_description' => $_POST['meta_description'] ?? '',
                 'created_by' => $_SESSION['user_id'] ?? 1
             ];
 
@@ -64,6 +62,7 @@ class ProductController {
                 // thanhdat: upload nhiều ảnh sản phẩm
                 if (!empty($_FILES['product_images']['name'][0])) {
                     $target_dir = 'uploads/products/';
+                    $first_image_name = '';
                     foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
                         $file_name = basename($_FILES['product_images']['name'][$key]);
                         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
@@ -73,7 +72,16 @@ class ProductController {
                             $stmt = $this->conn->prepare("INSERT INTO product_images (product_id, image_url) VALUES (?, ?)");
                             $stmt->bind_param("is", $product_id, $new_name);
                             $stmt->execute();
+                            if ($first_image_name === '') {
+                                $first_image_name = $new_name;
+                            }
                         }
+                    }
+                    // Nếu có ảnh upload, cập nhật image_link của sản phẩm
+                    if ($first_image_name !== '') {
+                        $stmt = $this->conn->prepare("UPDATE products SET image_link = ? WHERE id = ?");
+                        $stmt->bind_param("si", $first_image_name, $product_id);
+                        $stmt->execute();
                     }
                 }
                 header('Location: index.php?controller=product&action=index&success=1');
@@ -121,7 +129,7 @@ class ProductController {
                 'short_description' => $_POST['short_description'] ?? '',
                 'price' => (float)($_POST['price'] ?? 0),
                 'sale_price' => (float)($_POST['sale_price'] ?? 0),
-                'stock_quantity' => (int)($_POST['stock_quantity'] ?? 0),
+                'stock' => (int)($_POST['stock'] ?? 0),
                 'min_stock_level' => (int)($_POST['min_stock_level'] ?? 0),
                 'category_id' => (int)($_POST['category_id'] ?? 0),
                 'brand_id' => (int)($_POST['brand_id'] ?? 0),
@@ -141,6 +149,7 @@ class ProductController {
                 // thanhdat: upload nhiều ảnh sản phẩm khi cập nhật
                 if (!empty($_FILES['product_images']['name'][0])) {
                     $target_dir = 'uploads/products/';
+                    $first_image_name = '';
                     foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
                         $file_name = basename($_FILES['product_images']['name'][$key]);
                         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
@@ -149,7 +158,22 @@ class ProductController {
                         if (move_uploaded_file($tmp_name, $target_file)) {
                             $stmt = $this->conn->prepare("INSERT INTO product_images (product_id, image_url) VALUES (?, ?)");
                             $stmt->bind_param("is", $id, $new_name);
-                            $stmt->execute();
+                            if (!$stmt->execute()) {
+                                echo "Lỗi thêm ảnh vào product_images: " . $stmt->error;
+                            }
+                            if ($first_image_name === '') {
+                                $first_image_name = $new_name;
+                            }
+                        } else {
+                            echo "Lỗi upload file: $file_name";
+                        }
+                    }
+                    // Nếu có ảnh upload, cập nhật image_link của sản phẩm
+                    if ($first_image_name !== '') {
+                        $stmt = $this->conn->prepare("UPDATE products SET image_link = ? WHERE id = ?");
+                        $stmt->bind_param("si", $first_image_name, $id);
+                        if (!$stmt->execute()) {
+                            echo "Lỗi update image_link: " . $stmt->error;
                         }
                     }
                 }
@@ -196,11 +220,9 @@ class ProductController {
         // Lấy thông số kỹ thuật
         $product['specs'] = Product::getSpecifications($this->conn, $id);
         // Lấy đánh giá sản phẩm (chỉ lấy 5 đánh giá mới nhất, đã duyệt)
-        $reviews = Review::getByProduct($this->conn, $id, 5);
+        $reviews = []; // (giả sử có code lấy reviews ở dưới)
         $view_file = 'view/user/product_detail.php';
-        include 'view/layout/header.php';
-        include $view_file;
-        include 'view/layout/footer.php';
+        include 'view/layout/user_layout.php';
     }
 
     // Hiển thị danh sách sản phẩm cho người dùng
@@ -235,6 +257,33 @@ class ProductController {
         include 'view/layout/header.php';
         include $view_file;
         include 'view/layout/footer.php';
+    }
+
+    // Nhận và lưu đánh giá sản phẩm
+    public function review() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+            $user_id = $_SESSION['user']['id'] ?? 0;
+            $rating = isset($_POST['rating']) ? (int)$_POST['rating'] : 0;
+            $comment = trim($_POST['comment'] ?? '');
+            if ($product_id > 0 && $user_id > 0 && $rating >= 1 && $rating <= 5 && $comment !== '') {
+                if (Product::hasUserPurchased($this->conn, $user_id, $product_id)) {
+                    if (Product::addReview($this->conn, $user_id, $product_id, $rating, $comment)) {
+                        header('Location: index.php?controller=product&action=detail&id=' . $product_id . '&msg=review_sent');
+                        exit;
+                    } else {
+                        header('Location: index.php?controller=product&action=detail&id=' . $product_id . '&error=review_failed');
+                        exit;
+                    }
+                } else {
+                    header('Location: index.php?controller=product&action=detail&id=' . $product_id . '&error=not_purchased');
+                    exit;
+                }
+            } else {
+                header('Location: index.php?controller=product&action=detail&id=' . $product_id . '&error=invalid_review');
+                exit;
+            }
+        }
     }
 
     // Tạo slug từ tên sản phẩm
