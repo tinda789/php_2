@@ -101,7 +101,20 @@ class Order {
         $stmt->bind_param("s", $order_number);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        $order = $result->fetch_assoc();
+        if ($order) {
+            // Lấy order_items
+            $stmt2 = $conn->prepare("SELECT * FROM order_items WHERE order_id = ?");
+            $stmt2->bind_param("i", $order['id']);
+            $stmt2->execute();
+            $order['items'] = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC);
+            // Lấy coupon
+            $stmt3 = $conn->prepare("SELECT * FROM order_coupons WHERE order_id = ?");
+            $stmt3->bind_param("i", $order['id']);
+            $stmt3->execute();
+            $order['coupons'] = $stmt3->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+        return $order;
     }
 
     // Cập nhật trạng thái thanh toán
@@ -176,17 +189,6 @@ class Order {
     // thanhdat: Hủy đơn hàng (ví dụ)
     public static function cancel($conn, $id) {
         self::updateStatus($conn, $id, 'cancelled');
-    }
-
-    // Đếm số lượng đơn hàng đã bán trong tháng
-    public static function countOrdersInMonth($conn, $month = null, $year = null) {
-        if (!$month) $month = date('m');
-        if (!$year) $year = date('Y');
-        $stmt = $conn->prepare("SELECT COUNT(*) as total FROM orders WHERE MONTH(created_at) = ? AND YEAR(created_at) = ?");
-        $stmt->bind_param("ii", $month, $year);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
-        return $result['total'];
     }
 }
 ?> 

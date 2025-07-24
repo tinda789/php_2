@@ -8,9 +8,9 @@ class Banner {
         $this->conn = $conn;
     }
     
-    // thanhdat: Đổi tên hàm cho đồng bộ
-    public function getAllBanners($position = null, $is_active = null) { // thanhdat
-        $sql = "SELECT * FROM banners WHERE 1=1"; // thanhdat
+    // Lấy tất cả banners
+    public function getAllBanners($position = null, $is_active = null) {
+        $sql = "SELECT * FROM banners WHERE 1=1";
         $params = [];
         $types = "";
         
@@ -40,7 +40,7 @@ class Banner {
     
     // Lấy banner theo ID
     public function getBannerById($id) {
-        $sql = "SELECT * FROM banners WHERE id = ?"; // thanhdat
+        $sql = "SELECT * FROM banners WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -51,7 +51,7 @@ class Banner {
     
     // Tạo banner mới
     public function createBanner($data) {
-        $sql = "INSERT INTO banners (title, description, image, link, position, is_active, sort_order) 
+        $sql = "INSERT INTO banner (title, description, image, link, position, is_active, sort_order) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ssssssi", 
@@ -69,7 +69,7 @@ class Banner {
     
     // Cập nhật banner
     public function updateBanner($id, $data) {
-        $sql = "UPDATE banners SET 
+        $sql = "UPDATE banner SET 
                 title = ?, description = ?, image = ?, link = ?, 
                 position = ?, is_active = ?, sort_order = ?, updated_at = CURRENT_TIMESTAMP 
                 WHERE id = ?";
@@ -99,7 +99,7 @@ class Banner {
             }
         }
         
-        $sql = "DELETE FROM banners WHERE id = ?"; // thanhdat
+        $sql = "DELETE FROM banners WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
         
@@ -113,7 +113,7 @@ class Banner {
         
         $new_status = ($banner['is_active'] == 1) ? 0 : 1;
         
-        $sql = "UPDATE banners SET is_active = ? WHERE id = ?"; // thanhdat
+        $sql = "UPDATE banners SET is_active = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ii", $new_status, $id);
         
@@ -155,7 +155,7 @@ class Banner {
                 SUM(CASE WHEN is_active = 1 THEN 1 ELSE 0 END) as active,
                 SUM(CASE WHEN is_active = 0 THEN 1 ELSE 0 END) as inactive,
                 COUNT(DISTINCT position) as positions
-                FROM banners"; // thanhdat
+                FROM banners";
         $result = $this->conn->query($sql);
         
         return $result->fetch_assoc();
@@ -164,7 +164,7 @@ class Banner {
     // Lấy banners theo vị trí
     public function getBannersByPosition($position, $limit = 5) {
         $sql = "SELECT * FROM banners WHERE position = ? AND is_active = 1 
-                ORDER BY sort_order ASC, created_at DESC LIMIT ?"; // thanhdat
+                ORDER BY sort_order ASC, created_at DESC LIMIT ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("si", $position, $limit);
         $stmt->execute();
