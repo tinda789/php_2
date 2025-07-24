@@ -10,21 +10,126 @@
         <div class="profile-card">
             <div class="profile-avatar">
                 <?php if (!empty($_SESSION['user']['avatar'])): ?>
-                    <img src="<?php echo htmlspecialchars($_SESSION['user']['avatar']); ?>" alt="Avatar" class="avatar-img">
+                    <img src="<?php echo htmlspecialchars($_SESSION['user']['avatar'] ?? ''); ?>" alt="Avatar" class="avatar-img">
                 <?php else: ?>
                     👤
                 <?php endif; ?>
             </div>
             <h2 class="profile-title">Thông tin cá nhân</h2>
             <table class="profile-table">
-                <tr><td>Họ tên:</td><td><?php echo htmlspecialchars($_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name']); ?></td></tr>
-                <tr><td>Tên đăng nhập:</td><td><?php echo htmlspecialchars($_SESSION['user']['username']); ?></td></tr>
-                <tr><td>Email:</td><td><?php echo htmlspecialchars($_SESSION['user']['email']); ?></td></tr>
-                <tr><td>Số điện thoại:</td><td><?php echo htmlspecialchars($_SESSION['user']['phone']); ?></td></tr>
+                <tr><td>Họ tên:</td><td><?php echo htmlspecialchars(trim(($_SESSION['user']['first_name'] ?? '') . ' ' . ($_SESSION['user']['last_name'] ?? ''))); ?></td></tr>
+                <tr><td>Tên đăng nhập:</td><td><?php echo htmlspecialchars($_SESSION['user']['username'] ?? ''); ?></td></tr>
+                <tr><td>Email:</td><td><?php echo htmlspecialchars($_SESSION['user']['email'] ?? ''); ?></td></tr>
+                <tr><td>Số điện thoại:</td><td><?php echo htmlspecialchars($_SESSION['user']['phone'] ?? ''); ?></td></tr>
                 <tr><td>Vai trò:</td><td><?php echo htmlspecialchars($_SESSION['user']['role_name'] ?? 'customer'); ?></td></tr>
             </table>
             <a href="?controller=user&action=edit" class="profile-edit-btn">Sửa thông tin</a>
             <a href="?controller=user&action=change_password" class="profile-edit-btn" style="background:#fff;color:#007bff;border:2px solid #007bff;margin-top:10px;">Đổi mật khẩu</a>
+            
+            <div class="order-history mt-5">
+                <h3 class="text-center mb-4">Lịch sử đơn hàng</h3>
+                <?php if (!empty($orders)): ?>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thanh toán</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($orders as $order): 
+                                    $status_class = [
+                                        'pending' => 'warning',
+                                        'processing' => 'info',
+                                        'shipped' => 'primary',
+                                        'delivered' => 'success',
+                                        'cancelled' => 'danger'
+                                    ][$order['status']] ?? 'secondary';
+                                    
+                                    $payment_status_class = [
+                                        'pending' => 'warning',
+                                        'paid' => 'success',
+                                        'failed' => 'danger',
+                                        'refunded' => 'info'
+                                    ][$order['payment_status']] ?? 'secondary';
+                                    
+                                    $firstItem = $order['items'][0] ?? [];
+                                ?>
+                                <tr>
+                                    <td>#<?php echo htmlspecialchars($order['order_number']); ?></td>
+                                    <td><?php echo date('d/m/Y', strtotime($order['created_at'])); ?></td>
+                                    <td>
+                                        <?php if (!empty($firstItem)): ?>
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-2">
+                                                    <img src="<?php echo !empty($firstItem['product_image']) ? htmlspecialchars($firstItem['product_image']) : '/assets/images/no-image.png'; ?>" alt="<?php echo htmlspecialchars($firstItem['product_name']); ?>" style="width: 50px; height: 50px; object-fit: cover;">
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold"><?php echo htmlspecialchars($firstItem['product_name']); ?></div>
+                                                    <small class="text-muted">x<?php echo $firstItem['quantity']; ?> sản phẩm</small>
+                                                    <?php if (count($order['items']) > 1): ?>
+                                                        <div class="text-primary small">+<?php echo count($order['items']) - 1; ?> sản phẩm khác</div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="text-end fw-bold"><?php echo number_format($order['total_amount'], 0, ',', '.'); ?> ₫</td>
+                                    <td>
+                                        <span class="badge bg-<?php echo $status_class; ?>">
+                                            <?php 
+                                            $status_text = [
+                                                'pending' => 'Chờ xử lý',
+                                                'processing' => 'Đang xử lý',
+                                                'shipped' => 'Đang giao hàng',
+                                                'delivered' => 'Đã giao',
+                                                'cancelled' => 'Đã hủy'
+                                            ][$order['status']] ?? $order['status'];
+                                            echo $status_text;
+                                            ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-<?php echo $payment_status_class; ?>">
+                                            <?php 
+                                            $payment_text = [
+                                                'pending' => 'Chờ thanh toán',
+                                                'paid' => 'Đã thanh toán',
+                                                'failed' => 'Thanh toán thất bại',
+                                                'refunded' => 'Đã hoàn tiền'
+                                            ][$order['payment_status']] ?? $order['payment_status'];
+                                            echo $payment_text;
+                                            ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="?controller=user&action=order_detail&id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i> Xem
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="?controller=user&action=orders" class="btn btn-outline-primary">
+                            <i class="fas fa-list me-2"></i>Xem tất cả đơn hàng
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>Bạn chưa có đơn hàng nào.
+                        <a href="/" class="alert-link">Tiếp tục mua sắm</a>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
     <style>
@@ -39,7 +144,22 @@
     .profile-edit-btn { display: inline-block; background: #007bff; color: #fff; border-radius: 22px; padding: 10px 32px; font-weight: bold; text-decoration: none; font-size: 1.08rem; transition: background 0.2s; }
     .profile-edit-btn:hover { background: #0056b3; }
     .profile-error { color: #d32f2f; background: #ffeaea; border: 1px solid #ffcdd2; border-radius: 8px; padding: 16px; font-size: 1.1rem; }
-    @media (max-width: 600px) { .profile-card { padding: 16px 4px; } }
+    .order-history { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee; }
+    .order-history .table { margin-bottom: 0; }
+    .order-history th { white-space: nowrap; }
+    .order-history .badge { font-size: 0.8em; padding: 0.4em 0.6em; }
+    @media (max-width: 992px) {
+        .order-history .table-responsive { font-size: 0.9rem; }
+    }
+    @media (max-width: 768px) {
+        .order-history .table-responsive { font-size: 0.8rem; }
+        .order-history th, .order-history td { padding: 0.5rem; }
+    }
+    @media (max-width: 600px) { 
+        .profile-card { padding: 16px 4px; }
+        .order-history { margin-top: 1.5rem; padding-top: 1.5rem; }
+        .order-history h3 { font-size: 1.3rem; }
+    }
     </style>
 <?php endif; ?>
 <?php include 'view/layout/footer.php'; ?> 
