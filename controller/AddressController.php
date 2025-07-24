@@ -210,7 +210,6 @@ class AddressController {
     }
     
 
-    
     public function getUserAddresses() {
         if (empty($_SESSION['user'])) {
             http_response_code(401);
