@@ -167,7 +167,7 @@ body {
     margin-top: 70px !important;
 }
 </style>
-<link rel="stylesheet" href="view/layout/categories_admin.css">
+<?php include 'view/layout/admin_layout.php'; ?>
 <div class="cards-row">
     <div class="card users">
         <div class="icon"><i class="fa-solid fa-users"></i></div>

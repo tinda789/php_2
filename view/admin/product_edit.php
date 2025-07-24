@@ -91,7 +91,7 @@
                                 <div class="form-group">
                                     <label for="stock">Số lượng tồn kho</label>
                                     <input type="number" class="form-control" id="stock" name="stock" min="0" 
-                                           value="<?php echo htmlspecialchars($product['stock'] ?? ''); ?>">
+                                           value="<?php echo $product['stock']; ?>">
                                 </div>
                             </div>
                             <div class="col-md-6">

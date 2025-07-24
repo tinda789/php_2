@@ -9,7 +9,7 @@ class Banner {
     }
     
     // Lấy tất cả banners
-    public function getAllBanners($position = null, $is_active = null) {
+    public function getAllBanner($position = null, $is_active = null) {
         $sql = "SELECT * FROM banners WHERE 1=1";
         $params = [];
         $types = "";
@@ -51,7 +51,7 @@ class Banner {
     
     // Tạo banner mới
     public function createBanner($data) {
-        $sql = "INSERT INTO banner (title, description, image, link, position, is_active, sort_order) 
+        $sql = "INSERT INTO banners (title, description, image_url, link, position, is_active, sort_order) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ssssssi", 
@@ -69,8 +69,8 @@ class Banner {
     
     // Cập nhật banner
     public function updateBanner($id, $data) {
-        $sql = "UPDATE banner SET 
-                title = ?, description = ?, image = ?, link = ?, 
+        $sql = "UPDATE banners SET 
+                title = ?, description = ?, image_url = ?, link = ?, 
                 position = ?, is_active = ?, sort_order = ?, updated_at = CURRENT_TIMESTAMP 
                 WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -88,12 +88,26 @@ class Banner {
         return $stmt->execute();
     }
     
+    // Lấy banner đang hoạt động theo vị trí
+    public function getActiveBanner($position) {
+        $sql = "SELECT * FROM banners 
+                WHERE position = ? 
+                AND is_active = 1 
+                ORDER BY sort_order ASC 
+                LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $position);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+    
     // Xóa banner
     public function deleteBanner($id) {
         // Lấy thông tin ảnh để xóa file
         $banner = $this->getBannerById($id);
-        if ($banner && $banner['image']) {
-            $image_path = "uploads/banner/" . $banner['image'];
+        if ($banner && !empty($banner['image_url'])) {
+            $image_path = "uploads/banners/" . basename($banner['image_url']);
             if (file_exists($image_path)) {
                 unlink($image_path);
             }
@@ -122,7 +136,13 @@ class Banner {
     
     // Upload ảnh banner
     public function uploadImage($file) {
-        $target_dir = "uploads/banner/";
+        $target_dir = "uploads/banners/"; // Sửa đường dẫn đúng
+        
+        // Tạo thư mục nếu chưa tồn tại
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0755, true);
+        }
+        
         $file_extension = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
         $allowed_extensions = array("jpg", "jpeg", "png", "gif", "webp");
         
@@ -131,14 +151,19 @@ class Banner {
             return false;
         }
         
-        // Tạo tên file mới
-        $new_filename = "banner_" . time() . "_" . rand(1000, 9999) . "." . $file_extension;
-        $target_file = $target_dir . $new_filename;
-        
         // Kiểm tra kích thước file (max 5MB)
         if ($file["size"] > 5 * 1024 * 1024) {
             return false;
         }
+        
+        // Kiểm tra lỗi upload
+        if ($file["error"] !== UPLOAD_ERR_OK) {
+            return false;
+        }
+        
+        // Tạo tên file mới
+        $new_filename = "banner_" . time() . "_" . rand(1000, 9999) . "." . $file_extension;
+        $target_file = $target_dir . $new_filename;
         
         // Upload file
         if (move_uploaded_file($file["tmp_name"], $target_file)) {

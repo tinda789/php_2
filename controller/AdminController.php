@@ -1,9 +1,21 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
-if (empty($_SESSION['user']) || !in_array($_SESSION['user']['role_name'], ['admin', 'super_admin'])) {
+
+// Kiểm tra đăng nhập và quyền truy cập
+if (empty($_SESSION['user'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    $_SESSION['error'] = 'Vui lòng đăng nhập để truy cập trang quản trị';
+    header('Location: index.php?controller=auth&action=login');
+    exit;
+}
+
+// Kiểm tra quyền admin
+if (!isset($_SESSION['user']['role_name']) || !in_array($_SESSION['user']['role_name'], ['admin', 'super_admin'])) {
+    $_SESSION['error'] = 'Bạn không có quyền truy cập trang quản trị';
     header('Location: index.php');
     exit;
 }
+
 require_once 'config/config.php';
 require_once 'model/User.php';
 require_once __DIR__ . '/../model/Product.php';

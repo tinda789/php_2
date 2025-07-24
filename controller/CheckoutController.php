@@ -8,11 +8,11 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 class CheckoutController {
     // Cấu hình VNPay - đưa ra thành constant để đảm bảo nhất quán
-    const VNPAY_TMN_CODE ='IZUX3WYL';
-    const VNPAY_HASH_SECRET ='ZKDYIL6HKT28NPKKKH5E37BP5LQ4I3Z2';
+    const VNPAY_TMN_CODE = '7JX9OTN2';
+    const VNPAY_HASH_SECRET = 'U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF';
+    
     const VNPAY_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
-    const VNPAY_RETURN_URL = 'http://localhost:8080/index.php?controller=checkout&action=vnpay_return';
-
+    const VNPAY_RETURN_URL = 'http://localhost:8000/index.php?controller=checkout&action=vnpay_return';
     public function checkout() {
         // Debug: ghi log dữ liệu POST và SESSION user
         file_put_contents('debug_checkout.txt', "POST:\n".print_r($_POST, true)."\nSESSION user:\n".print_r($_SESSION['user'] ?? null, true));
@@ -186,7 +186,7 @@ class CheckoutController {
         $vnp_TxnRef = $order['order_number'];
         $vnp_OrderInfo = 'Thanh toán đơn hàng #' . $order['order_number'];
         $vnp_OrderType = 'other';
-        $vnp_Amount = (int)round($order['total_amount'] * 100); // Nhân 100 vì VNPay yêu cầu số tiền là số nguyên
+        $vnp_Amount = (int)round($order['total_amount']); 
         $vnp_Locale = 'vn';
         $vnp_BankCode = ''; // Để người dùng chọn ngân hàng trên VNPay
         $vnp_IpAddr = $this->getClientIp();
@@ -205,7 +205,7 @@ class CheckoutController {
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
             "vnp_ExpireDate" => date('YmdHis', strtotime('+15 minutes')), // Hết hạn sau 15 phút
-        ];
+        );
         
         // Sắp xếp lại mảng theo key để tạo chữ ký
         ksort($inputData);

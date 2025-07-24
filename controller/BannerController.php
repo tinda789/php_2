@@ -38,7 +38,7 @@ class BannerController {
             'description' => $_POST['description'],
             'link' => $_POST['link'],
             'position' => $_POST['position'],
-            'status' => $_POST['status'],
+            'is_active' => isset($_POST['status']) ? 1 : 0, // Sửa từ status thành is_active
             'sort_order' => (int)$_POST['sort_order'],
             'image' => ''
         ];
@@ -47,7 +47,7 @@ class BannerController {
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $uploaded_image = $this->bannerModel->uploadImage($_FILES['image']);
             if ($uploaded_image) {
-                $data['image'] = $uploaded_image;
+                $data['image'] = 'banners/' . $uploaded_image; // Thêm thư mục vào đường dẫn
             } else {
                 $_SESSION['error'] = "Lỗi upload ảnh. Vui lòng thử lại.";
                 header('Location: index.php?controller=banner&action=create');
@@ -98,23 +98,23 @@ class BannerController {
             'description' => $_POST['description'],
             'link' => $_POST['link'],
             'position' => $_POST['position'],
-            'status' => $_POST['status'],
+            'is_active' => isset($_POST['status']) ? 1 : 0, // Sửa từ status thành is_active
             'sort_order' => (int)$_POST['sort_order'],
-            'image' => $banner['image'] // Giữ ảnh cũ
+            'image' => $banner['image_url'] // Sửa từ image thành image_url
         ];
         
         // Upload ảnh mới nếu có
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $uploaded_image = $this->bannerModel->uploadImage($_FILES['image']);
             if ($uploaded_image) {
-                // Xóa ảnh cũ
-                if ($banner['image']) {
-                    $old_image_path = "uploads/banners/" . $banner['image'];
+                // Xóa ảnh cũ nếu có
+                if (!empty($banner['image_url'])) {
+                    $old_image_path = "uploads/" . $banner['image_url'];
                     if (file_exists($old_image_path)) {
                         unlink($old_image_path);
                     }
                 }
-                $data['image'] = $uploaded_image;
+                $data['image'] = 'banners/' . $uploaded_image; // Thêm thư mục vào đường dẫn
             } else {
                 $_SESSION['error'] = "Lỗi upload ảnh. Vui lòng thử lại.";
                 header('Location: index.php?controller=banner&action=edit&id=' . $id);

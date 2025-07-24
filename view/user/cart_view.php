@@ -30,7 +30,14 @@
               <td>
                 <div class="ratio ratio-4x3 bg-light rounded-3 overflow-hidden mx-auto" style="width:90px;">
                   <?php 
-                  $img = !empty($item['images'][0]) ? $item['images'][0] : '';
+                  $img = '';
+                  if (!empty($item['images'][0])) {
+                      if (is_array($item['images'][0])) {
+                          $img = isset($item['images'][0]['url']) ? $item['images'][0]['url'] : (isset($item['images'][0]['image']) ? $item['images'][0]['image'] : '');
+                      } else {
+                          $img = $item['images'][0];
+                      }
+                  }
                   if ($img && strpos($img, 'uploads/') === false && strpos($img, 'http') !== 0) {
                       $img = 'uploads/products/' . $img;
                   }

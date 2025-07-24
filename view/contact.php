@@ -175,7 +175,11 @@
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại">
-                    <label for="phone"><i class="fa fa-phone me-2"></i>Số điện thoại</label>
+                    <label for="phone"><i class="fa fa-phone me-2"></i>Số điện thoại (tùy chọn)</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Chủ đề liên hệ" required>
+                    <label for="subject"><i class="fa fa-tag me-2"></i>Chủ đề</label>
                 </div>
                 <div class="form-floating mb-3">
                     <textarea class="form-control" id="message" name="message" placeholder="Nội dung liên hệ" style="height: 110px; min-height: 80px;" required></textarea>

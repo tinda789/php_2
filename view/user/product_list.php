@@ -315,7 +315,7 @@
                   <?php if ($product['featured']): ?>
                     <span class="badge bg-warning position-absolute top-0 start-0 m-2"><i class="fas fa-star"></i> Nổi bật</span>
                   <?php endif; ?>
-                  <?php if ($product['stock_quantity'] <= 0): ?>
+                  <?php if (isset($product['stock']) && $product['stock'] <= 0): ?>
                     <span class="badge bg-danger position-absolute top-0 end-0 m-2"><i class="fas fa-times"></i> Hết hàng</span>
                   <?php endif; ?>
                   <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="d-block">
@@ -349,7 +349,7 @@
                   </div>
                   <div class="mt-auto d-flex gap-2">
                     <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="btn btn-primary btn-sm flex-fill"><i class="fas fa-eye"></i> Xem chi tiết</a>
-                    <?php if ($product['stock_quantity'] > 0): ?>
+                    <?php if (isset($product['stock']) && $product['stock'] > 0): ?>
                       <form method="POST" action="index.php?controller=cart&action=add" class="add-to-cart-form" style="display:inline;">
                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="quantity" value="1">

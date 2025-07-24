@@ -190,5 +190,31 @@ class Order {
     public static function cancel($conn, $id) {
         self::updateStatus($conn, $id, 'cancelled');
     }
+
+    // Kiểm tra user đã mua sản phẩm chưa
+    public static function hasUserPurchased($conn, $user_id, $product_id) {
+        $sql = "SELECT COUNT(*) as total FROM orders o
+                JOIN order_items oi ON o.id = oi.order_id
+                WHERE o.user_id = ? AND oi.product_id = ? AND o.status IN ('completed', 'delivered')";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $user_id, $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['total'] > 0;
+    }
+
+    // Lấy danh sách đơn hàng theo user_id
+    public static function getByUserId($conn, $user_id) {
+        $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $orders[] = $row;
+        }
+        return $orders;
+    }
 }
 ?> 

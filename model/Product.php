@@ -406,41 +406,5 @@ class Product {
         }
         return $product;
     }
-
-    // Kiểm tra user đã mua sản phẩm chưa
-    public static function hasUserPurchased($conn, $user_id, $product_id) {
-        $sql = "SELECT COUNT(*) as total FROM order_items oi
-                JOIN orders o ON oi.order_id = o.id
-                WHERE o.user_id = ? AND oi.product_id = ? AND o.status IN ('completed', 'delivered')";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ii', $user_id, $product_id);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
-        return $result['total'] > 0;
-    }
-
-    // Thêm đánh giá sản phẩm
-    public static function addReview($conn, $user_id, $product_id, $rating, $comment) {
-        $stmt = $conn->prepare("INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at, status) VALUES (?, ?, ?, ?, NOW(), 'pending')");
-        $stmt->bind_param('iiis', $product_id, $user_id, $rating, $comment);
-        return $stmt->execute();
-    }
-
-    // Lấy danh sách đánh giá đã duyệt cho sản phẩm
-    public static function getReviews($conn, $product_id) {
-        $sql = "SELECT r.*, u.first_name, u.last_name FROM product_reviews r
-                JOIN users u ON r.user_id = u.id
-                WHERE r.product_id = ? AND r.status = 'approved'
-                ORDER BY r.created_at DESC";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('i', $product_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $reviews = [];
-        while ($row = $result->fetch_assoc()) {
-            $reviews[] = $row;
-        }
-        return $reviews;
-    }
 }
-?> 
+?>

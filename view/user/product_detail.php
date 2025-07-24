@@ -1,4 +1,7 @@
-<?php global $conn; ?>
+<?php
+require_once __DIR__ . '/../../model/Order.php';
+global $conn;
+?>
 <?php /* @var $product, $reviews */ ?>
 <?php if (!$product): ?>
   <div class="container py-4">
@@ -143,7 +146,7 @@
           <h4 class="fw-bold mb-3">Đánh giá sản phẩm</h4>
           <?php
           // Hiển thị đánh giá sản phẩm
-          $reviews = Product::getReviews($conn, $product['id']);
+          $reviews = Review::getByProduct($conn, $product['id'], 20); // lấy tối đa 20 đánh giá
           ?>
           <?php if (!empty($reviews)): ?>
             <?php foreach ($reviews as $review): ?>
@@ -167,7 +170,7 @@
   </div>
   <?php
   // Hiển thị form gửi đánh giá nếu user đã mua sản phẩm
-  if (isset($_SESSION['user']['id']) && Product::hasUserPurchased($conn, $_SESSION['user']['id'], $product['id'])):
+  if (isset($_SESSION['user']['id']) && Order::hasUserPurchased($conn, $_SESSION['user']['id'], $product['id'])):
   ?>
   <div class="review-form mt-4">
       <h5>Gửi đánh giá của bạn</h5>

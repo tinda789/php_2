@@ -10,6 +10,7 @@
         <button type="submit" class="auth-btn">Đăng nhập</button>
     </form>
     <p class="auth-link">Chưa có tài khoản? <a href="?controller=auth&action=register">Đăng ký</a></p>
+    <p class="auth-link"><a href="?controller=auth&action=forget_password">Quên mật khẩu?</a></p>
 </div>
 <style>
 .auth-form {

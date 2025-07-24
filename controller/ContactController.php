@@ -1,4 +1,5 @@
 <?php
+require_once 'config/config.php';
 require_once 'model/ContactRequest.php';
 class ContactController {
     public function index() {
