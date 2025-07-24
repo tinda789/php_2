@@ -1,0 +1,85 @@
+[25-Jul-2025 04:48:02 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:03 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:04 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:04 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:04 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:05 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:05 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:05 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:05 Asia/Ho_Chi_Minh] Lỗi chi tiết đơn hàng: Unknown column 'p.images' in 'field list'
+[25-Jul-2025 04:48:51 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:48:51 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:48:51 Asia/Ho_Chi_Minh] Order Detail Error: Unknown column 'p.images' in 'field list'
+#0 C:\Users\ACER\OneDrive\Desktop\php_2\controller\UserController.php(302): mysqli->prepare('SELECT oi.*, p....')
+#1 C:\Users\ACER\OneDrive\Desktop\php_2\index.php(85): require_once('C:\\Users\\ACER\\O...')
+#2 C:\Users\ACER\OneDrive\Desktop\php_2\index.php(149): handleController('user', 'order_detail', Array)
+#3 {main}
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] PHP Warning:  include(../layout/header.php): Failed to open stream: No such file or directory in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 84
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] PHP Warning:  include(): Failed opening '../layout/header.php' for inclusion (include_path='E:\xampp\php\PEAR') in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 84
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key "price" in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 292
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key "phone" in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 439
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 439
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] PHP Warning:  include(../layout/footer.php): Failed to open stream: No such file or directory in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 923
+[25-Jul-2025 04:49:56 Asia/Ho_Chi_Minh] PHP Warning:  include(): Failed opening '../layout/footer.php' for inclusion (include_path='E:\xampp\php\PEAR') in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 923
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] PHP Warning:  include(../../layout/header.php): Failed to open stream: No such file or directory in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 84
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] PHP Warning:  include(): Failed opening '../../layout/header.php' for inclusion (include_path='E:\xampp\php\PEAR') in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 84
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key "price" in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 292
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] PHP Warning:  include(../../layout/footer.php): Failed to open stream: No such file or directory in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 923
+[25-Jul-2025 04:51:17 Asia/Ho_Chi_Minh] PHP Warning:  include(): Failed opening '../../layout/footer.php' for inclusion (include_path='E:\xampp\php\PEAR') in C:\Users\ACER\OneDrive\Desktop\php_2\view\user\order_detail.php on line 923
+[25-Jul-2025 04:52:18 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:52:18 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:52:18 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:52:24 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:52:24 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:52:24 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:54:57 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:54:57 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:54:57 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:55:25 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:55:25 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:55:25 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:56:51 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:56:51 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:56:51 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:57:02 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:57:02 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:57:02 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 04:57:33 Asia/Ho_Chi_Minh] Order detail request - Order ID: 41, User ID: 1
+[25-Jul-2025 04:57:33 Asia/Ho_Chi_Minh] Executing SQL: SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ? with order_id: 41
+[25-Jul-2025 04:57:33 Asia/Ho_Chi_Minh] Found 1 order items

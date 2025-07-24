@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; margin: 0; padding: 0; }
         .navbar-brand {
@@ -152,30 +154,101 @@
           <?php endif; ?>
           
           <!-- User Dropdown Menu -->
-          <div class="dropdown">
-            <button class="user-dropdown-toggle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="dropdown ms-2">
+            <button class="user-dropdown-toggle dropdown-toggle d-flex align-items-center gap-2 bg-transparent border-0 text-white" 
+                    type="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                    style="padding: 0.5rem 1rem; border-radius: 50px; transition: all 0.3s ease;">
               <?php if (!empty($_SESSION['user']['avatar'])): ?>
-                <img src="<?php echo htmlspecialchars($_SESSION['user']['avatar']); ?>" alt="Avatar" class="user-avatar">
+                <img src="<?php echo htmlspecialchars($_SESSION['user']['avatar']); ?>" 
+                     alt="Avatar" 
+                     class="user-avatar rounded-circle" 
+                     style="width: 32px; height: 32px; object-fit: cover;">
               <?php else: ?>
-                <i class="fa-solid fa-user-circle fa-lg"></i>
+                <div class="bg-light rounded-circle d-flex align-items-center justify-content-center" 
+                     style="width: 32px; height: 32px;">
+                  <i class="fa-solid fa-user text-dark"></i>
+                </div>
               <?php endif; ?>
-              <span><?php echo htmlspecialchars($_SESSION['user']['username']); ?></span>
+              <span class="d-none d-md-inline"><?php echo htmlspecialchars($_SESSION['user']['username']); ?></span>
+              <i class="fa-solid fa-chevron-down ms-1" style="font-size: 0.8em;"></i>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><h6 class="dropdown-header">Tài khoản</h6></li>
-              <li><a class="dropdown-item" href="?controller=user"><i class="fa-solid fa-user me-2"></i>Thông tin cá nhân</a></li>
-              <li><a class="dropdown-item" href="?controller=user&action=edit"><i class="fa-solid fa-edit me-2"></i>Sửa thông tin</a></li>
-              <li><a class="dropdown-item" href="?controller=user&action=change_password"><i class="fa-solid fa-key me-2"></i>Đổi mật khẩu</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="?controller=checkout&action=orderHistory"><i class="fa-solid fa-history me-2"></i>Lịch sử đơn hàng</a></li>
-              <li><hr class="dropdown-divider"></li>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 220px; border: none; border-radius: 10px; overflow: hidden;">
+              <li><h6 class="dropdown-header fw-bold text-uppercase small">Tài khoản</h6></li>
               <li>
-          <form method="post" action="?controller=auth&action=logout" style="display:inline;">
-                  <button type="submit" class="dropdown-item text-danger"><i class="fa-solid fa-sign-out-alt me-2"></i>Đăng xuất</button>
-          </form>
+                <a class="dropdown-item d-flex align-items-center py-2" 
+                   href="?controller=user"
+                   style="transition: all 0.2s ease;">
+                  <i class="fa-solid fa-user me-2 text-primary"></i>
+                  <span>Thông tin cá nhân</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center py-2" 
+                   href="?controller=user&action=edit"
+                   style="transition: all 0.2s ease;">
+                  <i class="fa-solid fa-edit me-2 text-primary"></i>
+                  <span>Sửa thông tin</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center py-2" 
+                   href="?controller=user&action=change_password"
+                   style="transition: all 0.2s ease;">
+                  <i class="fa-solid fa-key me-2 text-primary"></i>
+                  <span>Đổi mật khẩu</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider my-1"></li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center py-2" 
+                   href="?controller=checkout&action=orderHistory"
+                   style="transition: all 0.2s ease;">
+                  <i class="fa-solid fa-history me-2 text-primary"></i>
+                  <span>Lịch sử đơn hàng</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider my-1"></li>
+              <li>
+                <form method="post" action="?controller=auth&action=logout" class="w-100">
+                  <button type="submit" 
+                          class="dropdown-item d-flex align-items-center py-2 w-100 text-start"
+                          style="transition: all 0.2s ease; background: none; border: none;">
+                    <i class="fa-solid fa-sign-out-alt me-2 text-danger"></i>
+                    <span class="text-danger">Đăng xuất</span>
+                  </button>
+                </form>
               </li>
             </ul>
           </div>
+          <style>
+            .user-dropdown-toggle:hover {
+              background-color: rgba(255, 255, 255, 0.15) !important;
+            }
+            .dropdown-item {
+              font-size: 0.9rem;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              margin: 0.15rem 0.5rem;
+              width: auto;
+            }
+            .dropdown-item:hover {
+              background-color: #f8f9fa;
+              transform: translateX(3px);
+            }
+            .dropdown-menu {
+              border: 1px solid rgba(0,0,0,0.05);
+              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            }
+            .dropdown-header {
+              font-size: 0.7rem;
+              padding: 0.5rem 1rem 0.25rem;
+              color: #6c757d;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+            }
+          </style>
         <?php else: ?>
           <a href="?controller=auth&action=login" class="btn btn-login btn-auth">Đăng nhập</a>
           <a href="?controller=auth&action=register" class="btn btn-register btn-auth">Đăng ký</a>
