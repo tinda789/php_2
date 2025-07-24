@@ -8,6 +8,24 @@ class CartController {
     public function add() {
         if (session_status() === PHP_SESSION_NONE) session_start();
         
+        // Check if user is logged in
+        if (!isset($_SESSION['user'])) {
+            if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false, 
+                    'login_required' => true,
+                    'message' => 'Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.'
+                ]);
+                exit;
+            } else {
+                $_SESSION['redirect_after_login'] = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+                header('Location: index.php?controller=auth&action=login&error=login_required');
+                exit;
+            }
+        }
+        
         // Check if this is an AJAX request
         $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
                  strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';

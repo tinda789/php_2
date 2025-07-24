@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 require_once 'config/config.php';
 require_once 'model/User.php'; // Đảm bảo đã require model
 require_once 'model/Order.php'; // Include Order model
+require_once 'model/Address.php'; // Thêm model Address
 
 $user = $_SESSION['user'] ?? null;
 $error = '';
@@ -167,6 +168,93 @@ if ($action === 'edit' && $user) {
         }
     }
     include 'view/user/edit_profile.php';
+    exit;
+}
+
+if ($action === 'addresses' && $user) {
+    $addressModel = new Address();
+    $addresses = $addressModel->getUserAddresses($user['id']);
+    
+    // Xử lý thêm/sửa/xóa địa chỉ
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $subAction = $_POST['sub_action'] ?? '';
+        
+        if ($subAction === 'save') {
+            $data = [
+                'first_name' => trim($_POST['first_name']),
+                'last_name' => trim($_POST['last_name']),
+                'phone' => trim($_POST['phone']),
+                'address_line1' => trim($_POST['address_line1']),
+                'address_line2' => trim($_POST['address_line2'] ?? ''),
+                'city' => trim($_POST['city']),
+                'district' => trim($_POST['district']),
+                'ward' => trim($_POST['ward']),
+                'is_default' => isset($_POST['is_default']) ? 1 : 0
+            ];
+            
+            // Validate dữ liệu
+            $errors = [];
+            if (empty($data['first_name'])) $errors[] = 'Vui lòng nhập họ';
+            if (empty($data['last_name'])) $errors[] = 'Vui lòng nhập tên';
+            if (empty($data['phone']) || !preg_match('/^[0-9]{10,15}$/', $data['phone'])) {
+                $errors[] = 'Số điện thoại không hợp lệ';
+            }
+            if (empty($data['address_line1'])) $errors[] = 'Vui lòng nhập địa chỉ';
+            if (empty($data['city'])) $errors[] = 'Vui lòng chọn tỉnh/thành phố';
+            if (empty($data['district'])) $errors[] = 'Vui lòng chọn quận/huyện';
+            if (empty($data['ward'])) $errors[] = 'Vui lòng chọn phường/xã';
+            
+            if (empty($errors)) {
+                $addressId = $_POST['address_id'] ?? null;
+                if ($addressId) {
+                    // Cập nhật địa chỉ
+                    $result = $addressModel->update($user['id'], $addressId, $data);
+                    if ($result) {
+                        $_SESSION['success'] = 'Cập nhật địa chỉ thành công';
+                    } else {
+                        $_SESSION['error'] = 'Có lỗi xảy ra khi cập nhật địa chỉ';
+                    }
+                } else {
+                    // Thêm địa chỉ mới
+                    $result = $addressModel->save($user['id'], $data);
+                    if ($result) {
+                        $_SESSION['success'] = 'Thêm địa chỉ mới thành công';
+                    } else {
+                        $_SESSION['error'] = 'Có lỗi xảy ra khi thêm địa chỉ';
+                    }
+                }
+                header('Location: index.php?controller=user&action=addresses');
+                exit;
+            } else {
+                $_SESSION['error'] = implode('<br>', $errors);
+                $_SESSION['form_data'] = $data;
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit;
+            }
+        } elseif ($subAction === 'set_default' && !empty($_POST['id'])) {
+            // Đặt địa chỉ mặc định
+            $result = $addressModel->setDefaultAddress($_POST['id'], $user['id']);
+            if ($result) {
+                $_SESSION['success'] = 'Đã đặt địa chỉ mặc định thành công';
+            } else {
+                $_SESSION['error'] = 'Có lỗi xảy ra khi đặt địa chỉ mặc định';
+            }
+            header('Location: index.php?controller=user&action=addresses');
+            exit;
+        } elseif ($subAction === 'delete' && !empty($_POST['id'])) {
+            // Xóa địa chỉ
+            $result = $addressModel->deleteAddress($_POST['id'], $user['id']);
+            if ($result) {
+                $_SESSION['success'] = 'Đã xóa địa chỉ thành công';
+            } else {
+                $_SESSION['error'] = 'Có lỗi xảy ra khi xóa địa chỉ';
+            }
+            header('Location: index.php?controller=user&action=addresses');
+            exit;
+        }
+    }
+    
+    include 'view/user/addresses.php';
     exit;
 }
 
@@ -445,5 +533,5 @@ if (!empty($_SESSION['user'])) {
 }
 
 // Sử dụng giao diện mới
-include 'view/user/profile_new.php';
+include 'view/user/profile.php';
 ?>

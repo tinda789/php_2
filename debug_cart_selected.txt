@@ -1,0 +1,2178 @@
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 5
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:25:33
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 5
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:25:33
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 5
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:25:33
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 25
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-23 14:55:01
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 5
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:25:33
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 23
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:47:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 4
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:47:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 23
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:47:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 4
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:47:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 21
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:49:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 3
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:49:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 21
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:49:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 3
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:49:26
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 19
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:50:59
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 2
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:50:59
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 19
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:50:59
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 2
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:50:59
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 17
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:51:43
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 1
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:51:43
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [name] => Dell XPS 13
+            [slug] => dell-xps-13
+            [description] => Laptop siêu mỏng với màn hình InfinityEdge và hiệu năng Intel Core thế hệ 13.
+            [short_description] => Laptop Windows cao cấp, thiết kế đẹp
+            [price] => 28990000.00
+            [sale_price] => 27990000.00
+            [stock] => 17
+            [min_stock_level] => 5
+            [category_id] => 9
+            [brand_id] => 6
+            [model] => XPS 13
+            [sku] => DELLXPS13I7
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6880955538c39_1753257301.jpg
+            [meta_title] => 
+            [meta_description] => 
+            [created_by] => 1
+            [created_at] => 2025-06-12 23:33:25
+            [updated_at] => 2025-07-25 03:51:43
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 57
+                            [product_id] => 5
+                            [image_url] => uploads/products/6880955538c39_1753257301.jpg
+                            [alt_text] => Dell XPS 13
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-23 14:55:01
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 163
+            [name] => Bếp gas đôi Rinnai RV-970(G)
+            [slug] => b-p-gas-i-rinnai-rv-970-g
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 849000.00
+            [sale_price] => 799000.00
+            [stock] => 1
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 92
+            [model] => 
+            [sku] => KITCHGAS1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f773319a6_1753347955.jpeg
+            [meta_title] => Bếp gas đôi Rinnai RV-970(G)
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 03:51:43
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 225
+                            [product_id] => 163
+                            [image_url] => uploads/products/6881f773319a6_1753347955.jpeg
+                            [alt_text] => Bếp gas đôi Rinnai RV-970(G)
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:05:55
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 18
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-24 16:06:37
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 18
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-24 16:06:37
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 17
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 04:06:12
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 17
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 04:06:12
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 16
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 04:06:47
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 16
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 04:06:47
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 15
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 04:11:23
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [0] => Array
+        (
+            [id] => 162
+            [name] => Máy vắt cam Bluestone CJ-6338
+            [slug] => m-y-v-t-cam-bluestone-cj-6338
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 459000.00
+            [sale_price] => 429000.00
+            [stock] => 15
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 91
+            [model] => 
+            [sku] => KITCHJUICE1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f79d3c905_1753347997.jpg
+            [meta_title] => Máy vắt cam Bluestone CJ-6338
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-25 04:11:23
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 226
+                            [product_id] => 162
+                            [image_url] => uploads/products/6881f79d3c905_1753347997.jpg
+                            [alt_text] => Máy vắt cam Bluestone CJ-6338
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:37
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [1] => Array
+        (
+            [id] => 161
+            [name] => Máy làm sữa hạt Ranbem 769S
+            [slug] => m-y-l-m-s-a-h-t-ranbem-769s
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 1690000.00
+            [sale_price] => 1590000.00
+            [stock] => 10
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 90
+            [model] => 
+            [sku] => KITCHMILK1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f7aebf290_1753348014.jpg
+            [meta_title] => Máy làm sữa hạt Ranbem 769S
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-24 16:06:54
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 227
+                            [product_id] => 161
+                            [image_url] => uploads/products/6881f7aebf290_1753348014.jpg
+                            [alt_text] => Máy làm sữa hạt Ranbem 769S
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:54
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+
+Cart selected: Array
+(
+    [1] => Array
+        (
+            [id] => 161
+            [name] => Máy làm sữa hạt Ranbem 769S
+            [slug] => m-y-l-m-s-a-h-t-ranbem-769s
+            [description] => Chưa có mô tả chi tiết.
+            [short_description] => Chưa có mô tả ngắn.
+            [price] => 1690000.00
+            [sale_price] => 1590000.00
+            [stock] => 10
+            [min_stock_level] => 0
+            [category_id] => 40
+            [brand_id] => 90
+            [model] => 
+            [sku] => KITCHMILK1
+            [barcode] => 0
+            [weight] => 0.00
+            [dimensions] => 
+            [warranty_period] => 0
+            [status] => active
+            [featured] => 0
+            [image_link] => uploads/products/6881f7aebf290_1753348014.jpg
+            [meta_title] => Máy làm sữa hạt Ranbem 769S
+            [meta_description] => Chưa có mô tả ngắn.
+            [created_by] => 1
+            [created_at] => 2025-07-24 15:51:16
+            [updated_at] => 2025-07-24 16:06:54
+            [images] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 227
+                            [product_id] => 161
+                            [image_url] => uploads/products/6881f7aebf290_1753348014.jpg
+                            [alt_text] => Máy làm sữa hạt Ranbem 769S
+                            [is_primary] => 0
+                            [sort_order] => 999
+                            [created_at] => 2025-07-24 16:06:54
+                        )
+
+                )
+
+            [specs] => Array
+                (
+                )
+
+            [quantity] => 1
+        )
+
+)
+

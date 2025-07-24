@@ -680,3 +680,749 @@ BANK CODE: NCB
 PAYMENT STATUS UPDATED: SUCCESS
 ORDER STATUS UPDATED: SUCCESS
 
+[VNPAY_RETURN] 2025-07-25 03:26:00
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 799000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725032533238
+    [vnp_PayDate] => 20250725032635
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725032533238
+    [vnp_SecureHash] => f7d5456e2ed1ec9a7e2d5cdb5c11d4af8b65b3688cf3a62909483c6c24caff906a4cb6f5b80d24d79b05002330abd5a34f9b06844d630bbba45dba4715cc423e
+)
+
+ORDER NUMBER: OD20250725032533238
+ORDER DATA: Array
+(
+    [id] => 36
+    [user_id] => 1
+    [order_number] => OD20250725032533238
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 799000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 799000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ 246","city":"92","district":"925","ward":"31261"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ 246","city":"92","district":"925","ward":"31261"}
+    [order_date] => 2025-07-25 03:25:33
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 03:25:33
+    [updated_at] => 2025-07-25 03:25:33
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 37
+                    [order_id] => 36
+                    [product_id] => 163
+                    [product_name] => Bếp gas đôi Rinnai RV-970(G)
+                    [product_sku] => KITCHGAS1
+                    [quantity] => 1
+                    [unit_price] => 799000.00
+                    [total_price] => 799000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: f7d5456e2ed1ec9a7e2d5cdb5c11d4af8b65b3688cf3a62909483c6c24caff906a4cb6f5b80d24d79b05002330abd5a34f9b06844d630bbba45dba4715cc423e
+CALCULATED HASH: f7d5456e2ed1ec9a7e2d5cdb5c11d4af8b65b3688cf3a62909483c6c24caff906a4cb6f5b80d24d79b05002330abd5a34f9b06844d630bbba45dba4715cc423e
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 03:28:37
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 5560000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725032810440
+    [vnp_PayDate] => 20250725032912
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725032810440
+    [vnp_SecureHash] => 1b798cda4b0432d8c6114c9626ca4fa5e1f2a2143d5d939fa250782ca9f6f66aa189547648e52903f1bd508d0072d9b6ba602f89128d2b5b6aea6141a040af45
+)
+
+ORDER NUMBER: OD20250725032810440
+ORDER DATA: Array
+(
+    [id] => 37
+    [user_id] => 1
+    [order_number] => OD20250725032810440
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 5560000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 5560000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"926","ward":"31309"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"926","ward":"31309"}
+    [order_date] => 2025-07-25 03:28:10
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 03:28:10
+    [updated_at] => 2025-07-25 03:28:10
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 38
+                    [order_id] => 37
+                    [product_id] => 159
+                    [product_name] => Máy ép chậm Mishio MK-197
+                    [product_sku] => KITCHEXTRCT1
+                    [quantity] => 4
+                    [unit_price] => 1390000.00
+                    [total_price] => 5560000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 1b798cda4b0432d8c6114c9626ca4fa5e1f2a2143d5d939fa250782ca9f6f66aa189547648e52903f1bd508d0072d9b6ba602f89128d2b5b6aea6141a040af45
+CALCULATED HASH: 1b798cda4b0432d8c6114c9626ca4fa5e1f2a2143d5d939fa250782ca9f6f66aa189547648e52903f1bd508d0072d9b6ba602f89128d2b5b6aea6141a040af45
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 03:47:51
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 56779000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725034726419
+    [vnp_PayDate] => 20250725034828
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725034726419
+    [vnp_SecureHash] => 2ecbc7df8b3a295d534cfdc9b5e0cd83e501a03d8d79478237cab71524776f26f8323aaa08da1f4412b1ae3417b3220ff87087ccdc9543d263805a1e188a9312
+)
+
+ORDER NUMBER: OD20250725034726419
+ORDER DATA: Array
+(
+    [id] => 38
+    [user_id] => 1
+    [order_number] => OD20250725034726419
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 56779000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 56779000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"916","ward":"31123"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"916","ward":"31123"}
+    [order_date] => 2025-07-25 03:47:26
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 03:47:26
+    [updated_at] => 2025-07-25 03:47:26
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 39
+                    [order_id] => 38
+                    [product_id] => 5
+                    [product_name] => Dell XPS 13
+                    [product_sku] => DELLXPS13I7
+                    [quantity] => 2
+                    [unit_price] => 27990000.00
+                    [total_price] => 55980000.00
+                )
+
+            [1] => Array
+                (
+                    [id] => 40
+                    [order_id] => 38
+                    [product_id] => 163
+                    [product_name] => Bếp gas đôi Rinnai RV-970(G)
+                    [product_sku] => KITCHGAS1
+                    [quantity] => 1
+                    [unit_price] => 799000.00
+                    [total_price] => 799000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 2ecbc7df8b3a295d534cfdc9b5e0cd83e501a03d8d79478237cab71524776f26f8323aaa08da1f4412b1ae3417b3220ff87087ccdc9543d263805a1e188a9312
+CALCULATED HASH: 2ecbc7df8b3a295d534cfdc9b5e0cd83e501a03d8d79478237cab71524776f26f8323aaa08da1f4412b1ae3417b3220ff87087ccdc9543d263805a1e188a9312
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 03:50:46
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 56779000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725034926185
+    [vnp_PayDate] => 20250725035028
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725034926185
+    [vnp_SecureHash] => 9a60bcdd6cd463ed81552d2cb39539e7b4f2ecd02369be8456ef29c036ed916d95c23c562bf67fa0cc5d4dda87ebd7c19911e6ba45f1636659be0cba87a1d917
+)
+
+ORDER NUMBER: OD20250725034926185
+ORDER DATA: Array
+(
+    [id] => 39
+    [user_id] => 1
+    [order_number] => OD20250725034926185
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 56779000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 56779000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"917","ward":"31156"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"917","ward":"31156"}
+    [order_date] => 2025-07-25 03:49:26
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 03:49:26
+    [updated_at] => 2025-07-25 03:49:26
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 41
+                    [order_id] => 39
+                    [product_id] => 5
+                    [product_name] => Dell XPS 13
+                    [product_sku] => DELLXPS13I7
+                    [quantity] => 2
+                    [unit_price] => 27990000.00
+                    [total_price] => 55980000.00
+                )
+
+            [1] => Array
+                (
+                    [id] => 42
+                    [order_id] => 39
+                    [product_id] => 163
+                    [product_name] => Bếp gas đôi Rinnai RV-970(G)
+                    [product_sku] => KITCHGAS1
+                    [quantity] => 1
+                    [unit_price] => 799000.00
+                    [total_price] => 799000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 9a60bcdd6cd463ed81552d2cb39539e7b4f2ecd02369be8456ef29c036ed916d95c23c562bf67fa0cc5d4dda87ebd7c19911e6ba45f1636659be0cba87a1d917
+CALCULATED HASH: 9a60bcdd6cd463ed81552d2cb39539e7b4f2ecd02369be8456ef29c036ed916d95c23c562bf67fa0cc5d4dda87ebd7c19911e6ba45f1636659be0cba87a1d917
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 03:51:17
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035059270
+    [vnp_PayDate] => 20250725035201
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725035059270
+    [vnp_SecureHash] => f87720b9ef35bb125aeabe132e6a357f556c8576ce8bc3a8435022f1458cdb887fac462465e6e21343ebc716b1ceeef6fb8646220dfc51af94e869263c503e58
+)
+
+ORDER NUMBER: OD20250725035059270
+ORDER DATA: Array
+(
+    [id] => 40
+    [user_id] => 1
+    [order_number] => OD20250725035059270
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 56779000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 56779000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"925","ward":"31273"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"92","district":"925","ward":"31273"}
+    [order_date] => 2025-07-25 03:50:59
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 03:50:59
+    [updated_at] => 2025-07-25 03:50:59
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 43
+                    [order_id] => 40
+                    [product_id] => 5
+                    [product_name] => Dell XPS 13
+                    [product_sku] => DELLXPS13I7
+                    [quantity] => 2
+                    [unit_price] => 27990000.00
+                    [total_price] => 55980000.00
+                )
+
+            [1] => Array
+                (
+                    [id] => 44
+                    [order_id] => 40
+                    [product_id] => 163
+                    [product_name] => Bếp gas đôi Rinnai RV-970(G)
+                    [product_sku] => KITCHGAS1
+                    [quantity] => 1
+                    [unit_price] => 799000.00
+                    [total_price] => 799000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: f87720b9ef35bb125aeabe132e6a357f556c8576ce8bc3a8435022f1458cdb887fac462465e6e21343ebc716b1ceeef6fb8646220dfc51af94e869263c503e58
+CALCULATED HASH: f87720b9ef35bb125aeabe132e6a357f556c8576ce8bc3a8435022f1458cdb887fac462465e6e21343ebc716b1ceeef6fb8646220dfc51af94e869263c503e58
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 03:56:21
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098025
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035357770
+    [vnp_PayDate] => 20250725035525
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098025
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035357770
+    [vnp_SecureHash] => ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+)
+
+ORDER NUMBER: OD20250725035357770
+ORDER DATA: Array
+(
+    [id] => 42
+    [user_id] => 1
+    [order_number] => OD20250725035357770
+    [status] => confirmed
+    [payment_status] => paid
+    [payment_method] => vnpay
+    [subtotal] => 56779000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 56779000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"95","district":"960","ward":"31978"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"95","district":"960","ward":"31978"}
+    [order_date] => 2025-07-25 03:53:57
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098025, Ngân hàng: NCB, Ngày thanh toán: 20250725035525
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098025, Ngân hàng: NCB, Ngày thanh toán: 20250725035525
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098025, Ngân hàng: NCB, Ngày thanh toán: 20250725035525
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098025, Ngân hàng: NCB, Ngày thanh toán: 20250725035525
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098025, Ngân hàng: NCB, Ngày thanh toán: 20250725035525
+    [created_at] => 2025-07-25 03:53:57
+    [updated_at] => 2025-07-25 03:56:00
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 47
+                    [order_id] => 42
+                    [product_id] => 5
+                    [product_name] => Dell XPS 13
+                    [product_sku] => DELLXPS13I7
+                    [quantity] => 2
+                    [unit_price] => 27990000.00
+                    [total_price] => 55980000.00
+                )
+
+            [1] => Array
+                (
+                    [id] => 48
+                    [order_id] => 42
+                    [product_id] => 163
+                    [product_name] => Bếp gas đôi Rinnai RV-970(G)
+                    [product_sku] => KITCHGAS1
+                    [quantity] => 1
+                    [unit_price] => 799000.00
+                    [total_price] => 799000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+CALCULATED HASH: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+RESPONSE CODE: 00
+TRANSACTION NO: 15098025
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+
+[VNPAY_RETURN] 2025-07-25 04:06:32
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040612236
+    [vnp_PayDate] => 20250725040714
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725040612236
+    [vnp_SecureHash] => 9f2a66f536405aa1f4b44d0d5fe7949981b7c1a191538662e4ff9badd3980c0ec42b8b60c2ff905145811bd2112707081c10c7b1479df356c1e0546069813ac3
+)
+
+ORDER NUMBER: OD20250725040612236
+ORDER DATA: Array
+(
+    [id] => 43
+    [user_id] => 1
+    [order_number] => OD20250725040612236
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 429000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 429000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"52","district":"549","ward":"21946"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"52","district":"549","ward":"21946"}
+    [order_date] => 2025-07-25 04:06:12
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 04:06:12
+    [updated_at] => 2025-07-25 04:06:12
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 49
+                    [order_id] => 43
+                    [product_id] => 162
+                    [product_name] => Máy vắt cam Bluestone CJ-6338
+                    [product_sku] => KITCHJUICE1
+                    [quantity] => 1
+                    [unit_price] => 429000.00
+                    [total_price] => 429000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 9f2a66f536405aa1f4b44d0d5fe7949981b7c1a191538662e4ff9badd3980c0ec42b8b60c2ff905145811bd2112707081c10c7b1479df356c1e0546069813ac3
+CALCULATED HASH: 9f2a66f536405aa1f4b44d0d5fe7949981b7c1a191538662e4ff9badd3980c0ec42b8b60c2ff905145811bd2112707081c10c7b1479df356c1e0546069813ac3
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 04:11:33
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041123233
+    [vnp_PayDate] => 20250725041225
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725041123233
+    [vnp_SecureHash] => ddc62e4d41815e30aee2826273e78ab6023ce0230a255c67fb68f141020142e8f9cf83e25726393637c87270be63521e1333f6ac364b9e9364911d9ac2473d1b
+)
+
+SERVER DATA: Array
+(
+    [DOCUMENT_ROOT] => C:\Users\thanh\OneDrive\Desktop\git\www
+    [REMOTE_ADDR] => 127.0.0.1
+    [REMOTE_PORT] => 53853
+    [SERVER_SOFTWARE] => PHP 8.2.12 Development Server
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [SERVER_NAME] => 127.0.0.1
+    [SERVER_PORT] => 8000
+    [REQUEST_URI] => /index.php?controller=checkout&action=vnpay_return&vnp_Amount=42900000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041123233&vnp_PayDate=20250725041225&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725041123233&vnp_SecureHash=ddc62e4d41815e30aee2826273e78ab6023ce0230a255c67fb68f141020142e8f9cf83e25726393637c87270be63521e1333f6ac364b9e9364911d9ac2473d1b
+    [REQUEST_METHOD] => GET
+    [SCRIPT_NAME] => /index.php
+    [SCRIPT_FILENAME] => C:\Users\thanh\OneDrive\Desktop\git\www\index.php
+    [PHP_SELF] => /index.php
+    [QUERY_STRING] => controller=checkout&action=vnpay_return&vnp_Amount=42900000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041123233&vnp_PayDate=20250725041225&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725041123233&vnp_SecureHash=ddc62e4d41815e30aee2826273e78ab6023ce0230a255c67fb68f141020142e8f9cf83e25726393637c87270be63521e1333f6ac364b9e9364911d9ac2473d1b
+    [HTTP_HOST] => shopelectrics.px:8000
+    [HTTP_CONNECTION] => keep-alive
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+    [HTTP_REFERER] => https://sandbox.vnpayment.vn/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => en-US,en;q=0.9
+    [HTTP_COOKIE] => PHPSESSID=jqns35i4n8mfqfas2if8q8hgu0
+    [REQUEST_TIME_FLOAT] => 1753391493.1855
+    [REQUEST_TIME] => 1753391493
+)
+
+ORDER NUMBER: OD20250725041123233
+ORDER DATA: Array
+(
+    [id] => 45
+    [user_id] => 1
+    [order_number] => OD20250725041123233
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 429000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 429000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"52","district":"551","ward":"21994"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"52","district":"551","ward":"21994"}
+    [order_date] => 2025-07-25 04:11:23
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => d
+    [created_at] => 2025-07-25 04:11:23
+    [updated_at] => 2025-07-25 04:11:23
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 51
+                    [order_id] => 45
+                    [product_id] => 162
+                    [product_name] => Máy vắt cam Bluestone CJ-6338
+                    [product_sku] => KITCHJUICE1
+                    [quantity] => 1
+                    [unit_price] => 429000.00
+                    [total_price] => 429000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: ddc62e4d41815e30aee2826273e78ab6023ce0230a255c67fb68f141020142e8f9cf83e25726393637c87270be63521e1333f6ac364b9e9364911d9ac2473d1b
+CALCULATED HASH: ddc62e4d41815e30aee2826273e78ab6023ce0230a255c67fb68f141020142e8f9cf83e25726393637c87270be63521e1333f6ac364b9e9364911d9ac2473d1b
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 04:18:42
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+    [vnp_SecureHash] => cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+)
+
+SERVER DATA: Array
+(
+    [DOCUMENT_ROOT] => C:\Users\thanh\OneDrive\Desktop\git\www
+    [REMOTE_ADDR] => 127.0.0.1
+    [REMOTE_PORT] => 54387
+    [SERVER_SOFTWARE] => PHP 8.2.12 Development Server
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [SERVER_NAME] => 127.0.0.1
+    [SERVER_PORT] => 8000
+    [REQUEST_URI] => /index.php?controller=checkout&action=vnpay_return&vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750&vnp_SecureHash=cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+    [REQUEST_METHOD] => GET
+    [SCRIPT_NAME] => /index.php
+    [SCRIPT_FILENAME] => C:\Users\thanh\OneDrive\Desktop\git\www\index.php
+    [PHP_SELF] => /index.php
+    [QUERY_STRING] => controller=checkout&action=vnpay_return&vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750&vnp_SecureHash=cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+    [HTTP_HOST] => shopelectrics.px:8000
+    [HTTP_CONNECTION] => keep-alive
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+    [HTTP_REFERER] => https://sandbox.vnpayment.vn/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => en-US,en;q=0.9
+    [HTTP_COOKIE] => PHPSESSID=jqns35i4n8mfqfas2if8q8hgu0
+    [REQUEST_TIME_FLOAT] => 1753391922.8037
+    [REQUEST_TIME] => 1753391922
+)
+
+ORDER NUMBER: OD20250725041216750
+ORDER DATA: Array
+(
+    [id] => 46
+    [user_id] => 1
+    [order_number] => OD20250725041216750
+    [status] => confirmed
+    [payment_status] => paid
+    [payment_method] => vnpay
+    [subtotal] => 429000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 429000.00
+    [shipping_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"52","district":"549","ward":"21907"}
+    [billing_address] => {"name":"Nguyễn Tín","phone":"0794258356","address":"cần thơ","city":"52","district":"549","ward":"21907"}
+    [order_date] => 2025-07-25 04:12:16
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098034, Ngân hàng: NCB, Ngày thanh toán: 20250725041341
+    [created_at] => 2025-07-25 04:12:16
+    [updated_at] => 2025-07-25 04:13:47
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 52
+                    [order_id] => 46
+                    [product_id] => 162
+                    [product_name] => Máy vắt cam Bluestone CJ-6338
+                    [product_sku] => KITCHJUICE1
+                    [quantity] => 1
+                    [unit_price] => 429000.00
+                    [total_price] => 429000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+CALCULATED HASH: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+RESPONSE CODE: 00
+TRANSACTION NO: 15098034
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+

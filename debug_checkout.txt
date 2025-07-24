@@ -1,12 +1,14 @@
 POST:
 Array
 (
+    [product_id] => 161
+    [quantity] => 1
     [selected_products] => Array
         (
-            [0] => 139
+            [0] => 161
+            [1] => 139
         )
 
-    [product_id] => 139
     [quantity] => 5
 )
 
@@ -29,5 +31,9 @@ Array
     [updated_at] => 2025-07-23 18:18:38
     [role_name] => super_admin
     [role_id] => 1
+<<<<<<< HEAD
     [total_orders] => 40
+=======
+    [total_orders] => 46
+>>>>>>> d034f886eb808c90d3ca43963dfd3f3fbd709d2e
 )

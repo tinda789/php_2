@@ -25,6 +25,9 @@
             </table>
             <a href="?controller=user&action=edit" class="profile-edit-btn">Sửa thông tin</a>
             <a href="?controller=user&action=change_password" class="profile-edit-btn" style="background:#fff;color:#007bff;border:2px solid #007bff;margin-top:10px;">Đổi mật khẩu</a>
+            <a href="?controller=user&action=addresses" class="profile-edit-btn" style="background:#28a745;color:#fff;border:2px solid #28a745;margin-top:10px;">
+                <i class="fas fa-address-book me-1"></i> Quản lý địa chỉ
+            </a>
             
             <div class="order-history mt-5">
                 <h3 class="text-center mb-4">Lịch sử đơn hàng</h3>
