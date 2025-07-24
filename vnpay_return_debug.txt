@@ -4,21 +4,21 @@ Array
     [vnp_Amount] => 29000000
     [vnp_BankCode] => VNPAY
     [vnp_CardType] => QRCODE
-    [vnp_OrderInfo] => Thanh toan don hang #OD20250723170411802
-    [vnp_PayDate] => 20250723170417
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724121305344
+    [vnp_PayDate] => 20250724121311
     [vnp_TmnCode] => 4L6Y0LF7
     [vnp_TransactionNo] => 0
     [vnp_TransactionStatus] => 02
-    [vnp_TxnRef] => OD20250723170411802
+    [vnp_TxnRef] => OD20250724121305344
 )
 
-VNPAY HASH: de48029744e0513f4ef97c21a34830261a790dcfdd4e5e0e06f2313ef21ad59218a235a38b90a33720d7aa38b4e8a748f881911cb9d87049b38e4846969dfd85
-CALCULATED HASH: de48029744e0513f4ef97c21a34830261a790dcfdd4e5e0e06f2313ef21ad59218a235a38b90a33720d7aa38b4e8a748f881911cb9d87049b38e4846969dfd85
+VNPAY HASH: 39e2f02ded0ddf28be684bf1726f4dfcbe86944f5d2e336c99a6380763496c75b83eecf39f25793687869d483f214ac4e5a2139260fd660e276e1c4fc9473948
+CALCULATED HASH: 39e2f02ded0ddf28be684bf1726f4dfcbe86944f5d2e336c99a6380763496c75b83eecf39f25793687869d483f214ac4e5a2139260fd660e276e1c4fc9473948
 ORDER: Array
 (
-    [id] => 48
-    [user_id] => 1
-    [order_number] => OD20250723170411802
+    [id] => 103
+    [user_id] => 12
+    [order_number] => OD20250724121305344
     [status] => pending
     [payment_status] => pending
     [payment_method] => vnpay
@@ -29,10 +29,240 @@ ORDER: Array
     [total_amount] => 290000.00
     [shipping_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
     [billing_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
-    [order_date] => 2025-07-23 17:04:11
+    [order_date] => 2025-07-24 12:13:05
     [shipped_date] => 
     [delivered_date] => 
     [notes] => 
-    [created_at] => 2025-07-23 17:04:11
-    [updated_at] => 2025-07-23 17:04:11
+    [created_at] => 2025-07-24 12:13:05
+    [updated_at] => 2025-07-24 12:13:05
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 77
+                    [order_id] => 103
+                    [product_id] => 1
+                    [product_name] => iPhone 15 Pro Max 256GB
+                    [product_sku] => IP15PM256GB
+                    [quantity] => 1
+                    [unit_price] => 290000.00
+                    [total_price] => 290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
 )
+[VNPAY_RETURN] 2025-07-24 12:18:55
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724121848912
+    [vnp_PayDate] => 20250724121854
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724121848912
+    [vnp_SecureHash] => e11174e752aa5601eefa73739468bb51411cfb5efdcd0e19e5192aaef55cbfa352fd0d9c038d18202670fdfaac3e6348158d7914de253c50e0ec104d0f94515b
+)
+
+ORDER NUMBER: OD20250724121848912
+ORDER DATA: Array
+(
+    [id] => 105
+    [user_id] => 12
+    [order_number] => OD20250724121848912
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 290000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 290000.00
+    [shipping_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
+    [billing_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
+    [order_date] => 2025-07-24 12:18:48
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 12:18:48
+    [updated_at] => 2025-07-24 12:18:48
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 79
+                    [order_id] => 105
+                    [product_id] => 1
+                    [product_name] => iPhone 15 Pro Max 256GB
+                    [product_sku] => IP15PM256GB
+                    [quantity] => 1
+                    [unit_price] => 290000.00
+                    [total_price] => 290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: e11174e752aa5601eefa73739468bb51411cfb5efdcd0e19e5192aaef55cbfa352fd0d9c038d18202670fdfaac3e6348158d7914de253c50e0ec104d0f94515b
+CALCULATED HASH: e11174e752aa5601eefa73739468bb51411cfb5efdcd0e19e5192aaef55cbfa352fd0d9c038d18202670fdfaac3e6348158d7914de253c50e0ec104d0f94515b
+RESPONSE CODE: 
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+NO RESPONSE CODE FROM VNPAY
+
+[VNPAY_RETURN] 2025-07-24 12:24:47
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15096032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724122241472
+    [vnp_PayDate] => 20250724122542
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15096032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250724122241472
+    [vnp_SecureHash] => 8fa027c6b3e049715b2a6b5b96573610aed7a3ca5dd195e7f1a70d80402bdb1528072d14954abd77b113914981943f859f833609e0c8572f8707b17fcd180c78
+)
+
+ORDER NUMBER: OD20250724122241472
+ORDER DATA: Array
+(
+    [id] => 106
+    [user_id] => 12
+    [order_number] => OD20250724122241472
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 290000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 290000.00
+    [shipping_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
+    [billing_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
+    [order_date] => 2025-07-24 12:22:41
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 12:22:41
+    [updated_at] => 2025-07-24 12:22:41
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 80
+                    [order_id] => 106
+                    [product_id] => 1
+                    [product_name] => iPhone 15 Pro Max 256GB
+                    [product_sku] => IP15PM256GB
+                    [quantity] => 1
+                    [unit_price] => 290000.00
+                    [total_price] => 290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 8fa027c6b3e049715b2a6b5b96573610aed7a3ca5dd195e7f1a70d80402bdb1528072d14954abd77b113914981943f859f833609e0c8572f8707b17fcd180c78
+CALCULATED HASH: 8fa027c6b3e049715b2a6b5b96573610aed7a3ca5dd195e7f1a70d80402bdb1528072d14954abd77b113914981943f859f833609e0c8572f8707b17fcd180c78
+RESPONSE CODE: 00
+TRANSACTION NO: 15096032
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+
+[VNPAY_RETURN] 2025-07-24 12:30:21
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 2499000000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15096041
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724122948249
+    [vnp_PayDate] => 20250724123116
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15096041
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250724122948249
+    [vnp_SecureHash] => 8ab0062099372e586ed2552569eb29cff1703940b05e159bed60b4ae12536ef20c156a1e3b432c25a7de2ea16c2aa00d7953e337e23caac84372dbda0b648b8a
+)
+
+ORDER NUMBER: OD20250724122948249
+ORDER DATA: Array
+(
+    [id] => 109
+    [user_id] => 1
+    [order_number] => OD20250724122948249
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 24990000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 24990000.00
+    [shipping_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
+    [billing_address] => {"city": "Cần thơ", "name": "Nguyễn Tín", "ward": "Hưng lợi ", "phone": "0794258356", "address": "cần thơ", "district": "Ninh kiều"}
+    [order_date] => 2025-07-24 12:29:48
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 12:29:48
+    [updated_at] => 2025-07-24 12:29:48
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 83
+                    [order_id] => 109
+                    [product_id] => 2
+                    [product_name] => iPhone 15 128GB
+                    [product_sku] => IP15128GB
+                    [quantity] => 1
+                    [unit_price] => 24990000.00
+                    [total_price] => 24990000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 8ab0062099372e586ed2552569eb29cff1703940b05e159bed60b4ae12536ef20c156a1e3b432c25a7de2ea16c2aa00d7953e337e23caac84372dbda0b648b8a
+CALCULATED HASH: 8ab0062099372e586ed2552569eb29cff1703940b05e159bed60b4ae12536ef20c156a1e3b432c25a7de2ea16c2aa00d7953e337e23caac84372dbda0b648b8a
+RESPONSE CODE: 00
+TRANSACTION NO: 15096041
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+

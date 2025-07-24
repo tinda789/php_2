@@ -116,3 +116,244 @@ HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderI
 HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
 GENERATED SIGNATURE: de48029744e0513f4ef97c21a34830261a790dcfdd4e5e0e06f2313ef21ad59218a235a38b90a33720d7aa38b4e8a748f881911cb9d87049b38e4846969dfd85
 
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250724120551
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120551793
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TxnRef] => OD20250724120551793
+    [vnp_Version] => 2.1.0
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724120551&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120551793&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250724120551793&vnp_Version=2.1.0
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: e24a9b12fd8af7b200f3b6e2c95a4da60bfbc2f781fc27f6ac0f1243746fd311d70d193aa79bf7e6f4613b550da6d675f23b94922c2961e5bf125c12143db3ae
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120551793
+    [vnp_PayDate] => 20250724120556
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724120551793
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120551793&vnp_PayDate=20250724120556&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250724120551793
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: 1e855c1e122f615528a818a9bc3d1fa79b754592c3eabafa2320d7f629918c8d3e10f088035d1182120717f207f99de2b0e9b6bbbf997003d73544200e15db30
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120551793
+    [vnp_PayDate] => 20250724120556
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724120551793
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120551793&vnp_PayDate=20250724120556&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250724120551793
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: 1e855c1e122f615528a818a9bc3d1fa79b754592c3eabafa2320d7f629918c8d3e10f088035d1182120717f207f99de2b0e9b6bbbf997003d73544200e15db30
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250724120726
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120726279
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TxnRef] => OD20250724120726279
+    [vnp_Version] => 2.1.0
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724120726&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120726279&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250724120726279&vnp_Version=2.1.0
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: c5ac5da2ba47641a8ad586c05efdd40adbeee416427481cd5df1e95e5026eb9267d524c3cc5a2353a9d871b86e5cf34b6e2fc1ca05b5eea3765b17817048136f
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120726279
+    [vnp_PayDate] => 20250724120732
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724120726279
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120726279&vnp_PayDate=20250724120732&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250724120726279
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: c3909764a213ebf77cfac21cf9084e39bd49085eb5b313b45030450f521086088a755abad3f947d05b79923c1f48dcc01f52b2e53aa704ce3bbc715869840644
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120726279
+    [vnp_PayDate] => 20250724120732
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724120726279
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120726279&vnp_PayDate=20250724120732&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250724120726279
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: c3909764a213ebf77cfac21cf9084e39bd49085eb5b313b45030450f521086088a755abad3f947d05b79923c1f48dcc01f52b2e53aa704ce3bbc715869840644
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250724121305
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724121305344
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TxnRef] => OD20250724121305344
+    [vnp_Version] => 2.1.0
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724121305&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724121305344&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250724121305344&vnp_Version=2.1.0
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: 9db1de2ad6d0a4d0468e2f91f96ff317f2971680b26f7f4ee9feb56bf399ea020e67d0cade880ef212170694e4d6730693098fcf198b76fb6264eec5896fa77d
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724121305344
+    [vnp_PayDate] => 20250724121311
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724121305344
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724121305344&vnp_PayDate=20250724121311&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250724121305344
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: 39e2f02ded0ddf28be684bf1726f4dfcbe86944f5d2e336c99a6380763496c75b83eecf39f25793687869d483f214ac4e5a2139260fd660e276e1c4fc9473948
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724121305344
+    [vnp_PayDate] => 20250724121311
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724121305344
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724121305344&vnp_PayDate=20250724121311&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250724121305344
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: 39e2f02ded0ddf28be684bf1726f4dfcbe86944f5d2e336c99a6380763496c75b83eecf39f25793687869d483f214ac4e5a2139260fd660e276e1c4fc9473948
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724121848912
+    [vnp_PayDate] => 20250724121854
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724121848912
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724121848912&vnp_PayDate=20250724121854&vnp_TmnCode=4L6Y0LF7&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250724121848912
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+GENERATED SIGNATURE: e11174e752aa5601eefa73739468bb51411cfb5efdcd0e19e5192aaef55cbfa352fd0d9c038d18202670fdfaac3e6348158d7914de253c50e0ec104d0f94515b
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 29000000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15096032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724122241472
+    [vnp_PayDate] => 20250724122542
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15096032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250724122241472
+)
+
+HASH DATA: vnp_Amount=29000000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15096032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724122241472&vnp_PayDate=20250724122542&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15096032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250724122241472
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 8fa027c6b3e049715b2a6b5b96573610aed7a3ca5dd195e7f1a70d80402bdb1528072d14954abd77b113914981943f859f833609e0c8572f8707b17fcd180c78
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 2499000000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15096041
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724122948249
+    [vnp_PayDate] => 20250724123116
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15096041
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250724122948249
+)
+
+HASH DATA: vnp_Amount=2499000000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15096041&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724122948249&vnp_PayDate=20250724123116&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15096041&vnp_TransactionStatus=00&vnp_TxnRef=OD20250724122948249
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 8ab0062099372e586ed2552569eb29cff1703940b05e159bed60b4ae12536ef20c156a1e3b432c25a7de2ea16c2aa00d7953e337e23caac84372dbda0b648b8a
+

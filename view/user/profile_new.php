@@ -1,0 +1,303 @@
+<?php 
+$pageTitle = 'Tài khoản của tôi';
+include 'view/layout/header.php'; 
+?>
+
+<?php if (empty($_SESSION['user'])): ?>
+    <div class="container py-5">
+        <div class="alert alert-warning text-center">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Vui lòng <a href="?controller=auth&action=login" class="alert-link">đăng nhập</a> để xem thông tin tài khoản.
+        </div>
+    </div>
+<?php else: ?>
+    <!-- Breadcrumb -->
+    <div class="bg-light py-3">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tài khoản của tôi</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row g-4">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body text-center p-4">
+                        <div class="position-relative d-inline-block mb-3">
+                            <?php if (!empty($_SESSION['user']['avatar'])): ?>
+                                <img src="<?php echo htmlspecialchars($_SESSION['user']['avatar']); ?>" 
+                                     class="rounded-circle border border-3 border-primary" 
+                                     width="120" height="120" 
+                                     alt="Avatar">
+                            <?php else: ?>
+                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" 
+                                     style="width: 120px; height: 120px; font-size: 3rem; color: white;">
+                                    <?php echo strtoupper(substr($_SESSION['user']['first_name'] ?? 'U', 0, 1)); ?>
+                                </div>
+                            <?php endif; ?>
+                            <a href="?controller=user&action=edit" class="btn btn-sm btn-primary rounded-circle position-absolute" 
+                               style="bottom: 0; right: 10px; width: 32px; height: 32px; line-height: 32px;">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        </div>
+                        <h5 class="mb-1"><?php echo htmlspecialchars(trim(($_SESSION['user']['first_name'] ?? '') . ' ' . ($_SESSION['user']['last_name'] ?? ''))); ?></h5>
+                        <p class="text-muted small mb-3">
+                            <?php 
+                            $role = $_SESSION['user']['role_name'] ?? 'customer';
+                            echo $role === 'admin' ? 'Quản trị viên' : 'Thành viên';
+                            ?>
+                        </p>
+                        <a href="?controller=user&action=edit" class="btn btn-outline-primary btn-sm w-100 mb-2">
+                            <i class="fas fa-user-edit me-1"></i> Cập nhật thông tin
+                        </a>
+                        <a href="?controller=user&action=change_password" class="btn btn-outline-secondary btn-sm w-100">
+                            <i class="fas fa-key me-1"></i> Đổi mật khẩu
+                        </a>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="?controller=user&action=orders" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-shopping-bag me-2"></i> Đơn hàng của tôi</span>
+                            <span class="badge bg-primary rounded-pill"><?php echo count($orders ?? []); ?></span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="fas fa-map-marker-alt me-2"></i> Sổ địa chỉ
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="far fa-heart me-2"></i> Sản phẩm yêu thích
+                        </a>
+                        <a href="?controller=auth&action=logout" class="list-group-item list-group-item-action text-danger">
+                            <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <!-- Welcome Card -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0 me-3">
+                                <i class="fas fa-user-circle text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <div>
+                                <h4 class="mb-1">Xin chào, <?php echo htmlspecialchars($_SESSION['user']['first_name'] ?? ''); ?>!</h4>
+                                <p class="text-muted mb-0">Chào mừng bạn quay trở lại với cửa hàng của chúng tôi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0"><i class="fas fa-history me-2 text-primary"></i> Đơn hàng gần đây</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <?php if (!empty($orders)): ?>
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Sản phẩm</th>
+                                            <th class="text-end">Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach (array_slice($orders, 0, 3) as $order): 
+                                            $status_class = [
+                                                'pending' => 'warning',
+                                                'processing' => 'info',
+                                                'shipped' => 'primary',
+                                                'delivered' => 'success',
+                                                'cancelled' => 'danger'
+                                            ][$order['status']] ?? 'secondary';
+                                            
+                                            $firstItem = $order['items'][0] ?? [];
+                                        ?>
+                                        <tr>
+                                            <td>#<?php echo htmlspecialchars($order['order_number']); ?></td>
+                                            <td><?php echo date('d/m/Y', strtotime($order['created_at'])); ?></td>
+                                            <td>
+                                                <?php if (!empty($firstItem)): ?>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="<?php echo !empty($firstItem['product_image']) ? htmlspecialchars($firstItem['product_image']) : '/assets/images/no-image.png'; ?>" 
+                                                             class="rounded me-2" width="40" height="40" 
+                                                             alt="<?php echo htmlspecialchars($firstItem['product_name']); ?>">
+                                                        <div>
+                                                            <div class="fw-medium"><?php echo htmlspecialchars($firstItem['product_name']); ?></div>
+                                                            <small class="text-muted">x<?php echo $firstItem['quantity']; ?> sản phẩm</small>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-end fw-bold"><?php echo number_format($order['total_amount'], 0, ',', '.'); ?> ₫</td>
+                                            <td>
+                                                <span class="badge bg-<?php echo $status_class; ?> text-uppercase">
+                                                    <?php 
+                                                    $status_text = [
+                                                        'pending' => 'Chờ xử lý',
+                                                        'processing' => 'Đang xử lý',
+                                                        'shipped' => 'Đang giao',
+                                                        'delivered' => 'Đã giao',
+                                                        'cancelled' => 'Đã hủy'
+                                                    ][$order['status']] ?? $order['status'];
+                                                    echo $status_text;
+                                                    ?>
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="?controller=user&action=order_detail&id=<?php echo $order['id']; ?>" 
+                                                   class="btn btn-sm btn-outline-primary" 
+                                                   data-bs-toggle="tooltip" title="Xem chi tiết">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-3 border-top">
+                                <a href="?controller=user&action=orders" class="btn btn-outline-primary">
+                                    <i class="fas fa-list me-2"></i>Xem tất cả đơn hàng
+                                </a>
+                            </div>
+                        <?php else: ?>
+                            <div class="text-center p-5">
+                                <div class="mb-3">
+                                    <i class="fas fa-shopping-bag text-muted" style="font-size: 3rem;"></i>
+                                </div>
+                                <h5>Bạn chưa có đơn hàng nào</h5>
+                                <p class="text-muted mb-4">Hãy bắt đầu mua sắm ngay hôm nay!</p>
+                                <a href="/" class="btn btn-primary">
+                                    <i class="fas fa-shopping-cart me-2"></i>Mua sắm ngay
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <!-- Account Info -->
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-header bg-white py-3">
+                                <h6 class="mb-0"><i class="fas fa-info-circle me-2 text-primary"></i> Thông tin tài khoản</h6>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2">
+                                        <span class="text-muted"><i class="fas fa-user me-2"></i>Họ tên:</span>
+                                        <span class="float-end"><?php echo htmlspecialchars(trim(($_SESSION['user']['first_name'] ?? '') . ' ' . ($_SESSION['user']['last_name'] ?? ''))); ?></span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="text-muted"><i class="fas fa-envelope me-2"></i>Email:</span>
+                                        <span class="float-end"><?php echo htmlspecialchars($_SESSION['user']['email'] ?? ''); ?></span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="text-muted"><i class="fas fa-phone me-2"></i>Số điện thoại:</span>
+                                        <span class="float-end"><?php echo !empty($_SESSION['user']['phone']) ? htmlspecialchars($_SESSION['user']['phone']) : 'Chưa cập nhật'; ?></span>
+                                    </li>
+                                    <li>
+                                        <span class="text-muted"><i class="fas fa-calendar-alt me-2"></i>Ngày tham gia:</span>
+                                        <span class="float-end"><?php echo !empty($_SESSION['user']['created_at']) ? date('d/m/Y', strtotime($_SESSION['user']['created_at'])) : 'N/A'; ?></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-header bg-white py-3">
+                                <h6 class="mb-0"><i class="fas fa-truck me-2 text-primary"></i> Địa chỉ giao hàng mặc định</h6>
+                            </div>
+                            <div class="card-body">
+                                <?php if (!empty($_SESSION['user']['default_address'])): 
+                                    $address = json_decode($_SESSION['user']['default_address'], true);
+                                    if ($address): ?>
+                                        <p class="mb-1"><?php echo htmlspecialchars($address['full_name'] ?? ''); ?></p>
+                                        <p class="mb-1 text-muted small">
+                                            <?php 
+                                            echo implode(', ', array_filter([
+                                                $address['address'] ?? '',
+                                                $address['ward'] ?? '',
+                                                $address['district'] ?? '',
+                                                $address['province'] ?? ''
+                                            ]));
+                                            ?>
+                                        </p>
+                                        <p class="mb-0 text-muted small">
+                                            <i class="fas fa-phone me-1"></i> <?php echo htmlspecialchars($address['phone'] ?? ''); ?>
+                                        </p>
+                                    <?php else: ?>
+                                        <p class="text-muted mb-0">Bạn chưa thiết lập địa chỉ giao hàng mặc định.</p>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <p class="text-muted mb-0">Bạn chưa thiết lập địa chỉ giao hàng mặc định.</p>
+                                <?php endif; ?>
+                                <div class="mt-3">
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-plus me-1"></i> Thêm địa chỉ mới
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .card {
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: translateY(-2px);
+    }
+    .list-group-item {
+        border-left: 0;
+        border-right: 0;
+    }
+    .list-group-item:first-child {
+        border-top: 0;
+    }
+    .list-group-item:last-child {
+        border-bottom: 0;
+    }
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+    }
+    .badge {
+        font-weight: 500;
+    }
+    .btn-outline-primary {
+        --bs-btn-hover-bg: #0d6efd;
+        --bs-btn-hover-border-color: #0d6efd;
+    }
+    </style>
+
+    <script>
+    // Kích hoạt tooltip
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+    </script>
+<?php endif; ?>
+
+<?php include 'view/layout/footer.php'; ?>

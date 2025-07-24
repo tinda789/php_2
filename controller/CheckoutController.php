@@ -8,8 +8,9 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 class CheckoutController {
     // Cấu hình VNPay - đưa ra thành constant để đảm bảo nhất quán
-    const VNPAY_TMN_CODE ='4L6Y0LF7';
-    const VNPAY_HASH_SECRET ='1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6';
+    const VNPAY_TMN_CODE ='7JX9OTN2';
+    const VNPAY_HASH_SECRET ='U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF';
+    
     const VNPAY_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
     const VNPAY_RETURN_URL = 'http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return';
     public function checkout() {
@@ -159,23 +160,35 @@ class CheckoutController {
         $order = Order::getById($GLOBALS['conn'], $order_id);
         
         if (!$order) {
-            echo 'Không tìm thấy đơn hàng!';
+            $_SESSION['error'] = 'Không tìm thấy đơn hàng!';
+            header('Location: index.php?controller=cart&action=view');
             exit;
         }
+        
+        // Kiểm tra nếu đơn hàng đã thanh toán
+        if ($order['payment_status'] === 'paid') {
+            $_SESSION['error'] = 'Đơn hàng này đã được thanh toán trước đó!';
+            header('Location: index.php?controller=checkout&action=success&order_id=' . $order_id);
+            exit;
+        }
+        
+        // Cấu hình VNPay
         $vnp_TmnCode = self::VNPAY_TMN_CODE;
         $vnp_HashSecret = self::VNPAY_HASH_SECRET;
         $vnp_Url = self::VNPAY_URL;
         $vnp_Returnurl = self::VNPAY_RETURN_URL;
         
+        // Thông tin đơn hàng
         $vnp_TxnRef = $order['order_number'];
-        $vnp_OrderInfo = 'Thanh toan don hang #' . $order['order_number'];
+        $vnp_OrderInfo = 'Thanh toán đơn hàng #' . $order['order_number'];
         $vnp_OrderType = 'other';
-        $vnp_Amount = (int)round($order['total_amount'] * 100);
+        $vnp_Amount = (int)round($order['total_amount'] * 100); // Nhân 100 vì VNPay yêu cầu số tiền là số nguyên
         $vnp_Locale = 'vn';
-        $vnp_BankCode = '';
+        $vnp_BankCode = ''; // Để người dùng chọn ngân hàng trên VNPay
         $vnp_IpAddr = $this->getClientIp();
         
-        $inputData = array(
+        // Tạo mảng dữ liệu gửi đi
+        $inputData = [
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
             "vnp_Amount" => $vnp_Amount,
@@ -187,29 +200,42 @@ class CheckoutController {
             "vnp_OrderInfo" => $vnp_OrderInfo,
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnp_Returnurl,
-            "vnp_TxnRef" => $vnp_TxnRef
-        );
+            "vnp_TxnRef" => $vnp_TxnRef,
+            "vnp_ExpireDate" => date('YmdHis', strtotime('+15 minutes')), // Hết hạn sau 15 phút
+        ];
         
-        // Tạo chữ ký theo đúng chuẩn VNPay
-        $vnp_SecureHash = $this->createVnpayHash($inputData, $vnp_HashSecret);
+        // Sắp xếp lại mảng theo key để tạo chữ ký
+        ksort($inputData);
+        
+        // Tạo chuỗi dữ liệu để tạo chữ ký
+        $hashData = '';
+        foreach ($inputData as $key => $value) {
+            if ($value !== '' && $value !== null) {
+                $hashData .= ($hashData ? '&' : '') . urlencode($key) . '=' . urlencode($value);
+            }
+        }
+        
+        // Tạo chữ ký
+        $vnp_SecureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+        
+        // Thêm chữ ký vào mảng dữ liệu
+        $inputData['vnp_SecureHash'] = $vnp_SecureHash;
         
         // Tạo URL thanh toán
         $query = [];
         foreach ($inputData as $key => $value) {
-            // Mã hóa giá trị, đặc biệt chú ý đến ký tự đặc biệt
-            $query[] = urlencode($key) . "=" . urlencode($value);
+            $query[] = urlencode($key) . '=' . urlencode($value);
         }
         
-        // Thêm chữ ký vào URL
-        $vnp_Url .= "?" . implode('&', $query) . "&vnp_SecureHash=" . $vnp_SecureHash;
+        $vnp_Url .= '?' . implode('&', $query);
         
-        // Debug log
-        $debugInfo = "INPUT DATA:\n" . print_r($inputData, true) . 
-                   "\nHASH SECRET: " . $vnp_HashSecret . 
-                   "\nSECURE HASH: " . $vnp_SecureHash . 
-                   "\nFINAL URL: " . $vnp_Url . "\n\n";
+        // Ghi log để debug
+        $debugInfo = "[VNPAY_REQUEST] " . date('Y-m-d H:i:s') . "\n";
+        $debugInfo .= "Order ID: " . $order_id . "\n";
+        $debugInfo .= "Order Number: " . $order['order_number'] . "\n";
+        $debugInfo .= "Amount: " . $vnp_Amount . "\n";
+        $debugInfo .= "VNPay URL: " . $vnp_Url . "\n\n";
         
-        // Ghi log đầy đủ
         file_put_contents('vnpay_debug.txt', $debugInfo, FILE_APPEND);
         
         // Chuyển hướng đến VNPay
@@ -217,7 +243,37 @@ class CheckoutController {
         exit;
     }
 
+    /**
+     * Hiển thị kết quả thanh toán
+     */
+    public function payment_result() {
+        // Lấy thông báo từ session
+        $message = $_SESSION['payment_message'] ?? 'Không có thông tin thanh toán.';
+        $isSuccess = $_SESSION['is_payment_success'] ?? false;
+        $order_number = $_GET['order_number'] ?? '';
+        
+        // Lấy thông tin đơn hàng nếu có
+        $order = null;
+        if ($order_number) {
+            $order = Order::getByOrderNumber($GLOBALS['conn'], $order_number);
+        }
+        
+        // Xóa thông báo khỏi session sau khi đã lấy
+        unset($_SESSION['payment_message']);
+        unset($_SESSION['is_payment_success']);
+        
+        // Hiển thị view
+        require __DIR__ . '/../view/user/checkout/payment_result.php';
+    }
+    
+    /**
+     * Xử lý kết quả trả về từ VNPay sau khi thanh toán
+     */
     public function vnpay_return() {
+        // Lưu toàn bộ dữ liệu trả về để debug
+        $logData = "[VNPAY_RETURN] " . date('Y-m-d H:i:s') . "\n";
+        $logData .= "GET DATA: " . print_r($_GET, true) . "\n";
+        
         $vnp_HashSecret = self::VNPAY_HASH_SECRET;
         
         // Lấy tất cả tham số vnp_
@@ -235,6 +291,9 @@ class CheckoutController {
         unset($inputData['vnp_SecureHash']);
         unset($inputData['vnp_SecureHashType']);
         
+        // Sắp xếp lại mảng theo key để tạo chữ ký
+        ksort($inputData);
+        
         // Tạo lại chữ ký để so sánh
         $secureHash = $this->createVnpayHash($inputData, $vnp_HashSecret);
         
@@ -245,36 +304,93 @@ class CheckoutController {
             $order = Order::getByOrderNumber($GLOBALS['conn'], $order_number);
         }
         
-        // Debug log
-        file_put_contents('vnpay_return_debug.txt', 
-            "INPUT DATA:\n" . print_r($inputData, true) . 
-            "\nVNPAY HASH: " . $vnp_SecureHash . 
-            "\nCALCULATED HASH: " . $secureHash . 
-            "\nORDER: " . print_r($order, true)
-        );
+        // Thêm thông tin vào log
+        $logData .= "ORDER NUMBER: " . $order_number . "\n";
+        $logData .= "ORDER DATA: " . print_r($order, true) . "\n";
+        $logData .= "SECURE HASH: " . $vnp_SecureHash . "\n";
+        $logData .= "CALCULATED HASH: " . $secureHash . "\n";
         
-        if ($secureHash === $vnp_SecureHash && $order) {
+        // Kiểm tra chữ ký
+        $isValidSignature = ($secureHash === $vnp_SecureHash);
+        
+        if ($isValidSignature && $order) {
             $responseCode = $_GET['vnp_ResponseCode'] ?? '';
+            $transactionNo = $_GET['vnp_TransactionNo'] ?? '';
+            $bankCode = $_GET['vnp_BankCode'] ?? '';
+            $payDate = $_GET['vnp_PayDate'] ?? '';
+            
+            $logData .= "RESPONSE CODE: " . $responseCode . "\n";
+            $logData .= "TRANSACTION NO: " . $transactionNo . "\n";
+            $logData .= "BANK CODE: " . $bankCode . "\n";
+            
             if ($responseCode === '00') {
-                Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'paid');
-                Order::updateStatus($GLOBALS['conn'], $order['id'], 'confirmed');
-                $message = "Thanh toán thành công! Đơn hàng của bạn đã được xác nhận.";
+                // Cập nhật trạng thái thanh toán thành công
+                $updateResult = Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'paid');
+                $updateStatus = Order::updateStatus($GLOBALS['conn'], $order['id'], 'confirmed');
+                
+                // Lưu thông tin giao dịch vào ghi chú
+                $transactionInfo = "Thanh toán thành công qua VNPay. Mã giao dịch: $transactionNo, Ngân hàng: $bankCode, Ngày thanh toán: $payDate";
+                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\\n$transactionInfo') WHERE id = ?");
+                $stmt->bind_param("i", $order['id']);
+                $stmt->execute();
+                
+                $logData .= "PAYMENT STATUS UPDATED: " . ($updateResult ? 'SUCCESS' : 'FAILED') . "\n";
+                $logData .= "ORDER STATUS UPDATED: " . ($updateStatus ? 'SUCCESS' : 'FAILED') . "\n";
+                
+                $message = "Thanh toán thành công! Đơn hàng #" . $order['order_number'] . " của bạn đã được xác nhận.";
+                $isSuccess = true;
             } else if (!empty($responseCode)) {
                 // Có mã lỗi từ VNPay
                 Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'failed');
-                $message = "Thanh toán thất bại. Mã lỗi: " . $responseCode;
+                
+                // Lấy thông báo lỗi tương ứng với mã lỗi
+                $errorMessages = [
+                    '07' => 'Trừ tiền thành công. Chi trả lỗi',
+                    '09' => 'Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.',
+                    '10' => 'Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần',
+                    '11' => 'Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.',
+                    '12' => 'Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.',
+                    '13' => 'Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.',
+                    '24' => 'Giao dịch không thành công do: Khách hàng hủy giao dịch',
+                    '51' => 'Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.',
+                    '65' => 'Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.',
+                    '75' => 'Ngân hàng thanh toán đang bảo trì.',
+                    '79' => 'Giao dịch không thành công do: KH nhập sai mật khẩu thanh toán quá số lần quy định. Xin quý khách vui lòng thực hiện lại giao dịch',
+                    '99' => 'Các lỗi khác (lỗi còn lại, không có trong danh sách mã lỗi đã liệt kê)'
+                ];
+                
+                $errorMessage = $errorMessages[$responseCode] ?? "Mã lỗi: $responseCode";
+                $message = "Thanh toán thất bại. $errorMessage";
+                $isSuccess = false;
+                
+                $logData .= "PAYMENT FAILED: " . $errorMessage . "\n";
             } else {
                 // Không có mã phản hồi từ VNPay
                 $message = "Không nhận được phản hồi từ cổng thanh toán. Vui lòng kiểm tra lại trạng thái đơn hàng.";
+                $isSuccess = false;
+                $logData .= "NO RESPONSE CODE FROM VNPAY\n";
             }
         } else {
             $message = "Xác thực giao dịch không hợp lệ!";
+            $isSuccess = false;
+            $logData .= "INVALID SIGNATURE OR ORDER NOT FOUND\n";
         }
         
-        require __DIR__ . '/../view/user/vnpay_result.php';
+        // Ghi log
+        file_put_contents('vnpay_return_debug.txt', $logData . "\n", FILE_APPEND);
+        
+        // Chuyển hướng đến trang kết quả với thông báo
+        $_SESSION['payment_message'] = $message;
+        $_SESSION['is_payment_success'] = $isSuccess;
+        header('Location: index.php?controller=checkout&action=payment_result&order_number=' . $order_number);
+        exit;
     }
 
     public function vnpay_ipn() {
+        // Lưu toàn bộ dữ liệu IPN để debug
+        $logData = "[VNPAY_IPN] " . date('Y-m-d H:i:s') . "\n";
+        $logData .= "GET DATA: " . print_r($_GET, true) . "\n";
+        
         $vnp_HashSecret = self::VNPAY_HASH_SECRET;
         
         // Lấy tất cả tham số vnp_
@@ -292,6 +408,9 @@ class CheckoutController {
         unset($inputData['vnp_SecureHash']);
         unset($inputData['vnp_SecureHashType']);
         
+        // Sắp xếp lại mảng theo key để tạo chữ ký
+        ksort($inputData);
+        
         // Tạo lại chữ ký để so sánh
         $secureHash = $this->createVnpayHash($inputData, $vnp_HashSecret);
         
@@ -301,29 +420,110 @@ class CheckoutController {
         if ($order_number) {
             $order = Order::getByOrderNumber($GLOBALS['conn'], $order_number);
         }
-
+        
+        // Thêm thông tin vào log
+        $logData .= "ORDER NUMBER: " . $order_number . "\n";
+        $logData .= "SECURE HASH: " . $vnp_SecureHash . "\n";
+        $logData .= "CALCULATED HASH: " . $secureHash . "\n";
+        
+        // Mặc định là lỗi
         $response = [
-            'RspCode' => '97',
-            'Message' => 'Invalid signature'
+            'RspCode' => '99',
+            'Message' => 'Unknown error'
         ];
-
-        if ($secureHash === $vnp_SecureHash && $order) {
-            if ($_GET['vnp_ResponseCode'] == '00') {
-                Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'paid');
-                Order::updateStatus($GLOBALS['conn'], $order['id'], 'confirmed');
+        
+        // Kiểm tra chữ ký
+        $isValidSignature = ($secureHash === $vnp_SecureHash);
+        
+        if ($isValidSignature && $order) {
+            $responseCode = $_GET['vnp_ResponseCode'] ?? '';
+            $transactionNo = $_GET['vnp_TransactionNo'] ?? '';
+            $amount = $_GET['vnp_Amount'] ?? 0;
+            $bankCode = $_GET['vnp_BankCode'] ?? '';
+            $payDate = $_GET['vnp_PayDate'] ?? '';
+            $transactionStatus = $_GET['vnp_TransactionStatus'] ?? '';
+            $txnResponseCode = $_GET['vnp_ResponseCode'] ?? '';
+            
+            $logData .= "RESPONSE CODE: " . $responseCode . "\n";
+            $logData .= "TRANSACTION STATUS: " . $transactionStatus . "\n";
+            $logData .= "TRANSACTION NO: " . $transactionNo . "\n";
+            $logData .= "AMOUNT: " . $amount . "\n";
+            $logData .= "BANK CODE: " . $bankCode . "\n";
+            
+            // Kiểm tra số tiền thanh toán có khớp với đơn hàng không
+            $orderAmount = (int)round($order['total_amount'] * 100); // Chuyển đổi sang VNĐ (đơn vị nhỏ nhất)
+            
+            if ($orderAmount != $amount) {
+                $logData .= "AMOUNT MISMATCH: Order amount ($orderAmount) != Paid amount ($amount)\n";
+                $response = [
+                    'RspCode' => '04',
+                    'Message' => 'Invalid amount'
+                ];
+            } else if ($responseCode === '00' && $transactionStatus === '00') {
+                // Thanh toán thành công
+                $updateResult = Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'paid');
+                $updateStatus = Order::updateStatus($GLOBALS['conn'], $order['id'], 'confirmed');
+                
+                // Lưu thông tin giao dịch vào ghi chú
+                $transactionInfo = "IPN: Thanh toán thành công qua VNPay. Mã GD: $transactionNo, Ngân hàng: $bankCode, Ngày: $payDate";
+                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\\n$transactionInfo') WHERE id = ?");
+                $stmt->bind_param("i", $order['id']);
+                $stmt->execute();
+                
+                $logData .= "PAYMENT STATUS UPDATED: " . ($updateResult ? 'SUCCESS' : 'FAILED') . "\n";
+                $logData .= "ORDER STATUS UPDATED: " . ($updateStatus ? 'SUCCESS' : 'FAILED') . "\n";
+                
                 $response = [
                     'RspCode' => '00',
                     'Message' => 'Confirm Success'
                 ];
             } else {
+                // Giao dịch thất bại
+                $errorMessages = [
+                    '07' => 'Trừ tiền thành công. Chi trả lỗi',
+                    '09' => 'Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.',
+                    '10' => 'Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần',
+                    '11' => 'Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.',
+                    '12' => 'Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.',
+                    '13' => 'Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.',
+                    '24' => 'Giao dịch không thành công do: Khách hàng hủy giao dịch',
+                    '51' => 'Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.',
+                    '65' => 'Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.',
+                    '75' => 'Ngân hàng thanh toán đang bảo trì.',
+                    '79' => 'Giao dịch không thành công do: KH nhập sai mật khẩu thanh toán quá số lần quy định. Xin quý khách vui lòng thực hiện lại giao dịch',
+                    '99' => 'Các lỗi khác (lỗi còn lại, không có trong danh sách mã lỗi đã liệt kê)'
+                ];
+                
+                $errorMessage = $errorMessages[$responseCode] ?? "Mã lỗi: $responseCode";
+                
+                // Cập nhật trạng thái đơn hàng là thất bại
                 Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'failed');
+                
+                // Lưu thông tin lỗi vào ghi chú
+                $errorInfo = "IPN: Thanh toán thất bại. $errorMessage. Mã GD: $transactionNo";
+                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\\n$errorInfo') WHERE id = ?");
+                $stmt->bind_param("i", $order['id']);
+                $stmt->execute();
+                
+                $logData .= "PAYMENT FAILED: " . $errorMessage . "\n";
+                
                 $response = [
                     'RspCode' => '00',
                     'Message' => 'Confirm Success'
                 ];
             }
+        } else {
+            $logData .= "INVALID SIGNATURE OR ORDER NOT FOUND\n";
+            $response = [
+                'RspCode' => '97',
+                'Message' => 'Invalid signature or order not found'
+            ];
         }
         
+        // Ghi log
+        file_put_contents('vnpay_ipn_debug.txt', $logData . "\n", FILE_APPEND);
+        
+        // Trả về kết quả cho VNPay
         header('Content-Type: application/json');
         echo json_encode($response);
         exit;

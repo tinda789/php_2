@@ -262,15 +262,42 @@ if ($action === 'edit' && isset($_GET['id']) && ($_SESSION['user']['role_name'] 
 // Lấy thông tin vai trò từ DB (nếu cần)
 if (!empty($_SESSION['user'])) {
     $user_id = $_SESSION['user']['id'];
-    $sql = "SELECT r.name FROM user_roles ur JOIN roles r ON ur.role_id = r.id WHERE ur.user_id = ?";
+    $sql = "SELECT u.*, r.name as role_name, ur.role_id, 
+                   (SELECT COUNT(*) FROM orders WHERE user_id = u.id) as total_orders
+            FROM users u 
+            LEFT JOIN user_roles ur ON u.id = ur.user_id 
+            LEFT JOIN roles r ON ur.role_id = r.id 
+            WHERE u.id = ?";
+    
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($row = $result->fetch_assoc()) {
-        $_SESSION['user']['role_name'] = $row['name'];
+    
+    if ($user_data = $result->fetch_assoc()) {
+        // Cập nhật thông tin người dùng trong session
+        $_SESSION['user'] = array_merge($_SESSION['user'], $user_data);
+        
+        // Lấy lịch sử đơn hàng của người dùng
+        require_once 'model/Order.php';
+        $orders = Order::getByUserId($conn, $user_id, 5); // Lấy 5 đơn hàng gần nhất
+        
+        // Thêm thông tin bổ sung cho mỗi đơn hàng
+        if (!empty($orders)) {
+            foreach ($orders as &$order) {
+                // Định dạng lại ngày tháng
+                $order['formatted_date'] = date('d/m/Y', strtotime($order['created_at']));
+                
+                // Thêm thông tin sản phẩm đầu tiên để hiển thị
+                if (!empty($order['items']) && is_array($order['items'])) {
+                    $order['first_item'] = $order['items'][0];
+                }
+            }
+            unset($order); // Hủy tham chiếu
+        }
     }
 }
 
-include 'view/user/profile.php';
-?> 
+// Sử dụng giao diện mới
+include 'view/user/profile_new.php';
+?>

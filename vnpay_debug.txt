@@ -199,3 +199,103 @@ HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
 SECURE HASH: 2ea103ac0821a70b7d14265fa29ab09950783afc0402591175c65e886ced3c891222d72db7b964530c746c2855bd23020cffd977eba5435af5cb18e4242505f7
 FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250723170411&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250723170411802&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TxnRef=OD20250723170411802&vnp_SecureHash=2ea103ac0821a70b7d14265fa29ab09950783afc0402591175c65e886ced3c891222d72db7b964530c746c2855bd23020cffd977eba5435af5cb18e4242505f7
 
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 29000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250724120551
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120551793
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TxnRef] => OD20250724120551793
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: e24a9b12fd8af7b200f3b6e2c95a4da60bfbc2f781fc27f6ac0f1243746fd311d70d193aa79bf7e6f4613b550da6d675f23b94922c2961e5bf125c12143db3ae
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724120551&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120551793&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TxnRef=OD20250724120551793&vnp_SecureHash=e24a9b12fd8af7b200f3b6e2c95a4da60bfbc2f781fc27f6ac0f1243746fd311d70d193aa79bf7e6f4613b550da6d675f23b94922c2961e5bf125c12143db3ae
+
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 29000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250724120726
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724120726279
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TxnRef] => OD20250724120726279
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: c5ac5da2ba47641a8ad586c05efdd40adbeee416427481cd5df1e95e5026eb9267d524c3cc5a2353a9d871b86e5cf34b6e2fc1ca05b5eea3765b17817048136f
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724120726&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724120726279&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TxnRef=OD20250724120726279&vnp_SecureHash=c5ac5da2ba47641a8ad586c05efdd40adbeee416427481cd5df1e95e5026eb9267d524c3cc5a2353a9d871b86e5cf34b6e2fc1ca05b5eea3765b17817048136f
+
+INPUT DATA:
+Array
+(
+    [vnp_Version] => 2.1.0
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_Amount] => 29000000
+    [vnp_Command] => pay
+    [vnp_CreateDate] => 20250724121305
+    [vnp_CurrCode] => VND
+    [vnp_IpAddr] => 127.0.0.1
+    [vnp_Locale] => vn
+    [vnp_OrderInfo] => Thanh toan don hang #OD20250724121305344
+    [vnp_OrderType] => other
+    [vnp_ReturnUrl] => http://shopelectrics.px:8000/index.php?controller=checkout&action=vnpay_return
+    [vnp_TxnRef] => OD20250724121305344
+)
+
+HASH SECRET: 1VTV3BC2RK01NON6JKZV7PZ68B2V4IZ6
+SECURE HASH: 9db1de2ad6d0a4d0468e2f91f96ff317f2971680b26f7f4ee9feb56bf399ea020e67d0cade880ef212170694e4d6730693098fcf198b76fb6264eec5896fa77d
+FINAL URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Version=2.1.0&vnp_TmnCode=4L6Y0LF7&vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724121305&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%23OD20250724121305344&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TxnRef=OD20250724121305344&vnp_SecureHash=9db1de2ad6d0a4d0468e2f91f96ff317f2971680b26f7f4ee9feb56bf399ea020e67d0cade880ef212170694e4d6730693098fcf198b76fb6264eec5896fa77d
+
+[VNPAY_REQUEST] 2025-07-24 12:17:57
+Order ID: 104
+Order Number: OD20250724121757106
+Amount: 29000000
+VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+?vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724121757&vnp_CurrCode=VND&vnp_ExpireDate=20250724123257&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724121757106&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250724121757106&vnp_Version=2.1.0&vnp_SecureHash=fe287bb85bc651bad12331a1f745afd41af184037111895b997861b3742382248033fcf0f913b9cbed159f758a268d5905a1de7560f8ec06311b9907d80baea3
+
+[VNPAY_REQUEST] 2025-07-24 12:18:48
+Order ID: 105
+Order Number: OD20250724121848912
+Amount: 29000000
+VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724121848&vnp_CurrCode=VND&vnp_ExpireDate=20250724123348&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724121848912&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=4L6Y0LF7&vnp_TxnRef=OD20250724121848912&vnp_Version=2.1.0&vnp_SecureHash=a96d8dc8fa5f73b712b897345970e939e5ce021084e960374a0065b9f1f60131a9cf86454f4e39e335712395cee5446a2ed44c00da1c8d7581862122819ace9b
+
+[VNPAY_REQUEST] 2025-07-24 12:22:41
+Order ID: 106
+Order Number: OD20250724122241472
+Amount: 29000000
+VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=29000000&vnp_Command=pay&vnp_CreateDate=20250724122241&vnp_CurrCode=VND&vnp_ExpireDate=20250724123741&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724122241472&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=7JX9OTN2&vnp_TxnRef=OD20250724122241472&vnp_Version=2.1.0&vnp_SecureHash=617bcdfb239fbafdd3a6c90930d6ff7f63d88c0bad62466b44a764dd3aa9ce1ee90e418071b13dfde61c7e840efde275939cd16a3d8cedeab6d934d283297976
+
+[VNPAY_REQUEST] 2025-07-24 12:27:09
+Order ID: 107
+Order Number: OD20250724122709140
+Amount: 2899000000
+VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=2899000000&vnp_Command=pay&vnp_CreateDate=20250724122709&vnp_CurrCode=VND&vnp_ExpireDate=20250724124209&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724122709140&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=7JX9OTN2&vnp_TxnRef=OD20250724122709140&vnp_Version=2.1.0&vnp_SecureHash=73ff02d52e51417dd349f349de8321784b2831d848e6d4e96ac3f6fe963ffe162a19d8053a42385983f30651e657080281ad3539fc622c330057266100812748
+
+[VNPAY_REQUEST] 2025-07-24 12:29:38
+Order ID: 108
+Order Number: OD20250724122938449
+Amount: 2899000000
+VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=2899000000&vnp_Command=pay&vnp_CreateDate=20250724122938&vnp_CurrCode=VND&vnp_ExpireDate=20250724124438&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724122938449&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=7JX9OTN2&vnp_TxnRef=OD20250724122938449&vnp_Version=2.1.0&vnp_SecureHash=289b9df406ee69386dc74f6b4b08116bfe0ca78a09153aeb767784c5777b902201c00d446a0c4510ac25837fcb905d17ab9b6796130975f716c149caf20a5e29
+
+[VNPAY_REQUEST] 2025-07-24 12:29:48
+Order ID: 109
+Order Number: OD20250724122948249
+Amount: 2499000000
+VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=2499000000&vnp_Command=pay&vnp_CreateDate=20250724122948&vnp_CurrCode=VND&vnp_ExpireDate=20250724124448&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724122948249&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Fshopelectrics.px%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=7JX9OTN2&vnp_TxnRef=OD20250724122948249&vnp_Version=2.1.0&vnp_SecureHash=bc26b2a44d0ed0adde4f359101cb6f8ef76cfe172dd3d0f0eee81b887727d8ab94aba52833385ee11a03b9dbbd63339217f285051b7aac0cd788f6e945a16580
+
