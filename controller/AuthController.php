@@ -26,15 +26,28 @@ if ($action === 'register' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = User::login($conn, $username, $password, $error);
     if ($user) {
         // Lấy role_name từ DB
-        $stmt = $conn->prepare("SELECT r.name FROM user_roles ur JOIN roles r ON ur.role_id = r.id WHERE ur.user_id = ?");
+        $stmt = $conn->prepare("SELECT r.name as role_name FROM user_roles ur 
+                              JOIN roles r ON ur.role_id = r.id 
+                              WHERE ur.user_id = ?");
         $stmt->bind_param("i", $user['id']);
         $stmt->execute();
         $result = $stmt->get_result();
+        
         if ($row = $result->fetch_assoc()) {
-            $user['role_name'] = $row['name'];
+            $user['role_name'] = $row['role_name'];
+        } else {
+            // Default role if not set
+            $user['role_name'] = 'customer';
         }
+        
         $_SESSION['user'] = $user;
-        header('Location: index.php');
+        
+        // Redirect to admin if admin, otherwise to home
+        if (in_array($user['role_name'], ['admin', 'super_admin'])) {
+            header('Location: index.php?controller=admin');
+        } else {
+            header('Location: index.php');
+        }
         exit;
     }
     include 'view/auth/login.php';

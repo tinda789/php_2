@@ -266,3 +266,417 @@ BANK CODE: NCB
 PAYMENT STATUS UPDATED: SUCCESS
 ORDER STATUS UPDATED: SUCCESS
 
+[VNPAY_RETURN] 2025-07-24 20:36:49
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 679000000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15097347
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724203537433
+    [vnp_PayDate] => 20250724203701
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15097347
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250724203537433
+    [vnp_SecureHash] => ff1734e41f464098a24922a52e2d3ae8b40152e4935e9137de2a4c8d0c1e3a7b1b616af8c13f4bbd6662cb041d42230c84a047672b495b4e00cf117e32911272
+)
+
+ORDER NUMBER: OD20250724203537433
+ORDER DATA: Array
+(
+    [id] => 30
+    [user_id] => 1
+    [order_number] => OD20250724203537433
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 6790000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 6790000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"ctct","district":"ct","ward":"ct"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"ctct","district":"ct","ward":"ct"}
+    [order_date] => 2025-07-24 20:35:37
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 20:35:37
+    [updated_at] => 2025-07-24 20:35:37
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 31
+                    [order_id] => 30
+                    [product_id] => 139
+                    [product_name] => Tủ lạnh Samsung Inverter 208 lít RT20HAR8DBU/SV
+                    [product_sku] => FRSAM208L
+                    [quantity] => 1
+                    [unit_price] => 6790000.00
+                    [total_price] => 6790000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: ff1734e41f464098a24922a52e2d3ae8b40152e4935e9137de2a4c8d0c1e3a7b1b616af8c13f4bbd6662cb041d42230c84a047672b495b4e00cf117e32911272
+CALCULATED HASH: ff1734e41f464098a24922a52e2d3ae8b40152e4935e9137de2a4c8d0c1e3a7b1b616af8c13f4bbd6662cb041d42230c84a047672b495b4e00cf117e32911272
+RESPONSE CODE: 00
+TRANSACTION NO: 15097347
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+
+[VNPAY_RETURN] 2025-07-24 21:03:07
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 829000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724210301320
+    [vnp_PayDate] => 20250724210308
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724210301320
+    [vnp_SecureHash] => 5f4fcc8eb5840e56ba411cd17b3f667243d31f065c4784fcca3161122ab627bfdd75117934919f6bc112993c86695e8251c97d1536919184bfdddf81b77898bc
+)
+
+ORDER NUMBER: OD20250724210301320
+ORDER DATA: Array
+(
+    [id] => 34
+    [user_id] => 1
+    [order_number] => OD20250724210301320
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 8290000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 8290000.00
+    [shipping_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [billing_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [order_date] => 2025-07-24 21:03:01
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 21:03:01
+    [updated_at] => 2025-07-24 21:03:01
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 35
+                    [order_id] => 34
+                    [product_id] => 140
+                    [product_name] => Tủ lạnh Panasonic Inverter 255 lít NR-BV289QSV2
+                    [product_sku] => FRPAN255L
+                    [quantity] => 1
+                    [unit_price] => 8290000.00
+                    [total_price] => 8290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 5f4fcc8eb5840e56ba411cd17b3f667243d31f065c4784fcca3161122ab627bfdd75117934919f6bc112993c86695e8251c97d1536919184bfdddf81b77898bc
+CALCULATED HASH: 5f4fcc8eb5840e56ba411cd17b3f667243d31f065c4784fcca3161122ab627bfdd75117934919f6bc112993c86695e8251c97d1536919184bfdddf81b77898bc
+RESPONSE CODE: 
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+NO RESPONSE CODE FROM VNPAY
+
+[VNPAY_RETURN] 2025-07-24 21:04:04
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 829000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724210358232
+    [vnp_PayDate] => 20250724210404
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724210358232
+    [vnp_SecureHash] => 3bf23ce141e6d29a7a3b07ee5ba5200f080dc190c0d56c5c42057ee7ebd33a071a6c9d80fdb7bbc5dda00f356a90c798bfd6662236126fef3954378e47f35159
+)
+
+ORDER NUMBER: OD20250724210358232
+ORDER DATA: Array
+(
+    [id] => 35
+    [user_id] => 1
+    [order_number] => OD20250724210358232
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 8290000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 8290000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"ctct","district":"ct","ward":"ct"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"ctct","district":"ct","ward":"ct"}
+    [order_date] => 2025-07-24 21:03:58
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 21:03:58
+    [updated_at] => 2025-07-24 21:03:58
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 36
+                    [order_id] => 35
+                    [product_id] => 140
+                    [product_name] => Tủ lạnh Panasonic Inverter 255 lít NR-BV289QSV2
+                    [product_sku] => FRPAN255L
+                    [quantity] => 1
+                    [unit_price] => 8290000.00
+                    [total_price] => 8290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 3bf23ce141e6d29a7a3b07ee5ba5200f080dc190c0d56c5c42057ee7ebd33a071a6c9d80fdb7bbc5dda00f356a90c798bfd6662236126fef3954378e47f35159
+CALCULATED HASH: 3bf23ce141e6d29a7a3b07ee5ba5200f080dc190c0d56c5c42057ee7ebd33a071a6c9d80fdb7bbc5dda00f356a90c798bfd6662236126fef3954378e47f35159
+RESPONSE CODE: 
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+NO RESPONSE CODE FROM VNPAY
+
+[VNPAY_RETURN] 2025-07-24 21:06:14
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 2480000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724210606822
+    [vnp_PayDate] => 20250724210613
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724210606822
+    [vnp_SecureHash] => 70cce5fadc9a5165eacfedc8bf04689beaefc8740d328e02c23d652071ecbf1621edc0d8860bf8830839d5f47046bc16da26814bf45cf5d77f515542c88e4a05
+)
+
+ORDER NUMBER: OD20250724210606822
+ORDER DATA: Array
+(
+    [id] => 37
+    [user_id] => 1
+    [order_number] => OD20250724210606822
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 24800000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 24800000.00
+    [shipping_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [billing_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [order_date] => 2025-07-24 21:06:06
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 21:06:06
+    [updated_at] => 2025-07-24 21:06:06
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 39
+                    [order_id] => 37
+                    [product_id] => 146
+                    [product_name] => Tủ lạnh Mitsubishi Electric 365 lít MR-FX47EN-GSL-V
+                    [product_sku] => FRMITSU365L
+                    [quantity] => 2
+                    [unit_price] => 12400000.00
+                    [total_price] => 24800000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 70cce5fadc9a5165eacfedc8bf04689beaefc8740d328e02c23d652071ecbf1621edc0d8860bf8830839d5f47046bc16da26814bf45cf5d77f515542c88e4a05
+CALCULATED HASH: 70cce5fadc9a5165eacfedc8bf04689beaefc8740d328e02c23d652071ecbf1621edc0d8860bf8830839d5f47046bc16da26814bf45cf5d77f515542c88e4a05
+RESPONSE CODE: 
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+NO RESPONSE CODE FROM VNPAY
+
+[VNPAY_RETURN] 2025-07-24 21:08:59
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 8290000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724210852685
+    [vnp_PayDate] => 20250724210859
+    [vnp_TmnCode] => 4L6Y0LF7
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250724210852685
+    [vnp_SecureHash] => 44f4816049d7ab9279b9530db28d141919df76ddd0745487eb54bed1cfbefc5d278bea17399be71e403b5c34fef8406b9ea7450509f2654da83af670e720f3d2
+)
+
+ORDER NUMBER: OD20250724210852685
+ORDER DATA: Array
+(
+    [id] => 38
+    [user_id] => 1
+    [order_number] => OD20250724210852685
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 8290000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 8290000.00
+    [shipping_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [billing_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [order_date] => 2025-07-24 21:08:52
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 21:08:52
+    [updated_at] => 2025-07-24 21:08:52
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 40
+                    [order_id] => 38
+                    [product_id] => 140
+                    [product_name] => Tủ lạnh Panasonic Inverter 255 lít NR-BV289QSV2
+                    [product_sku] => FRPAN255L
+                    [quantity] => 1
+                    [unit_price] => 8290000.00
+                    [total_price] => 8290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 44f4816049d7ab9279b9530db28d141919df76ddd0745487eb54bed1cfbefc5d278bea17399be71e403b5c34fef8406b9ea7450509f2654da83af670e720f3d2
+CALCULATED HASH: 44f4816049d7ab9279b9530db28d141919df76ddd0745487eb54bed1cfbefc5d278bea17399be71e403b5c34fef8406b9ea7450509f2654da83af670e720f3d2
+RESPONSE CODE: 
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+NO RESPONSE CODE FROM VNPAY
+
+[VNPAY_RETURN] 2025-07-24 21:11:56
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 6790000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15097402
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250724211055911
+    [vnp_PayDate] => 20250724211251
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15097402
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250724211055911
+    [vnp_SecureHash] => c0ca60222f9b3da4e7d35bb43390a118a652f474804b9761256c25206c1a7cb112e72b2c4c584a234553c50328b3c5371346c6bbc532481ee7c3c87775a8d8bf
+)
+
+ORDER NUMBER: OD20250724211055911
+ORDER DATA: Array
+(
+    [id] => 40
+    [user_id] => 1
+    [order_number] => OD20250724211055911
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 6790000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 6790000.00
+    [shipping_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [billing_address] => {"name":"Đoàn Thịnh","phone":"0834670200","address":"KTX A","city":"CT","district":"CT","ward":"CT"}
+    [order_date] => 2025-07-24 21:10:55
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-24 21:10:55
+    [updated_at] => 2025-07-24 21:10:55
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 42
+                    [order_id] => 40
+                    [product_id] => 139
+                    [product_name] => Tủ lạnh Samsung Inverter 208 lít RT20HAR8DBU/SV
+                    [product_sku] => FRSAM208L
+                    [quantity] => 1
+                    [unit_price] => 6790000.00
+                    [total_price] => 6790000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: c0ca60222f9b3da4e7d35bb43390a118a652f474804b9761256c25206c1a7cb112e72b2c4c584a234553c50328b3c5371346c6bbc532481ee7c3c87775a8d8bf
+CALCULATED HASH: c0ca60222f9b3da4e7d35bb43390a118a652f474804b9761256c25206c1a7cb112e72b2c4c584a234553c50328b3c5371346c6bbc532481ee7c3c87775a8d8bf
+RESPONSE CODE: 00
+TRANSACTION NO: 15097402
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+

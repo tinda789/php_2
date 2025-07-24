@@ -1,3 +1,17 @@
+<?php
+// Thêm dòng này để tương thích với dữ liệu cũ
+if (!empty($banners)) {
+    foreach ($banners as &$banner) {
+        if (isset($banner['image_url'])) {
+            $banner['image'] = $banner['image_url'];
+        }
+        if (isset($banner['is_active'])) {
+            $banner['status'] = $banner['is_active'];
+        }
+    }
+    unset($banner); // Hủy tham chiếu
+}
+?>
 <div class="container-fluid py-3">
   <div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
     <h1 class="h4 text-primary m-0"><i class="fa fa-image me-1"></i> Quản lý Banner</h1>
@@ -39,7 +53,12 @@
                   <td><?php echo $i+1; ?></td>
                   <td>
                     <?php if (!empty($banner['image'])): ?>
-                      <img src="uploads/banners/<?php echo htmlspecialchars($banner['image']); ?>" alt="Banner" style="width:64px; height:40px; object-fit:cover; border-radius:6px;">
+                      <?php 
+                      $image_path = (strpos($banner['image'], 'http') === 0) ? 
+                          $banner['image'] : 
+                          'uploads/' . ltrim($banner['image'], '/');
+                      ?>
+                      <img src="<?php echo htmlspecialchars($image_path); ?>" alt="Banner" style="width:64px; height:40px; object-fit:cover; border-radius:6px;">
                     <?php else: ?>
                       <span class="text-muted small">Không có ảnh</span>
                     <?php endif; ?>

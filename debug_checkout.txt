@@ -1,24 +1,31 @@
 POST:
 Array
 (
+    [product_id] => 142
+    [quantity] => 1
+    [selected_products] => Array
+        (
+            [0] => 148
+        )
+
 )
 
 SESSION user:
 Array
 (
-    [id] => 13
-    [email] => thanhtin2501ctu@gmail.com
-    [username] => tinda456
-    [password_hash] => $2y$10$TXb9fveGowSFHDdo7rb2r.ivufsLMoE25hVKh3QZOmol1fc1klX4e
-    [first_name] => Nguyễn
-    [last_name] => Tín
-    [phone] => 0794258356
-    [avatar] => 
+    [id] => 1
+    [email] => admin@shopelectrics.com
+    [username] => admin
+    [password_hash] => $2y$10$2jlEoxVPyiluGcb4xu1H3ucDL38qHvI2pAeendAO5/FR8GrOfIjYu
+    [first_name] => Admin
+    [last_name] => System
+    [phone] => 0834670200
+    [avatar] => uploads/avatars/avatar_6880c50eabcdd.jpg
     [date_of_birth] => 
     [is_active] => 1
-    [email_verified] => 0
+    [email_verified] => 1
     [last_login] => 
-    [created_at] => 2025-07-24 12:43:21
-    [updated_at] => 2025-07-24 12:43:21
-    [role_name] => customer
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-23 18:18:38
+    [role_name] => super_admin
 )

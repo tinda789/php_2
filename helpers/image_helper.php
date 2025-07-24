@@ -13,13 +13,24 @@ function getImageUrl($image_url, $upload_dir = 'uploads/products/') {
     if (empty($image_url)) {
         return 'https://via.placeholder.com/300x200?text=No+Image';
     }
-    // Nếu là link ngoài
+    
+    // Nếu là link ngoài (http/https)
     if (preg_match('/^https?:\/\//', $image_url)) {
         return $image_url;
     }
-    // Lấy thư mục gốc project (tương đối với domain)
-    $base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-    return $base . '/' . ltrim($image_url, '/');
+    
+    // Nếu đã có đường dẫn đầy đủ từ uploads/
+    if (strpos($image_url, 'uploads/') === 0) {
+        return $image_url;
+    }
+    
+    // Nếu chỉ có tên file, thêm đường dẫn uploads/products/
+    if (!empty($image_url) && strpos($image_url, '/') === false) {
+        return $upload_dir . $image_url;
+    }
+    
+    // Trường hợp khác, trả về như cũ
+    return $image_url;
 }
 
 /**
@@ -29,7 +40,25 @@ function getImageUrl($image_url, $upload_dir = 'uploads/products/') {
  * @return bool True if file exists, false otherwise
  */
 function imageExists($image_url, $upload_dir = 'uploads/products/') {
-    $file_path = getImageUrl($image_url, $upload_dir);
+    if (empty($image_url)) {
+        return false;
+    }
+    
+    // Nếu là link ngoài, không kiểm tra
+    if (preg_match('/^https?:\/\//', $image_url)) {
+        return true;
+    }
+    
+    // Xây dựng đường dẫn file thực tế
+    $file_path = '';
+    if (strpos($image_url, 'uploads/') === 0) {
+        $file_path = __DIR__ . '/../' . $image_url;
+    } elseif (strpos($image_url, '/') === false) {
+        $file_path = __DIR__ . '/../' . $upload_dir . $image_url;
+    } else {
+        $file_path = __DIR__ . '/../' . $image_url;
+    }
+    
     return file_exists($file_path);
 }
 

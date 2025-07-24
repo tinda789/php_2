@@ -442,5 +442,32 @@ class Product {
         }
         return $reviews;
     }
+    
+    // Lấy sản phẩm nổi bật
+    public static function getFeaturedProducts($conn, $limit = 8) {
+        $sql = "SELECT p.*, 
+                       CASE 
+                           WHEN p.sale_price > 0 AND p.price > 0 
+                           THEN ROUND(((p.price - p.sale_price) / p.price) * 100) 
+                           ELSE 0 
+                       END as discount,
+                       DATEDIFF(NOW(), p.created_at) <= 30 as is_new
+                FROM products p 
+                WHERE p.featured = 1 
+                AND p.status = 'active'
+                ORDER BY p.created_at DESC 
+                LIMIT ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            // Convert is_new from 1/0 to boolean
+            $row['is_new'] = (bool)$row['is_new'];
+            $products[] = $row;
+        }
+        return $products;
+    }
 }
-?> 
+?>
