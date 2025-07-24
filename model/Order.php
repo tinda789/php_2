@@ -1,14 +1,132 @@
 <?php
 // model/Order.php
 class Order {
-    // Lấy tất cả đơn hàng
-    public static function getAll($conn) {
-        $result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
+    // Lấy đơn hàng có phân trang và lọc
+    public static function getFilteredOrders($conn, $filters = [], $limit = 10, $offset = 0) {
+        $where = [];
+        $params = [];
+        $types = '';
+        
+        // Xây dựng điều kiện WHERE dựa trên bộ lọc
+        if (!empty($filters['status'])) {
+            $where[] = "o.status = ?";
+            $params[] = $filters['status'];
+            $types .= 's';
+        }
+        
+        if (!empty($filters['order_number'])) {
+            $where[] = "o.order_number LIKE ?";
+            $params[] = '%' . $filters['order_number'] . '%';
+            $types .= 's';
+        }
+        
+        if (!empty($filters['start_date']) && !empty($filters['end_date'])) {
+            $where[] = "DATE(o.created_at) BETWEEN ? AND ?";
+            $params[] = $filters['start_date'];
+            $params[] = $filters['end_date'];
+            $types .= 'ss';
+        }
+        
+        if (!empty($filters['product_name'])) {
+            $where[] = "oi.product_name LIKE ?";
+            $params[] = '%' . $filters['product_name'] . '%';
+            $types .= 's';
+        }
+        
+        $whereClause = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+        
+        $sql = "
+            SELECT o.*, 
+                   GROUP_CONCAT(DISTINCT oi.product_name SEPARATOR ', ') as product_names,
+                   COUNT(oi.id) as item_count
+            FROM orders o
+            LEFT JOIN order_items oi ON o.id = oi.order_id
+            $whereClause
+            GROUP BY o.id
+            ORDER BY o.created_at DESC 
+            LIMIT ? OFFSET ?
+        ";
+        
+        $stmt = $conn->prepare($sql);
+        
+        // Thêm tham số limit và offset vào cuối mảng params
+        $params[] = $limit;
+        $params[] = $offset;
+        $types .= 'ii';
+        
+        // Bind các tham số
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
         $orders = [];
         while ($row = $result->fetch_assoc()) {
             $orders[] = $row;
         }
         return $orders;
+    }
+    
+    // Đếm tổng số đơn hàng với điều kiện lọc
+    public static function countFiltered($conn, $filters = []) {
+        $where = [];
+        $params = [];
+        $types = '';
+        
+        // Xây dựng điều kiện WHERE giống hàm getFilteredOrders
+        if (!empty($filters['status'])) {
+            $where[] = "status = ?";
+            $params[] = $filters['status'];
+            $types .= 's';
+        }
+        
+        if (!empty($filters['order_number'])) {
+            $where[] = "order_number LIKE ?";
+            $params[] = '%' . $filters['order_number'] . '%';
+            $types .= 's';
+        }
+        
+        if (!empty($filters['start_date']) && !empty($filters['end_date'])) {
+            $where[] = "DATE(created_at) BETWEEN ? AND ?";
+            $params[] = $filters['start_date'];
+            $params[] = $filters['end_date'];
+            $types .= 'ss';
+        }
+        
+        if (!empty($filters['product_name'])) {
+            $where[] = "EXISTS (SELECT 1 FROM order_items oi WHERE oi.order_id = orders.id AND oi.product_name LIKE ?)";
+            $params[] = '%' . $filters['product_name'] . '%';
+            $types .= 's';
+        }
+        
+        $whereClause = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+        
+        $sql = "SELECT COUNT(*) as total FROM orders $whereClause";
+        $stmt = $conn->prepare($sql);
+        
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return (int)$row['total'];
+    }
+    
+    // Giữ lại các phương thức cũ cho tương thích
+    public static function getPaginated($conn, $limit = 10, $offset = 0) {
+        return self::getFilteredOrders($conn, [], $limit, $offset);
+    }
+    
+    public static function countAll($conn) {
+        return self::countFiltered($conn, []);
+    }
+    
+    // Giữ lại phương thức cũ cho tương thích ngược
+    public static function getAll($conn) {
+        return self::getPaginated($conn, 1000, 0); // Giới hạn 1000 bản ghi cho phương thức cũ
     }
 
     // Tạo đơn hàng mới

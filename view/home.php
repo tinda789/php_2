@@ -60,7 +60,7 @@ $banners = $bannerModel->getAllBanners('featured_categories', 1);
     <div class="container">
         <div class="section-header mb-4">
             <h2 class="section-title">Sản phẩm nổi bật</h2>
-            <a href="index.php?controller=product" class="btn btn-link">Xem tất cả</a>
+            <a href="index.php?controller=product&action=list" class="btn btn-link">Xem tất cả</a>
         </div>
         <div class="row g-4">
             <?php foreach ($products as $p): ?>
@@ -1017,9 +1017,6 @@ if (scrollTopBtn) {
     e.preventDefault();
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
-    });
-  });
 }
 
 // Xử lý sự kiện click cho nút thêm vào giỏ hàng và yêu thích
