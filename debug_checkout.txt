@@ -1,33 +1,27 @@
 POST:
 Array
 (
-    [selected_products] => Array
-        (
-            [0] => 139
-        )
-
-    [product_id] => 139
-    [quantity] => 5
 )
 
 SESSION user:
 Array
 (
-    [id] => 13
-    [email] => thanhtin2501ctu@gmail.com
-    [username] => tinda456
-    [password_hash] => $2y$10$TXb9fveGowSFHDdo7rb2r.ivufsLMoE25hVKh3QZOmol1fc1klX4e
-    [first_name] => Nguyễn
-    [last_name] => Tín
-    [phone] => 0794258356
-    [avatar] => 
+    [id] => 7
+    [email] => thinhb2303782@student.ctu.edu.vn
+    [username] => thinh2k
+    [full_name] => Đoàn Xuân Thịnh
+    [password_hash] => $2y$10$NFYuepqxfdI9dqO8CXZf3O8xoD2OIxIN9G5H1pUyS9hgrII2H/tJa
+    [first_name] => Đoàn
+    [last_name] => Xuân Thịnh
+    [phone] => 0335259447
+    [avatar] => uploads/avatars/avatar_687d0159091cb.jpg
     [date_of_birth] => 
     [is_active] => 1
-    [email_verified] => 1
+    [email_verified] => 0
     [last_login] => 
-    [created_at] => 2025-06-12 23:33:25
-    [updated_at] => 2025-07-23 18:18:38
-    [role_name] => super_admin
-    [role_id] => 1
-    [total_orders] => 40
+    [created_at] => 2025-07-18 22:25:02
+    [updated_at] => 2025-07-21 14:01:38
+    [reset_token] => 
+    [reset_expires] => 
+    [role_name] => customer
 )
