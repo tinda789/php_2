@@ -13,6 +13,13 @@ global $conn;
   </div>
 <?php else: ?>
 <div class="container py-4">
+  <!-- Back button with fallback to home -->
+  <div class="mb-4">
+    <a href="javascript:history.back()" onclick="window.history.back(); return false;" class="btn btn-outline-secondary">
+      <i class="fas fa-arrow-left me-2"></i>Quay lại
+    </a>
+  </div>
+  
   <div class="row g-4">
     <div class="col-lg-6 col-md-6 col-12">
       <div class="card shadow-sm border-0">

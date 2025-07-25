@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) session_start();
 require_once 'config/config.php';
 require_once 'model/User.php'; // Đảm bảo đã require model
+require_once 'model/Order.php'; // Include Order model
 
 $user = $_SESSION['user'] ?? null;
 $error = '';
@@ -256,6 +257,151 @@ if ($action === 'edit' && isset($_GET['id']) && ($_SESSION['user']['role_name'] 
 
     $view_file = 'view/user/edit_user.php';
     include 'view/layout/admin_layout.php';
+    exit;
+}
+
+// Xem chi tiết đơn hàng
+if ($action === 'order_detail' && isset($_GET['id'])) {
+    if (empty($_SESSION['user'])) {
+        header('Location: index.php?controller=user&action=login');
+        exit;
+    }
+
+    $order_id = (int)$_GET['id'];
+    $user_id = $_SESSION['user']['id'];
+    
+    // Kiểm tra xem đơn hàng có thuộc về người dùng này không
+    $order = Order::getById($GLOBALS['conn'], $order_id);
+    
+    if (!$order || $order['user_id'] != $user_id) {
+        echo '<div class="alert alert-danger">Bạn không có quyền xem đơn hàng này hoặc đơn hàng không tồn tại.</div>';
+        exit;
+    }
+    
+    try {
+        // Log request information
+        error_log('Order detail request - Order ID: ' . $order_id . ', User ID: ' . $user_id);
+        
+        // First, verify the order exists and belongs to the user
+        if (!$order) {
+            throw new Exception('Đơn hàng không tồn tại.');
+        }
+        
+        if ($order['user_id'] != $user_id) {
+            throw new Exception('Bạn không có quyền xem đơn hàng này.');
+        }
+        
+        // Get order items with error handling
+        $sql = "SELECT oi.*, p.image_link as images, p.slug, p.name as product_name 
+                FROM order_items oi 
+                LEFT JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ?";
+                
+        error_log('Executing SQL: ' . $sql . ' with order_id: ' . $order_id);
+        
+        $stmt = $GLOBALS['conn']->prepare($sql);
+        if (!$stmt) {
+            throw new Exception('Lỗi chuẩn bị truy vấn: ' . $GLOBALS['conn']->error);
+        }
+        
+        if (!$stmt->bind_param("i", $order_id)) {
+            throw new Exception('Lỗi ràng buộc tham số: ' . $stmt->error);
+        }
+        
+        if (!$stmt->execute()) {
+            throw new Exception('Không thể thực hiện truy vấn: ' . $stmt->error);
+        }
+        
+        $result = $stmt->get_result();
+        if (!$result) {
+            throw new Exception('Lỗi khi lấy dữ liệu đơn hàng: ' . $GLOBALS['conn']->error);
+        }
+        
+        $order_items = $result->fetch_all(MYSQLI_ASSOC);
+        error_log('Found ' . count($order_items) . ' order items');
+        
+        // Format image data and add product URLs
+        foreach ($order_items as &$item) {
+            try {
+                if (!empty($item['images'])) {
+                    $images = json_decode($item['images'], true);
+                    $item['images'] = is_array($images) ? $images : [];
+                } else {
+                    $item['images'] = [];
+                }
+                
+                // Add default image if none exists
+                if (empty($item['images'])) {
+                    $item['images'][] = 'assets/images/no-image.jpg';
+                }
+                
+                // Add product URL
+                $item['product_url'] = !empty($item['slug']) 
+                    ? 'index.php?controller=product&action=detail&id=' . $item['product_id'] . '&slug=' . $item['slug']
+                    : '#';
+                    
+            } catch (Exception $e) {
+                error_log('Error processing order item: ' . $e->getMessage());
+                continue;
+            }
+        }
+        unset($item);
+        
+        // Add items to order data
+        $order['items'] = $order_items;
+        
+        // Verify view file exists
+        $view_path = 'view/user/order_detail.php';
+        if (!file_exists($view_path)) {
+            throw new Exception('Không tìm thấy tệp giao diện: ' . realpath($view_path));
+        }
+        
+        // Start output buffering
+        ob_start();
+        
+        // Pass variables to the view
+        $order = $order;
+        $orderItems = $order_items; // For backward compatibility
+        
+        // Include the view
+        include $view_path;
+        
+        // Get the content and clean the buffer
+        $content = ob_get_clean();
+        
+        // Output the content
+        echo $content;
+        
+    } catch (Exception $e) {
+        // Log the error with stack trace
+        error_log('Order Detail Error: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
+        
+        // Start output buffering
+        ob_start();
+        ?>
+        <div class="container py-5">
+            <div class="alert alert-danger">
+                <h4><i class="fas fa-exclamation-triangle me-2"></i>Lỗi khi tải chi tiết đơn hàng</h4>
+                <p>Rất tiếc, đã xảy ra lỗi khi tải thông tin đơn hàng. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ nếu vấn đề vẫn tiếp diễn.</p>
+                <?php if (defined('DEBUG') && DEBUG === true): ?>
+                    <hr>
+                    <div class="bg-light p-3 mt-3 rounded">
+                        <h5>Thông tin lỗi (Chỉ hiển thị trong chế độ debug):</h5>
+                        <pre class="mb-0"><?php echo htmlspecialchars($e->getMessage()); ?></pre>
+                        <pre class="small text-muted mt-2"><?php echo htmlspecialchars($e->getTraceAsString()); ?></pre>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="text-center mt-4">
+                <a href="index.php?controller=user&action=orders" class="btn btn-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách đơn hàng
+                </a>
+            </div>
+        </div>
+        <?php
+        echo ob_get_clean();
+    }
+    
     exit;
 }
 

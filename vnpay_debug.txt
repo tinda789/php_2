@@ -375,3 +375,10 @@ Order ID: 40
 Order Number: OD20250724211055911
 Amount: 6790000
 VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=6790000&vnp_Command=pay&vnp_CreateDate=20250724211055&vnp_CurrCode=VND&vnp_ExpireDate=20250724212555&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250724211055911&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Flocalhost%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=7JX9OTN2&vnp_TxnRef=OD20250724211055911&vnp_Version=2.1.0&vnp_SecureHash=e739e41a5aeb9aab246bc9f5bca2de269727eb958379696a34b2963caea1be9373088d67ada91efe8e2dedde09d14e7b866cf147e68a51ef3311baf26f691cfc
+
+[VNPAY_REQUEST] 2025-07-25 01:37:09
+Order ID: 41
+Order Number: OD20250725013709575
+Amount: 10800000
+VNPay URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=10800000&vnp_Command=pay&vnp_CreateDate=20250725013709&vnp_CurrCode=VND&vnp_ExpireDate=20250725015209&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725013709575&vnp_OrderType=other&vnp_ReturnUrl=http%3A%2F%2Flocalhost%3A8000%2Findex.php%3Fcontroller%3Dcheckout%26action%3Dvnpay_return&vnp_TmnCode=7JX9OTN2&vnp_TxnRef=OD20250725013709575&vnp_Version=2.1.0&vnp_SecureHash=2bfdc5c0f54eb229d82d015def7c7bc4136593908aa63495591148a73465ea8fb15a9dd223d4ff2858d0cd414bd8fb9054a3b7bb56e7f86241fb7b1fbe971197
+

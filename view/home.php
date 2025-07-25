@@ -20,47 +20,668 @@ $banners = $bannerModel->getAllBanner('featured_categories', 1);
 ?>
 
 <?php include 'view/layout/header.php'; ?>
+<!-- Add Lightbox2 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 
 <!-- Thông báo -->
 <?php if (!empty($_GET['msg'])): ?>
     <div class="alert alert-success"><?php echo htmlspecialchars($_GET['msg']); ?></div>
 <?php endif; ?>
 
-<!-- Hero Banner -->
-<section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1>Chào mừng đến với <span class="text-primary">Shop Điện Tử</span></h1>
-                <p class="lead">Nơi cung cấp các thiết bị điện tử chính hãng, giá tốt nhất thị trường</p>
-                <div class="hero-buttons mt-4">
-                    <a href="#products" class="btn btn-primary btn-lg me-3">Mua ngay</a>
-                    <a href="#categories" class="btn btn-outline-primary btn-lg">Khám phá</a>
+<!-- Hero Section Optimized -->
+<section class="hero-section py-5 py-lg-7 position-relative overflow-hidden">
+    <!-- Background Gradient -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-primary"></div>
+    
+    <!-- Animated Elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100">
+        <div class="hero-shape-1"></div>
+        <div class="hero-shape-2"></div>
+    </div>
+    
+    <div class="container position-relative z-2">
+        <div class="row align-items-center min-vh-60">
+            <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+                <h1 class="display-4 fw-bold mb-4 text-white">
+                    <span class="text-warning">Khám phá thế giới điện tử</span> hiện đại
+                </h1>
+                <p class="lead text-white-70 mb-5">
+                    Trải nghiệm chất lượng vượt trội với các sản phẩm công nghệ chính hãng, 
+                    giá cả cạnh tranh cùng nhiều ưu đãi hấp dẫn.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                    <a href="#products" class="btn btn-warning btn-lg fw-bold px-4 py-3 rounded-pill shadow-lg">
+                        <i class="fas fa-shopping-cart me-2"></i> Mua sắm ngay
+                    </a>
+                    <a href="#categories" class="btn btn-warning btn-lg fw-bold px-4 py-3 rounded-pill shadow-lg">
+                        <i class="fas fa-th-large me-2"></i> Danh mục
+                    </a>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="mt-5 pt-3">
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-4">
+                        <div class="d-flex align-items-center text-white">
+                            <i class="fas fa-check-circle text-success me-2 fs-5"></i>
+                            <span>Chính hãng 100%</span>
+                        </div>
+                        <div class="d-flex align-items-center text-white">
+                            <i class="fas fa-shipping-fast text-info me-2 fs-5"></i>
+                            <span>Giao hàng toàn quốc</span>
+                        </div>
+                        <div class="d-flex align-items-center text-white">
+                            <i class="fas fa-headset text-warning me-2 fs-5"></i>
+                            <span>Hỗ trợ 24/7</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Sale Badge -->
             <div class="col-lg-6">
-                <?php if ($banner && !empty($banner['image_url'])): ?>
-                    <a href="<?php echo htmlspecialchars($banner['link'] ?: '#'); ?>" class="d-block">
-                        <img src="<?php echo htmlspecialchars($banner['image_url']); ?>" 
-                             alt="<?php echo htmlspecialchars($banner['title'] ?? 'Banner'); ?>" 
-                             class="img-fluid rounded-3 shadow w-100"
-                             onerror="this.onerror=null; this.src='/public/assets/images/default-banner.svg';">
-                    </a>
-                <?php else: ?>
-                    <div class="bg-light rounded-3 p-5 text-center">
-                        <p class="text-muted mb-0">Banner sẽ được cập nhật sớm</p>
+                <div class="sale-banner p-4 rounded-4 text-center" style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);">
+                    <div class="sale-percent display-1 fw-bold text-white mb-2">30%</div>
+                    <h3 class="text-white fw-bold mb-3">GIẢM GIÁ LỚN</h3>
+                    <p class="text-white mb-4">Áp dụng cho tất cả sản phẩm điện tử</p>
+                    <div class="sale-timer d-flex justify-content-center gap-3 mb-3">
+                        <div class="time-box bg-white text-dark rounded-3 p-2">
+                            <div class="fw-bold fs-4">02</div>
+                            <small>Ngày</small>
+                        </div>
+                        <div class="time-box bg-white text-dark rounded-3 p-2">
+                            <div class="fw-bold fs-4">12</div>
+                            <small>Giờ</small>
+                        </div>
+                        <div class="time-box bg-white text-dark rounded-3 p-2">
+                            <div class="fw-bold fs-4">45</div>
+                            <small>Phút</small>
+                        </div>
                     </div>
+                    <a href="#sale" class="btn btn-light btn-lg fw-bold px-4 mt-2">
+                        Mua ngay <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <!-- Full-width Carousel -->
+        <div class="row">
+            <div class="col-12">
+                <?php 
+                // Lấy tất cả banner đang hoạt động
+                $banners = $bannerModel->getAllBanners(null, 1);
+                
+                // Debug: Chỉ in ra image_url của các banner
+                echo '<script>';
+                echo 'console.log("=== BANNERS IMAGE_URLS ===");';
+                if (!empty($banners)) {
+                    foreach ($banners as $banner) {
+                        echo 'console.log("Image URL: ' . addslashes($banner['image_url']) . '");';
+                    }
+                } else {
+                    echo 'console.log("Không tìm thấy banner nào");';
+                }
+                echo 'console.log("=======================");';
+                echo '</script>';
+                
+                if (!empty($banners)): 
+                ?>
+                <div id="bannerCarousel" class="carousel slide w-100" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow w-100" style="height: 400px; overflow: hidden; background: #f8f9fa;">
+                    <?php foreach ($banners as $index => $banner): ?>
+                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?> h-100">
+                            <div class="banner-link d-block h-100 position-relative">
+                                <!-- Banner Image with Lightbox -->
+                                <div class="banner-image-container d-flex justify-content-center align-items-center h-100 w-100">
+                                    <div style="max-width: 100%; max-height: 100%; padding: 20px;">
+                                        <a href="uploads/<?php echo htmlspecialchars($banner['image_url']); ?>" 
+                                           data-lightbox="banner-gallery" 
+                                           data-title="<?php echo htmlspecialchars($banner['title'] ?? 'Banner'); ?>"
+                                           style="display: block; height: 100%;">
+                                            <img src="uploads/<?php echo htmlspecialchars($banner['image_url']); ?>"
+                                             class="img-fluid"
+                                             style="
+                                                max-height: 360px;
+                                                width: auto;
+                                                max-width: 100%;
+                                                height: auto;
+                                                object-fit: contain;
+                                                transition: transform 0.4s ease;
+                                                filter: drop-shadow(0 15px 35px rgba(0,0,0,0.2));
+                                                margin: 0 auto;
+                                                display: block;
+                                             "
+                                             alt="<?php echo htmlspecialchars($banner['title'] ?? 'Banner'); ?>">
+                                        </a>
+                                        <?php if (!empty($banner['link'])): ?>
+                                        <a href="<?php echo htmlspecialchars($banner['link']); ?>" class="banner-click-area"></a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                
+                                <!-- Gradient Overlay -->
+                                <div class="position-absolute top-0 start-0 w-100 h-100" style="
+                                    background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.1) 100%);
+                                    z-index: 2;
+                                    pointer-events: none;
+                                "></div>
+                                
+                                <!-- Shine Effect -->
+                                <div class="banner-shine position-absolute top-0 start-0 w-100 h-100" style="
+                                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                                    transform: translateX(-100%);
+                                    transition: transform 0.6s ease;
+                                    pointer-events: none;
+                                "></div>
+                              
+                                <!-- Floating particles -->
+                                <div class="banner-particles position-absolute w-100 h-100" style="pointer-events: none;">
+                                    <div class="particle" style="
+                                        position: absolute;
+                                        width: 4px;
+                                        height: 4px;
+                                        background: rgba(255,255,255,0.6);
+                                        border-radius: 50%;
+                                        top: 20%;
+                                        left: 10%;
+                                        animation: particle-float 8s ease-in-out infinite;
+                                    "></div>
+                                    <div class="particle" style="
+                                        position: absolute;
+                                        width: 3px;
+                                        height: 3px;
+                                        background: rgba(255,255,255,0.4);
+                                        border-radius: 50%;
+                                        top: 60%;
+                                        right: 15%;
+                                        animation: particle-float 12s ease-in-out infinite 2s;
+                                    "></div>
+                                    <div class="particle" style="
+                                        position: absolute;
+                                        width: 2px;
+                                        height: 2px;
+                                        background: rgba(255,255,255,0.5);
+                                        border-radius: 50%;
+                                        bottom: 30%;
+                                        left: 20%;
+                                        animation: particle-float 10s ease-in-out infinite 4s;
+                                    "></div>
+                                </div>
+                            
+                                <!-- Title overlay (if exists) -->
+                                <?php if (!empty($banner['title'])): ?>
+                                <div class="banner-title position-absolute bottom-0 start-0 end-0 p-4" style="
+                                    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+                                    color: white;
+                                    z-index: 3;
+                                ">
+                                    <h3 class="mb-0 fw-bold" style="
+                                        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+                                        font-size: 1.5rem;
+                                    "><?php echo htmlspecialchars($banner['title']); ?></h3>
+                                </div>
+                                <?php endif; ?>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                    </div>
+                    
+                    <!-- Carousel Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 </section>
+
+                <style>
+              /* Keyframe animations */
+              @keyframes float {
+                  0%, 100% { transform: translateY(0px) rotate(0deg); }
+                  25% { transform: translateY(-10px) rotate(1deg); }
+                  50% { transform: translateY(-5px) rotate(-1deg); }
+                  75% { transform: translateY(-15px) rotate(0.5deg); }
+              }
+
+              @keyframes particle-float {
+                  0%, 100% { 
+                      transform: translateY(0px) translateX(0px) scale(1);
+                      opacity: 0.6;
+                  }
+                  25% { 
+                      transform: translateY(-20px) translateX(10px) scale(1.2);
+                      opacity: 1;
+                  }
+                  50% { 
+                      transform: translateY(-10px) translateX(-5px) scale(0.8);
+                      opacity: 0.4;
+                  }
+                  75% { 
+                      transform: translateY(-30px) translateX(15px) scale(1.1);
+                      opacity: 0.8;
+                  }
+              }
+
+              /* Hover effects */
+              .banner-link:hover .banner-image-wrapper {
+                  transform: scale(1.05);
+              }
+
+              .banner-link:hover .banner-image-wrapper img {
+                  transform: scale(1.05);
+              }
+
+              /* Active/Focus effects for better interaction */
+              .banner-link:active .banner-image-wrapper {
+                  transform: scale(1.15);
+                  transition: all 0.2s ease;
+              }
+
+              .banner-link:focus .banner-image-wrapper {
+                  transform: scale(1.08);
+                  outline: none;
+              }
+
+              .banner-link:hover .banner-shine {
+                  left: 100%;
+              }
+
+              /* Responsive adjustments */
+              @media (max-width: 768px) {
+                  .carousel-item {
+                      height: 300px !important;
+                  }
+                  
+                  .banner-image-wrapper {
+                      max-height: 90% !important;
+                      max-width: 90% !important;
+                  }
+                  
+                  .banner-title h3 {
+                      font-size: 1.2rem !important;
+                  }
+              }
+
+              @media (max-width: 576px) {
+                  .carousel-item {
+                      height: 250px !important;
+                  }
+                  
+                  .banner-title h3 {
+                      font-size: 1rem !important;
+                  }
+              }
+
+              /* Smooth transitions for carousel */
+              .carousel-item {
+                  transition: transform 0.8s ease-in-out;
+              }
+
+              .carousel-item.active {
+                  animation: slideInScale 0.8s ease-out;
+              }
+
+              @keyframes slideInScale {
+                  0% {
+                      transform: scale(0.95);
+                      opacity: 0.8;
+                  }
+                  100% {
+                      transform: scale(1);
+                      opacity: 1;
+                  }
+              }
+              </style>
+            
+
+                
+                <!-- Shine effect -->
+                <div class="banner-shine position-absolute" style="
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                    transition: left 0.6s ease;
+                "></div>
+
+<style>
+/* Hero Section Styles */
+.hero-section {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section .min-vh-60 {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-shape-1, 
+.hero-shape-2 {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+    filter: blur(60px);
+    opacity: 0.7;
+    animation: float 15s ease-in-out infinite;
+}
+
+.hero-shape-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -100px;
+}
+
+.hero-shape-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -50px;
+    animation-delay: -5s;
+    animation-direction: reverse;
+}
+
+.hero-device-img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));
+    animation: float 6s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.hero-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    animation: pulse 2s infinite;
+}
+
+.hero-badge .sale-badge {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.hero-badge small {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Sale Banner Styles */
+.sale-banner {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.sale-banner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.sale-percent {
+    text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    animation: pulse 2s infinite;
+}
+
+.sale-timer .time-box {
+    min-width: 70px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.sale-timer .time-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.sale-timer small {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-light {
+    background: white;
+    color: #ff6b6b;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .hero-section .min-vh-60 {
+        min-height: auto;
+        padding: 80px 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section h1 {
+        font-size: 2rem !important;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Banner click area */
+.banner-click-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0;
+}
+
+/* Lightbox adjustments */
+.lb-outerContainer {
+    max-width: 95vw !important;
+    max-height: 95vh !important;
+    border-radius: 8px !important;
+}
+
+.lb-container {
+    padding: 0 !important;
+}
+
+.lb-container .lb-image {
+    max-width: 90vw !important;
+    max-height: 85vh !important;
+    width: auto !important;
+    height: auto !important;
+    border: 10px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+.lb-dataContainer {
+    margin-top: 15px !important;
+}
+
+.lb-data .lb-details {
+    width: 100% !important;
+}
+
+.lb-data .lb-caption {
+    font-size: 16px !important;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.lb-nav a.lb-prev,
+.lb-nav a.lb-next {
+    opacity: 1 !important;
+}
+
+.lb-close {
+    margin-top: 20px !important;
+    margin-right: 20px !important;
+}
+
+/* Keyframe animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(1deg); }
+    50% { transform: translateY(-5px) rotate(-1deg); }
+    75% { transform: translateY(-15px) rotate(0.5deg); }
+}
+
+@keyframes particle-float {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.6;
+    }
+    25% { 
+        transform: translateY(-20px) translateX(10px) scale(1.2);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-10px) translateX(-5px) scale(0.8);
+        opacity: 0.4;
+    }
+    75% { 
+        transform: translateY(-30px) translateX(15px) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Hover effects */
+.banner-link:hover .banner-image-wrapper {
+    transform: scale(1.05);
+}
+
+.banner-link:hover .banner-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.banner-link:hover .banner-shine {
+    left: 100%;
+}
+
+.banner-link:hover .banner-pattern {
+    animation-duration: 5s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 300px !important;
+    }
+    
+    .banner-image-wrapper {
+        max-height: 90% !important;
+        max-width: 90% !important;
+    }
+    
+    .banner-title h3 {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 250px !important;
+    }
+    
+    .banner-title h3 {
+        font-size: 1rem !important;
+    }
+}
+
+/* Smooth transitions for carousel */
+.carousel-item {
+    transition: transform 0.8s ease-in-out;
+}
+
+.carousel-item.active {
+    animation: slideInScale 0.8s ease-out;
+}
+
+@keyframes slideInScale {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+</style>
+                    </div>
+                    <?php if (count($banners) > 1): ?>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Trước</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Tiếp</span>
+                        </button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Sản phẩm nổi bật -->
 <section id="products" class="py-5">
     <div class="container">
         <div class="section-header mb-4">
             <h2 class="section-title">Sản phẩm nổi bật</h2>
-            <a href="index.php?controller=product" class="btn btn-link">Xem tất cả</a>
+            <a href="index.php?controller=product&action=list" class="view-all-btn">
+                Xem tất cả
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </a>
         </div>
         <div class="row g-4">
             <?php foreach ($products as $p): ?>
@@ -75,13 +696,19 @@ $banners = $bannerModel->getAllBanner('featured_categories', 1);
                                 <button class="next" onclick="plusSlides(1, <?php echo $p['id']; ?>)">&#10095;</button>
                             <?php endif; ?>
                             <div class="product-actions">
-                                <button class="btn btn-sm btn-light btn-wishlist" data-id="<?php echo $p['id']; ?>">
+                                <a href="index.php?controller=product&action=detail&id=<?php echo $p['id']; ?>" 
+                                   class="btn btn-sm btn-info text-white" 
+                                   title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <button class="btn btn-sm btn-light btn-wishlist" data-id="<?php echo $p['id']; ?>" title="Thêm vào yêu thích">
                                     <i class="far fa-heart"></i>
                                 </button>
                                 <button class="btn btn-sm btn-primary btn-add-to-cart" 
                                         data-id="<?php echo $p['id']; ?>"
                                         data-name="<?php echo htmlspecialchars($p['name']); ?>"
-                                        data-price="<?php echo $p['price']; ?>">
+                                        data-price="<?php echo $p['price']; ?>"
+                                        title="Thêm vào giỏ hàng">
                                     <i class="fas fa-shopping-cart me-1"></i> Thêm giỏ
                                 </button>
                             </div>
@@ -193,7 +820,6 @@ $banners = $bannerModel->getAllBanner('featured_categories', 1);
         </form>
     </div>
 </section>
-<?php include 'view/layout/footer.php'; ?>
 
 <style>
 /* Global Styles */
@@ -267,6 +893,89 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-size: 0.9rem;
+}
+
+/* View All Button Styles */
+.view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    color: white !important;
+    border-radius: 25px;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.view-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 115, 223, 0.4);
+    color: white !important;
+}
+
+.view-all-btn:active {
+    transform: translateY(1px);
+}
+
+.view-all-btn svg {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.view-all-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.view-all-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #224abe 0%, #4e73df 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 25px;
+}
+
+.view-all-btn:hover::after {
+    opacity: 1;
+}
+
+/* Section Header Styles */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4e73df, #224abe);
+    border-radius: 3px;
 }
 
 /* Banner Section */
@@ -1181,5 +1890,24 @@ if (document.readyState === 'loading') {
 
 // Cuộn lên đầu trang khi tải lại
 window.scrollTo({ top: 0, behavior: 'smooth' });
+// Configure Lightbox options
+lightbox.option({
+    'resizeDuration': 200,
+    'wrapAround': true,
+    'showImageNumberLabel': true,
+    'disableScrolling': true,
+    'albumLabel': 'Hình ảnh %1 của %2',
+    'fadeDuration': 300,
+    'imageFadeDuration': 300,
+    'fitImagesInViewport': true,
+    'maxWidth': 1200,
+    'maxHeight': 800,
+    'positionFromTop': 50,
+    'alwaysShowNavOnTouchDevices': true
+});
 </script>
-<?php include 'view/layout/footer.php'; ?>
+
+<!-- Add Lightbox2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
+<?php include 'view/layout/footer.php';
