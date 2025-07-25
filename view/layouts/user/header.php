@@ -150,7 +150,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand text-primary" href="/">
+            <a class="navbar-brand text-primary" href="index.php">
                 <i class="fas fa-bolt me-2"></i>ShopElectrics
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -159,20 +159,20 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i> Trang chủ</a>
+                        <a class="nav-link" href="index.php"><i class="fas fa-home me-1"></i> Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?controller=product&action=index"><i class="fas fa-mobile-alt me-1"></i> Sản phẩm</a>
+                        <a class="nav-link" href="index.php?controller=product&action=index"><i class="fas fa-mobile-alt me-1"></i> Sản phẩm</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?controller=about"><i class="fas fa-info-circle me-1"></i> Giới thiệu</a>
+                        <a class="nav-link" href="index.php?controller=about"><i class="fas fa-info-circle me-1"></i> Giới thiệu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?controller=contact"><i class="fas fa-envelope me-1"></i> Liên hệ</a>
+                        <a class="nav-link" href="index.php?controller=contact"><i class="fas fa-envelope me-1"></i> Liên hệ</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <a href="/index.php?controller=cart" class="btn btn-outline-primary position-relative me-2">
+                    <a href="index.php?controller=cart" class="btn btn-outline-primary position-relative me-2">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php echo isset($_SESSION['cart_items']) ? count($_SESSION['cart_items']) : 0; ?>
@@ -184,15 +184,15 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <i class="fas fa-user-circle me-1"></i> <?php echo htmlspecialchars($_SESSION['user']['name'] ?? 'Tài khoản'); ?>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="/index.php?controller=user&action=profile"><i class="fas fa-user me-2"></i>Tài khoản của tôi</a></li>
-                                <li><a class="dropdown-item" href="/index.php?controller=user&action=orders"><i class="fas fa-box me-2"></i>Đơn hàng</a></li>
+                                <li><a class="dropdown-item" href="index.php?controller=user&action=profile"><i class="fas fa-user me-2"></i>Tài khoản của tôi</a></li>
+                                <li><a class="dropdown-item" href="index.php?controller=user&action=orders"><i class="fas fa-box me-2"></i>Đơn hàng</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="/index.php?controller=auth&action=logout"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+                                <li><a class="dropdown-item text-danger" href="index.php?controller=auth&action=logout"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
                             </ul>
                         </div>
                     <?php else: ?>
-                        <a href="/index.php?controller=auth&action=login" class="btn btn-outline-primary me-2">Đăng nhập</a>
-                        <a href="/index.php?controller=auth&action=register" class="btn btn-primary">Đăng ký</a>
+                        <a href="index.php?controller=auth&action=login" class="btn btn-outline-primary me-2">Đăng nhập</a>
+                        <a href="index.php?controller=auth&action=register" class="btn btn-primary">Đăng ký</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -201,4 +201,3 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- Main Content -->
     <main class="py-4">
-        <div class="container">

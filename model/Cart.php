@@ -28,7 +28,7 @@ class Cart {
         }
         $cart = [];
         foreach ($_SESSION[$this->sessionKey] as $product_id => $quantity) {
-            $product = Product::findById($this->conn, $product_id);
+            $product = Product::findById($product_id);
             if ($product) {
                 $product['quantity'] = $quantity;
                 $cart[] = $product;

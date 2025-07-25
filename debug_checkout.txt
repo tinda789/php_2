@@ -1,34 +1,46 @@
 POST:
 Array
 (
-    [product_id] => 161
-    [quantity] => 1
     [selected_products] => Array
         (
-            [0] => 161
+            [0] => 2
         )
 
+    [name] => Doan Xuan Thinh
+    [phone] => 0335259447
+    [address] => ao
+    [city] => 96
+    [district] => 964
+    [ward] => 32025
+    [city_name] => 
+    [district_name] => Thành phố Cà Mau
+    [ward_name] => Phường Tân Thành
+    [notes] => 
+    [discount_code] => 
 )
 
 SESSION user:
 Array
 (
-    [id] => 7
+    [id] => 8
     [email] => thinhb2303782@student.ctu.edu.vn
-    [username] => thinh2k
-    [full_name] => Đoàn Xuân Thịnh
-    [password_hash] => $2y$10$NFYuepqxfdI9dqO8CXZf3O8xoD2OIxIN9G5H1pUyS9hgrII2H/tJa
+    [username] => thinh2k5
+    [full_name] => 
+    [password_hash] => $2y$10$hy8/BkW6aYhuR3z0tnm6LutJ41s.g/WFFHmK.DttdYnPEXQa0dL2S
     [first_name] => Đoàn
     [last_name] => Xuân Thịnh
     [phone] => 0335259447
-    [avatar] => uploads/avatars/avatar_687d0159091cb.jpg
+    [avatar] => uploads/avatars/avatar_6882fe34bffe0.jpg
     [date_of_birth] => 
     [is_active] => 1
     [email_verified] => 0
     [last_login] => 
-    [created_at] => 2025-06-12 23:33:25
-    [updated_at] => 2025-07-23 18:18:38
-    [role_name] => super_admin
-    [role_id] => 1
-    [total_orders] => 46
+    [created_at] => 2025-07-25 10:44:52
+    [updated_at] => 2025-07-25 10:45:48
+    [reset_token] => 
+    [reset_expires] => 
+    [active] => 1
+    [role_name] => customer
+    [role_id] => 4
+    [total_orders] => 0
 )

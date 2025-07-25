@@ -46,7 +46,7 @@ class CartController {
         }
         
         try {
-            $cartModel = new Cart();
+            $cartModel = new Cart($conn);
             $result = $cartModel->addToCart($product_id, $quantity);
             
             if ($isAjax) {

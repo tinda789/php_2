@@ -48,7 +48,7 @@ class User {
         }
         // Đăng ký
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("INSERT INTO users (username, password_hash, email, first_name, last_name, phone) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO users (username, password_hash, email, first_name, last_name, phone, active) VALUES (?, ?, ?, ?, ?, ?, 0)");
         $stmt->bind_param("ssssss", $username, $hash, $email, $first_name, $last_name, $phone);
         if ($stmt->execute()) {
             $user_id = $conn->insert_id;

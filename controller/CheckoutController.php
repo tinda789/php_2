@@ -11,6 +11,7 @@ class CheckoutController {
     const VNPAY_TMN_CODE = '7JX9OTN2';
     const VNPAY_HASH_SECRET = 'U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF';
     
+    
     const VNPAY_URL = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
     const VNPAY_RETURN_URL = 'http://localhost:8000/index.php?controller=checkout&action=vnpay_return';
     public function checkout() {
@@ -68,10 +69,9 @@ class CheckoutController {
                 file_put_contents('out_of_stock.log', date('Y-m-d H:i:s') . " - UserID: {$user_id} - Sản phẩm: {$item['name']} - Đặt: {$item['quantity']} - Còn: $stock\n", FILE_APPEND);
                 
                 // Truyền biến cần thiết cho view
-                $error = $error ?? '';
                 $cart = $cart_selected; // Sử dụng giỏ hàng đã lọc
                 require __DIR__ . '/../view/user/checkout.php';
-                return;
+                return; // Đảm bảo return NGAY tại đây để không bị lặp view phía dưới
             }
         }
         

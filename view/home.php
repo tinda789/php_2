@@ -110,7 +110,7 @@ $banners = $bannerModel->getAllBanner('featured_categories', 1);
             <div class="col-12">
                 <?php 
                 // Lấy tất cả banner đang hoạt động
-                $banners = $bannerModel->getAllBanners(null, 1);
+                $banners = $bannerModel->getAllBanner(null, 1);
                 
                 // Debug: Chỉ in ra image_url của các banner
                 echo '<script>';
@@ -715,7 +715,7 @@ $banners = $bannerModel->getAllBanner('featured_categories', 1);
                                 </a>
                             </h3>
                             <div class="product-price">
-                                <?php if ($p['discount'] > 0): ?>
+                                <?php if (isset($p['discount']) && $p['discount'] > 0): ?>
                                     <span class="text-muted text-decoration-line-through me-2">
                                         <?php echo number_format($p['price']); ?>đ
                                     </span>

@@ -18,7 +18,7 @@ if (!defined('DEBUG')) {
 // Database configuration
 $servername = "localhost";
 $username = "root";
-$password = "root"; // hoặc "" nếu không có mật khẩu
+$password = ""; // hoặc "" nếu không có mật khẩu
 $dbname = "shopelectrics";
 
 // Create connection

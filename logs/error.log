@@ -83,3 +83,1492 @@
                 LEFT JOIN products p ON oi.product_id = p.id 
                 WHERE oi.order_id = ? with order_id: 41
 [25-Jul-2025 04:57:33 Asia/Ho_Chi_Minh] Found 1 order items
+[25-Jul-2025 02:41:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Banner::getAllBanners() in C:\xampp\htdocs\php_2\view\home.php:113
+Stack trace:
+#0 C:\xampp\htdocs\php_2\index.php(158): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\php_2\view\home.php on line 113
+[25-Jul-2025 02:42:17 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 02:42:17 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 02:42:20 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:42:21 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:42:27 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 02:42:27 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 02:42:31 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:42:32 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:42:32 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:42:32 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:42:32 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:42:36 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Banner::getAllBanners() in C:\xampp\htdocs\php_2\view\home.php:113
+Stack trace:
+#0 C:\xampp\htdocs\php_2\index.php(158): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\php_2\view\home.php on line 113
+[25-Jul-2025 02:42:59 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 02:42:59 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 02:43:02 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:43:04 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:43:53 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 02:43:53 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 02:43:55 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 31 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(31): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:44:00 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 02:44:00 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 02:48:26 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\php_2\config\config.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php_2\config\config.php(25): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'shopelectrics')
+#1 C:\xampp\htdocs\php_2\view\home.php(2): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\php_2\index.php(158): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\config\config.php on line 25
+[25-Jul-2025 02:51:07 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\php_2\config\config.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php_2\config\config.php(25): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'shopelectrics')
+#1 C:\xampp\htdocs\php_2\view\home.php(2): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\php_2\index.php(158): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\config\config.php on line 25
+[25-Jul-2025 02:51:24 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\php_2\config\config.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php_2\config\config.php(25): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'shopelectrics')
+#1 C:\xampp\htdocs\php_2\view\home.php(2): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\php_2\index.php(158): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\config\config.php on line 25
+[25-Jul-2025 02:51:56 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\php_2\config\config.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php_2\config\config.php(25): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'shopelectrics')
+#1 C:\xampp\htdocs\php_2\view\home.php(2): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\php_2\index.php(158): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\config\config.php on line 25
+[25-Jul-2025 02:52:54 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\php_2\config\config.php:25
+Stack trace:
+#0 C:\xampp\htdocs\php_2\config\config.php(25): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'shopelectrics')
+#1 C:\xampp\htdocs\php_2\view\home.php(2): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\php_2\index.php(158): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\config\config.php on line 25
+[25-Jul-2025 02:53:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Banner::getAllBanners() in C:\xampp\htdocs\php_2\view\home.php:113
+Stack trace:
+#0 C:\xampp\htdocs\php_2\index.php(158): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\php_2\view\home.php on line 113
+[25-Jul-2025 02:55:07 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Banner::getAllBanners() in C:\xampp\htdocs\php_2\view\home.php:113
+Stack trace:
+#0 C:\xampp\htdocs\php_2\index.php(158): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\php_2\view\home.php on line 113
+[25-Jul-2025 02:55:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Banner::getAllBanners() in C:\xampp\htdocs\php_2\view\home.php:113
+Stack trace:
+#0 C:\xampp\htdocs\php_2\index.php(158): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\php_2\view\home.php on line 113
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:56:27 Europe/Berlin] PHP Warning:  Undefined array key "discount" in C:\xampp\htdocs\php_2\view\home.php on line 718
+[25-Jul-2025 02:58:30 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 02:58:30 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 02:58:33 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 49 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(49): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:58:34 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 49 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(49): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 02:59:51 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\php_2\view\user/../../layout/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\php_2\view\user\addresses.php on line 1
+[25-Jul-2025 02:59:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\php_2\view\user/../../layout/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\php_2\view\user\addresses.php:1
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\UserController.php(256): include()
+#1 C:\xampp\htdocs\php_2\index.php(92): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('user', 'addresses', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\view\user\addresses.php on line 1
+[25-Jul-2025 03:04:37 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 03:04:37 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 03:04:39 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 49 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(49): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 03:04:40 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 49 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(49): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 03:04:41 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Cart::__construct(), 0 passed in C:\xampp\htdocs\php_2\controller\CartController.php on line 49 and exactly 1 expected in C:\xampp\htdocs\php_2\model\Cart.php:10
+Stack trace:
+#0 C:\xampp\htdocs\php_2\controller\CartController.php(49): Cart->__construct()
+#1 C:\xampp\htdocs\php_2\index.php(127): CartController->add()
+#2 C:\xampp\htdocs\php_2\index.php(155): handleController('cart', 'add', Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\php_2\model\Cart.php on line 10
+[25-Jul-2025 03:10:35 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 98
+[25-Jul-2025 03:10:35 Europe/Berlin] PHP Warning:  Undefined array key "stock" in C:\xampp\htdocs\php_2\view\user\product_detail.php on line 99
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 398
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 398
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 300
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 300
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 313
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 313
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:10:37 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 398
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 398
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 300
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 300
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 313
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 313
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:10:38 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 398
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 398
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 300
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 300
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to float in C:\xampp\htdocs\php_2\model\Product.php on line 313
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Warning:  Object of class mysqli could not be converted to int in C:\xampp\htdocs\php_2\model\Product.php on line 313
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:10:39 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:17:07 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:17:07 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:17:10 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:17:10 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 08:17:15 Asia/Ho_Chi_Minh] Controller Error: Unknown column 'stock' in 'field list'
+[25-Jul-2025 08:19:36 Asia/Ho_Chi_Minh] Controller Error: Unknown column 'stock' in 'field list'
+[25-Jul-2025 08:20:47 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 
+    [weight] => 
+    [dimensions] => 
+    [warranty_period] => 
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-06-12 23:33:25
+    [stock] => 0
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:20:47 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:20:47 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 
+    [weight] => 
+    [dimensions] => 
+    [warranty_period] => 
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-06-12 23:33:25
+    [stock] => 0
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:20:47 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:23:17 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 
+    [weight] => 
+    [dimensions] => 
+    [warranty_period] => 
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-06-12 23:33:25
+    [stock] => 0
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:23:17 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:23:17 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 
+    [weight] => 
+    [dimensions] => 
+    [warranty_period] => 
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-06-12 23:33:25
+    [stock] => 0
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:23:17 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 03:23:35 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:23:35 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 08:23:40 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 
+    [weight] => 
+    [dimensions] => 
+    [warranty_period] => 
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-06-12 23:33:25
+    [stock] => 0
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:23:40 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:23:40 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 
+    [weight] => 
+    [dimensions] => 
+    [warranty_period] => 
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-06-12 23:33:25
+    [stock] => 0
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:23:40 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 03:25:02 Europe/Berlin] Controller Error: Unknown column 'image_link' in 'field list'
+[25-Jul-2025 03:27:55 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 03:27:55 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 08:28:02 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 0
+    [weight] => 0.00
+    [dimensions] => 
+    [warranty_period] => 0
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-25 08:27:30
+    [stock] => 4
+    [image_link] => 
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:28:02 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:28:02 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 0
+    [weight] => 0.00
+    [dimensions] => 
+    [warranty_period] => 0
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-25 08:27:30
+    [stock] => 4
+    [image_link] => 
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:28:02 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:28:58 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 0
+    [weight] => 0.00
+    [dimensions] => 
+    [warranty_period] => 0
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-25 08:28:46
+    [stock] => 2
+    [image_link] => 
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:28:58 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:28:58 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 0
+    [weight] => 0.00
+    [dimensions] => 
+    [warranty_period] => 0
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-25 08:28:46
+    [stock] => 2
+    [image_link] => 
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:28:58 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:29:44 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 0
+    [weight] => 0.00
+    [dimensions] => 
+    [warranty_period] => 0
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-25 08:29:32
+    [stock] => 0
+    [image_link] => 
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:29:44 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 08:29:44 Asia/Ho_Chi_Minh] Product in cart: Array
+(
+    [id] => 1
+    [name] => iPhone 15 Pro Max 256GB
+    [slug] => iphone-15-pro-max-256gb
+    [description] => iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp và thiết kế titanium cao cấp.
+    [short_description] => iPhone cao cấp nhất với màn hình 6.7 inch và camera 48MP
+    [price] => 32990000.00
+    [sale_price] => 31990000.00
+    [stock_quantity] => 50
+    [min_stock_level] => 5
+    [category_id] => 6
+    [brand_id] => 1
+    [model] => iPhone 15 Pro Max
+    [sku] => IP15PM256GB
+    [barcode] => 0
+    [weight] => 0.00
+    [dimensions] => 
+    [warranty_period] => 0
+    [status] => active
+    [featured] => 1
+    [meta_title] => 
+    [meta_description] => 
+    [created_by] => 1
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-25 08:29:32
+    [stock] => 0
+    [image_link] => 
+    [images] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-1.jpg
+                    [alt_text] => iPhone 15 Pro Max màu Titan Tự Nhiên
+                    [is_primary] => 1
+                    [sort_order] => 1
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+            [1] => Array
+                (
+                    [id] => 2
+                    [product_id] => 1
+                    [image_url] => /images/iphone-15-pro-max-2.jpg
+                    [alt_text] => iPhone 15 Pro Max mặt sau
+                    [is_primary] => 0
+                    [sort_order] => 2
+                    [created_at] => 2025-06-12 23:33:25
+                )
+
+        )
+
+    [specs] => Array
+        (
+            [0] => Array
+                (
+                    [spec_name] => Màn hình
+                    [spec_value] => 6.7" Super Retina XDR OLED
+                    [spec_group] => Display
+                )
+
+            [1] => Array
+                (
+                    [spec_name] => Chip
+                    [spec_value] => A17 Pro
+                    [spec_group] => Performance
+                )
+
+            [2] => Array
+                (
+                    [spec_name] => Camera chính
+                    [spec_value] => 48MP + 12MP + 12MP
+                    [spec_group] => Camera
+                )
+
+            [3] => Array
+                (
+                    [spec_name] => Dung lượng
+                    [spec_value] => 256GB
+                    [spec_group] => Storage
+                )
+
+            [4] => Array
+                (
+                    [spec_name] => RAM
+                    [spec_value] => 8GB
+                    [spec_group] => Memory
+                )
+
+            [5] => Array
+                (
+                    [spec_name] => Pin
+                    [spec_value] => Lên đến 29 giờ xem video
+                    [spec_group] => Battery
+                )
+
+        )
+
+    [quantity] => 2
+)
+
+[25-Jul-2025 08:29:44 Asia/Ho_Chi_Minh] Product: iPhone 15 Pro Max 256GB, Price: 32990000, Sale: 31990000, Qty: 2, Final: 31990000, Line Total: 63980000
+[25-Jul-2025 04:41:35 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 04:41:35 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 04:41:36 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 04:41:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 04:41:48 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 04:41:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:43:27 Europe/Berlin] Controller Error: Unknown column 'active' in 'field list'
+[25-Jul-2025 05:55:23 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:55:23 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:55:25 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:55:25 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:55:27 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:55:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:58:32 Europe/Berlin] PHP Warning:  Undefined variable $img_url in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
+[25-Jul-2025 05:58:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\php_2\view\user\cart_view.php on line 46
