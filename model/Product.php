@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../config/config.php';
 
 class Product {
-    // Lấy tất cả sản phẩm (có phân trang, lọc theo tên)
-    public static function getAll($conn, $limit = 10, $offset = 0, $search = '', $category_id = 0) {
+    // Lấy tất cả sản phẩm (có phân trang, lọc theo tên, sắp xếp)
+    public static function getAll($conn, $limit = 10, $offset = 0, $search = '', $category_id = 0, $sort = 'newest') {
         $sql = "SELECT p.*, c.name as category_name, b.name as brand_name FROM products p
                 LEFT JOIN categories c ON p.category_id = c.id
                 LEFT JOIN brands b ON p.brand_id = b.id";
@@ -89,7 +89,28 @@ class Product {
             $sql .= " WHERE " . implode(' AND ', $where_conditions);
         }
         
-        $sql .= " ORDER BY p.created_at DESC LIMIT ? OFFSET ?";
+        // Thêm sắp xếp
+        switch ($sort) {
+            case 'price_asc':
+                $sql .= " ORDER BY p.price ASC, p.name ASC";
+                break;
+            case 'price_desc':
+                $sql .= " ORDER BY p.price DESC, p.name ASC";
+                break;
+            case 'name_asc':
+                $sql .= " ORDER BY p.name ASC, p.price ASC";
+                break;
+            case 'name_desc':
+                $sql .= " ORDER BY p.name DESC, p.price ASC";
+                break;
+            case 'newest':
+            default:
+                $sql .= " ORDER BY p.created_at DESC, p.id DESC";
+                break;
+        }
+        
+        // Thêm phân trang
+        $sql .= " LIMIT ? OFFSET ?";
         $params[] = $limit;
         $params[] = $offset;
         $types .= 'ii';

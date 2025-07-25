@@ -296,21 +296,58 @@
         </div>
         <div class="dropdown">
           <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            <i class="fas fa-sort"></i> Sắp xếp
+            <i class="fas fa-sort"></i> 
+            <?php
+            $sort_text = 'Sắp xếp';
+            $sort = $_GET['sort'] ?? 'newest';
+            $sort_options = [
+                'newest' => 'Mới nhất',
+                'price_asc' => 'Giá tăng dần',
+                'price_desc' => 'Giá giảm dần',
+                'name_asc' => 'Tên A-Z',
+                'name_desc' => 'Tên Z-A'
+            ];
+            if (isset($sort_options[$sort])) {
+                $sort_text = $sort_options[$sort];
+            }
+            echo $sort_text;
+            ?>
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="?controller=product&action=list&sort=name">Tên A-Z</a></li>
-            <li><a class="dropdown-item" href="?controller=product&action=list&sort=price_asc">Giá tăng dần</a></li>
-            <li><a class="dropdown-item" href="?controller=product&action=list&sort=price_desc">Giá giảm dần</a></li>
-            <li><a class="dropdown-item" href="?controller=product&action=list&sort=newest">Mới nhất</a></li>
+            <?php
+            $base_url = '?controller=product&action=list';
+            if ($search !== '') $base_url .= '&search=' . urlencode($search);
+            if ($category_id) $base_url .= '&category_id=' . $category_id;
+            
+            $sort_options = [
+                'newest' => 'Mới nhất',
+                'price_asc' => 'Giá tăng dần',
+                'price_desc' => 'Giá giảm dần',
+                'name_asc' => 'Tên A-Z',
+                'name_desc' => 'Tên Z-A'
+            ];
+            
+            foreach ($sort_options as $key => $label):
+                $active = ($sort === $key) ? 'active' : '';
+                echo "<li><a class=\"dropdown-item $active\" href=\"$base_url&sort=$key\">$label</a></li>";
+            endforeach;
+            ?>
           </ul>
         </div>
       </div>
       <?php if (!empty($products)): ?>
         <div class="row g-4">
-          <?php foreach ($products as $product): ?>
+          <?php foreach ($products as $product): 
+            $is_out_of_stock = ($product['stock'] ?? 0) <= 0;
+            $card_class = $is_out_of_stock ? 'out-of-stock' : '';
+          ?>
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-              <div class="card h-100 shadow-sm product-card border-0">
+              <div class="card h-100 shadow-sm product-card border-0 position-relative <?php echo $card_class; ?>">
+                <?php if ($is_out_of_stock): ?>
+                  <div class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end" style="z-index: 1;">
+                    <i class="fas fa-times-circle"></i> Hết hàng
+                  </div>
+                <?php endif; ?>
                 <div class="position-relative">
                   <?php if ($product['featured']): ?>
                     <span class="badge bg-warning position-absolute top-0 start-0 m-2"><i class="fas fa-star"></i> Nổi bật</span>
@@ -348,12 +385,20 @@
                     <?php endif; ?>
                   </div>
                   <div class="mt-auto d-flex gap-2">
-                    <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="btn btn-primary btn-sm flex-fill"><i class="fas fa-eye"></i> Xem chi tiết</a>
-                    <?php if (isset($product['stock']) && $product['stock'] > 0): ?>
+                    <a href="index.php?controller=product&action=detail&id=<?php echo $product['id']; ?>" class="btn btn-primary btn-sm flex-fill">
+                      <i class="fas fa-eye"></i> Xem chi tiết
+                    </a>
+                    <?php if ($is_out_of_stock): ?>
+                      <button class="btn btn-outline-secondary btn-sm" disabled title="Sản phẩm đã hết hàng">
+                        <i class="fas fa-ban"></i>
+                      </button>
+                    <?php else: ?>
                       <form method="POST" action="index.php?controller=cart&action=add" class="add-to-cart-form" style="display:inline;">
                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="btn btn-outline-success btn-sm" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button>
+                        <button type="submit" class="btn btn-outline-success btn-sm" title="Thêm vào giỏ hàng">
+                          <i class="fas fa-cart-plus"></i>
+                        </button>
                       </form>
                     <?php endif; ?>
                   </div>
@@ -368,7 +413,7 @@
           $queryBase = "?controller=product&action=list";
           if ($search !== '') $queryBase .= "&search=" . urlencode($search);
           if ($category_id) $queryBase .= "&category_id=" . urlencode($category_id);
-          if (!empty($_GET['sort'])) $queryBase .= "&sort=" . urlencode($_GET['sort']);
+          if (isset($_GET['sort'])) $queryBase .= "&sort=" . urlencode($_GET['sort']);
           $range = 2;
           $showDots = false;
           ?>
@@ -407,8 +452,22 @@
   </div>
 </div>
 <style>
-.product-card {transition: box-shadow 0.2s, transform 0.2s; border-radius: 1rem;}
+.product-card {transition: box-shadow 0.2s, transform 0.2s, opacity 0.3s; border-radius: 1rem; position: relative;}
 .product-card:hover {box-shadow: 0 8px 32px rgba(0,0,0,0.15)!important; transform: translateY(-4px) scale(1.01);}
+.product-card.out-of-stock {opacity: 0.8;}
+.product-card.out-of-stock:hover {opacity: 0.9;}
+.product-card.out-of-stock .card-body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 1rem;
+}
 .product-image {height: 220px; object-fit: cover; border-radius: 1rem 1rem 0 0; background: #f8f9fa;}
 .product-title {font-size: 1.1rem; font-weight: 600; color: #222; line-height: 1.4;}
 @media (max-width: 768px) {.product-image {height: 160px;}}

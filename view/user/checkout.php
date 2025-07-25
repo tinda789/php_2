@@ -1,17 +1,21 @@
 <?php
 // view/user/checkout.php
-require_once __DIR__ . '/../layout/header.php';
+// This file is included within the main layout, so no need to include header/footer here
+
+// Set page title for the layout
+$pageTitle = 'Thanh toán đơn hàng';
+
 if (empty($cart)) {
-    echo '<div class="container py-4"><div class="alert alert-info text-center">Không có sản phẩm nào để thanh toán.</div></div>';
-    require_once __DIR__ . '/../layout/footer.php';
+    echo '<div class="alert alert-info text-center">Không có sản phẩm nào để thanh toán.</div>';
     return;
 }
+
 if (!empty($_SESSION['error'])) {
     $error = $_SESSION['error'];
     unset($_SESSION['error']);
 }
 ?>
-<div class="container" style="max-width:700px;margin:40px auto;">
+<div class="checkout-container" style="max-width:700px;margin:0 auto;padding:20px 0;">
     <h2>Thanh toán đơn hàng</h2>
     <?php if (!empty($error)) echo '<div style="color:red">'.$error.'</div>'; ?>
     <form method="post">
@@ -85,6 +89,13 @@ if (!empty($_SESSION['error'])) {
             <label><input type="radio" name="payment_method" value="vnpay"> Thanh toán qua VNPay</label>
         </div>
         <h4>Thông tin đơn hàng</h4>
+        <?php if (isset($cart['coupon'])): ?>
+        <div class="alert alert-success mb-3">
+            <i class="fas fa-tag"></i> Đã áp dụng mã giảm giá: 
+            <strong><?php echo htmlspecialchars($cart['coupon']['code']); ?></strong> - 
+            Giảm <?php echo $cart['coupon']['formatted_discount']; ?>
+        </div>
+        <?php endif; ?>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -151,20 +162,95 @@ if (!empty($_SESSION['error'])) {
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
+                <!-- Coupon Code -->
                 <tr>
-                    <th colspan="3" class="text-end">Tạm tính:</th>
-                    <th class="text-end"><?= number_format($subtotal, 0, ",", ".") ?>₫</th>
+                    <td colspan="4">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="coupon_code" name="coupon_code" placeholder="Nhập mã giảm giá" value="<?= htmlspecialchars($_POST['coupon_code'] ?? '') ?>">
+                            <button class="btn btn-outline-primary" type="button" id="apply_coupon">Áp dụng</button>
+                        </div>
+                        <div id="coupon_message" class="small"></div>
+                    </td>
                 </tr>
+                <?php 
+                $coupon_discount = 0;
+                if (!empty($_SESSION['applied_coupon'])): 
+                    $coupon = $_SESSION['applied_coupon'];
+                    
+                    // Tính toán giảm giá dựa trên tổng tiền trước giảm giá
+                    if ($coupon['type'] == 'fixed') {
+                        $coupon_discount = min($coupon['value'], $subtotal); // Không giảm quá tổng tiền
+                    } else { // percentage
+                        $coupon_discount = $subtotal * ($coupon['value'] / 100);
+                        // Áp dụng giới hạn giảm giá tối đa nếu có
+                        if (!empty($coupon['maximum_discount']) && $coupon_discount > $coupon['maximum_discount']) {
+                            $coupon_discount = $coupon['maximum_discount'];
+                        }
+                    }
+                    
+                    // Làm tròn xuống 1000 đồng gần nhất
+                    $coupon_discount = floor($coupon_discount / 1000) * 1000;
+                    
+                    // Đảm bảo không âm
+                    if ($coupon_discount < 0) $coupon_discount = 0;
+                    
+                    // Cập nhật lại tổng tiền sau khi giảm giá
+                    $total = $subtotal - $coupon_discount;
+                    if ($total < 0) $total = 0;
+                ?>
+                <tr class="table-active">
+                    <th colspan="3" class="text-end">Giảm giá (<?= htmlspecialchars($coupon['code']) ?>):</th>
+                    <th class="text-end text-success">-<?= number_format($coupon_discount, 0, ",", ".") ?>₫</th>
+                    <input type="hidden" name="applied_coupon_code" value="<?= htmlspecialchars($coupon['code']) ?>">
+                </tr>
+                <?php 
+                endif; 
+                
+                // Tính lại tổng tiền hàng
+                $subtotal = 0;
+                if (is_array($cart)) {
+                    foreach ($cart as $item) {
+                        if (is_array($item) && isset($item['price'], $item['quantity'])) {
+                            $price = $item['sale_price'] > 0 ? $item['sale_price'] : $item['price'];
+                            $subtotal += $price * $item['quantity'];
+                        }
+                    }
+                }
+                
+                // Nếu có áp dụng mã giảm giá từ session
+                if (isset($coupon_discount) && $coupon_discount > 0) {
+                    $total = $subtotal - $coupon_discount;
+                    if ($total < 0) $total = 0;
+                } else {
+                    $total = $subtotal;
+                }
+                ?>
+                <tr>
+                    <td colspan="3" class="text-end"><strong>Tổng tiền hàng:</strong></td>
+                    <td class="text-end"><?= number_format($subtotal, 0, ",", ".") ?>₫</td>
+                </tr>
+                
+                <?php if (isset($coupon_discount) && $coupon_discount > 0): ?>
+                <tr class="table-active">
+                    <td colspan="3" class="text-end"><strong>Tổng thanh toán:</strong></td>
+                    <td class="text-end fw-bold text-danger">
+                        <?= number_format($total, 0, ",", ".") ?>₫
+                    </td>
+                </tr>
+                <?php else: ?>
+                <tr class="table-active">
+                    <td colspan="3" class="text-end"><strong>Tổng thanh toán:</strong></td>
+                    <td class="text-end fw-bold text-danger">
+                        <?= number_format($subtotal, 0, ",", ".") ?>₫
+                    </td>
+                </tr>
+                <?php endif; ?>
                 <?php if ($discount > 0): ?>
                 <tr>
                     <th colspan="3" class="text-end text-success">Giảm giá:</th>
                     <th class="text-end text-success">-<?= number_format($discount, 0, ",", ".") ?>₫</th>
                 </tr>
                 <?php endif; ?>
-                <tr class="table-active">
-                    <th colspan="3" class="text-end">Tổng cộng:</th>
-                    <th class="text-end fw-bold"><?= number_format($total, 0, ",", ".") ?>₫</th>
-                </tr>
                 <tr>
                     <td colspan="4" class="text-muted small">
                         <i class="fas fa-info-circle"></i> Đã bao gồm VAT (nếu có) và phí vận chuyển sẽ được tính ở bước sau.
@@ -172,7 +258,10 @@ if (!empty($_SESSION['error'])) {
                 </tr>
             </tfoot>
         </table>
-        <button type="submit" class="btn btn-primary">Đặt hàng & Thanh toán</button>
+        <div class="d-flex justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary">Đặt hàng & Thanh toán</button>
+            <a href="index.php?controller=cart" class="btn btn-outline-secondary">Quay lại giỏ hàng</a>
+        </div>
     </form>
 </div>
 
@@ -819,10 +908,86 @@ async function loadWards(districtCode) {
     }
 }
 
-// Sự kiện khi DOM đã tải xong
+// Hàm xử lý áp dụng mã giảm giá
+async function applyCoupon() {
+    const couponCode = document.getElementById('coupon_code').value.trim();
+    const applyBtn = document.getElementById('apply_coupon');
+    const originalBtnText = applyBtn.innerHTML;
+    
+    if (!couponCode) {
+        showCouponMessage('Vui lòng nhập mã giảm giá', 'text-danger');
+        return;
+    }
+
+    try {
+        // Show loading state
+        applyBtn.disabled = true;
+        applyBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang xử lý...';
+        
+        const response = await fetch('index.php?controller=cart&action=applyCoupon', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `coupon_code=${encodeURIComponent(couponCode)}`
+        });
+        
+        // Check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            console.error('Unexpected response:', text);
+            throw new Error('Phản hồi không hợp lệ từ máy chủ');
+        }
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            showCouponMessage(result.message, 'text-success');
+            // Reload page to update cart with new discount
+            setTimeout(() => window.location.reload(), 1000);
+        } else {
+            showCouponMessage(result.message || 'Có lỗi xảy ra khi áp dụng mã giảm giá', 'text-danger');
+        }
+    } catch (error) {
+        console.error('Lỗi khi áp dụng mã giảm giá:', error);
+        showCouponMessage(error.message || 'Đã xảy ra lỗi khi xử lý yêu cầu', 'text-danger');
+    } finally {
+        // Reset button state
+        if (applyBtn) {
+            applyBtn.disabled = false;
+            applyBtn.innerHTML = originalBtnText;
+        }
+    }
+}
+
+// Hàm hiển thị thông báo mã giảm giá
+function showCouponMessage(message, className) {
+    const messageElement = document.getElementById('coupon_message');
+    messageElement.textContent = message;
+    messageElement.className = 'small ' + className;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Tải danh sách tỉnh/thành phố khi trang được tải
     loadProvinces();
+    
+    // Xử lý sự kiện nhấn nút áp dụng mã giảm giá
+    const applyCouponBtn = document.getElementById('apply_coupon');
+    if (applyCouponBtn) {
+        applyCouponBtn.addEventListener('click', applyCoupon);
+    }
+    
+    // Xử lý sự kiện nhấn Enter trong ô mã giảm giá
+    const couponInput = document.getElementById('coupon_code');
+    if (couponInput) {
+        couponInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                applyCoupon();
+            }
+        });
+    }
     
     // Cập nhật tên quận/huyện khi chọn
     document.getElementById('district').addEventListener('change', function() {
@@ -990,4 +1155,3 @@ if (!window.fetch._isOverridden) {
     window.fetch._isOverridden = true;
 }
 </script>
-<?php require_once __DIR__ . '/../layout/footer.php'; ?>

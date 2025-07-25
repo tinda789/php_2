@@ -311,6 +311,7 @@ class Order {
 
     // Lấy lịch sử đơn hàng của người dùng
     public static function getByUserId($conn, $user_id, $limit = 10) {
+        // Lấy danh sách đơn hàng
         $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT ?");
         $stmt->bind_param("ii", $user_id, $limit);
         $stmt->execute();
@@ -318,16 +319,38 @@ class Order {
         
         $orders = [];
         while ($row = $result->fetch_assoc()) {
-            // Lấy order_items
-            $stmt_items = $conn->prepare("SELECT * FROM order_items WHERE order_id = ?");
-            $stmt_items->bind_param("i", $row['id']);
-            $stmt_items->execute();
-            $row['items'] = $stmt_items->get_result()->fetch_all(MYSQLI_ASSOC);
+            $order_id = $row['id'];
             
+            // Lấy thông tin sản phẩm trong đơn hàng kèm ảnh
+            $sql_items = "SELECT oi.*, p.name as product_name, p.image_link as image_url 
+                         FROM order_items oi 
+                         LEFT JOIN products p ON oi.product_id = p.id 
+                         WHERE oi.order_id = ?";
+            
+            $stmt_items = $conn->prepare($sql_items);
+            $stmt_items->bind_param("i", $order_id);
+            $stmt_items->execute();
+            $items_result = $stmt_items->get_result();
+            
+            $items = [];
+            while ($item = $items_result->fetch_assoc()) {
+                // Xử lý đường dẫn ảnh
+                if (!empty($item['image_url'])) {
+                    // Nếu là URL đầy đủ thì giữ nguyên, ngược lại thêm đường dẫn uploads
+                    if (!preg_match('/^https?:\/\//', $item['image_url'])) {
+                        $item['image_url'] = 'uploads/products/' . $item['image_url'];
+                    }
+                } else {
+                    $item['image_url'] = 'assets/images/no-image.png';
+                }
+                $items[] = $item;
+            }
+            
+            $row['items'] = $items;
             $orders[] = $row;
         }
         
         return $orders;
     }
 }
-?> 
+?>

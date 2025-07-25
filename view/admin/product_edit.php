@@ -48,7 +48,7 @@
                     </button>
                 </div>
             <?php endif; ?>
-            <form method="POST" action="index.php?controller=admin&action=product_update" enctype="multipart/form-data">
+            <form method="POST" action="index.php?controller=product&action=update" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                 
                 <div class="row">

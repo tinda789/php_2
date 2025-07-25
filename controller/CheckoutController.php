@@ -38,13 +38,25 @@ class CheckoutController {
         }
         } else {
             // Nếu vào trực tiếp không qua POST, mặc định chọn tất cả
-            foreach ($cart as $item) $selected[] = $item['id'];
+            $selected = [];
+            if (is_array($cart)) {
+                foreach ($cart as $item) {
+                    if (is_array($item) && isset($item['id'])) {
+                        $selected[] = $item['id'];
+                    }
+                }
+            }
         }
         
         // Lọc lại giỏ hàng chỉ còn sản phẩm đã chọn
-        $cart_selected = array_filter($cart, function($item) use ($selected) {
-            return in_array($item['id'], $selected);
-        });
+        $cart_selected = [];
+        if (is_array($cart)) {
+            foreach ($cart as $key => $item) {
+                if (is_array($item) && isset($item['id']) && in_array($item['id'], $selected)) {
+                    $cart_selected[$key] = $item;
+                }
+            }
+        }
         
         if (empty($cart_selected)) {
             $_SESSION['error'] = 'Không có sản phẩm nào để thanh toán!';
@@ -53,25 +65,56 @@ class CheckoutController {
         }
         
         // Kiểm tra tồn kho trước khi tạo đơn hàng
+        $out_of_stock_items = [];
         foreach ($cart_selected as $item) {
-            $stmt = $GLOBALS['conn']->prepare("SELECT stock FROM products WHERE id = ?");
+            $stmt = $GLOBALS['conn']->prepare("SELECT id, name, stock FROM products WHERE id = ?");
             $stmt->bind_param("i", $item['id']);
             $stmt->execute();
-            $stmt->bind_result($stock);
-            $stmt->fetch();
+            $product = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            if ($stock < $item['quantity']) {
-                $error = "Sản phẩm '{$item['name']}' không đủ hàng trong kho (còn $stock cái)!";
+            
+            if (!$product) {
+                $out_of_stock_items[] = [
+                    'name' => $item['name'],
+                    'message' => 'Sản phẩm không còn tồn tại trong hệ thống!'
+                ];
+                continue;
+            }
+            
+            if ($product['stock'] <= 0) {
+                $out_of_stock_items[] = [
+                    'name' => $product['name'],
+                    'message' => 'Đã hết hàng!'
+                ];
+            } elseif ($product['stock'] < $item['quantity']) {
+                $out_of_stock_items[] = [
+                    'name' => $product['name'],
+                    'message' => 'Chỉ còn ' . $product['stock'] . ' sản phẩm trong kho!'
+                ];
+            }
+        }
+        
+        // Nếu có sản phẩm hết hàng hoặc không đủ số lượng
+        if (!empty($out_of_stock_items)) {
+            $error_messages = [];
+            foreach ($out_of_stock_items as $item) {
+                $error_messages[] = "- {$item['name']}: {$item['message']}";
+                
                 // Ghi log cho admin
                 $user_id = $_SESSION['user']['id'] ?? 0;
-                file_put_contents('out_of_stock.log', date('Y-m-d H:i:s') . " - UserID: {$user_id} - Sản phẩm: {$item['name']} - Đặt: {$item['quantity']} - Còn: $stock\n", FILE_APPEND);
-                
-                // Truyền biến cần thiết cho view
-                $error = $error ?? '';
-                $cart = $cart_selected; // Sử dụng giỏ hàng đã lọc
-                require __DIR__ . '/../view/user/checkout.php';
-                return;
+                file_put_contents('out_of_stock.log', 
+                    date('Y-m-d H:i:s') . " - UserID: {$user_id} - Sản phẩm: {$item['name']} - Lỗi: {$item['message']}\n", 
+                    FILE_APPEND
+                );
             }
+            
+            $_SESSION['error'] = 'Một số sản phẩm trong giỏ hàng không đủ số lượng hoặc đã hết hàng:<br>' . 
+                               implode('<br>', $error_messages) . 
+                               '<br><br>Vui lòng kiểm tra lại giỏ hàng của bạn.';
+            
+            // Chuyển hướng về trang giỏ hàng
+            header('Location: index.php?controller=cart&action=view');
+            exit;
         }
         
         // Nếu submit form đặt hàng
@@ -104,11 +147,56 @@ class CheckoutController {
                 ];
             }
             
+            // Initialize order amounts
             $tax_amount = 0;
             $shipping_fee = 0;
             $discount_amount = 0;
+            $coupon_id = null;
+            $coupon_code = null;
+            
+            // Apply coupon if exists
+            if (isset($_SESSION['applied_coupon'])) {
+                $coupon = $_SESSION['applied_coupon'];
+                $coupon_id = $coupon['id'];
+                $coupon_code = $coupon['code'];
+                
+                // Calculate discount based on coupon type
+                if ($coupon['type'] === 'fixed') {
+                    $discount_amount = min($coupon['value'], $subtotal); // Can't discount more than subtotal
+                } else { // percentage
+                    $discount_amount = $subtotal * ($coupon['value'] / 100);
+                    // Apply maximum discount if set
+                    if ($coupon['maximum_discount'] > 0 && $discount_amount > $coupon['maximum_discount']) {
+                        $discount_amount = $coupon['maximum_discount'];
+                    }
+                }
+                
+                // Làm tròn xuống 1000 đồng gần nhất
+                $discount_amount = floor($discount_amount / 1000) * 1000;
+                
+                // Đảm bảo không âm
+                if ($discount_amount < 0) $discount_amount = 0;
+                
+                // Add coupon info to order data
+                $order_data['coupon_id'] = $coupon_id;
+                $order_data['coupon_code'] = $coupon_code;
+                $order_data['coupon_discount'] = $discount_amount;
+                
+                // Increment used count for the coupon
+                $stmt = $GLOBALS['conn']->prepare("UPDATE coupons SET used_count = used_count + 1 WHERE id = ?");
+                $stmt->bind_param("i", $coupon_id);
+                $stmt->execute();
+                $stmt->close();
+                
+                // Remove coupon from session after use
+                unset($_SESSION['applied_coupon']);
+            }
+            
+            // Tính tổng tiền cuối cùng
             $total_amount = $subtotal + $tax_amount + $shipping_fee - $discount_amount;
-            $order_number = 'OD' . date('YmdHis') . rand(100,999);
+            if ($total_amount < 0) $total_amount = 0; // Đảm bảo không âm
+            
+            $order_number = 'OD' . date('YmdHis') . rand(100, 999);
             
             $order_data = [
                 'user_id' => $user_id,
@@ -121,6 +209,8 @@ class CheckoutController {
                 'shipping_fee' => $shipping_fee,
                 'discount_amount' => $discount_amount,
                 'total_amount' => $total_amount,
+                'coupon_id' => $coupon_id,
+                'coupon_code' => $coupon_code,
                 'shipping_address' => $shipping_address,
                 'billing_address' => $billing_address,
                 'notes' => $notes
@@ -129,6 +219,11 @@ class CheckoutController {
             $order_id = Order::create($GLOBALS['conn'], $order_data, $items);
             
             if ($order_id) {
+                // Xóa các sản phẩm đã chọn khỏi giỏ hàng session
+                foreach ($selected as $pid) {
+                    unset($_SESSION['cart_items'][$pid]);
+                }
+                
                 // Chuyển hướng sang trang thanh toán VNPay
                 if ($payment_method === 'vnpay') {
                     header('Location: index.php?controller=checkout&action=pay_vnpay&order_id=' . $order_id);
@@ -143,20 +238,21 @@ class CheckoutController {
         }
         
         // Hiển thị form checkout với các sản phẩm đã chọn
-        // Gán lại giỏ hàng chỉ chứa các sản phẩm đã chọn
         $cart = $cart_selected;
         $selected_products = $selected;
         
-        // Debug: Ghi log để kiểm tra
-        file_put_contents('debug_cart_selected.txt', "Cart selected: " . print_r($cart, true) . "\n", FILE_APPEND);
-        
-        require __DIR__ . '/../view/user/checkout.php';
+        // Sử dụng layout system
+        $view_file = __DIR__ . '/../view/user/checkout.php';
+        require __DIR__ . '/../view/layout/user_layout.php';
     }
 
     public function success() {
         $order_id = $_GET['order_id'] ?? 0;
         $order = Order::getById($GLOBALS['conn'], $order_id);
-        require __DIR__ . '/../view/user/checkout_success.php';
+        
+        // Sử dụng layout system
+        $view_file = __DIR__ . '/../view/user/checkout_success.php';
+        require __DIR__ . '/../view/layout/user_layout.php';
     }
 
     public function pay_vnpay() {
@@ -186,8 +282,7 @@ class CheckoutController {
         $vnp_TxnRef = $order['order_number'];
         $vnp_OrderInfo = 'Thanh toán đơn hàng #' . $order['order_number'];
         $vnp_OrderType = 'other';
-        // Nhân số tiền với 100 vì VNPAY yêu cầu số tiền dưới dạng số nguyên (không có phần thập phân)
-        $vnp_Amount = (int)round($order['total_amount'] * 100); 
+        $vnp_Amount = (int)round($order['total_amount'] * 100); // Nhân 100 để chuyển sang đơn vị VNĐ (đồng)
         $vnp_Locale = 'vn';
         $vnp_BankCode = ''; // Để người dùng chọn ngân hàng trên VNPay
         $vnp_IpAddr = $this->getClientIp();
@@ -339,16 +434,6 @@ class CheckoutController {
                 $stmt->bind_param("i", $order['id']);
                 $stmt->execute();
                 
-                // Xóa sản phẩm khỏi giỏ hàng sau khi thanh toán thành công
-                if (isset($_SESSION['cart_items'])) {
-                    $order_items = OrderItem::getByOrderId($GLOBALS['conn'], $order['id']);
-                    foreach ($order_items as $item) {
-                        if (isset($_SESSION['cart_items'][$item['product_id']])) {
-                            unset($_SESSION['cart_items'][$item['product_id']]);
-                        }
-                    }
-                }
-                
                 $logData .= "PAYMENT STATUS UPDATED: " . ($updateResult ? 'SUCCESS' : 'FAILED') . "\n";
                 $logData .= "ORDER STATUS UPDATED: " . ($updateStatus ? 'SUCCESS' : 'FAILED') . "\n";
                 
@@ -466,13 +551,13 @@ class CheckoutController {
             $logData .= "BANK CODE: " . $bankCode . "\n";
             
             // Kiểm tra số tiền thanh toán có khớp với đơn hàng không
-            $orderAmount = (int)round($order['total_amount']); // Chuyển đổi sang VNĐ (đơn vị nhỏ nhất)
+            $orderAmount = (int)round($order['total_amount'] * 100); // Chuyển đổi sang VNĐ (đơn vị nhỏ nhất)
             
             if ($orderAmount != $amount) {
                 $logData .= "AMOUNT MISMATCH: Order amount ($orderAmount) != Paid amount ($amount)\n";
                 $response = [
                     'RspCode' => '04',
-                    'Message' => 'Invalid amount'
+                    'Message' => 'Invalid amount',
                 ];
             } else if ($responseCode === '00' && $transactionStatus === '00') {
                 // Thanh toán thành công
@@ -602,15 +687,74 @@ class CheckoutController {
         }
         return '127.0.0.1';
     }
-}
 
+    /**
+     * Hiển thị lịch sử đơn hàng của người dùng
+     */
+    public function orderHistory() {
+        // Kiểm tra đăng nhập
+        if (empty($_SESSION['user'])) {
+            header('Location: index.php?controller=auth&action=login');
+            exit;
+        }
 
-// Router đơn giản cho controller này
-$action = $_GET['action'] ?? 'checkout';
-$controller = new CheckoutController();
-if (method_exists($controller, $action)) {
-    $controller->$action();
-} else {
-    $controller->checkout();
+        $user_id = $_SESSION['user']['id'];
+        
+        try {
+            // Lấy danh sách đơn hàng của người dùng
+            $orderModel = new Order();
+            $orders = $orderModel->getByUserId($user_id);
+            
+            // Nếu không có đơn hàng, hiển thị thông báo
+            if (empty($orders)) {
+                include __DIR__ . '/../view/user/order_history.php';
+                return;
+            }
+            
+            // Lấy chi tiết sản phẩm cho mỗi đơn hàng
+            foreach ($orders as &$order) {
+                $order_id = $order['id'];
+                
+                // Lấy danh sách sản phẩm trong đơn hàng
+                $sql = "SELECT oi.*, p.name as product_name, p.image_link as image_url 
+                        FROM order_items oi 
+                        LEFT JOIN products p ON oi.product_id = p.id 
+                        WHERE oi.order_id = ?";
+                        
+                $stmt = $GLOBALS['conn']->prepare($sql);
+                $stmt->bind_param("i", $order_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $order['items'] = $result->fetch_all(MYSQLI_ASSOC);
+                
+                // Xử lý ảnh sản phẩm
+                foreach ($order['items'] as &$item) {
+                    if (!empty($item['image_url'])) {
+                        // Nếu là URL đầy đủ thì giữ nguyên, ngược lại thêm đường dẫn uploads
+                        if (!preg_match('/^https?:\/\//', $item['image_url'])) {
+                            $item['image_url'] = 'uploads/products/' . $item['image_url'];
+                        }
+                    } else {
+                        $item['image_url'] = 'assets/images/no-image.png';
+                    }
+                }
+                unset($item); // Hủy tham chiếu
+            }
+            unset($order); // Hủy tham chiếu
+            
+            // Hiển thị view
+            include __DIR__ . '/../view/user/order_history.php';
+            
+        } catch (Exception $e) {
+            // Ghi log lỗi
+            error_log('Order History Error: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
+            
+            // Hiển thị thông báo lỗi
+            $_SESSION['error'] = 'Có lỗi xảy ra khi tải lịch sử đơn hàng. Vui lòng thử lại sau.';
+            header('Location: index.php');
+            exit;
+        }
+    }
 }
+// Router is handled by main index.php
 ?>

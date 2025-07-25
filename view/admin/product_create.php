@@ -12,35 +12,35 @@
             <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
         </div>
         <div class="card-body">
-            <form method="POST" action="index.php?controller=admin&action=product_store" enctype="multipart/form-data">
+            <form method="POST" action="index.php?controller=product&action=store" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="name">Tên sản phẩm <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name" value="<?php echo isset($_SESSION['old_input']['name']) ? htmlspecialchars($_SESSION['old_input']['name']) : ''; ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="short_description">Mô tả ngắn</label>
-                            <textarea class="form-control" id="short_description" name="short_description" rows="3"></textarea>
+                            <textarea class="form-control" id="short_description" name="short_description" rows="3"><?php echo isset($_SESSION['old_input']['short_description']) ? htmlspecialchars($_SESSION['old_input']['short_description']) : ''; ?></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="description">Mô tả chi tiết</label>
-                            <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="6"><?php echo isset($_SESSION['old_input']['description']) ? htmlspecialchars($_SESSION['old_input']['description']) : ''; ?></textarea>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="price">Giá gốc <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="price" name="price" step="1000" min="0" required>
+                                    <input type="number" class="form-control" id="price" name="price" step="1000" min="0" value="<?php echo isset($_SESSION['old_input']['price']) ? htmlspecialchars($_SESSION['old_input']['price']) : ''; ?>" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="sale_price">Giá khuyến mãi</label>
-                                    <input type="number" class="form-control" id="sale_price" name="sale_price" step="1000" min="0">
+                                    <input type="number" class="form-control" id="sale_price" name="sale_price" step="1000" min="0" value="<?php echo isset($_SESSION['old_input']['sale_price']) ? htmlspecialchars($_SESSION['old_input']['sale_price']) : ''; ?>">
                                 </div>
                             </div>
                         </div>

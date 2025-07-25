@@ -12,7 +12,7 @@
           <i class="fa-solid fa-phone text-info me-1"></i>0123 456 789
         </div>
       </div>
-    <!-- Sticky footer CSS -->
+    <!-- Footer CSS -->
     <style>
     html, body { 
         height: 100%; 
@@ -25,16 +25,17 @@
         flex-direction: column; 
     }
     .site-footer { 
-        flex-shrink: 0; 
         margin-top: auto;
         position: relative;
         z-index: 100;
+        background: linear-gradient(90deg, #232526 60%, #414345 100%);
     }
     .main-content { 
         flex: 1 0 auto; 
+        padding-bottom: 2rem;
     }
-    .container {
-        min-height: calc(100vh - 200px); /* Đảm bảo container có chiều cao tối thiểu */
+    .checkout-container {
+        margin-bottom: 2rem;
     }
     </style>
     </body>

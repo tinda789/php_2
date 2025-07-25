@@ -92,8 +92,12 @@
             <?php endif; ?>
           </div>
           <div class="mb-3">
-            <span class="badge bg-<?php echo $product['stock'] > 0 ? 'success' : 'danger'; ?>">
+            <span class="badge bg-<?php echo $product['stock'] > 0 ? 'success' : 'danger'; ?> fs-6 p-2">
+              <i class="fas <?php echo $product['stock'] > 0 ? 'fa-check-circle' : 'fa-times-circle'; ?> me-1"></i>
               <?php echo $product['stock'] > 0 ? 'Còn hàng' : 'Hết hàng'; ?>
+              <?php if ($product['stock'] > 0): ?>
+                (Còn lại <?php echo $product['stock']; ?> sản phẩm)
+              <?php endif; ?>
             </span>
           </div>
           <div class="mb-3">
@@ -113,11 +117,32 @@
             <div class="col-6"><strong>Trọng lượng:</strong> <?php echo htmlspecialchars($product['weight'] ?? ''); ?> kg</div>
             <div class="col-12"><strong>Kích thước:</strong> <?php echo htmlspecialchars($product['dimensions'] ?? ''); ?></div>
           </div>
-          <form method="POST" action="index.php?controller=cart&action=add" class="add-to-cart-form">
-            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-            <input type="hidden" name="quantity" value="1">
-            <button type="submit" class="btn btn-primary btn-lg w-100 mt-2"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-          </form>
+          <?php if ($product['stock'] > 0): ?>
+            <form method="POST" action="index.php?controller=cart&action=add" class="add-to-cart-form">
+              <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+              <div class="row g-2 align-items-center mb-3">
+                <div class="col-4">
+                  <label for="quantity" class="form-label mb-0">Số lượng:</label>
+                  <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="<?php echo $product['stock']; ?>">
+                </div>
+                <div class="col-8 d-flex align-items-end">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                  </button>
+                </div>
+              </div>
+            </form>
+          <?php else: ?>
+            <div class="alert alert-warning">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span>Xin lỗi, sản phẩm này hiện đang hết hàng. Vui lòng quay lại sau hoặc liên hệ để được tư vấn thêm.</span>
+              </div>
+              <button class="btn btn-outline-secondary btn-lg w-100 mt-3" disabled>
+                <i class="fas fa-ban me-2"></i> Hết hàng
+              </button>
+            </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>

@@ -67,5 +67,23 @@ class Coupon {
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
+    
+    // Lấy mã giảm giá theo code
+    public static function getCouponByCode($conn, $code) {
+        $stmt = $conn->prepare("SELECT * FROM coupons WHERE code = ? AND is_active = 1 AND start_date <= NOW() AND end_date >= NOW()");
+        $stmt->bind_param("s", $code);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $coupon = $result->fetch_assoc();
+            // Kiểm tra số lần sử dụng
+            if ($coupon['usage_limit'] > 0 && $coupon['used_count'] >= $coupon['usage_limit']) {
+                return null; // Đã hết lượt sử dụng
+            }
+            return $coupon;
+        }
+        return null; // Không tìm thấy hoặc không hợp lệ
+    }
 }
 ?> 

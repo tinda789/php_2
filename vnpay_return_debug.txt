@@ -1426,3 +1426,601 @@ BANK CODE: NCB
 PAYMENT STATUS UPDATED: SUCCESS
 ORDER STATUS UPDATED: SUCCESS
 
+[VNPAY_RETURN] 2025-07-25 05:28:36
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 2160000000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098067
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725052330441
+    [vnp_PayDate] => 20250725052508
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098067
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725052330441
+    [vnp_SecureHash] => 735e0f2f119194c0fb0e87023a6543a4c2567826e8ee8ac97451e6531a5cb3d73ed9c74f1c8cc7d18d0f11754cf1354d1ab609691cbd14a0febf0d226ff9337e
+)
+
+ORDER NUMBER: OD20250725052330441
+ORDER DATA: Array
+(
+    [id] => 43
+    [user_id] => 9
+    [order_number] => OD20250725052330441
+    [status] => confirmed
+    [payment_status] => paid
+    [payment_method] => vnpay
+    [subtotal] => 21600000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 21600000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"960","ward":"31978"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"960","ward":"31978"}
+    [order_date] => 2025-07-25 05:23:30
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => vvvv
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+Thanh toán thành công qua VNPay. Mã giao dịch: 15098067, Ngân hàng: NCB, Ngày thanh toán: 20250725052508
+    [created_at] => 2025-07-25 05:23:30
+    [updated_at] => 2025-07-25 05:27:54
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 45
+                    [order_id] => 43
+                    [product_id] => 142
+                    [product_name] => Tủ lạnh LG Inverter 393 lít GN-D392BL
+                    [product_sku] => FRLG393L
+                    [quantity] => 2
+                    [unit_price] => 10800000.00
+                    [total_price] => 21600000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 735e0f2f119194c0fb0e87023a6543a4c2567826e8ee8ac97451e6531a5cb3d73ed9c74f1c8cc7d18d0f11754cf1354d1ab609691cbd14a0febf0d226ff9337e
+CALCULATED HASH: 735e0f2f119194c0fb0e87023a6543a4c2567826e8ee8ac97451e6531a5cb3d73ed9c74f1c8cc7d18d0f11754cf1354d1ab609691cbd14a0febf0d226ff9337e
+RESPONSE CODE: 00
+TRANSACTION NO: 15098067
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+
+[VNPAY_RETURN] 2025-07-25 11:38:27
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 1590000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725113805370
+    [vnp_PayDate] => 20250725113908
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725113805370
+    [vnp_SecureHash] => ca9fc8f09d6695b9fc3fb92643476d6a8f2d5a548fb716b9c4328467a068d2d5112f3076bcee0ee4688aa6b58ce1d52729f649199b0443f3ebf53d373744b40b
+)
+
+ORDER NUMBER: OD20250725113805370
+ORDER DATA: Array
+(
+    [id] => 44
+    [user_id] => 1
+    [order_number] => OD20250725113805370
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 1590000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 1590000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"92","district":"926","ward":"31299"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"92","district":"926","ward":"31299"}
+    [order_date] => 2025-07-25 11:38:05
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => hello
+    [created_at] => 2025-07-25 11:38:05
+    [updated_at] => 2025-07-25 11:38:05
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 46
+                    [order_id] => 44
+                    [product_id] => 161
+                    [product_name] => Máy làm sữa hạt Ranbem 769S
+                    [product_sku] => KITCHMILK1
+                    [quantity] => 1
+                    [unit_price] => 1590000.00
+                    [total_price] => 1590000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: ca9fc8f09d6695b9fc3fb92643476d6a8f2d5a548fb716b9c4328467a068d2d5112f3076bcee0ee4688aa6b58ce1d52729f649199b0443f3ebf53d373744b40b
+CALCULATED HASH: ca9fc8f09d6695b9fc3fb92643476d6a8f2d5a548fb716b9c4328467a068d2d5112f3076bcee0ee4688aa6b58ce1d52729f649199b0443f3ebf53d373744b40b
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 11:41:58
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 429000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725114037467
+    [vnp_PayDate] => 20250725114141
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725114037467
+    [vnp_SecureHash] => cc3f029ad7dbfce38891e084549f500a5684270a00ede01436ba926e383dae21a516e8877f5649cfcddeec2efe475446a227ed4b9e9f431999a1e818ab70aca6
+)
+
+ORDER NUMBER: OD20250725114037467
+ORDER DATA: Array
+(
+    [id] => 45
+    [user_id] => 1
+    [order_number] => OD20250725114037467
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 429000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 429000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"960","ward":"31984"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"960","ward":"31984"}
+    [order_date] => 2025-07-25 11:40:37
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 11:40:37
+    [updated_at] => 2025-07-25 11:40:37
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 47
+                    [order_id] => 45
+                    [product_id] => 162
+                    [product_name] => Máy vắt cam Bluestone CJ-6338
+                    [product_sku] => KITCHJUICE1
+                    [quantity] => 1
+                    [unit_price] => 429000.00
+                    [total_price] => 429000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: cc3f029ad7dbfce38891e084549f500a5684270a00ede01436ba926e383dae21a516e8877f5649cfcddeec2efe475446a227ed4b9e9f431999a1e818ab70aca6
+CALCULATED HASH: cc3f029ad7dbfce38891e084549f500a5684270a00ede01436ba926e383dae21a516e8877f5649cfcddeec2efe475446a227ed4b9e9f431999a1e818ab70aca6
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 11:46:32
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 129000000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725114552467
+    [vnp_PayDate] => 20250725114655
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725114552467
+    [vnp_SecureHash] => 058de94fbb51151178ab318d27589fbfc323b463a9a75bb4561ca2c8af031e5a16787b30c75a6425c6541bf2e801346ccbd050028d456e6dca0ca1aa20cd68f7
+)
+
+ORDER NUMBER: OD20250725114552467
+ORDER DATA: Array
+(
+    [id] => 46
+    [user_id] => 1
+    [order_number] => OD20250725114552467
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 1290000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 1290000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"961","ward":"31915"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"961","ward":"31915"}
+    [order_date] => 2025-07-25 11:45:52
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 11:45:52
+    [updated_at] => 2025-07-25 11:45:52
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 48
+                    [order_id] => 46
+                    [product_id] => 155
+                    [product_name] => Lò vi sóng Sharp R-G222VN-S 20L
+                    [product_sku] => KITCHMICRO1
+                    [quantity] => 1
+                    [unit_price] => 1290000.00
+                    [total_price] => 1290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 058de94fbb51151178ab318d27589fbfc323b463a9a75bb4561ca2c8af031e5a16787b30c75a6425c6541bf2e801346ccbd050028d456e6dca0ca1aa20cd68f7
+CALCULATED HASH: 058de94fbb51151178ab318d27589fbfc323b463a9a75bb4561ca2c8af031e5a16787b30c75a6425c6541bf2e801346ccbd050028d456e6dca0ca1aa20cd68f7
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 11:47:24
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 79900000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725114700854
+    [vnp_PayDate] => 20250725114804
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725114700854
+    [vnp_SecureHash] => 40f1c82d4258d676beeb77981dcfd81f6d040613109aa4d63ae154ebc9b440a449ce6084408134537f284e9f07fe365a3e2c042f9202e986d90f0d851481fea2
+)
+
+ORDER NUMBER: OD20250725114700854
+ORDER DATA: Array
+(
+    [id] => 47
+    [user_id] => 1
+    [order_number] => OD20250725114700854
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 799000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 799000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"960","ward":"31990"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"960","ward":"31990"}
+    [order_date] => 2025-07-25 11:47:00
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 11:47:00
+    [updated_at] => 2025-07-25 11:47:00
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 49
+                    [order_id] => 47
+                    [product_id] => 156
+                    [product_name] => Bếp điện từ Sunhouse SHD6866
+                    [product_sku] => KITCHCOOK1
+                    [quantity] => 1
+                    [unit_price] => 799000.00
+                    [total_price] => 799000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 40f1c82d4258d676beeb77981dcfd81f6d040613109aa4d63ae154ebc9b440a449ce6084408134537f284e9f07fe365a3e2c042f9202e986d90f0d851481fea2
+CALCULATED HASH: 40f1c82d4258d676beeb77981dcfd81f6d040613109aa4d63ae154ebc9b440a449ce6084408134537f284e9f07fe365a3e2c042f9202e986d90f0d851481fea2
+RESPONSE CODE: 24
+TRANSACTION NO: 0
+BANK CODE: VNPAY
+PAYMENT FAILED: Giao dịch không thành công do: Khách hàng hủy giao dịch
+
+[VNPAY_RETURN] 2025-07-25 11:49:56
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 129000000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098696
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725114830616
+    [vnp_PayDate] => 20250725115052
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098696
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725114830616
+    [vnp_SecureHash] => 70e0ef0520614a5a2247e4b19f837012991717766a8999a63a4ba8446e5333525de8ef108def052ab66d6ec6ff5c1d7a25586927c3d78dc0def556095cb02612
+)
+
+ORDER NUMBER: OD20250725114830616
+ORDER DATA: Array
+(
+    [id] => 48
+    [user_id] => 1
+    [order_number] => OD20250725114830616
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 1290000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 0.00
+    [total_amount] => 1290000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"961","ward":"31891"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"95","district":"961","ward":"31891"}
+    [order_date] => 2025-07-25 11:48:30
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 11:48:30
+    [updated_at] => 2025-07-25 11:48:30
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 50
+                    [order_id] => 48
+                    [product_id] => 155
+                    [product_name] => Lò vi sóng Sharp R-G222VN-S 20L
+                    [product_sku] => KITCHMICRO1
+                    [quantity] => 1
+                    [unit_price] => 1290000.00
+                    [total_price] => 1290000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 70e0ef0520614a5a2247e4b19f837012991717766a8999a63a4ba8446e5333525de8ef108def052ab66d6ec6ff5c1d7a25586927c3d78dc0def556095cb02612
+CALCULATED HASH: 70e0ef0520614a5a2247e4b19f837012991717766a8999a63a4ba8446e5333525de8ef108def052ab66d6ec6ff5c1d7a25586927c3d78dc0def556095cb02612
+RESPONSE CODE: 00
+TRANSACTION NO: 15098696
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+
+[VNPAY_RETURN] 2025-07-25 12:20:07
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 1070300000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098752
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725121916319
+    [vnp_PayDate] => 20250725122101
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098752
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725121916319
+    [vnp_SecureHash] => 0c84e56d389e40cc8cfa4ca576d9d5d8ba2cba93f7f92b051f70caecf54823a8ffae21c503ee9128b3dac879ee44a9bd40e74a1789163bcbccdcb2ac8ccaba5e
+)
+
+ORDER NUMBER: OD20250725121916319
+ORDER DATA: Array
+(
+    [id] => 49
+    [user_id] => 1
+    [order_number] => OD20250725121916319
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 13378000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 2675000.00
+    [total_amount] => 10703000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"27","district":"264","ward":"9502"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"27","district":"264","ward":"9502"}
+    [order_date] => 2025-07-25 12:19:16
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => ssss
+    [created_at] => 2025-07-25 12:19:16
+    [updated_at] => 2025-07-25 12:19:16
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 51
+                    [order_id] => 49
+                    [product_id] => 163
+                    [product_name] => Bếp gas đôi Rinnai RV-970(G)
+                    [product_sku] => KITCHGAS1
+                    [quantity] => 2
+                    [unit_price] => 799000.00
+                    [total_price] => 1598000.00
+                )
+
+            [1] => Array
+                (
+                    [id] => 52
+                    [order_id] => 49
+                    [product_id] => 8
+                    [product_name] => Corsair Vengeance LPX 32GB DDR4
+                    [product_sku] => CORS32GB3200
+                    [quantity] => 1
+                    [unit_price] => 3290000.00
+                    [total_price] => 3290000.00
+                )
+
+            [2] => Array
+                (
+                    [id] => 53
+                    [order_id] => 49
+                    [product_id] => 9
+                    [product_name] => AMD Ryzen 7 7700X
+                    [product_sku] => AMDR77700X
+                    [quantity] => 1
+                    [unit_price] => 8490000.00
+                    [total_price] => 8490000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: 0c84e56d389e40cc8cfa4ca576d9d5d8ba2cba93f7f92b051f70caecf54823a8ffae21c503ee9128b3dac879ee44a9bd40e74a1789163bcbccdcb2ac8ccaba5e
+CALCULATED HASH: 0c84e56d389e40cc8cfa4ca576d9d5d8ba2cba93f7f92b051f70caecf54823a8ffae21c503ee9128b3dac879ee44a9bd40e74a1789163bcbccdcb2ac8ccaba5e
+RESPONSE CODE: 00
+TRANSACTION NO: 15098752
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+
+[VNPAY_RETURN] 2025-07-25 12:22:39
+GET DATA: Array
+(
+    [controller] => checkout
+    [action] => vnpay_return
+    [vnp_Amount] => 2239200000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098754
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725122204668
+    [vnp_PayDate] => 20250725122335
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098754
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725122204668
+    [vnp_SecureHash] => c64feb37ff5bc9e1e1046a4b9fe95a7e0d1723f5c4b2e912b94a6dd0435fa20bcbeba6bb285110d31c9c1a090aa985247dae5c7ac840d93e24993eaa2af70a67
+)
+
+ORDER NUMBER: OD20250725122204668
+ORDER DATA: Array
+(
+    [id] => 50
+    [user_id] => 1
+    [order_number] => OD20250725122204668
+    [status] => pending
+    [payment_status] => pending
+    [payment_method] => vnpay
+    [subtotal] => 27990000.00
+    [tax_amount] => 0.00
+    [shipping_fee] => 0.00
+    [discount_amount] => 5598000.00
+    [total_amount] => 22392000.00
+    [shipping_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"27","district":"264","ward":"9517"}
+    [billing_address] => {"name":"Lâm Thành Đạt","phone":"0834670200","address":"KTX A","city":"27","district":"264","ward":"9517"}
+    [order_date] => 2025-07-25 12:22:04
+    [shipped_date] => 
+    [delivered_date] => 
+    [notes] => 
+    [created_at] => 2025-07-25 12:22:04
+    [updated_at] => 2025-07-25 12:22:04
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 54
+                    [order_id] => 50
+                    [product_id] => 5
+                    [product_name] => Dell XPS 13
+                    [product_sku] => DELLXPS13I7
+                    [quantity] => 1
+                    [unit_price] => 27990000.00
+                    [total_price] => 27990000.00
+                )
+
+        )
+
+    [coupons] => Array
+        (
+        )
+
+)
+
+SECURE HASH: c64feb37ff5bc9e1e1046a4b9fe95a7e0d1723f5c4b2e912b94a6dd0435fa20bcbeba6bb285110d31c9c1a090aa985247dae5c7ac840d93e24993eaa2af70a67
+CALCULATED HASH: c64feb37ff5bc9e1e1046a4b9fe95a7e0d1723f5c4b2e912b94a6dd0435fa20bcbeba6bb285110d31c9c1a090aa985247dae5c7ac840d93e24993eaa2af70a67
+RESPONSE CODE: 00
+TRANSACTION NO: 15098754
+BANK CODE: NCB
+PAYMENT STATUS UPDATED: SUCCESS
+ORDER STATUS UPDATED: SUCCESS
+

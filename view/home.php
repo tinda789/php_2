@@ -53,7 +53,7 @@ $banners = $bannerModel->getAllBanners('featured_categories', 1);
                     <a href="#products" class="btn btn-warning btn-lg fw-bold px-4 py-3 rounded-pill shadow-lg">
                         <i class="fas fa-shopping-cart me-2"></i> Mua sắm ngay
                     </a>
-                    <a href="#categories" class="btn btn-warning btn-lg fw-bold px-4 py-3 rounded-pill shadow-lg">
+                    <a href="http://127.0.0.1:8000/index.php?controller=product&action=list" class="btn btn-warning btn-lg fw-bold px-4 py-3 rounded-pill shadow-lg">
                         <i class="fas fa-th-large me-2"></i> Danh mục
                     </a>
                 </div>
@@ -61,17 +61,17 @@ $banners = $bannerModel->getAllBanners('featured_categories', 1);
                 <!-- Trust Badges -->
                 <div class="mt-5 pt-3">
                     <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-4">
-                        <div class="d-flex align-items-center text-white">
+                        <div class="d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2 fs-5"></i>
-                            <span>Chính hãng 100%</span>
+                            <span style="color: #000;">Chính hãng 100%</span>
                         </div>
-                        <div class="d-flex align-items-center text-white">
+                        <div class="d-flex align-items-center">
                             <i class="fas fa-shipping-fast text-info me-2 fs-5"></i>
-                            <span>Giao hàng toàn quốc</span>
+                            <span style="color: #000;">Giao hàng toàn quốc</span>
                         </div>
-                        <div class="d-flex align-items-center text-white">
+                        <div class="d-flex align-items-center">
                             <i class="fas fa-headset text-warning me-2 fs-5"></i>
-                            <span>Hỗ trợ 24/7</span>
+                            <span style="color: #000;">Hỗ trợ 24/7</span>
                         </div>
                     </div>
                 </div>
@@ -244,6 +244,11 @@ $banners = $bannerModel->getAllBanners('featured_categories', 1);
 </section>
 
                 <style>
+              /* Hide newsletter section */
+              .newsletter-section {
+                display: none !important;
+              }
+              
               /* Keyframe animations */
               @keyframes float {
                   0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -676,16 +681,12 @@ $banners = $bannerModel->getAllBanners('featured_categories', 1);
     <div class="container">
         <div class="section-header mb-4">
             <h2 class="section-title">Sản phẩm nổi bật</h2>
-<<<<<<< HEAD
             <a href="index.php?controller=product&action=list" class="view-all-btn">
                 Xem tất cả
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                 </svg>
             </a>
-=======
-            <a href="index.php?controller=product&action=list" class="btn btn-link">Xem tất cả</a>
->>>>>>> d034f886eb808c90d3ca43963dfd3f3fbd709d2e
         </div>
         <div class="row g-4">
             <?php foreach ($products as $p): ?>

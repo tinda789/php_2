@@ -161,9 +161,14 @@ if (file_exists($headerPath)) {
                                                 <?php endforeach; ?>
                                             </tbody>
                                             <tfoot>
-                                                <?php if ($order['discount_amount'] > 0): ?>
+                                                <?php if (isset($order['discount_amount']) && $order['discount_amount'] > 0): ?>
                                                     <tr>
-                                                        <td colspan="3" class="text-end">Giảm giá (Mã: <?php echo htmlspecialchars($order['coupon_code']); ?>):</td>
+                                                        <td colspan="3" class="text-end">
+                                                            Giảm giá
+                                                            <?php if (!empty($order['coupon_code'])): ?>
+                                                                (Mã: <?php echo htmlspecialchars($order['coupon_code']); ?>)
+                                                            <?php endif; ?>:
+                                                        </td>
                                                         <td class="text-end text-danger">-<?php echo number_format($order['discount_amount'], 0, ',', '.') . ' ₫'; ?></td>
                                                     </tr>
                                                 <?php endif; ?>

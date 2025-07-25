@@ -62,6 +62,33 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
+                            
+                            <!-- Product Images -->
+                            <?php if (!empty($order['items'])): ?>
+                            <div class="mt-3">
+                                <strong><i class="fas fa-box"></i> Sản phẩm:</strong>
+                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                    <?php foreach ($order['items'] as $item): 
+                                        $image_url = !empty($item['image_url']) ? $item['image_url'] : 'assets/images/no-image.png';
+                                        // Ensure the image URL is correct
+                                        if (!preg_match('/^https?:\/\//', $image_url) && strpos($image_url, 'uploads/') !== 0) {
+                                            $image_url = 'uploads/products/' . $image_url;
+                                        }
+                                    ?>
+                                    <div class="position-relative" style="width: 50px; height: 50px; border-radius: 4px; overflow: hidden;">
+                                        <img src="<?php echo $image_url; ?>" 
+                                             alt="<?php echo htmlspecialchars($item['product_name']); ?>" 
+                                             class="img-fluid h-100 w-100" 
+                                             style="object-fit: cover;"
+                                             onerror="this.onerror=null; this.src='assets/images/no-image.png';">
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 0.6rem;">
+                                            <?php echo $item['quantity']; ?>
+                                        </span>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                            <?php endif; ?>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <a href="index.php?controller=checkout&action=orderDetail&id=<?php echo $order['id']; ?>" 
                                    class="btn btn-outline-primary btn-sm">
