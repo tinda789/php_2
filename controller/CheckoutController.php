@@ -66,6 +66,10 @@ class CheckoutController {
                 // Ghi log cho admin
                 $user_id = $_SESSION['user']['id'] ?? 0;
                 file_put_contents('out_of_stock.log', date('Y-m-d H:i:s') . " - UserID: {$user_id} - Sản phẩm: {$item['name']} - Đặt: {$item['quantity']} - Còn: $stock\n", FILE_APPEND);
+                
+                // Truyền biến cần thiết cho view
+                $error = $error ?? '';
+                $cart = $cart_selected; // Sử dụng giỏ hàng đã lọc
                 require __DIR__ . '/../view/user/checkout.php';
                 return;
             }
@@ -129,11 +133,6 @@ class CheckoutController {
             }
             
             if ($order_id) {
-                // Xóa các sản phẩm đã chọn khỏi giỏ hàng session
-                foreach ($selected as $pid) {
-                    unset($_SESSION['cart_items'][$pid]);
-                }
-                
                 // Chuyển hướng sang trang thanh toán VNPay
                 if ($payment_method === 'vnpay') {
                     header('Location: index.php?controller=checkout&action=pay_vnpay&order_id=' . $order_id);
@@ -148,8 +147,13 @@ class CheckoutController {
         }
         
         // Hiển thị form checkout với các sản phẩm đã chọn
+        // Gán lại giỏ hàng chỉ chứa các sản phẩm đã chọn
         $cart = $cart_selected;
         $selected_products = $selected;
+        
+        // Debug: Ghi log để kiểm tra
+        file_put_contents('debug_cart_selected.txt', "Cart selected: " . print_r($cart, true) . "\n", FILE_APPEND);
+        
         require __DIR__ . '/../view/user/checkout.php';
     }
 
@@ -186,7 +190,8 @@ class CheckoutController {
         $vnp_TxnRef = $order['order_number'];
         $vnp_OrderInfo = 'Thanh toán đơn hàng #' . $order['order_number'];
         $vnp_OrderType = 'other';
-        $vnp_Amount = (int)round($order['total_amount']); 
+        // Nhân số tiền với 100 vì VNPAY yêu cầu số tiền dưới dạng số nguyên (không có phần thập phân)
+        $vnp_Amount = (int)round($order['total_amount'] * 100); 
         $vnp_Locale = 'vn';
         $vnp_BankCode = ''; // Để người dùng chọn ngân hàng trên VNPay
         $vnp_IpAddr = $this->getClientIp();
@@ -313,14 +318,70 @@ class CheckoutController {
             "\nORDER: " . print_r($order, true)
         );
         
-        if ($secureHash === $vnp_SecureHash && $order) {
-            if ($_GET['vnp_ResponseCode'] == '00') {
-                Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'paid');
-                Order::updateStatus($GLOBALS['conn'], $order['id'], 'confirmed');
-                $message = "Thanh toán thành công! Đơn hàng của bạn đã được xác nhận.";
-            } else {
+        // Kiểm tra chữ ký
+        $isValidSignature = ($secureHash === $vnp_SecureHash);
+        
+        if ($isValidSignature && $order) {
+            $responseCode = $_GET['vnp_ResponseCode'] ?? '';
+            $transactionNo = $_GET['vnp_TransactionNo'] ?? '';
+            $bankCode = $_GET['vnp_BankCode'] ?? '';
+            $payDate = $_GET['vnp_PayDate'] ?? '';
+            
+            $logData .= "RESPONSE CODE: " . $responseCode . "\n";
+            $logData .= "TRANSACTION NO: " . $transactionNo . "\n";
+            $logData .= "BANK CODE: " . $bankCode . "\n";
+            
+            if ($responseCode === '00') {
+                // Cập nhật trạng thái thanh toán thành công
+                $updateResult = Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'paid');
+                $updateStatus = Order::updateStatus($GLOBALS['conn'], $order['id'], 'confirmed');
+                
+                // Lưu thông tin giao dịch vào ghi chú
+                $transactionInfo = "Thanh toán thành công qua VNPay. Mã giao dịch: $transactionNo, Ngân hàng: $bankCode, Ngày thanh toán: $payDate";
+                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\n$transactionInfo') WHERE id = ?");
+                $stmt->bind_param("i", $order['id']);
+                $stmt->execute();
+                
+                // Xóa sản phẩm khỏi giỏ hàng sau khi thanh toán thành công
+                if (isset($_SESSION['cart_items'])) {
+                    $order_items = OrderItem::getByOrderId($GLOBALS['conn'], $order['id']);
+                    foreach ($order_items as $item) {
+                        if (isset($_SESSION['cart_items'][$item['product_id']])) {
+                            unset($_SESSION['cart_items'][$item['product_id']]);
+                        }
+                    }
+                }
+                
+                $logData .= "PAYMENT STATUS UPDATED: " . ($updateResult ? 'SUCCESS' : 'FAILED') . "\n";
+                $logData .= "ORDER STATUS UPDATED: " . ($updateStatus ? 'SUCCESS' : 'FAILED') . "\n";
+                
+                $message = "Thanh toán thành công! Đơn hàng #" . $order['order_number'] . " của bạn đã được xác nhận.";
+                $isSuccess = true;
+            } else if (!empty($responseCode)) {
+                // Có mã lỗi từ VNPay
                 Order::updatePaymentStatus($GLOBALS['conn'], $order['id'], 'failed');
-                $message = "Thanh toán thất bại hoặc bị hủy.";
+                
+                // Lấy thông báo lỗi tương ứng với mã lỗi
+                $errorMessages = [
+                    '07' => 'Trừ tiền thành công. Chi trả lỗi',
+                    '09' => 'Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.',
+                    '10' => 'Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần',
+                    '11' => 'Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.',
+                    '12' => 'Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.',
+                    '13' => 'Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.',
+                    '24' => 'Giao dịch không thành công do: Khách hàng hủy giao dịch',
+                    '51' => 'Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.',
+                    '65' => 'Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.',
+                    '75' => 'Ngân hàng thanh toán đang bảo trì.',
+                    '79' => 'Giao dịch không thành công do: KH nhập sai mật khẩu thanh toán quá số lần quy định. Xin quý khách vui lòng thực hiện lại giao dịch',
+                    '99' => 'Các lỗi khác (lỗi còn lại, không có trong danh sách mã lỗi đã liệt kê)'
+                ];
+                
+                $errorMessage = $errorMessages[$responseCode] ?? "Mã lỗi: $responseCode";
+                $message = "Thanh toán thất bại. $errorMessage";
+                $isSuccess = false;
+                
+                $logData .= "PAYMENT FAILED: " . $errorMessage . "\n";
             }
         } else {
             $message = "Xác thực giao dịch không hợp lệ!";
@@ -403,7 +464,7 @@ class CheckoutController {
             $logData .= "BANK CODE: " . $bankCode . "\n";
             
             // Kiểm tra số tiền thanh toán có khớp với đơn hàng không
-            $orderAmount = (int)round($order['total_amount'] * 100); // Chuyển đổi sang VNĐ (đơn vị nhỏ nhất)
+            $orderAmount = (int)round($order['total_amount']); // Chuyển đổi sang VNĐ (đơn vị nhỏ nhất)
             
             if ($orderAmount != $amount) {
                 $logData .= "AMOUNT MISMATCH: Order amount ($orderAmount) != Paid amount ($amount)\n";
@@ -418,7 +479,7 @@ class CheckoutController {
                 
                 // Lưu thông tin giao dịch vào ghi chú
                 $transactionInfo = "IPN: Thanh toán thành công qua VNPay. Mã GD: $transactionNo, Ngân hàng: $bankCode, Ngày: $payDate";
-                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\\n$transactionInfo') WHERE id = ?");
+                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\n$transactionInfo') WHERE id = ?");
                 $stmt->bind_param("i", $order['id']);
                 $stmt->execute();
                 
@@ -453,7 +514,7 @@ class CheckoutController {
                 
                 // Lưu thông tin lỗi vào ghi chú
                 $errorInfo = "IPN: Thanh toán thất bại. $errorMessage. Mã GD: $transactionNo";
-                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\\n$errorInfo') WHERE id = ?");
+                $stmt = $GLOBALS['conn']->prepare("UPDATE orders SET notes = CONCAT(IFNULL(notes, ''), '\n$errorInfo') WHERE id = ?");
                 $stmt->bind_param("i", $order['id']);
                 $stmt->execute();
                 

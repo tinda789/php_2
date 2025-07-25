@@ -475,3 +475,794 @@ HASH DATA: vnp_Amount=6790000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15097402&vnp_Ca
 HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
 GENERATED SIGNATURE: c0ca60222f9b3da4e7d35bb43390a118a652f474804b9761256c25206c1a7cb112e72b2c4c584a234553c50328b3c5371346c6bbc532481ee7c3c87775a8d8bf
 
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 799000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725032533238
+    [vnp_PayDate] => 20250725032635
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725032533238
+)
+
+HASH DATA: vnp_Amount=799000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725032533238&vnp_PayDate=20250725032635&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725032533238
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: f7d5456e2ed1ec9a7e2d5cdb5c11d4af8b65b3688cf3a62909483c6c24caff906a4cb6f5b80d24d79b05002330abd5a34f9b06844d630bbba45dba4715cc423e
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5560000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725032810440
+    [vnp_PayDate] => 20250725032912
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725032810440
+)
+
+HASH DATA: vnp_Amount=5560000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725032810440&vnp_PayDate=20250725032912&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725032810440
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 1b798cda4b0432d8c6114c9626ca4fa5e1f2a2143d5d939fa250782ca9f6f66aa189547648e52903f1bd508d0072d9b6ba602f89128d2b5b6aea6141a040af45
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 56779000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725034726419
+    [vnp_PayDate] => 20250725034828
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725034726419
+)
+
+HASH DATA: vnp_Amount=56779000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725034726419&vnp_PayDate=20250725034828&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725034726419
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 2ecbc7df8b3a295d534cfdc9b5e0cd83e501a03d8d79478237cab71524776f26f8323aaa08da1f4412b1ae3417b3220ff87087ccdc9543d263805a1e188a9312
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 56779000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725034926185
+    [vnp_PayDate] => 20250725035028
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725034926185
+)
+
+HASH DATA: vnp_Amount=56779000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725034926185&vnp_PayDate=20250725035028&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725034926185
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9a60bcdd6cd463ed81552d2cb39539e7b4f2ecd02369be8456ef29c036ed916d95c23c562bf67fa0cc5d4dda87ebd7c19911e6ba45f1636659be0cba87a1d917
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035059270
+    [vnp_PayDate] => 20250725035201
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725035059270
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035059270&vnp_PayDate=20250725035201&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725035059270
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: f87720b9ef35bb125aeabe132e6a357f556c8576ce8bc3a8435022f1458cdb887fac462465e6e21343ebc716b1ceeef6fb8646220dfc51af94e869263c503e58
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098024
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035143121
+    [vnp_PayDate] => 20250725035310
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098024
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035143121
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098024&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035143121&vnp_PayDate=20250725035310&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098024&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035143121
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 02cf9dc2b0e1e99805da12639e0d1291eac2239df56e9a66724e2e1c0a22c755365987297b0de6973c7796ce1513862eda5e885ca973cd293030f14ac9c5a6ec
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098024
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035143121
+    [vnp_PayDate] => 20250725035310
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098024
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035143121
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098024&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035143121&vnp_PayDate=20250725035310&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098024&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035143121
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 02cf9dc2b0e1e99805da12639e0d1291eac2239df56e9a66724e2e1c0a22c755365987297b0de6973c7796ce1513862eda5e885ca973cd293030f14ac9c5a6ec
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098024
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035143121
+    [vnp_PayDate] => 20250725035310
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098024
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035143121
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098024&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035143121&vnp_PayDate=20250725035310&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098024&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035143121
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 02cf9dc2b0e1e99805da12639e0d1291eac2239df56e9a66724e2e1c0a22c755365987297b0de6973c7796ce1513862eda5e885ca973cd293030f14ac9c5a6ec
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098025
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035357770
+    [vnp_PayDate] => 20250725035525
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098025
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035357770
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098025&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035357770&vnp_PayDate=20250725035525&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098025&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035357770
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098025
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035357770
+    [vnp_PayDate] => 20250725035525
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098025
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035357770
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098025&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035357770&vnp_PayDate=20250725035525&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098025&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035357770
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098025
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035357770
+    [vnp_PayDate] => 20250725035525
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098025
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035357770
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098025&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035357770&vnp_PayDate=20250725035525&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098025&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035357770
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098025
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035357770
+    [vnp_PayDate] => 20250725035525
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098025
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035357770
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098025&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035357770&vnp_PayDate=20250725035525&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098025&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035357770
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098025
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035357770
+    [vnp_PayDate] => 20250725035525
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098025
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035357770
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098025&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035357770&vnp_PayDate=20250725035525&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098025&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035357770
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 5677900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098025
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725035357770
+    [vnp_PayDate] => 20250725035525
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098025
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725035357770
+)
+
+HASH DATA: vnp_Amount=5677900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098025&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725035357770&vnp_PayDate=20250725035525&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098025&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725035357770
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: ca2e202e3aa697886e58d8724aa2f6215aeb8d598e5f5d98c0335917a34cb3bb0345e0ac914bb32b480a68b9f8718262fccd06351eca56d492f06804f7794027
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040612236
+    [vnp_PayDate] => 20250725040714
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725040612236
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040612236&vnp_PayDate=20250725040714&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725040612236
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9f2a66f536405aa1f4b44d0d5fe7949981b7c1a191538662e4ff9badd3980c0ec42b8b60c2ff905145811bd2112707081c10c7b1479df356c1e0546069813ac3
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098032
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725040647171
+    [vnp_PayDate] => 20250725040818
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098032
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725040647171
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098032&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725040647171&vnp_PayDate=20250725040818&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098032&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725040647171
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: 9b285b3c89ac5de8a37dab6b036deb41f58cb8fe1c240b85b20ce9aa57dad240e6be332c7ff59143df6eaa26da93ed7654bce3b6849ad4ceeca72ae297c51628
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => VNPAY
+    [vnp_CardType] => QRCODE
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041123233
+    [vnp_PayDate] => 20250725041225
+    [vnp_ResponseCode] => 24
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 0
+    [vnp_TransactionStatus] => 02
+    [vnp_TxnRef] => OD20250725041123233
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041123233&vnp_PayDate=20250725041225&vnp_ResponseCode=24&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=OD20250725041123233
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: ddc62e4d41815e30aee2826273e78ab6023ce0230a255c67fb68f141020142e8f9cf83e25726393637c87270be63521e1333f6ac364b9e9364911d9ac2473d1b
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+
+==============================
+RAW DATA:
+Array
+(
+    [vnp_Amount] => 42900000
+    [vnp_BankCode] => NCB
+    [vnp_BankTranNo] => VNP15098034
+    [vnp_CardType] => ATM
+    [vnp_OrderInfo] => Thanh toán đơn hàng #OD20250725041216750
+    [vnp_PayDate] => 20250725041341
+    [vnp_ResponseCode] => 00
+    [vnp_TmnCode] => 7JX9OTN2
+    [vnp_TransactionNo] => 15098034
+    [vnp_TransactionStatus] => 00
+    [vnp_TxnRef] => OD20250725041216750
+)
+
+HASH DATA: vnp_Amount=42900000&vnp_BankCode=NCB&vnp_BankTranNo=VNP15098034&vnp_CardType=ATM&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23OD20250725041216750&vnp_PayDate=20250725041341&vnp_ResponseCode=00&vnp_TmnCode=7JX9OTN2&vnp_TransactionNo=15098034&vnp_TransactionStatus=00&vnp_TxnRef=OD20250725041216750
+HASH SECRET: U5IUS3GKIH1RA41A3OU40XPNLTJIE0FF
+GENERATED SIGNATURE: cb1eb62ba271954ee66f0107e59039c1a11a0454eac777a71db9f59b1916af4dbbdd8c3da14f932e783b43e5e7c021ab9ce7b1b7907a6a5f8c9c0dc8b0457ff7
+

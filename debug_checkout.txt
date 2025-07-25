@@ -1,6 +1,13 @@
 POST:
 Array
 (
+    [product_id] => 161
+    [quantity] => 1
+    [selected_products] => Array
+        (
+            [0] => 161
+        )
+
 )
 
 SESSION user:
@@ -19,9 +26,9 @@ Array
     [is_active] => 1
     [email_verified] => 0
     [last_login] => 
-    [created_at] => 2025-07-18 22:25:02
-    [updated_at] => 2025-07-21 14:01:38
-    [reset_token] => 
-    [reset_expires] => 
-    [role_name] => customer
+    [created_at] => 2025-06-12 23:33:25
+    [updated_at] => 2025-07-23 18:18:38
+    [role_name] => super_admin
+    [role_id] => 1
+    [total_orders] => 46
 )

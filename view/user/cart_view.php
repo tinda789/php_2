@@ -52,13 +52,27 @@
               </td>
               <td class="text-danger fw-bold"><?php echo number_format($item['price'], 0, ',', '.'); ?> đ</td>
               <td>
-                <form method="POST" action="index.php?controller=cart&action=update" class="d-flex justify-content-center align-items-center gap-1">
+                <div class="d-flex justify-content-center align-items-center gap-1">
                   <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
-                  <input type="number" name="quantity" class="form-control text-center" value="<?php echo $item['quantity']; ?>" min="1" style="max-width:60px;">
-                  <button type="submit" class="btn btn-outline-primary btn-sm" title="Cập nhật số lượng"><i class="fas fa-sync-alt"></i></button>
-                </form>
+                  <input type="number" 
+                         name="quantity" 
+                         class="form-control text-center quantity-input" 
+                         value="<?php echo $item['quantity']; ?>" 
+                         min="1" 
+                         style="max-width:60px;"
+                         data-product-id="<?php echo $item['id']; ?>"
+                         data-price="<?php echo $item['price']; ?>">
+                  <button type="button" 
+                          class="btn btn-outline-primary btn-sm update-quantity" 
+                          title="Cập nhật số lượng" 
+                          data-product-id="<?php echo $item['id']; ?>">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                </div>
               </td>
-              <td class="fw-bold text-success"><?php echo number_format($subtotal, 0, ',', '.'); ?> đ</td>
+              <td class="fw-bold text-success product-subtotal" data-product-id="<?php echo $item['id']; ?>">
+                <?php echo number_format($subtotal, 0, ',', '.'); ?> đ
+              </td>
               <td>
                 <a href="index.php?controller=cart&action=remove&product_id=<?php echo $item['id']; ?>" class="btn btn-outline-danger btn-sm rounded-circle" title="Xóa khỏi giỏ hàng" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?');"><i class="fas fa-trash"></i></a>
               </td>
@@ -68,7 +82,7 @@
         <tfoot>
           <tr>
             <th colspan="5" class="text-end fs-5">Tổng cộng:</th>
-            <th class="text-danger fs-4 text-center"><?php echo number_format($total, 0, ',', '.'); ?> đ</th>
+            <th class="text-danger fs-4 text-center" id="cart-total"><?php echo number_format($total, 0, ',', '.'); ?> đ</th>
             <th></th>
           </tr>
         </tfoot>
@@ -82,15 +96,116 @@
   <?php endif; ?>
 </div>
 <script>
+// Hàm bật/tắt tất cả checkbox
 function toggleAllCartCheckboxes(source) {
   var checkboxes = document.querySelectorAll('.cart-checkbox');
   for (var i = 0; i < checkboxes.length; i++) {
     checkboxes[i].checked = source.checked;
   }
+  updateSelectedTotal();
 }
+
+// Hàm cập nhật tổng tiền của các sản phẩm được chọn
+function updateSelectedTotal() {
+  let total = 0;
+  
+  // Duyệt qua tất cả các sản phẩm được chọn
+  document.querySelectorAll('.cart-checkbox:checked').forEach(checkbox => {
+    const productId = checkbox.value;
+    const quantity = parseInt(document.querySelector(`.quantity-input[data-product-id="${productId}"]`).value) || 0;
+    const price = parseFloat(document.querySelector(`.quantity-input[data-product-id="${productId}"]`).dataset.price) || 0;
+    const subtotal = price * quantity;
+    
+    // Cập nhật tổng tiền cho từng sản phẩm
+    const subtotalElement = document.querySelector(`.product-subtotal[data-product-id="${productId}"]`);
+    if (subtotalElement) {
+      subtotalElement.textContent = subtotal.toLocaleString('vi-VN') + ' đ';
+    }
+    
+    total += subtotal;
+  });
+  
+  // Cập nhật tổng tiền
+  document.getElementById('cart-total').textContent = total.toLocaleString('vi-VN') + ' đ';
+}
+
+// Xử lý sự kiện khi thay đổi số lượng
+function handleQuantityChange(input) {
+  const productId = input.dataset.productId;
+  const quantity = parseInt(input.value) || 1;
+  
+  // Đảm bảo số lượng tối thiểu là 1
+  if (quantity < 1) {
+    input.value = 1;
+  }
+  
+  // Cập nhật tổng tiền
+  updateSelectedTotal();
+  
+  // Gửi yêu cầu cập nhật số lượng lên server
+  updateCartOnServer(productId, quantity);
+}
+
+// Gửi yêu cầu cập nhật số lượng lên server
+function updateCartOnServer(productId, quantity) {
+  const formData = new FormData();
+  formData.append('product_id', productId);
+  formData.append('quantity', quantity);
+  
+  fetch('index.php?controller=cart&action=update', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      // Cập nhật thành công
+      console.log('Cập nhật giỏ hàng thành công');
+    } else {
+      console.error('Lỗi khi cập nhật giỏ hàng:', data.message || 'Lỗi không xác định');
+    }
+  })
+  .catch(error => {
+    console.error('Lỗi khi gửi yêu cầu:', error);
+  });
+}
+
+// Thêm sự kiện khi tài liệu được tải xong
+document.addEventListener('DOMContentLoaded', function() {
+  // Xử lý sự kiện thay đổi số lượng
+  document.querySelectorAll('.quantity-input').forEach(input => {
+    input.addEventListener('change', function() {
+      handleQuantityChange(this);
+    });
+    
+    input.addEventListener('blur', function() {
+      if (this.value < 1) {
+        this.value = 1;
+        handleQuantityChange(this);
+      }
+    });
+  });
+  
+  // Xử lý sự kiện click nút cập nhật
+  document.querySelectorAll('.update-quantity').forEach(button => {
+    button.addEventListener('click', function() {
+      const productId = this.dataset.productId;
+      const input = document.querySelector(`.quantity-input[data-product-id="${productId}"]`);
+      handleQuantityChange(input);
+    });
+  });
+  
+  // Xử lý sự kiện checkbox
+  document.querySelectorAll('.cart-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', updateSelectedTotal);
+  });
+  
+  // Khởi tạo tổng tiền ban đầu
+  updateSelectedTotal();
+});
 </script>
 <style>
 .table thead th { vertical-align: middle; }
 .object-fit-cover { object-fit: cover; }
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { opacity: 1; }
-</style> 
+</style>

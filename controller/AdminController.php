@@ -567,7 +567,56 @@ if ($action === 'product_delete') {
 
 if ($action === 'order_manage') {
     require_once 'model/Order.php';
-    $orders = Order::getAll($conn);
+    
+    // Lấy các tham số lọc
+    $filters = [];
+    if (!empty($_GET['status'])) {
+        $filters['status'] = $_GET['status'];
+    }
+    if (!empty($_GET['order_number'])) {
+        $filters['order_number'] = $_GET['order_number'];
+    }
+    if (!empty($_GET['product_name'])) {
+        $filters['product_name'] = $_GET['product_name'];
+    }
+    if (!empty($_GET['start_date']) && !empty($_GET['end_date'])) {
+        $filters['start_date'] = $_GET['start_date'];
+        $filters['end_date'] = $_GET['end_date'];
+    }
+    
+    // Xử lý phân trang
+    $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+    $items_per_page = 10; // Số đơn hàng mỗi trang
+    
+    // Lấy tổng số đơn hàng với điều kiện lọc
+    $total_orders = Order::countFiltered($conn, $filters);
+    $total_pages = max(1, ceil($total_orders / $items_per_page));
+    $page = min($page, $total_pages); // Đảm bảo trang hiện tại không vượt quá tổng số trang
+    $offset = ($page - 1) * $items_per_page;
+    
+    // Lấy danh sách đơn hàng với phân trang và lọc
+    $orders = Order::getFilteredOrders($conn, $filters, $items_per_page, $offset);
+    
+    // Lấy danh sách các trạng thái đơn hàng để hiển thị trong dropdown
+    $statuses = [
+        'pending' => 'Chờ xác nhận',
+        'confirmed' => 'Đã xác nhận',
+        'processing' => 'Đang xử lý',
+        'shipped' => 'Đang giao hàng',
+        'delivered' => 'Đã giao hàng',
+        'cancelled' => 'Đã hủy',
+        'refunded' => 'Đã hoàn tiền'
+    ];
+    
+    // Truyền biến phân trang và bộ lọc sang view
+    $pagination = [
+        'current_page' => $page,
+        'total_pages' => $total_pages,
+        'total_items' => $total_orders,
+        'items_per_page' => $items_per_page,
+        'filters' => $filters
+    ];
+    
     $view_file = 'view/admin/order_manage.php';
     include 'view/layout/admin_layout.php';
     exit;
